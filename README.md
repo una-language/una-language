@@ -24,6 +24,13 @@ object =
   b : 
     c : 2
     d : 3
+  e : 4
+    
+a :
+b :
+  c : 
+  d : 
+e : = object
 ```
 
 ## Functions
@@ -33,6 +40,8 @@ add = (number)
 ```
 
 ## Expressions 
+
+#### Conditional
 ```
 condition = true
 number = condition ? 1 : 2
