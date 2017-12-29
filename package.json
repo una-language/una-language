@@ -1,0 +1,21 @@
+{
+  "name": "language",
+  "version": "0.0.1",
+  "scripts": {
+    "compile": "node compile source.lng"
+  },
+  "dependencies": {
+    "line-by-line": "^0.1.6",
+    "lodash": "^4.17.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sergeyshpadyrev/language.git"
+  },
+  "author": "Sergey Shpadyrev",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sergeyshpadyrev/language/issues"
+  },
+  "homepage": "https://github.com/sergeyshpadyrev/language#readme"
+}

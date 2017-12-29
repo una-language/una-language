@@ -1,0 +1,9 @@
+apples = 2
+pears = 3
+
+add = (first, second) =>
+  first + second
+
+result = add(apples pears)
+
+print(result)
