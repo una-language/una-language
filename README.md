@@ -35,7 +35,7 @@ e : = object
 
 ## Functions
 ```
-add = (number)
+add = number =>
   number + 1
 ```
 
