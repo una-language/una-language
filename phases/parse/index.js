@@ -1,7 +1,7 @@
 const _ = require("lodash");
 
 const parseLine = line => {
-  const parts = line.line.split(" = ");
+  const parts = line.value.split(" = ");
   const name = parts[0].trim();
   const value = parts[1].trim();
 

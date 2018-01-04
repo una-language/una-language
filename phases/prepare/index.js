@@ -7,7 +7,7 @@ const makeTree = (lines, spaces = 0) => {
   const children = _.takeWhile(_.tail(lines), isChild);
 
   const tree = {
-    line: _.head(lines).line,
+    value: _.head(lines).value,
     children: makeTree(children, spaces + 2)
   };
 

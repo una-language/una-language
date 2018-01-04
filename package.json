@@ -2,11 +2,16 @@
   "name": "language",
   "version": "0.0.1",
   "scripts": {
-    "compile": "node compile input.lng"
+    "start": "node compile.js input.lng",
+    "test": "mocha test.js"
   },
   "dependencies": {
     "line-by-line": "^0.1.6",
     "lodash": "^4.17.4"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^4.1.0"
   },
   "repository": {
     "type": "git",
