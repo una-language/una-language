@@ -1,13 +1,22 @@
 const assert = require("chai").assert;
 const { clean, divide, parse, prepare, translate } = require("./phases");
+const tests = require("./tests");
 
 const compile = lines => translate(parse(prepare(clean(divide(lines)))));
 
-describe("Compiler", () => {
-  it("should compile integer declaration", () => {
-    const code = "apples = 1";
+Object.keys(tests).forEach(testName =>
+  describe(testName, () => {
+    const test = tests[testName];
+    Object.keys(test).forEach(testCaseName =>
+      it(testCaseName, () => {
+        const { input, output } = test[testCaseName];
+        const compiledInput = compile(input);
+        const dividedOutput = divide(output);
 
-    const compiled = compile(code);
-    assert(compiled[0] === "const apples = 1;");
-  });
-});
+        assert(
+          compiledInput.every((line, index) => line === dividedOutput[index])
+        );
+      })
+    );
+  })
+);
