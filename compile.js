@@ -1,9 +1,4 @@
-const parse = require("./parse");
-const prepare = require("./prepare");
-const print = require("./print");
-const read = require("./read");
-const translate = require("./translate");
-const write = require("./write");
+const { parse, prepare, print, read, translate, write } = require("./phases");
 
 const printReadResult = print(1, "read lines from source code");
 const printPrepareResult = print(2, "prepare code tree from lines");
