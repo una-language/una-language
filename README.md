@@ -1,11 +1,17 @@
 # Language
 
 ## Motivation
+
 I've been developing software using many programming languages like Scala, Javascript and Python. In this language I want to include all advantages of these languages and exclude all disadvantages. The main principle the language design is no redundancy.
 
-## Data types
+## Syntax
+
+Programming consists of data and operations on it.
+
+### Data types
 
 #### Elementary
+
 ```
 integer = 1
 float = 1.0
@@ -13,56 +19,59 @@ string = 'abc'
 boolean = true
 ```
 
-#### List 
-```
-list = [1 2 3]
+#### List
 
-[first second third] = list
+###### Construction
+
+```
+array = | 1 2 3
+```
+
+```
+array = |
+  1
+  2
+  3
+```
+
+###### Deconstruction
+
+```
+| first second third = array
+```
+
+```
+|
+  first
+  second
+  third = array
 ```
 
 #### Map
+
+###### Construction
+
 ```
-object = 
+map =
   a : 1
-  b : 
+  b :
     c : 2
-    d : 3
-  e : 4
-    
+    d : array
+  e : integer
+```
+
+###### Deconstruction
+
+```
 a :
 b :
-  c : 
-  d : 
-e : = object
+  c :
+  d :
+e : = map
 ```
 
-## Functions
-```
-add = number =>
-  number + 1
-```
+###### Getting value
 
-## Expressions 
-
-#### Conditional
 ```
-condition = true
-number = condition ? 1 : 2
-```
-
-## Modules
-
-#### Export 
-```
-add = (number)
-  number + 1
-
-<- add
-```
-
-#### Import
-```
-add <- './add'
-
-result = add(1) // 2
+one = map.a
 ```
