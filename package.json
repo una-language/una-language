@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "scripts": {
     "start": "node src input.lng",
-    "test": "mocha test/code.js test/lib/list.js"
+    "test": "mocha test/*"
   },
   "dependencies": {
     "immutable": "^3.8.2",
