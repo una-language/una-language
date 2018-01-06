@@ -1,5 +1,9 @@
 const _ = require("lodash");
 
+const expression = value => {
+  if (value.includes("[") && value.includes("]")) return array(value);
+};
+
 const declare = line => {
   const parts = line.value.split(" = ");
   const name = parts[0].trim();
@@ -9,7 +13,7 @@ const declare = line => {
 };
 
 const importExport = line => {
-  return { type: "module" };
+  return { type: "importExport" };
 };
 
 const parseLine = line => {

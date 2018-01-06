@@ -3,10 +3,10 @@
   "version": "0.0.1",
   "scripts": {
     "start": "node src input.lng",
-    "test": "mocha test"
+    "test": "mocha test/code.js test/lib/list.js"
   },
   "dependencies": {
-    "line-by-line": "^0.1.6",
+    "immutable": "^3.8.2",
     "lodash": "^4.17.4"
   },
   "devDependencies": {
