@@ -24,11 +24,11 @@ boolean = true
 ###### Construction
 
 ```
-array = | 1 2 3
+list = | 1 2 3
 ```
 
 ```
-array = |
+list = |
   1
   2
   3
@@ -37,14 +37,20 @@ array = |
 ###### Deconstruction
 
 ```
-| first second third = array
+| first second third = list
 ```
 
 ```
 |
   first
   second
-  third = array
+  third = list
+```
+
+###### Getting value
+
+```
+one = list|0
 ```
 
 #### Map
@@ -74,4 +80,55 @@ e : = map
 
 ```
 one = map.a
+```
+
+### Functions
+
+##### Declaration
+
+```
+next = number => number + 1
+
+sum = first second => first + second
+```
+
+```
+next = number =>
+  number + 1
+
+sum = first second =>
+  first + second
+```
+
+##### Application
+
+```
+two = next 1
+
+three = sum 1 2
+```
+
+```
+four = sum
+  next 1
+  2
+```
+
+##### Passing
+
+```
+numbers.map
+  number =>
+    double = number * 2
+    double + 1
+```
+
+### Operators
+
+##### Condition
+
+```
+prize = ? goals > 3
+  'Cup'
+  'Medal'
 ```
