@@ -1,5 +1,5 @@
 const assert = require("chai").assert;
-const { divide, parse, prepare, translate } = require("./phases");
+const { divide, parse, prepare, translate } = require("../src/phases");
 const tests = require("./tests");
 
 const compile = content => translate(parse(prepare(divide(content))));

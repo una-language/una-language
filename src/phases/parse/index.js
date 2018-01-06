@@ -1,11 +1,22 @@
 const _ = require("lodash");
 
-const parseLine = line => {
+const declare = line => {
   const parts = line.value.split(" = ");
   const name = parts[0].trim();
   const value = parts[1].trim();
 
   return { type: "declare", name, value };
+};
+
+const importExport = line => {
+  return { type: "module" };
+};
+
+const parseLine = line => {
+  const { value } = line;
+
+  if (value.includes(" = ")) return declare(line);
+  if (value.includes(" <- ")) return importExport(line);
 };
 
 const parse = lines => {

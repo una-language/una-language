@@ -2,8 +2,8 @@
   "name": "language",
   "version": "0.0.1",
   "scripts": {
-    "start": "node compile.js input.lng",
-    "test": "mocha test.js"
+    "start": "node src input.lng",
+    "test": "mocha test"
   },
   "dependencies": {
     "line-by-line": "^0.1.6",
