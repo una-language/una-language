@@ -6,7 +6,7 @@ I've been developing software using many programming languages like Scala, Javas
 
 ## Syntax
 
-### Basic data types
+### Basic data
 
 ```
 integer = 1
@@ -119,7 +119,7 @@ numbers.map
     double + 1
 ```
 
-### Operators
+### Operator
 
 ##### Condition
 
@@ -127,4 +127,20 @@ numbers.map
 prize = ? goals > 3
   'Cup'
   'Medal'
+```
+
+### Module
+
+##### Export
+
+```
+add = number => number + 1
+
+<- add
+```
+
+##### Import
+
+```
+add <- './add'
 ```
