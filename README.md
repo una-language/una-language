@@ -19,22 +19,31 @@ boolean = true
 
 ##### Construction
 
+###### Simple
+
 ```
-list = | 1 2 3
+list = | 1 2 3 4
 ```
+
+###### Complex
 
 ```
 list = |
   1
-  2
+  1 + 1
   3
+  2 * 2
 ```
 
 ##### Deconstruction
 
+###### Simple
+
 ```
 | first second third = list
 ```
+
+###### Complex
 
 ```
 |
@@ -82,27 +91,33 @@ one = map.a
 
 ##### Declaration
 
+###### Simple
+
 ```
 next = number => number + 1
 
 sum = first second => first + second
 ```
 
-```
-next = number =>
-  number + 1
+###### Complex
 
-sum = first second =>
-  first + second
+```
+doubledNext = number =>
+  next = number + 1
+  next * 2
 ```
 
 ##### Application
+
+###### Simple
 
 ```
 two = next 1
 
 three = sum 1 2
 ```
+
+###### Complex
 
 ```
 four = sum
