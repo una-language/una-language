@@ -1,8 +1,7 @@
 {
-  "name": "language",
+  "name": "sova",
   "version": "0.0.1",
   "scripts": {
-    "start": "node src input.lng",
     "test": "mocha test/*"
   },
   "dependencies": {
@@ -15,12 +14,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sergeyshpadyrev/language.git"
+    "url": "git+https://github.com/sergeyshpadyrev/sova.git"
   },
   "author": "Sergey Shpadyrev",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/sergeyshpadyrev/language/issues"
+    "url": "https://github.com/sergeyshpadyrev/sova/issues"
   },
-  "homepage": "https://github.com/sergeyshpadyrev/language#readme"
+  "homepage": "https://github.com/sergeyshpadyrev/sova#readme"
 }
