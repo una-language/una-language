@@ -1,8 +1,8 @@
 const assert = require("chai").assert;
-const { clean, divide, parse, prepare, translate } = require("./phases");
+const { divide, parse, prepare, translate } = require("./phases");
 const tests = require("./tests");
 
-const compile = lines => translate(parse(prepare(clean(divide(lines)))));
+const compile = content => translate(parse(prepare(divide(content))));
 
 Object.keys(tests).forEach(testName =>
   describe(testName, () => {
