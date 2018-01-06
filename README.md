@@ -6,11 +6,7 @@ I've been developing software using many programming languages like Scala, Javas
 
 ## Syntax
 
-Programming consists of data and operations on it.
-
-### Data types
-
-#### Elementary
+### Basic data types
 
 ```
 integer = 1
@@ -19,9 +15,9 @@ string = 'abc'
 boolean = true
 ```
 
-#### List
+### List
 
-###### Construction
+##### Construction
 
 ```
 list = | 1 2 3
@@ -34,7 +30,7 @@ list = |
   3
 ```
 
-###### Deconstruction
+##### Deconstruction
 
 ```
 | first second third = list
@@ -47,15 +43,15 @@ list = |
   third = list
 ```
 
-###### Getting value
+##### Getting value
 
 ```
 one = list|0
 ```
 
-#### Map
+### Map
 
-###### Construction
+##### Construction
 
 ```
 map =
@@ -66,7 +62,7 @@ map =
   e : integer
 ```
 
-###### Deconstruction
+##### Deconstruction
 
 ```
 a :
@@ -76,13 +72,13 @@ b :
 e : = map
 ```
 
-###### Getting value
+##### Getting value
 
 ```
 one = map.a
 ```
 
-### Functions
+### Function
 
 ##### Declaration
 
