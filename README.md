@@ -1,8 +1,6 @@
-# Language
+# Sova
 
-## Motivation
-
-I've been developing software using many programming languages like Scala, Javascript and Python. In this language I want to include all advantages of these languages and exclude all disadvantages. The main principle the language design is no redundancy.
+Sova (<i>owl</i> in Russian) is a functional dynamically-typed programming language influenced by JavaScript, Python, Scala and Lisp.
 
 ## Syntax
 
