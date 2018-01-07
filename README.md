@@ -1,6 +1,6 @@
 # Sova
 
-Sova (<i>owl</i> in Russian) is a functional dynamically-typed programming language influenced by JavaScript, Python, Scala and Lisp.
+Sova (<i>owl</i> in Russian) is a functional dynamically-typed programming language influenced by JavaScript, Python and Lisp.
 
 ## Syntax
 
@@ -20,13 +20,13 @@ boolean = true
 ###### Simple
 
 ```
-list =| 1 2 3 4
+list = | 1 2 3 4
 ```
 
 ###### Complex
 
 ```
-list =|
+list = |
   1
   + 1 1
   3
@@ -38,13 +38,13 @@ list =|
 ###### Simple
 
 ```
-list |= first second third
+| list = first second third
 ```
 
 ###### Complex
 
 ```
-list |=
+| list =
   first
   second
   third
@@ -61,18 +61,18 @@ one = list|0
 ##### Construction
 
 ```
-map =.
-  a : 1
-  b :
-    c : 2
-    d : array
-  e : integer
+map = :
+  a 1
+  b
+    c 2
+    d array
+  e integer
 ```
 
 ##### Deconstruction
 
 ```
-map .=
+: map =
   a
   b
     c
@@ -83,7 +83,7 @@ map .=
 ##### Getting value
 
 ```
-one = map.a
+one = map:a
 ```
 
 ### Function
@@ -93,17 +93,17 @@ one = map.a
 ###### Simple
 
 ```
-next =) number
+next = -> number
   + number 1
 
-sum = first second =>
+sum = -> first second
   + first second
 ```
 
 ###### Complex
 
 ```
-doubledNext =) number
+doubledNext = -> number
   next = + number 1
   * next 2
 ```
@@ -130,7 +130,7 @@ four = sum
 
 ```
 numbers.map
-  ) number
+  -> number
     double = number * 2
     double + 1
 ```
@@ -151,7 +151,7 @@ prize = ?
 ##### Export
 
 ```
-add =) number
+add = -> number
   + number 1
 
 <- add
