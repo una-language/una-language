@@ -61,7 +61,7 @@ one = list|0
 ##### Construction
 
 ```
-map = :
+map = .
   a 1
   b
     c 2
@@ -72,7 +72,7 @@ map = :
 ##### Deconstruction
 
 ```
-: map =
+. map =
   a
   b
     c
@@ -83,7 +83,7 @@ map = :
 ##### Getting value
 
 ```
-one = map:a
+one = map.a
 ```
 
 ### Function
