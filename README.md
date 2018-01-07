@@ -20,17 +20,17 @@ boolean = true
 ###### Simple
 
 ```
-list = | 1 2 3 4
+list =| 1 2 3 4
 ```
 
 ###### Complex
 
 ```
-list = |
+list =|
   1
-  1 + 1
+  + 1 1
   3
-  2 * 2
+  * 2 2
 ```
 
 ##### Deconstruction
@@ -38,16 +38,16 @@ list = |
 ###### Simple
 
 ```
-| first second third = list
+list |= first second third
 ```
 
 ###### Complex
 
 ```
-|
+list |=
   first
   second
-  third = list
+  third
 ```
 
 ##### Getting value
@@ -61,7 +61,7 @@ one = list|0
 ##### Construction
 
 ```
-map =
+map =.
   a : 1
   b :
     c : 2
@@ -72,11 +72,12 @@ map =
 ##### Deconstruction
 
 ```
-a :
-b :
-  c :
-  d :
-e : = map
+map .=
+  a
+  b
+    c
+    d
+  e
 ```
 
 ##### Getting value
@@ -92,17 +93,19 @@ one = map.a
 ###### Simple
 
 ```
-next = number => number + 1
+next =) number
+  + number 1
 
-sum = first second => first + second
+sum = first second =>
+  + first second
 ```
 
 ###### Complex
 
 ```
-doubledNext = number =>
-  next = number + 1
-  next * 2
+doubledNext =) number
+  next = + number 1
+  * next 2
 ```
 
 ##### Application
@@ -127,7 +130,7 @@ four = sum
 
 ```
 numbers.map
-  number =>
+  ) number
     double = number * 2
     double + 1
 ```
@@ -137,7 +140,8 @@ numbers.map
 ##### Condition
 
 ```
-prize = ? goals > 3
+prize = ?
+  > goals 3
   'Cup'
   'Medal'
 ```
@@ -147,7 +151,8 @@ prize = ? goals > 3
 ##### Export
 
 ```
-add = number => number + 1
+add =) number
+  + number 1
 
 <- add
 ```
