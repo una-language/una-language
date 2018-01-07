@@ -1,6 +1,6 @@
 # Sova
 
-Sova (<i>owl</i> in Russian) is a functional dynamically-typed programming language influenced by JavaScript, Python and Lisp.
+Sova (<i>owl</i> in Russian) is a functional programming language influenced by JavaScript, Python and Lisp.
 
 ## Syntax
 
