@@ -77,7 +77,7 @@ one = numbers.get 0
 
 ```
 = doubledNext -> number
-    next = + number 1
+    = next (+ number 1)
     * next 2
 ```
 
