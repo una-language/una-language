@@ -1,26 +1,25 @@
 const _ = require("lodash");
 
-const expression = value => {
-  if (value.includes("[") && value.includes("]")) return array(value);
-};
+const expression = line => {
+  const { value, children } = line;
 
-const declare = line => {
-  const parts = line.value.split(" = ");
-  const name = parts[0].trim();
-  const value = parts[1].trim();
+  if (value.startsWith("-> ")) return functionExpression(line);
+  if (value.startsWith(".")) return mapExpression(line);
+  if (value.startsWith("|")) return listExpression(line);
 
-  return { type: "declare", name, value };
-};
-
-const importExport = line => {
-  return { type: "importExport" };
+  return functionApplication(line);
 };
 
 const parseLine = line => {
   const { value } = line;
 
-  if (value.includes(" = ")) return declare(line);
-  if (value.includes(" <- ")) return importExport(line);
+  if (value.startsWith(". ") || value.startsWith("| "))
+    return deconstruction(line);
+
+  if (value.includes("<- ")) return improtExport(line);
+  if (value.includes(" = ")) return declaration(line);
+
+  return expression(value);
 };
 
 const parse = lines => {

@@ -1,13 +1,5 @@
 const _ = require("lodash");
 
-const countSpaces = lines =>
-  lines.map(line => ({
-    value: line.trim(),
-    spaces: line.search(/\S/)
-  }));
-
-const clean = lines => lines.filter(line => line.spaces >= 0);
-
 const makeTree = (lines, spaces = 0) => {
   if (lines.length === 0) return [];
 
@@ -30,4 +22,3 @@ module.exports = lines => {
 
   return tree;
 };
-
