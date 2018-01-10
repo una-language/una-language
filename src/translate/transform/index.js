@@ -1,6 +1,7 @@
 const condition = require("./condition");
 const define = require("./define");
 const greater = require("./greater");
+const importExport = require("./importExport");
 const lessOrEquals = require("./lessOrEquals");
 const list = require("./list");
 const map = require("./map");
@@ -29,6 +30,8 @@ const transform = expression => {
   }
 
   switch (value) {
+    case "<-":
+      return importExport(transform, expression);
     case "=":
       return define(transform, expression);
     case "->":

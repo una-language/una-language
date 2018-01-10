@@ -1,3 +1,2 @@
 /node_modules
-input.lng
-output.js
+/example/**/*.js
