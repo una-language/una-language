@@ -1,6 +1,18 @@
 # Sova
 
-Sova (<i>owl</i> in Russian) is a functional programming language influenced by Lisp, Python and JavaScript
+Sova (<i>owl</i> in Russian) is a functional programming language inspired by Lisp, Python and JavaScript
+
+## Installation
+
+```
+npm install -g sova
+```
+
+## Usage
+
+```
+sova index.sv
+```
 
 ## Syntax
 
@@ -20,23 +32,24 @@ Sova (<i>owl</i> in Russian) is a functional programming language influenced by 
 ###### Simple
 
 ```
-= numbers list 1 2 3 4
+= numbers (list 1 2 3 4)
 ```
 
 ###### Complex
 
 ```
-= numbers list
-  1
-  + 1 1
-  3
-  * 2 2
+= numbers
+  list
+    1
+    + 1 1
+    3
+    * 2 2
 ```
 
 ##### Getting value
 
 ```
-one = numbers.get 0
+= one (numbers.get 0)
 ```
 
 ### Map
@@ -66,17 +79,20 @@ one = numbers.get 0
 ###### Simple
 
 ```
-= next -> number
-  + number 1
+= next
+  -> number
+    + number 1
 
-= sum -> first second
-  + first second
+= sum
+  -> (first second)
+    + first second
 ```
 
 ###### Complex
 
 ```
-= doubledNext -> number
+= doubledNext
+  -> number
     = next (+ number 1)
     * next 2
 ```
@@ -86,17 +102,18 @@ one = numbers.get 0
 ###### Simple
 
 ```
-= two next 1
+= two (next 1)
 
-= three sum 1 2
+= three (sum 1 2)
 ```
 
 ###### Complex
 
 ```
-= four sum
-  next 1
-  2
+= four
+  sum
+    next 1
+    2
 ```
 
 ##### Passing
@@ -104,7 +121,7 @@ one = numbers.get 0
 ```
 numbers.map
   -> number
-    = double * number 2
+    = double (* number 2)
     + double 1
 ```
 

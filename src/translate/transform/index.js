@@ -19,10 +19,12 @@ const transform = expression => {
       return require("./function")(transform, expression);
     case "+":
       return require("./plus")(transform, expression);
+    case "-":
+      return require("./minus")(transform, expression);
     default:
       const evaluatedParameters = parameters.map(transform).join(", ");
       return `${expression.value}(${evaluatedParameters})`;
   }
 };
 
-module.exports = transform;
+module.exports = expression => `${transform(expression)};`;

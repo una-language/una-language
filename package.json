@@ -1,6 +1,6 @@
 {
   "name": "sova",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "scripts": {
     "test": "mocha test/*"
   },
