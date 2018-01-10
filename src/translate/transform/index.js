@@ -14,7 +14,7 @@ const transform = expression => {
   if (!parameters || parameters.length === 0) {
     let evaluatedExpressionValue = null;
     try {
-      evaluatedExpressionValue = eval(value);
+      evaluatedExpressionValue = eval(value) ? value : null;
     } catch (error) {
       evaluatedExpressionValue = `(!!${expression.value} && !!${
         expression.value

@@ -2,27 +2,27 @@
   |
     :
       id 1
-      name 111
+      name 'Alice'
       profession :
-        name 222
+        name 'Doctor'
         experience 2
     :
       id 2
-      name 333
+      name 'Bob'
       profession :
-        name 444
+        name 'Developer'
         experience 4
     :
       id 3
-      name 555
+      name 'Chris'
       profession :
-        name 666
+        name 'Teacher'
         experience 3
     :
       id 4
-      name 777
+      name 'Dolores'
       profession :
-        name 888
+        name 'Driver'
         experience 8
 
 = professionals
