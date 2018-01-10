@@ -1,9 +1,8 @@
 module.exports = (transform, expression) => {
-  const getFunctionParameters = child => {
-    if (!child.parameters) return [child.value];
-
-    return [child.value].concat(getFunctionParameters(child.parameters[0]));
-  };
+  const getFunctionParameters = child =>
+    child.parameters && child.parameters.length > 0
+      ? [child.value].concat(getFunctionParameters(child.parameters[0]))
+      : [child.value];
 
   const functionParameters = getFunctionParameters(
     expression.parameters[0]

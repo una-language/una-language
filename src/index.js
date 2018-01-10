@@ -7,12 +7,17 @@ sova.default = sova;
 module.exports = sova;
 
 require("main").run(module, parameters => {
-  const inputFile = parameters(0);
+  require("./lib");
 
+  const inputFile = parameters(0);
   const read = require("./io/read");
   const translate = require("./translate");
 
   read(process.argv[2])
     .then(translate)
+    // .then(code => {
+    //   console.log(code);
+    //   return code;
+    // })
     .then(eval);
 });

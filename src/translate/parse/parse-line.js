@@ -44,6 +44,6 @@ const transformParts = parts =>
         value: parts[0].value,
         parameters: parts.slice(1).map(transformParts)
       }
-    : { value: parts.value };
+    : { value: parts.value, parameters: [] };
 
 module.exports = line => transformParts(parenthesize(tokenize(`(${line})`)));
