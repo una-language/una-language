@@ -31,7 +31,8 @@ module.exports = code => {
       value: line.trim(),
       spaces: line.search(/\S/)
     }))
-    .filter(line => line.spaces >= 0);
+    .filter(line => line.spaces >= 0)
+    .filter(line => !line.value.startsWith("//"));
 
   return makeTree(lines);
 };
