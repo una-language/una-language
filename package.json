@@ -7,6 +7,7 @@
   "dependencies": {
     "immutable": "^3.8.2",
     "lodash": "^4.17.4",
+    "main": "^1.0.1",
     "prettier": "^1.9.2"
   },
   "devDependencies": {

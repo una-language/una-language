@@ -4,8 +4,16 @@ Sova (<i>owl</i> in Russian) is a functional programming language inspired by Li
 
 ## Installation
 
+To install globally
+
 ```
 npm install -g sova
+```
+
+To install like a dependency:
+
+```
+npm install --save sova
 ```
 
 ## Usage
@@ -57,12 +65,13 @@ sova index.sv
 ##### Construction
 
 ```
-= object map
-  a 1
-  b
-    c 2
-    d 'abc'
-  e list 1 2 3
+= object
+  map
+    a 1
+    b
+      c 2
+      d 'abc'
+    e list 1 2 3
 ```
 
 ##### Getting value

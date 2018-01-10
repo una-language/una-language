@@ -1,3 +1,9 @@
+const callStandardLibrary = require("./callStandardLibrary");
+const define = require("./define");
+const defineFunction = require("./function");
+const plus = require("./plus");
+const minus = require("./minus");
+
 const transform = expression => {
   const { value, parameters } = expression;
 
@@ -14,13 +20,15 @@ const transform = expression => {
 
   switch (value) {
     case "=":
-      return require("./define")(transform, expression);
+      return define(transform, expression);
     case "->":
-      return require("./function")(transform, expression);
+      return defineFunction(transform, expression);
+    case "|":
+      return list(transform, expression);
     case "+":
-      return require("./plus")(transform, expression);
+      return plus(transform, expression);
     case "-":
-      return require("./minus")(transform, expression);
+      return minus(transform, expression);
     default:
       const evaluatedParameters = parameters.map(transform).join(", ");
       return `${expression.value}(${evaluatedParameters})`;
