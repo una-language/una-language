@@ -1,3 +1,4 @@
 global.SovaStandardLibrary = {
-  list: require("./list")
+  list: require("./list"),
+  map: require("./map")
 };

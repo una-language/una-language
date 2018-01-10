@@ -11,5 +11,5 @@ module.exports = (translate, expression) => {
   };
 
   const fields = expression.parameters.map(createField);
-  return `{${fields.join(", ")}}`;
+  return `SovaStandardLibrary.map({${fields.join(", ")}})`;
 };

@@ -1,12 +1,12 @@
 const condition = require("./condition");
 const define = require("./define");
 const greater = require("./greater");
-const method = require("./method");
 const lessOrEquals = require("./lessOrEquals");
 const list = require("./list");
 const map = require("./map");
-const plus = require("./plus");
+const method = require("./method");
 const minus = require("./minus");
+const plus = require("./plus");
 
 const transform = expression => {
   const { value, parameters } = expression;

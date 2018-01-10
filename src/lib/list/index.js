@@ -1,7 +1,12 @@
-var List = require("immutable").List;
+const { List } = require("immutable");
 
 function SovaList(input) {
-  this.list = Array.isArray(input) ? List(input) : input;
+  Object.defineProperty(this, "list", {
+    value: List.isList(input) ? input : List(input),
+    configurable: false,
+    enumerable: true,
+    writable: false
+  });
   this.list.forEach((element, index) => {
     Object.defineProperty(this, index, {
       value: element,
