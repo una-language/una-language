@@ -2,7 +2,7 @@
 
 = result
   numbers.map
-    <- number :
+    -> number :
       a number
       b number
 
