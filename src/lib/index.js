@@ -40,6 +40,7 @@ const createList = () => {
   method("exists", (list, condition) => list.some(condition));
   method("filter", (list, condition) => new SovaList(list.filter(condition)));
   method("forAll", (list, condition) => list.every(condition));
+  method("get", (list, index) => list.get(index));
   getter("head", list => (list.size === 0 ? undefined : list.get(0)));
   getter("length", list => list.size);
   method("map", (list, mapper) => new SovaList(list.map(mapper)));

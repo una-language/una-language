@@ -1,15 +1,5 @@
 const _ = require("lodash");
 
-const categorize = input => {
-  if (!isNaN(parseFloat(input)))
-    return { type: "number", value: parseFloat(input) };
-
-  if (input[0] === '"' && input.slice(-1) === '"')
-    return { type: "string", value: input.slice(1, -1) };
-
-  return { type: "identifier", value: input };
-};
-
 const parenthesize = (input, list) => {
   if (!list) return parenthesize(input, []);
 
@@ -21,7 +11,7 @@ const parenthesize = (input, list) => {
   }
   if (token === ")") return list;
 
-  return parenthesize(input, list.concat(categorize(token)));
+  return parenthesize(input, list.concat(token));
 };
 
 const tokenize = input =>
@@ -41,9 +31,9 @@ const tokenize = input =>
 const transformParts = parts =>
   Array.isArray(parts)
     ? {
-        value: parts[0].value,
+        value: parts[0],
         parameters: parts.slice(1).map(transformParts)
       }
-    : { value: parts.value, parameters: [] };
+    : { value: parts, parameters: [] };
 
 module.exports = line => transformParts(parenthesize(tokenize(`(${line})`)));

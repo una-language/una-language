@@ -8,52 +8,44 @@ const map = require("./map");
 const method = require("./method");
 const minus = require("./minus");
 const plus = require("./plus");
+const string = require("./string");
 
 const transform = expression => {
   const { value, parameters } = expression;
 
-  if (!parameters || parameters.length === 0) {
-    let evaluatedExpressionValue = null;
-    try {
-      evaluatedExpressionValue = eval(value) ? value : null;
-    } catch (error) {
-      evaluatedExpressionValue = `(!!${expression.value} && !!${
-        expression.value
-      }.constructor && !!${expression.value}.call && !!${
-        expression.value
-      }.apply && ${expression.value}.length === 0 ? ${expression.value}() : ${
-        expression.value
-      })`;
+  if (parameters.length > 0) {
+    switch (value) {
+      case "<-":
+        return importExport(transform, expression);
+      case "=":
+        return define(transform, expression);
+      case "->":
+        return method(transform, expression);
+      case "|":
+        return list(transform, expression);
+      case ":":
+        return map(transform, expression);
+      case "'":
+        return string(transform, expression);
+      case "?":
+        return condition(transform, expression);
+      case ">":
+        return greater(transform, expression);
+      case "<=":
+        return lessOrEquals(transform, expression);
+      case "+":
+        return plus(transform, expression);
+      case "-":
+        return minus(transform, expression);
+      default:
+        return `${expression.value}(${parameters.map(transform).join(", ")})`;
     }
-
-    return evaluatedExpressionValue;
   }
 
-  switch (value) {
-    case "<-":
-      return importExport(transform, expression);
-    case "=":
-      return define(transform, expression);
-    case "->":
-      return method(transform, expression);
-    case "|":
-      return list(transform, expression);
-    case ":":
-      return map(transform, expression);
-    case "?":
-      return condition(transform, expression);
-    case ">":
-      return greater(transform, expression);
-    case "<=":
-      return lessOrEquals(transform, expression);
-    case "+":
-      return plus(transform, expression);
-    case "-":
-      return minus(transform, expression);
-    default:
-      const evaluatedParameters = parameters.map(transform).join(", ");
-      return `${expression.value}(${evaluatedParameters})`;
-  }
+  const float = parseFloat(value);
+  return !isNaN(float)
+    ? float
+    : `(!!${value} && !!${value}.constructor && !!${value}.call && !!${value}.apply && ${value}.length === 0 ? ${value}() : ${value})`;
 };
 
 module.exports = expression => `${transform(expression)};`;

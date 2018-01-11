@@ -30,9 +30,9 @@ module.exports = code => {
     .map(line => ({
       value: line.trim(),
       spaces: line.search(/\S/)
-    }))
-    .filter(line => line.spaces >= 0)
-    .filter(line => !line.value.startsWith("//"));
+    })) // count spaces in the beginning of a line
+    .filter(line => line.spaces >= 0) // filter empty lines
+    .filter(line => !line.value.startsWith("//")); // filter commented lines
 
   return makeTree(lines);
 };

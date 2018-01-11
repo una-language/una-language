@@ -2,7 +2,7 @@
   "name": "sova",
   "version": "0.0.0",
   "scripts": {
-    "start": "node src/ example/fix-this && node example/fix-this",
+    "start": "node src/ example/helloworld && node example/helloworld",
     "test": "mocha test/*"
   },
   "dependencies": {
