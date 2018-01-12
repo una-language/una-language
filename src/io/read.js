@@ -1,10 +1,10 @@
 const FileSystem = require("fs");
 const path = require("path");
 
-module.exports = fileName =>
+module.exports = filePath =>
   new Promise((resolve, reject) =>
     FileSystem.readFile(
-      fileName,
+      filePath,
       "utf8",
       (error, content) => (error ? reject(error) : resolve(content))
     )

@@ -1,10 +1,9 @@
 const parse = require("./parse");
 const prettier = require("prettier");
-const transform = require("./transform");
+const evaluate = require("./evaluate");
 
-module.exports = code =>
-  prettier.format(
-    parse(code)
-      .map(transform)
-      .join(" ")
-  );
+module.exports = code => {
+  const expressions = parse(code);
+  const result = expressions.map(evaluate).join("\n");
+  return prettier.format(result);
+};
