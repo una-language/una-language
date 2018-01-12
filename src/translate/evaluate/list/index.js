@@ -1,6 +1,2 @@
-module.exports = (translate, expression) =>
-  translate({
-    value: `SovaStandardLibrary.list`,
-    parameters: expression.parameters
-  });
-
+module.exports = (evaluate, expression) =>
+  evaluate(["SovaStandardLibrary.list"].concat(expression.slice(1)));

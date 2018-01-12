@@ -1,6 +1,6 @@
 module.exports = (evaluate, expression) => {
-  const value = expression[0];
-  const float = parseFloat();
+  const value = Array.isArray(expression) ? expression[0] : expression;
+  const float = parseFloat(expression);
 
   if (!isNaN(float)) return float;
 

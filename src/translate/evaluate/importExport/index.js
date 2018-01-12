@@ -1,6 +1,4 @@
-module.exports = (transform, expression) => {
-  const { parameters } = expression;
-  return parameters.length > 1
-    ? `var ${parameters[0].value} = require(${parameters[1].value});`
-    : `module.exports = ${parameters[0].value};`;
-};
+module.exports = (evaluate, expression) =>
+  expression.length > 2
+    ? `var ${expression[1]} = require("${expression[2]}");`
+    : `module.exports = ${expression[1]};`;

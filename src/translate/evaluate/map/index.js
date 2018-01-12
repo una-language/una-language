@@ -1,15 +1,10 @@
-module.exports = (translate, expression) => {
+module.exports = (evaluate, expression) => {
   const createField = field => {
-    const fieldName = field.value;
-    const fieldValue = translate({
-      value: field.parameters[0].value,
-      parameters: field.parameters[0].parameters.concat(
-        field.parameters.slice(1)
-      )
-    });
-    return `${fieldName} : ${fieldValue}`;
+    const name = field[0];
+    const value = evaluate([field[1]].concat(field.slice(2)));
+    return `${name} : ${value}`;
   };
 
-  const fields = expression.parameters.map(createField);
+  const fields = expression.slice(1).map(createField);
   return `SovaStandardLibrary.map({${fields.join(", ")}})`;
 };

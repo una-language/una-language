@@ -1,4 +1,3 @@
-module.exports = (transform, expression) => {
-  const { parameters } = expression;
-  return `(${transform(parameters[0])} > ${transform(parameters[1])})`;
-};
+module.exports = (transform, expression) =>
+  `(${transform(expression[1])} > ${transform(expression[2])})`;
+

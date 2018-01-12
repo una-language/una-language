@@ -14,7 +14,8 @@ const string = require("./string");
 const value = require("./value");
 
 const evaluate = expression => {
-  if (expression.length === 1) return value(evaluate, expression);
+  if (!Array.isArray(expression) || expression.length === 1)
+    return value(evaluate, expression);
 
   switch (expression[0]) {
     case "<-":

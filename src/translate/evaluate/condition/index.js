@@ -1,7 +1,5 @@
-module.exports = (transform, expression) => {
-  const { parameters } = expression;
+module.exports = (evaluate, expression) =>
+  `((${evaluate(expression[1])}) ? (${evaluate(expression[2])}) : (${evaluate(
+    expression[3]
+  )}))`;
 
-  return `((${transform(parameters[0])}) ? (${transform(
-    parameters[1]
-  )}) : (${transform(parameters[2])}))`;
-};
