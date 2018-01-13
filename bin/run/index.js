@@ -7,7 +7,7 @@ const translate = require("../../translate");
 
 const compilePath = path.join(process.cwd(), process.argv[2]);
 const compileDirectory = fileSystem.lstatSync(compilePath).isFile()
-  ? path.dirname(filename)
+  ? path.dirname(compilePath)
   : compilePath;
 
 const compile = inputFile => {
@@ -23,7 +23,7 @@ const compile = inputFile => {
 
 const run = () => {
   const scriptPath = fileSystem.lstatSync(compilePath).isFile()
-    ? compilePath
+    ? compilePath.substring(0, compilePath.length - 3) + ".js"
     : `${compileDirectory}/index.js`;
 
   const process = require("child_process").fork(scriptPath);
