@@ -1,9 +1,7 @@
 {
   "name": "sova",
   "version": "0.0.7",
-  "scripts": {
-    "start": "node bin/ examples/01_HelloWorld"
-  },
+  "scripts": {},
   "bin": {
     "sova": "bin/index.js"
   },
