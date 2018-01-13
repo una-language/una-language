@@ -6,5 +6,5 @@ module.exports = (evaluate, expression) => {
   };
 
   const fields = expression.slice(1).map(createField);
-  return `SovaStandardLibrary.map({${fields.join(", ")}})`;
+  return `Sova.map({${fields.join(", ")}})`;
 };

@@ -1,16 +1,12 @@
 {
-  "name": "sova",
+  "name": "sova-standard-library",
   "version": "0.0.7",
+  "main": "index.js",
   "scripts": {
-    "start": "node bin/ examples/01_HelloWorld"
-  },
-  "bin": {
-    "sova": "bin/index.js"
+    "test": "mocha list/test.js"
   },
   "dependencies": {
-    "glob": "^7.1.2",
-    "lodash": "^4.17.4",
-    "prettier": "^1.9.2"
+    "immutable": "^3.8.2"
   },
   "devDependencies": {
     "chai": "^4.1.2",
