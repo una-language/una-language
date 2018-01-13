@@ -24,22 +24,15 @@
       name ' Driver
       experience 8
 
-= professionals
-  people.map
-    -> man
-      :
-        name man.name
-        professionName man.profession.name
-        workExperience man.profession.experience
+= professionals people.map
+  -> man
+    : (name man.name) (professionName man.profession.name) (workExperience man.profession.experience)
 
-= experiencedProfessionals
-  professionals.filter
-    -> professional
-      > professional.workExperience 3
+= experiencedProfessionals professionals.filter
+  -> professional (> professional.workExperience 3)
 
-= experiencedProfessionalsNames
-  experiencedProfessionals.map
-    -> experiencedProfessional
-      experiencedProfessional.name
+= experiencedProfessionalsNames experiencedProfessionals.map
+  -> experiencedProfessional
+    experiencedProfessional.name
 
 console.log experiencedProfessionalsNames
