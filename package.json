@@ -1,6 +1,6 @@
 {
   "name": "sova",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "scripts": {},
   "bin": {
     "sova": "bin/index.js"
