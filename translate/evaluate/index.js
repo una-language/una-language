@@ -1,21 +1,33 @@
 const _ = require("lodash");
 const application = require("./application");
+const arithmetic = require("./arithmetic");
+const comparison = require("./comparison");
 const condition = require("./condition");
 const define = require("./define");
-const greater = require("./greater");
 const importExport = require("./importExport");
-const lessOrEquals = require("./lessOrEquals");
 const list = require("./list");
+const logical = require("./logical");
 const map = require("./map");
 const method = require("./method");
-const minus = require("./minus");
-const plus = require("./plus");
 const string = require("./string");
 const value = require("./value");
+
+const arithmeticOperators = ["+", "-", "*", "/", "%"];
+const comparisonOperators = ["==", "===", ">", ">=", "<", "<="];
+const logicalOperators = ["&&", "||", "!"];
 
 const evaluate = expression => {
   if (!Array.isArray(expression) || expression.length === 1)
     return value(evaluate, expression);
+
+  if (arithmeticOperators.includes(expression[0]))
+    return arithmetic(evaluate, expression);
+
+  if (comparisonOperators.includes(expression[0]))
+    return comparison(evaluate, expression);
+
+  if (logicalOperators.includes(expression[0]))
+    return logical(evaluate, expression);
 
   switch (expression[0]) {
     case "<-":
@@ -32,14 +44,6 @@ const evaluate = expression => {
       return string(evaluate, expression);
     case "?":
       return condition(evaluate, expression);
-    case ">":
-      return greater(evaluate, expression);
-    case "<=":
-      return lessOrEquals(evaluate, expression);
-    case "+":
-      return plus(evaluate, expression);
-    case "-":
-      return minus(evaluate, expression);
     default:
       return application(evaluate, expression);
   }
