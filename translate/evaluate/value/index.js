@@ -4,5 +4,8 @@ module.exports = (evaluate, expression) => {
 
   if (!isNaN(float)) return float;
 
-  return `(!!${value} && !!${value}.constructor && !!${value}.call && !!${value}.apply && ${value}.length === 0 ? ${value}() : ${value})`;
+  if (value.startsWith('"') || value.startsWith("'"))
+    return `\`${value.substring(1, value.length - 1)}\``;
+
+  return `${value}`;
 };

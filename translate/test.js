@@ -28,22 +28,22 @@ describe("String", () => {
     it("can be declared in one line", () =>
       check(
         `
-        = string ' Hello
+        = string 'Hello'
         `,
         `var string = \`Hello\`;`
       ));
     it("can be declared in two lines", () =>
       check(
         `
-          = string '
-            Hello
+          = string
+            'Hello'
         `,
         `var string = \`Hello\`;`
       ));
     it("can be passed to function", () =>
       check(
         `
-        console.log (' Hello)
+        console.log 'Hello'
         `,
         `console.log(\`Hello\`);`
       ));
@@ -52,15 +52,15 @@ describe("String", () => {
     it("can be declared in one line", () =>
       check(
         `
-          = string ' (Hello World!)
+          = string 'Hello World!'
         `,
         `var string = \`Hello World!\`;`
       ));
     it("can be declared in two lines", () =>
       check(
         `
-          = string '
-            Hello World!
+          = string
+            'Hello World!'
         `,
         `
           var string = \`Hello World!\`;
@@ -69,8 +69,8 @@ describe("String", () => {
     it("can be declared with interpolated incertions", () =>
       check(
         `
-          = name ' John
-          = string ' (Hello \${name})
+          = name 'John'
+          = string 'Hello \${name}'
         `,
         `
           var name = \`John\`;
@@ -81,7 +81,7 @@ describe("String", () => {
       check(
         `
           console.log
-            ' (Hello World!)
+            'Hello World!'
           `,
         `
           console.log(\`Hello World!\`);
@@ -89,39 +89,39 @@ describe("String", () => {
       ));
   });
 
-  describe("multiple lines string", () => {
-    it("can be declared", () =>
-      check(
-        `
-          = string '
-            One two three
-            Four five six
-            Seven eight nine
-        `,
-        `
-          var string = \`One two three
-            Four five six
-            Seven eight nine\`;
-        `
-      ));
-
-    it("can be declared with interpolated incertions", () =>
-      check(
-        `
-          = number ' three
-          = string '
-            One two \${number}
-            Four five six
-            Seven eight nine
-        `,
-        `
-          var number = \`three\`;
-          var string = \`One two \${number}
-            Four five six
-            Seven eight nine\`;
-        `
-      ));
-  });
+  // describe("multiple lines string", () => {
+  //   it("can be declared", () =>
+  //     check(
+  //       `
+  //         = string \`
+  //           'One two three'
+  //           'Four five six'
+  //           'Seven eight nine'
+  //       `,
+  //       `
+  //         var string = \`One two three
+  //           Four five six
+  //           Seven eight nine\`;
+  //       `
+  //     ));
+  //
+  //   it("can be declared with interpolated incertions", () =>
+  //     check(
+  //       `
+  //         = number 'three'
+  //         = string \`
+  //           'One two \${number}'
+  //           'Four five six'
+  //           'Seven eight nine'
+  //       `,
+  //       `
+  //         var number = \`three\`;
+  //         var string = \`One two \${number}
+  //           Four five six
+  //           Seven eight nine\`;
+  //       `
+  //     ));
+  // });
 });
 
 describe("Number", () => {
