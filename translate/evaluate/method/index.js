@@ -8,7 +8,7 @@ module.exports = (evaluate, expression) => {
   const body =
     lines.length > 1
       ? lines
-          .slice(lines.length - 1, 1)
+          .slice(0, -1)
           .map(evaluate)
           .join(" ")
       : [];

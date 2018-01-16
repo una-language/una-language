@@ -30,7 +30,7 @@ const replace = expression => {
       return "Sova.lessOrEquals";
     case "==":
       return "Sova.equals";
-    case "==":
+    case "===":
       return "Sova.accuratlyEquals";
     case "!=":
       return "Sova.notEquals";
