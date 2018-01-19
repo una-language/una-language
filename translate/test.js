@@ -30,7 +30,7 @@ describe("String", () => {
         `
         = string 'Hello'
         `,
-        `var string = \`Hello\`;`
+        `const string = \`Hello\`;`
       ));
     it("can be declared in two lines", () =>
       check(
@@ -38,7 +38,7 @@ describe("String", () => {
           = string
             'Hello'
         `,
-        `var string = \`Hello\`;`
+        `const string = \`Hello\`;`
       ));
     it("can be passed to function", () =>
       check(
@@ -54,7 +54,7 @@ describe("String", () => {
         `
           = string 'Hello World!'
         `,
-        `var string = \`Hello World!\`;`
+        `const string = \`Hello World!\`;`
       ));
     it("can be declared in two lines", () =>
       check(
@@ -63,7 +63,7 @@ describe("String", () => {
             'Hello World!'
         `,
         `
-          var string = \`Hello World!\`;
+          const string = \`Hello World!\`;
         `
       ));
     it("can be declared with interpolated incertions", () =>
@@ -73,8 +73,8 @@ describe("String", () => {
           = string 'Hello \${name}'
         `,
         `
-          var name = \`John\`;
-          var string = \`Hello \${name}\`;
+          const name = \`John\`;
+          const string = \`Hello \${name}\`;
         `
       ));
     it("can be passed to function", () =>
@@ -99,7 +99,7 @@ describe("String", () => {
   //           'Seven eight nine'
   //       `,
   //       `
-  //         var string = \`One two three
+  //         const string = \`One two three
   //           Four five six
   //           Seven eight nine\`;
   //       `
@@ -115,8 +115,8 @@ describe("String", () => {
   //           'Seven eight nine'
   //       `,
   //       `
-  //         var number = \`three\`;
-  //         var string = \`One two \${number}
+  //         const number = \`three\`;
+  //         const string = \`One two \${number}
   //           Four five six
   //           Seven eight nine\`;
   //       `
@@ -126,9 +126,9 @@ describe("String", () => {
 
 describe("Number", () => {
   describe("integer number", () => {
-    it("can be declared", () => check(`= integer 1`, `var integer = 1;`));
+    it("can be declared", () => check(`= integer 1`, `const integer = 1;`));
   });
   describe("float number", () => {
-    it("can be declared", () => check(`= float 1.4`, `var float = 1.4;`));
+    it("can be declared", () => check(`= float 1.4`, `const float = 1.4;`));
   });
 });

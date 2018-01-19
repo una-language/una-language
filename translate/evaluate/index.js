@@ -3,7 +3,9 @@ const application = require("./application");
 const define = require("./define");
 const exporting = require("./exporting");
 const importing = require("./importing");
+const listDeconstruction = require("./listDeconstruction");
 const map = require("./map");
+const mapDeconstruction = require("./mapDeconstruction");
 const method = require("./method");
 const replace = require("./replace");
 const value = require("./value");
@@ -21,6 +23,10 @@ const evaluate = expression => {
       return exporting(evaluate, expression);
     case "=":
       return define(evaluate, expression);
+    case ":=":
+      return mapDeconstruction(evaluate, expression);
+    case "|=":
+      return listDeconstruction(evaluate, expression);
     case "->":
       return method(evaluate, expression);
     case ":":

@@ -7,5 +7,5 @@ module.exports = (evaluate, expression) => {
       ? evaluate([parameters[0], ...parameters.slice(1)])
       : evaluate(parameters[0]);
 
-  return `var ${name} = ${value};`;
+  return `const ${name} = ${value};`;
 };
