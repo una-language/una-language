@@ -1,2 +1,2 @@
 module.exports = (evaluate, expression) =>
-  `var ${expression[1]} = require(${expression[2]});`;
+  `var ${expression[2]} = require(${expression[1]});`;
