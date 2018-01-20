@@ -1,10 +1,19 @@
 module.exports = (evaluate, expression) => {
   const createField = field => {
-    const name = field[0];
-    const value = evaluate([field[1]].concat(field.slice(2)));
-    return `${name} : ${value}`;
+    if (!Array.isArray(field)) return field;
+
+    const subFields = field
+      .slice(1)
+      .map(createField)
+      .join(", ");
+
+    return `${field[0]} : {${subFields}}`;
   };
 
-  const fields = expression.slice(1).map(createField);
-  return `Sova.map({${fields.join(", ")}})`;
+  const deconstructedFields = expression
+    .slice(2)
+    .map(createField)
+    .join(", ");
+
+  return `const {${deconstructedFields}} = ${expression[1]}`;
 };
