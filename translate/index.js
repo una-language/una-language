@@ -1,11 +1,15 @@
+const evaluate = require("./evaluate");
+const operators = require("./operators");
 const parse = require("./parse");
 const prettier = require("prettier");
-const evaluate = require("./evaluate");
+const replace = require("./replace");
 
 module.exports = code => {
-  const expressions = parse(code);
-  const resultCode = expressions.map(evaluate).join("\n");
-  const resultCodeWithLib = `require("sova-standard-library");\n${resultCode}`;
-  const formattedCode = prettier.format(resultCodeWithLib);
-  return formattedCode;
+  const parsed = parse(code);
+  const replaced = replace(parsed);
+  const evaluator = evaluate(operators);
+  const evaluated = replaced.map(evaluator).join("\n");
+  const withLib = `require("sova-standard-library");\n${evaluated}`;
+
+  return prettier.format(withLib);
 };
