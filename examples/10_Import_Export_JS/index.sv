@@ -1,3 +1,7 @@
 --> './next' next
+--> './numbers' numbers
 
-console.log (next 2)
+:= numbers a b
+
+console.log (next a)
+console.log (next b)
