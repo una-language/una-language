@@ -1,19 +1,19 @@
 = first true
 = second false
 
-console.log first
-console.log second
-console.log
+>_ first
+>_ second
+>_
   ! second
 
-console.log
+>_
   && true true true
 
-console.log
+>_
   && true false true
 
-console.log
+>_
   || false false false
 
-console.log
+>_
   || false true false

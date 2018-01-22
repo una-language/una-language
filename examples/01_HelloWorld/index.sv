@@ -1,1 +1,1 @@
-console.log 'Hello World!'
+>_ 'Hello World!'

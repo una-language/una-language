@@ -1,11 +1,25 @@
 {
+  "name": "sova-standard-library",
+  "version": "0.0.15",
+  "main": "index.js",
   "scripts": {
-    "start": "node_modules/.bin/sova ."
+    "test": "mocha list/test.js"
   },
   "dependencies": {
-    "sova-standard-library": "0.0.15"
+    "immutable": "^3.8.2"
   },
   "devDependencies": {
-    "sova": "0.0.15"
-  }
+    "chai": "^4.1.2",
+    "mocha": "^4.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sergeyshpadyrev/sova.git"
+  },
+  "author": "Sergey Shpadyrev",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sergeyshpadyrev/sova/issues"
+  },
+  "homepage": "https://github.com/sergeyshpadyrev/sova#readme"
 }

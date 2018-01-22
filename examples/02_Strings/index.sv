@@ -1,16 +1,16 @@
-console.log 'Hello'
-console.log "Hello World!"
+>_ 'Hello'
+>_ "Hello World!"
 
 = string 'Hello World!'
-console.log string
+>_ string
 
 = name 'John'
 = greeting 'Hello ${name}'
-console.log greeting
+>_ greeting
 
 = text `
   'First line of text'
   'Second line of text'
   'Third line of text'
-  
-console.log text
+
+>_ text

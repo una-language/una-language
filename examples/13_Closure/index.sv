@@ -5,5 +5,4 @@
 
 = addOne add 1
 
-console.log
-  addOne 3
+>_ (addOne 3)

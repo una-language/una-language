@@ -2,6 +2,6 @@
 
 |= numbers first second third
 
-console.log first
-console.log second
-console.log third
+>_ first
+>_ second
+>_ third

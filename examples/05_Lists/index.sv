@@ -1,8 +1,8 @@
 = digits | 0 1 2 3 4 5 6 7 8 9
 
-console.log digits
+>_ digits
 
-console.log
+>_
   | 1 2 3
 
 = numbers |
@@ -11,21 +11,21 @@ console.log
   57
   93
 
-console.log numbers
+>_ numbers
 
-console.log
+>_
   numbers.get 0
 
-console.log
+>_
   numbers.length
 
-console.log
+>_
   numbers.size
 
 = numbersWithFirstElementAdded numbers.addFirst 0
 = numbersWithLastElementAdded numbers.addLast 123
 = numbersWithElementAdded numbers.add 145
 
-console.log numbersWithFirstElementAdded
-console.log numbersWithLastElementAdded
-console.log numbersWithElementAdded
+>_ numbersWithFirstElementAdded
+>_ numbersWithLastElementAdded
+>_ numbersWithElementAdded

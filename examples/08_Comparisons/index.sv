@@ -1,11 +1,11 @@
-console.log (> 2 1)
-console.log (< 1 2)
-console.log (>= 1 1)
-console.log (<= 1 1)
-console.log (== 1 "1")
-console.log (=== 1 1)
-console.log (!= 1 2)
-console.log (!== 1 "1")
+>_ (> 2 1)
+>_ (< 1 2)
+>_ (>= 1 1)
+>_ (<= 1 1)
+>_ (== 1 "1")
+>_ (=== 1 1)
+>_ (!= 1 2)
+>_ (!== 1 "1")
 
-console.log
+>_
   ? (> 2 1) 15 30

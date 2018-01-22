@@ -8,8 +8,8 @@
 
 := object a (b c d) e f
 
-console.log a
-console.log c
-console.log d
-console.log e
-console.log f
+>_ a
+>_ c
+>_ d
+>_ e
+>_ f
