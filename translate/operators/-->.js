@@ -1,2 +1,1 @@
-module.exports = (evaluate, [path, name]) =>
-  `const ${name} = require(${path});`;
+module.exports = (evaluate, path) => `require(${path});`;

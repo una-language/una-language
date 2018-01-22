@@ -1,4 +1,4 @@
-module.exports = (evaluate, [name, ...fields]) => {
+module.exports = (evaluate, [object, ...fields]) => {
   const createField = field => {
     if (!Array.isArray(field)) return field;
 
@@ -9,5 +9,5 @@ module.exports = (evaluate, [name, ...fields]) => {
   };
 
   const deconstructedFields = fields.map(createField).join(", ");
-  return `const {${deconstructedFields}} = ${name}`;
+  return `const {${deconstructedFields}} = ${evaluate(object)}`;
 };

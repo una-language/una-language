@@ -1,4 +1,3 @@
-module.exports = (evaluate, parameters) => {
-  const elements = parameters.slice(1).join(", ");
-  return `const [${elements}] = ${parameters[0]};`;
-};
+module.exports = (evaluate, [list, ...elements]) =>
+  `const [${elements.join(", ")}] = ${evaluate(list)};`;
+
