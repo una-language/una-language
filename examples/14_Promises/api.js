@@ -1,13 +1,18 @@
-const sendMessage = message =>
-  new Promise(resolve => resolve(`message ${message}`));
-
-const processResponse = response =>
-  new Promise(resolve => resolve(`response ${response}`));
-
-const fixResult = result => new Promise(resolve => resolve(`result ${result}`));
-
-module.exports = {
-  sendMessage,
-  processResponse,
-  fixResult
-};
+require("sova-standard-library");
+module.exports = Sova.map({
+  sendMessage: function(message) {
+    return new Promise(function(resolve) {
+      return resolve(`message ${message}`);
+    });
+  },
+  processResponse: function(response) {
+    return new Promise(function(resolve) {
+      return resolve(`response ${response}`);
+    });
+  },
+  fixResult: function(result) {
+    return new Promise(function(resolve) {
+      return resolve(`result ${result}`);
+    });
+  }
+});
