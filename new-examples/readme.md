@@ -5,7 +5,7 @@
 These are ordered code examples </br>
 So you need to read them sequently and learn the basics of the language
 
-<ul>
-  <li>[Hello World](./01_Hello_World)</li>
-  <li>[Constant Declaration](./02_Constant_Declaration)</li>
-</ul>
+<ol>
+  <li><a href="./01_Hello_World"></a>Hello World</li>
+  <li><a href="./02_Constant_Declaration"></a>Constant Declaration</li>
+</ol>
