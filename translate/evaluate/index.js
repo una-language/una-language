@@ -7,7 +7,7 @@ module.exports = operators => {
     if (!Array.isArray(expression))
       return expression.startsWith('"') || expression.startsWith("'")
         ? `\`${expression.substring(1, expression.length - 1)}\``
-        : expression;
+        : `Sova.isFunctionWithoutArguments(${expression}) ? ${expression}() : ${expression}`;
 
     const [name, ...parameters] = expression;
     if (operators[name]) return operators[name](evaluate, parameters);

@@ -1,6 +1,6 @@
 {
   "name": "sova-standard-library",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "main": "index.js",
   "scripts": {
     "test": "mocha list/test.js"
