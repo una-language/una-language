@@ -2,7 +2,7 @@
 
 # Examples
 
-These are ordered code examples 
+These are ordered code examples </br>
 So you need to read them one by one and learn the basics of the language
 
 You can run every example with `npm install && npm start` command
