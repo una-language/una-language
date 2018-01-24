@@ -10,8 +10,9 @@ module.exports = (evaluate, parameters) => {
       ? lines
           .slice(0, -1)
           .map(evaluate)
+          .map(line => `${line};`)
           .join(" ")
       : [];
 
-  return `function(${functionParameters}){${body} return ${last}}`;
+  return `function(${functionParameters}){${body} return ${last};}`;
 };

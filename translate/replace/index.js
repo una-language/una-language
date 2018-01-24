@@ -18,13 +18,15 @@ const replacements = {
   "==": "equals",
   "===": "accuratlyEquals",
   "!=": "notEquals",
-  "!==": "notAccuratlyEquals"
+  "!==": "notAccuratlyEquals",
+  "++": "createInstance",
+  "|>": "handlePromise"
 };
 
 const replace = expression =>
   Array.isArray(expression)
     ? expression.map(replace)
-    : replacements[expression]
+    : replacements.hasOwnProperty(expression)
       ? `Sova.${replacements[expression]}`
       : expression;
 

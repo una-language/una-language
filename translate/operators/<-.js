@@ -5,6 +5,7 @@ module.exports = (evaluate, lines) => {
       ? lines
           .slice(0, -1)
           .map(evaluate)
+          .map(line => `${line};`)
           .join(" ")
       : [];
 
