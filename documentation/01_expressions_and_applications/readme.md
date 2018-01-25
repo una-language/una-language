@@ -58,5 +58,4 @@ expression
     parameter2
 ```
 
-These rules are always true for all expressions except some standard ones like `=`, `:` etc.
-All exceptions will be explained in next chapters.
+These rules are always true for all expressions except some standard operators explained in the next chapters.
