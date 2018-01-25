@@ -5,13 +5,25 @@
 Program is a list of expressions </br>
 There are some basic expressions like:
 
-<ul>
-  <li>Integer numbers like `1`</li>
-  <li>Float numbers like `1.5`</li>
-  <li>Strings like `'John'`</li>
-  <li>Booleans like `true` or `false`</li>
-  <li>Named values like `lines` or `list.size` or `man.profession.title`</li>
-</ul>
+```
+// Integer numbers
+1
+
+// Float numbers
+1.5
+
+// Strings
+'John'
+
+// Booleans
+true
+false
+
+// Named values
+lines
+list.size
+man.profession.title
+```
 
 All other expressions are complex. They are done with application of multiple expressions to another expression.
 Applied expressions can be written in the right from the basic expression or on the new lines with tabs.
