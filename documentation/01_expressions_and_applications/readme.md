@@ -14,20 +14,13 @@ There are some basic expressions:
 </ul>
 
 ```
-// Integer numbers
 1
-
-// Float numbers
 1.5
-
-// Strings
 'John'
 
-// Booleans
 true
 false
 
-// Named values
 lines
 list.size
 man.profession.title
@@ -38,15 +31,15 @@ Applied expressions can be written in the right from the basic expression or on 
 
 ```
 expression parameter1
-//or
+
 expression
   parameter1
 
 expression parameter1 parameter2
-//or
+
 expression parameter1
   parameter2
-//or
+
 expression
   parameter1
   parameter2
@@ -56,10 +49,10 @@ If expression that's passed in application is also complex it can be written in 
 
 ```
 expression (complexParameter parameter1 parameter2)
-//or
+
 expression
   complexParameter parameter1 parameter2
-//or
+
 expression
   complexParameter
     parameter1

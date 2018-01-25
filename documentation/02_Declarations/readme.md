@@ -6,7 +6,6 @@ The most common operation is the named value declaration. </br>
 Its structure is simple:
 
 ```
-// Create named value with name 'name' and value 'expression'
 = name expression
 ```
 
@@ -14,12 +13,12 @@ If you want you can create named value with complex expressions like this:
 
 ```
 = name (expression parameter)
-// or
+
 = name
   expression parameter
-// or
+
 = name expression parameter
-// or
+
 = name expression
   parameter
 ```
