@@ -1,16 +1,16 @@
->_ 'Hello'
->_ "Hello World!"
+>> 'Hello'
+>> "Hello World!"
 
 = string 'Hello World!'
->_ string
+>> string
 
 = name 'John'
 = greeting 'Hello ${name}'
->_ greeting
+>> greeting
 
 = text `
   'First line of text'
   'Second line of text'
   'Third line of text'
 
->_ text
+>> text

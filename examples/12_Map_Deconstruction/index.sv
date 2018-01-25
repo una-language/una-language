@@ -8,8 +8,8 @@
 
 := object a (b c d) e f
 
->_ a
->_ c
->_ d
->_ e
->_ f
+>> a
+>> c
+>> d
+>> e
+>> f

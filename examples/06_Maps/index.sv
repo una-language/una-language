@@ -8,10 +8,10 @@
   e
   f | 4 5 6
 
->_ object
->_ object.a
->_ object.b
->_ object.b.c
->_ object.b.d
->_ object.e
->_ object.f
+>> object
+>> object.a
+>> object.b
+>> object.b.c
+>> object.b.d
+>> object.e
+>> object.f

@@ -1,5 +1,5 @@
 = next (--> './next')
 := (--> './numbers') a b
 
->_ (next a)
->_ (next b)
+>> (next a)
+>> (next b)

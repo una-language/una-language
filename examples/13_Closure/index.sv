@@ -5,4 +5,4 @@
 
 = addOne add 1
 
->_ (addOne 3)
+>> (addOne 3)

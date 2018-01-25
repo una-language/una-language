@@ -2,6 +2,6 @@
 
 |= numbers first second third
 
->_ first
->_ second
->_ third
+>> first
+>> second
+>> third
