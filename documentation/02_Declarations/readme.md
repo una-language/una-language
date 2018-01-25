@@ -23,7 +23,7 @@ If you want you can create named value with complex expressions like this:
   parameter
 ```
 
-As you see there's an exception from basic application rule. The `=` operator
+As you see there's an exception from basic application rule
 
 ## Examples
 
