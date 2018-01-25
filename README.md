@@ -9,5 +9,5 @@ It describes the syntax and all concepts of the language. It's useful to read it
 
 ## Examples
 
-Code examples live [here](./examples)
+Code examples live [here](./examples) </br>
 You can learn the language exploring them and reading documentation sometimes.
