@@ -1,5 +1,4 @@
 const replacements = {
-  ">>": "print",
   "`": "multiline",
   "|": "list",
   "+": "plus",

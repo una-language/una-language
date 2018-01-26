@@ -4,9 +4,7 @@
 = planet 'Earth'
 >> 'Hello ${planet}!'
 
-= text `
+>> `
   'First line of text'
   'Second line of text'
   'Third line of text'
-
->> text
