@@ -3,9 +3,9 @@
     "start": "node_modules/.bin/sova ."
   },
   "dependencies": {
-    "sova-standard-library": "0.0.19"
+    "sova-standard-library": "0.0.20"
   },
   "devDependencies": {
-    "sova": "0.0.19"
+    "sova": "0.0.20"
   }
 }

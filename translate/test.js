@@ -1,62 +1,62 @@
-const assert = require("chai").assert;
-const translate = require(".");
+const assert = require('chai').assert
+const translate = require('.')
 
 const formatInput = input => {
-  const splitted = input.includes("\n") ? input.split("\n") : [input];
-  const lines = splitted.filter(line => line);
-  const commonSpaces = lines[0].search(/\S/);
-  const formatLine = line => line.substring(commonSpaces, line.length);
-  return lines.map(formatLine).join("\n");
-};
+  const splitted = input.includes('\n') ? input.split('\n') : [input]
+  const lines = splitted.filter(line => line)
+  const commonSpaces = lines[0].search(/\S/)
+  const formatLine = line => line.substring(commonSpaces, line.length)
+  return lines.map(formatLine).join('\n')
+}
 
 const formatOutput = (output, needToSlice = false) => {
-  const splitted = output.includes("\n") ? output.split("\n") : [output];
-  const lines = splitted.filter(line => line);
-  const spliced = needToSlice ? lines.slice(1) : lines;
-  return spliced.map(line => line.trim()).filter(line => line);
-};
+  const splitted = output.includes('\n') ? output.split('\n') : [output]
+  const lines = splitted.filter(line => line)
+  const spliced = needToSlice ? lines.slice(1) : lines
+  return spliced.map(line => line.trim()).filter(line => line)
+}
 
 const check = (input, output) => {
-  const expectingOutput = formatOutput(translate(formatInput(input)), true);
-  const realOutput = formatOutput(output);
+  const expectingOutput = formatOutput(translate(formatInput(input)), true)
+  const realOutput = formatOutput(output)
 
-  assert(realOutput.every((line, index) => expectingOutput[index] === line));
-};
+  assert(realOutput.every((line, index) => expectingOutput[index] === line))
+}
 
-describe("String", () => {
-  describe("one word string", () => {
-    it("can be declared in one line", () =>
+describe('String', () => {
+  describe('one word string', () => {
+    it('can be declared in one line', () =>
       check(
         `
         = string 'Hello'
         `,
         `const string = \`Hello\`;`
-      ));
-    it("can be declared in two lines", () =>
+      ))
+    it('can be declared in two lines', () =>
       check(
         `
           = string
             'Hello'
         `,
         `const string = \`Hello\`;`
-      ));
-    it("can be passed to function", () =>
+      ))
+    it('can be passed to function', () =>
       check(
         `
         console.log 'Hello'
         `,
         `console.log(\`Hello\`);`
-      ));
-  });
-  describe("two words string", () => {
-    it("can be declared in one line", () =>
+      ))
+  })
+  describe('two words string', () => {
+    it('can be declared in one line', () =>
       check(
         `
           = string 'Hello World!'
         `,
         `const string = \`Hello World!\`;`
-      ));
-    it("can be declared in two lines", () =>
+      ))
+    it('can be declared in two lines', () =>
       check(
         `
           = string
@@ -65,8 +65,8 @@ describe("String", () => {
         `
           const string = \`Hello World!\`;
         `
-      ));
-    it("can be declared with interpolated incertions", () =>
+      ))
+    it('can be declared with interpolated incertions', () =>
       check(
         `
           = name 'John'
@@ -76,8 +76,8 @@ describe("String", () => {
           const name = \`John\`;
           const string = \`Hello \${name}\`;
         `
-      ));
-    it("can be passed to function", () =>
+      ))
+    it('can be passed to function', () =>
       check(
         `
           console.log
@@ -86,8 +86,8 @@ describe("String", () => {
         `
           console.log(\`Hello World!\`);
         `
-      ));
-  });
+      ))
+  })
 
   // describe("multiple lines string", () => {
   //   it("can be declared", () =>
@@ -122,13 +122,13 @@ describe("String", () => {
   //       `
   //     ));
   // });
-});
+})
 
-describe("Number", () => {
-  describe("integer number", () => {
-    it("can be declared", () => check(`= integer 1`, `const integer = 1;`));
-  });
-  describe("float number", () => {
-    it("can be declared", () => check(`= float 1.4`, `const float = 1.4;`));
-  });
-});
+describe('Number', () => {
+  describe('integer number', () => {
+    it('can be declared', () => check(`= integer 1`, `const integer = 1;`))
+  })
+  describe('float number', () => {
+    it('can be declared', () => check(`= float 1.4`, `const float = 1.4;`))
+  })
+})

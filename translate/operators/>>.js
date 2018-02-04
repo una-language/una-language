@@ -1,2 +1,1 @@
-module.exports = (evaluate, parameters) =>
-  `Sova.print(${evaluate(parameters)})`;
+module.exports = (evaluate, parameters) => `Sova.print(${evaluate(parameters)})`

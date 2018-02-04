@@ -1,1 +1,1 @@
-module.exports = (evaluate, path) => `require(${path});`;
+module.exports = (evaluate, path) => `require(${path});`
