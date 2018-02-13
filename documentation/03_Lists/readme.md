@@ -2,61 +2,61 @@
 
 # List
 
-[add](https://facebook.github.io/immutable-js/docs/#/List/push)
-[addFirst](https://facebook.github.io/immutable-js/docs/#/List/unshift)
-[addLast](https://facebook.github.io/immutable-js/docs/#/List/push)
-[addList](https://facebook.github.io/immutable-js/docs/#/List/concat)
-[beginning](https://facebook.github.io/immutable-js/docs/#/List/pop)
-[contains](https://facebook.github.io/immutable-js/docs/#/List/includes)
-[count](https://facebook.github.io/immutable-js/docs/#/List/count)
-[countBy](https://facebook.github.io/immutable-js/docs/#/List/countBy)
-[drop](https://facebook.github.io/immutable-js/docs/#/List/skip)
-[dropRight](https://facebook.github.io/immutable-js/docs/#/List/skipLast)
-[dropWhile](https://facebook.github.io/immutable-js/docs/#/List/skipWhile)
-[dropUntil](https://facebook.github.io/immutable-js/docs/#/List/skipUntil)
-[empty](https://facebook.github.io/immutable-js/docs/#/List/isEmpty)
-[exists](https://facebook.github.io/immutable-js/docs/#/List/some)
-[filter](https://facebook.github.io/immutable-js/docs/#/List/filter)
-[filterNot](https://facebook.github.io/immutable-js/docs/#/List/filterNot)
-[find](https://facebook.github.io/immutable-js/docs/#/List/find)
-[findLast](https://facebook.github.io/immutable-js/docs/#/List/findLast)
-[findIndex](https://facebook.github.io/immutable-js/docs/#/List/findIndex)
-[findLastIndex](https://facebook.github.io/immutable-js/docs/#/List/findLastIndex)
-[flatMap](https://facebook.github.io/immutable-js/docs/#/List/flatMap)
-[flatten](https://facebook.github.io/immutable-js/docs/#/List/flatten)
-[forAll](https://facebook.github.io/immutable-js/docs/#/List/every)
-[forEach](https://facebook.github.io/immutable-js/docs/#/List/forEach)
-[get](https://facebook.github.io/immutable-js/docs/#/List/get)
-[groupBy](https://facebook.github.io/immutable-js/docs/#/List/groupBy)
-[head](https://facebook.github.io/immutable-js/docs/#/List/first)
-[indexOf](https://facebook.github.io/immutable-js/docs/#/List/indexOf)
-[insertAt](https://facebook.github.io/immutable-js/docs/#/List/insert)
-[last](https://facebook.github.io/immutable-js/docs/#/List/last)
-[lastIndexOf](https://facebook.github.io/immutable-js/docs/#/List/lastIndexOf)
-[length](https://facebook.github.io/immutable-js/docs/#/List/size)
-[makeString](https://facebook.github.io/immutable-js/docs/#/List/join)
-[map](https://facebook.github.io/immutable-js/docs/#/List/map)
-[max](https://facebook.github.io/immutable-js/docs/#/List/max)
-[maxBy](https://facebook.github.io/immutable-js/docs/#/List/maxBy)
-[min](https://facebook.github.io/immutable-js/docs/#/List/min)
-[minBy](https://facebook.github.io/immutable-js/docs/#/List/minBy)
-[reduce](https://facebook.github.io/immutable-js/docs/#/List/reduce)
-[reduceRight](https://facebook.github.io/immutable-js/docs/#/List/reduceRight)
-[removeAt](https://facebook.github.io/immutable-js/docs/#/List/delete)
-[reversed](https://facebook.github.io/immutable-js/docs/#/List/reverse)
-[size](https://facebook.github.io/immutable-js/docs/#/List/size)
-[slice](https://facebook.github.io/immutable-js/docs/#/List/slice)
-[sort](https://facebook.github.io/immutable-js/docs/#/List/sort)
-[sortBy](https://facebook.github.io/immutable-js/docs/#/List/sortBy)
-[tail](https://facebook.github.io/immutable-js/docs/#/List/shift)
-[take](https://facebook.github.io/immutable-js/docs/#/List/take)
-[takeRight](https://facebook.github.io/immutable-js/docs/#/List/takeLast)
-[takeWhile](https://facebook.github.io/immutable-js/docs/#/List/takeWhile)
-[takeUntil](https://facebook.github.io/immutable-js/docs/#/List/takeUntil)
-[toJS](https://facebook.github.io/immutable-js/docs/#/List/toJS)
-[toJSON](https://facebook.github.io/immutable-js/docs/#/List/toJSON)
-[update](https://facebook.github.io/immutable-js/docs/#/List/update)
-[updateAt](https://facebook.github.io/immutable-js/docs/#/List/set)
-[zip](https://facebook.github.io/immutable-js/docs/#/List/zip)
-[zipAll](https://facebook.github.io/immutable-js/docs/#/List/zipAll)
-[zipWith](https://facebook.github.io/immutable-js/docs/#/List/zipWith)
+[Method add](https://facebook.github.io/immutable-js/docs/#/List/push) </br>
+[Method addFirst](https://facebook.github.io/immutable-js/docs/#/List/unshift) </br>
+[Method addLast](https://facebook.github.io/immutable-js/docs/#/List/push) </br>
+[Method addList](https://facebook.github.io/immutable-js/docs/#/List/concat) </br>
+[Getter beginning](https://facebook.github.io/immutable-js/docs/#/List/pop) </br>
+[Method contains](https://facebook.github.io/immutable-js/docs/#/List/includes) </br>
+[Method count](https://facebook.github.io/immutable-js/docs/#/List/count) </br>
+[Method countBy](https://facebook.github.io/immutable-js/docs/#/List/countBy) </br>
+[Method drop](https://facebook.github.io/immutable-js/docs/#/List/skip) </br>
+[Method dropRight](https://facebook.github.io/immutable-js/docs/#/List/skipLast) </br>
+[Method dropWhile](https://facebook.github.io/immutable-js/docs/#/List/skipWhile) </br>
+[Method dropUntil](https://facebook.github.io/immutable-js/docs/#/List/skipUntil) </br>
+[Getter empty](https://facebook.github.io/immutable-js/docs/#/List/isEmpty) </br>
+[Method exists](https://facebook.github.io/immutable-js/docs/#/List/some) </br>
+[Method filter](https://facebook.github.io/immutable-js/docs/#/List/filter) </br>
+[Method filterNot](https://facebook.github.io/immutable-js/docs/#/List/filterNot) </br>
+[Method find](https://facebook.github.io/immutable-js/docs/#/List/find) </br>
+[Method findLast](https://facebook.github.io/immutable-js/docs/#/List/findLast) </br>
+[Method findIndex](https://facebook.github.io/immutable-js/docs/#/List/findIndex) </br>
+[Method findLastIndex](https://facebook.github.io/immutable-js/docs/#/List/findLastIndex) </br>
+[Method flatMap](https://facebook.github.io/immutable-js/docs/#/List/flatMap) </br>
+[Getter flatten](https://facebook.github.io/immutable-js/docs/#/List/flatten) </br>
+[Method forAll](https://facebook.github.io/immutable-js/docs/#/List/every) </br>
+[Method forEach](https://facebook.github.io/immutable-js/docs/#/List/forEach) </br>
+[Method get](https://facebook.github.io/immutable-js/docs/#/List/get) </br>
+[Method groupBy](https://facebook.github.io/immutable-js/docs/#/List/groupBy) </br>
+[Getter head](https://facebook.github.io/immutable-js/docs/#/List/first) </br>
+[Method indexOf](https://facebook.github.io/immutable-js/docs/#/List/indexOf) </br>
+[Method insertAt](https://facebook.github.io/immutable-js/docs/#/List/insert) </br>
+[Getter last](https://facebook.github.io/immutable-js/docs/#/List/last) </br>
+[Method lastIndexOf](https://facebook.github.io/immutable-js/docs/#/List/lastIndexOf) </br>
+[Getter length](https://facebook.github.io/immutable-js/docs/#/List/size) </br>
+[Method makeString](https://facebook.github.io/immutable-js/docs/#/List/join) </br>
+[Method map](https://facebook.github.io/immutable-js/docs/#/List/map) </br>
+[Method max](https://facebook.github.io/immutable-js/docs/#/List/max) </br>
+[Method maxBy](https://facebook.github.io/immutable-js/docs/#/List/maxBy) </br>
+[Method min](https://facebook.github.io/immutable-js/docs/#/List/min) </br>
+[Method minBy](https://facebook.github.io/immutable-js/docs/#/List/minBy) </br>
+[Method reduce](https://facebook.github.io/immutable-js/docs/#/List/reduce) </br>
+[Method reduceRight](https://facebook.github.io/immutable-js/docs/#/List/reduceRight) </br>
+[Method removeAt](https://facebook.github.io/immutable-js/docs/#/List/delete) </br>
+[Getter reversed](https://facebook.github.io/immutable-js/docs/#/List/reverse) </br>
+[Getter size](https://facebook.github.io/immutable-js/docs/#/List/size) </br>
+[Method slice](https://facebook.github.io/immutable-js/docs/#/List/slice) </br>
+[Method sort](https://facebook.github.io/immutable-js/docs/#/List/sort) </br>
+[Method sortBy](https://facebook.github.io/immutable-js/docs/#/List/sortBy) </br>
+[Getter tail](https://facebook.github.io/immutable-js/docs/#/List/shift) </br>
+[Method take](https://facebook.github.io/immutable-js/docs/#/List/take) </br>
+[Method takeRight](https://facebook.github.io/immutable-js/docs/#/List/takeLast) </br>
+[Method takeWhile](https://facebook.github.io/immutable-js/docs/#/List/takeWhile) </br>
+[Method takeUntil](https://facebook.github.io/immutable-js/docs/#/List/takeUntil) </br>
+[Getter toJS](https://facebook.github.io/immutable-js/docs/#/List/toJS) </br>
+[Getter toJSON](https://facebook.github.io/immutable-js/docs/#/List/toJSON) </br>
+[Method update](https://facebook.github.io/immutable-js/docs/#/List/update) </br>
+[Method updateAt](https://facebook.github.io/immutable-js/docs/#/List/set) </br>
+[Method zip](https://facebook.github.io/immutable-js/docs/#/List/zip) </br>
+[Method zipAll](https://facebook.github.io/immutable-js/docs/#/List/zipAll) </br>
+[Method zipWith](https://facebook.github.io/immutable-js/docs/#/List/zipWith) </br>
