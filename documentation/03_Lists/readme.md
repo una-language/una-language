@@ -2,61 +2,61 @@
 
 # List
 
-Method [add](https://facebook.github.io/immutable-js/docs/#/List/push) </br>
-Method [addFirst](https://facebook.github.io/immutable-js/docs/#/List/unshift) </br>
-Method [addLast](https://facebook.github.io/immutable-js/docs/#/List/push) </br>
-Method [addList](https://facebook.github.io/immutable-js/docs/#/List/concat) </br>
-Getter [beginning](https://facebook.github.io/immutable-js/docs/#/List/pop) </br>
-Method [contains](https://facebook.github.io/immutable-js/docs/#/List/includes) </br>
-Method [count](https://facebook.github.io/immutable-js/docs/#/List/count) </br>
-Method [countBy](https://facebook.github.io/immutable-js/docs/#/List/countBy) </br>
-Method [drop](https://facebook.github.io/immutable-js/docs/#/List/skip) </br>
-Method [dropRight](https://facebook.github.io/immutable-js/docs/#/List/skipLast) </br>
-Method [dropWhile](https://facebook.github.io/immutable-js/docs/#/List/skipWhile) </br>
-Method [dropUntil](https://facebook.github.io/immutable-js/docs/#/List/skipUntil) </br>
-Getter [empty](https://facebook.github.io/immutable-js/docs/#/List/isEmpty) </br>
-Method [exists](https://facebook.github.io/immutable-js/docs/#/List/some) </br>
-Method [filter](https://facebook.github.io/immutable-js/docs/#/List/filter) </br>
-Method [filterNot](https://facebook.github.io/immutable-js/docs/#/List/filterNot) </br>
-Method [find](https://facebook.github.io/immutable-js/docs/#/List/find) </br>
-Method [findLast](https://facebook.github.io/immutable-js/docs/#/List/findLast) </br>
-Method [findIndex](https://facebook.github.io/immutable-js/docs/#/List/findIndex) </br>
-Method [findLastIndex](https://facebook.github.io/immutable-js/docs/#/List/findLastIndex) </br>
-Method [flatMap](https://facebook.github.io/immutable-js/docs/#/List/flatMap) </br>
-Getter [flatten](https://facebook.github.io/immutable-js/docs/#/List/flatten) </br>
-Method [forAll](https://facebook.github.io/immutable-js/docs/#/List/every) </br>
-Method [forEach](https://facebook.github.io/immutable-js/docs/#/List/forEach) </br>
-Method [get](https://facebook.github.io/immutable-js/docs/#/List/get) </br>
-Method [groupBy](https://facebook.github.io/immutable-js/docs/#/List/groupBy) </br>
-Getter [head](https://facebook.github.io/immutable-js/docs/#/List/first) </br>
-Method [indexOf](https://facebook.github.io/immutable-js/docs/#/List/indexOf) </br>
-Method [insertAt](https://facebook.github.io/immutable-js/docs/#/List/insert) </br>
-Getter [last](https://facebook.github.io/immutable-js/docs/#/List/last) </br>
-Method [lastIndexOf](https://facebook.github.io/immutable-js/docs/#/List/lastIndexOf) </br>
-Getter [length](https://facebook.github.io/immutable-js/docs/#/List/size) </br>
-Method [makeString](https://facebook.github.io/immutable-js/docs/#/List/join) </br>
-Method [map](https://facebook.github.io/immutable-js/docs/#/List/map) </br>
-Method [max](https://facebook.github.io/immutable-js/docs/#/List/max) </br>
-Method [maxBy](https://facebook.github.io/immutable-js/docs/#/List/maxBy) </br>
-Method [min](https://facebook.github.io/immutable-js/docs/#/List/min) </br>
-Method [minBy](https://facebook.github.io/immutable-js/docs/#/List/minBy) </br>
-Method [reduce](https://facebook.github.io/immutable-js/docs/#/List/reduce) </br>
-Method [reduceRight](https://facebook.github.io/immutable-js/docs/#/List/reduceRight) </br>
-Method [removeAt](https://facebook.github.io/immutable-js/docs/#/List/delete) </br>
-Getter [reversed](https://facebook.github.io/immutable-js/docs/#/List/reverse) </br>
-Getter [size](https://facebook.github.io/immutable-js/docs/#/List/size) </br>
-Method [slice](https://facebook.github.io/immutable-js/docs/#/List/slice) </br>
-Method [sort](https://facebook.github.io/immutable-js/docs/#/List/sort) </br>
-Method [sortBy](https://facebook.github.io/immutable-js/docs/#/List/sortBy) </br>
-Getter [tail](https://facebook.github.io/immutable-js/docs/#/List/shift) </br>
-Method [take](https://facebook.github.io/immutable-js/docs/#/List/take) </br>
-Method [takeRight](https://facebook.github.io/immutable-js/docs/#/List/takeLast) </br>
-Method [takeWhile](https://facebook.github.io/immutable-js/docs/#/List/takeWhile) </br>
-Method [takeUntil](https://facebook.github.io/immutable-js/docs/#/List/takeUntil) </br>
-Getter [toJS](https://facebook.github.io/immutable-js/docs/#/List/toJS) </br>
-Getter [toJSON](https://facebook.github.io/immutable-js/docs/#/List/toJSON) </br>
-Method [update](https://facebook.github.io/immutable-js/docs/#/List/update) </br>
-Method [updateAt](https://facebook.github.io/immutable-js/docs/#/List/set) </br>
-Method [zip](https://facebook.github.io/immutable-js/docs/#/List/zip) </br>
-Method [zipAll](https://facebook.github.io/immutable-js/docs/#/List/zipAll) </br>
-Method [zipWith](https://facebook.github.io/immutable-js/docs/#/List/zipWith) </br>
+Method <i>add</i> is alias for [push](https://facebook.github.io/immutable-js/docs/#/List/push) </br>
+Method <i>addFirst</i> is alias for [unshift](https://facebook.github.io/immutable-js/docs/#/List/unshift) </br>
+Method <i>addLast</i> is alias for [push](https://facebook.github.io/immutable-js/docs/#/List/push) </br>
+Method <i>addList</i> is alias for [concat](https://facebook.github.io/immutable-js/docs/#/List/concat) </br>
+Getter <i>beginning</i> is alias for [pop](https://facebook.github.io/immutable-js/docs/#/List/pop) </br>
+Method <i>contains</i> is alias for [includes](https://facebook.github.io/immutable-js/docs/#/List/includes) </br>
+Method <i>count</i> is alias for [count](https://facebook.github.io/immutable-js/docs/#/List/count) </br>
+Method <i>countBy</i> is alias for [countBy](https://facebook.github.io/immutable-js/docs/#/List/countBy) </br>
+Method <i>drop</i> is alias for [skip](https://facebook.github.io/immutable-js/docs/#/List/skip) </br>
+Method <i>dropRight</i> is alias for [skipLast](https://facebook.github.io/immutable-js/docs/#/List/skipLast) </br>
+Method <i>dropWhile</i> is alias for [skipWhile](https://facebook.github.io/immutable-js/docs/#/List/skipWhile) </br>
+Method <i>dropUntil</i> is alias for [skipUntil](https://facebook.github.io/immutable-js/docs/#/List/skipUntil) </br>
+Getter <i>empty</i> is alias for [isEmpty](https://facebook.github.io/immutable-js/docs/#/List/isEmpty) </br>
+Method <i>exists</i> is alias for [some](https://facebook.github.io/immutable-js/docs/#/List/some) </br>
+Method <i>filter</i> is alias for [filter](https://facebook.github.io/immutable-js/docs/#/List/filter) </br>
+Method <i>filterNot</i> is alias for [filterNot](https://facebook.github.io/immutable-js/docs/#/List/filterNot) </br>
+Method <i>find</i> is alias for [find](https://facebook.github.io/immutable-js/docs/#/List/find) </br>
+Method <i>findLast</i> is alias for [findLast](https://facebook.github.io/immutable-js/docs/#/List/findLast) </br>
+Method <i>findIndex</i> is alias for [findIndex](https://facebook.github.io/immutable-js/docs/#/List/findIndex) </br>
+Method <i>findLastIndex</i> is alias for [findLastIndex](https://facebook.github.io/immutable-js/docs/#/List/findLastIndex) </br>
+Method <i>flatMap</i> is alias for [flatMap](https://facebook.github.io/immutable-js/docs/#/List/flatMap) </br>
+Getter <i>flatten</i> is alias for [flatten](https://facebook.github.io/immutable-js/docs/#/List/flatten) </br>
+Method <i>forAll</i> is alias for [every](https://facebook.github.io/immutable-js/docs/#/List/every) </br>
+Method <i>forEach</i> is alias for [forEach](https://facebook.github.io/immutable-js/docs/#/List/forEach) </br>
+Method <i>get</i> is alias for [get](https://facebook.github.io/immutable-js/docs/#/List/get) </br>
+Method <i>groupBy</i> is alias for [groupBy](https://facebook.github.io/immutable-js/docs/#/List/groupBy) </br>
+Getter <i>head</i> is alias for [first](https://facebook.github.io/immutable-js/docs/#/List/first) </br>
+Method <i>indexOf</i> is alias for [indexOf](https://facebook.github.io/immutable-js/docs/#/List/indexOf) </br>
+Method <i>insertAt</i> is alias for [insert](https://facebook.github.io/immutable-js/docs/#/List/insert) </br>
+Getter <i>last</i> is alias for [last](https://facebook.github.io/immutable-js/docs/#/List/last) </br>
+Method <i>lastIndexOf</i> is alias for [lastIndexOf](https://facebook.github.io/immutable-js/docs/#/List/lastIndexOf) </br>
+Getter <i>length</i> is alias for [size](https://facebook.github.io/immutable-js/docs/#/List/size) </br>
+Method <i>makeString</i> is alias for [join](https://facebook.github.io/immutable-js/docs/#/List/join) </br>
+Method <i>map</i> is alias for [map](https://facebook.github.io/immutable-js/docs/#/List/map) </br>
+Method <i>max</i> is alias for [max](https://facebook.github.io/immutable-js/docs/#/List/max) </br>
+Method <i>maxBy</i> is alias for [maxBy](https://facebook.github.io/immutable-js/docs/#/List/maxBy) </br>
+Method <i>min</i> is alias for [min](https://facebook.github.io/immutable-js/docs/#/List/min) </br>
+Method <i>minBy</i> is alias for [minBy](https://facebook.github.io/immutable-js/docs/#/List/minBy) </br>
+Method <i>reduce</i> is alias for [reduce](https://facebook.github.io/immutable-js/docs/#/List/reduce) </br>
+Method <i>reduceRight</i> is alias for [reduceRight](https://facebook.github.io/immutable-js/docs/#/List/reduceRight) </br>
+Method <i>removeAt</i> is alias for [delete](https://facebook.github.io/immutable-js/docs/#/List/delete) </br>
+Getter <i>reversed</i> is alias for [reverse](https://facebook.github.io/immutable-js/docs/#/List/reverse) </br>
+Getter <i>size</i> is alias for [size](https://facebook.github.io/immutable-js/docs/#/List/size) </br>
+Method <i>slice</i> is alias for [slice](https://facebook.github.io/immutable-js/docs/#/List/slice) </br>
+Method <i>sort</i> is alias for [sort](https://facebook.github.io/immutable-js/docs/#/List/sort) </br>
+Method <i>sortBy</i> is alias for [sortBy](https://facebook.github.io/immutable-js/docs/#/List/sortBy) </br>
+Getter <i>tail</i> is alias for [shift](https://facebook.github.io/immutable-js/docs/#/List/shift) </br>
+Method <i>take</i> is alias for [take](https://facebook.github.io/immutable-js/docs/#/List/take) </br>
+Method <i>takeRight</i> is alias for [takeLast](https://facebook.github.io/immutable-js/docs/#/List/takeLast) </br>
+Method <i>takeWhile</i> is alias for [takeWhile](https://facebook.github.io/immutable-js/docs/#/List/takeWhile) </br>
+Method <i>takeUntil</i> is alias for [takeUntil](https://facebook.github.io/immutable-js/docs/#/List/takeUntil) </br>
+Getter <i>toJS</i> is alias for [toJS](https://facebook.github.io/immutable-js/docs/#/List/toJS) </br>
+Getter <i>toJSON</i> is alias for [toJSON](https://facebook.github.io/immutable-js/docs/#/List/toJSON) </br>
+Method <i>update</i> is alias for [update](https://facebook.github.io/immutable-js/docs/#/List/update) </br>
+Method <i>updateAt</i> is alias for [set](https://facebook.github.io/immutable-js/docs/#/List/set) </br>
+Method <i>zip</i> is alias for [zip](https://facebook.github.io/immutable-js/docs/#/List/zip) </br>
+Method <i>zipAll</i> is alias for [zipAll](https://facebook.github.io/immutable-js/docs/#/List/zipAll) </br>
+Method <i>zipWith</i> is alias for [zipWith](https://facebook.github.io/immutable-js/docs/#/List/zipWith) </br>
