@@ -4,9 +4,9 @@
 
 ## TLDR showcase
 
-#### Hello World
+### Hello World
 
-###### JavaScript
+#### JavaScript
 
 ```javascript
 console.log('Hello World!')
