@@ -6,16 +6,22 @@
 
 #### 1. Hello World
 
-##### JavaScript
-
-```javascript
-console.log('Hello World!')
-```
-
-##### Sova
-
 ```
 >> 'Hello World!'
+```
+
+#### 2. Constant declaration
+
+```
+= number 5
+
+>> number
+```
+
+Output:
+
+```
+5
 ```
 
 ## Documentation
