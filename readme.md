@@ -2,17 +2,17 @@
 
 <i>Sova</i> is a functional programming language inspired by Lisp, Python, JavaScript and Scala. It is compiled to JavaScript so it uses JavaScript environment and you can use any JavaScript code in Sova
 
-## TLDR showcase
+## Showcase
 
-### 1. Hello World
+#### 1. Hello World
 
-#### JavaScript
+##### JavaScript
 
 ```javascript
 console.log('Hello World!')
 ```
 
-#### Sova
+##### Sova
 
 ```
 >> 'Hello World!'
