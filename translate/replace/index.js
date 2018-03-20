@@ -6,7 +6,6 @@ const replacements = {
   '*': 'multiply',
   '/': 'divide',
   '%': 'mod',
-  '?': 'condition',
   '&&': 'and',
   '||': 'or',
   '!': 'not',
