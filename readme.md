@@ -4,25 +4,18 @@
 
 ## TLDR showcase
 
-#### JavaScript
+#### Hello World
+
+###### JavaScript
 
 ```javascript
-const fibonacci = number => (number <= 1 ? number : fibonacci(number - 1) + fibonacci(number - 2))
-
-console.log(fibonacci(7))
+console.log('Hello World!')
 ```
 
 #### Sova
 
 ```
-= fibonacci -> number
-  ? (<= number 1)
-    number
-    +
-     fibonacci (- number 1)
-     fibonacci (- number 2)
-
->> fibonacci 7
+>> 'Hello World!'
 ```
 
 ## Documentation
