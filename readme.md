@@ -10,6 +10,12 @@
 >> 'Hello World!'
 ```
 
+Output:
+
+```
+Hello World!
+```
+
 #### 2. Constant declaration
 
 ```
