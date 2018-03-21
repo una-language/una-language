@@ -82,7 +82,7 @@ Evaluate a
 
 #### 5. Lists
 
-###### Construction
+##### Construction
 ```
 = digits | 0 1 2 3 4 5 6 7 8 9
 >> digits
@@ -94,7 +94,7 @@ Output:
 List [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
 ```
 
-###### Deconstruction
+##### Deconstruction
 
 ```
 |= digits zero one two
@@ -113,7 +113,7 @@ Output:
 
 #### 6. Maps
 
-###### Construction
+##### Construction
 ```
 = e 3
 = object :
@@ -145,7 +145,7 @@ Hello
 List [ 4, 5, 6 ]
 ```
 
-###### Deconstruction
+##### Deconstruction
 
 ```
 := object a (b c d) f
@@ -165,7 +165,7 @@ Hello
 List [ 4, 5, 6 ]
 ```
 
-###### Elvis
+##### Elvis
 ```
 >> ?. object.b.c
 >> ?. object.b.x
