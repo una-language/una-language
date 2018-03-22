@@ -1,4 +1,4 @@
 = next -> number
   + number 1
 
-<-- next
+module.exports next
