@@ -15,11 +15,10 @@ console.log two
 
 console.log numbers
 
-console.log numbers.get 0
+console.log (numbers.get 0)
 
-console.log numbers.length
-console.log numbers.size
+console.log (numbers.size)
 
-console.log numbers.addFirst 0
-console.log numbers.addLast 123
-console.log numbers.add 145
+console.log (numbers.addFirst 0)
+console.log (numbers.addLast 123)
+console.log (numbers.add 145)

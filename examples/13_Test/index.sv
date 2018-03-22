@@ -1,3 +1,6 @@
-= numbers | 1 2 3
+= a :
+  b 'g'
 
-console.log numbers
+console.log a
+console.log a.b
+console.log (a.b.toString ())

@@ -1,5 +1,5 @@
 module.exports = {
-  '|': (translate, [...elements]) => `Sova.list(${elements.join(', ')})`,
+  '|': (translate, elements) => `Sova.list(${elements.join(', ')})`,
   '|=': (translate, [list, ...elements]) => `const [${elements.join(', ')}] = ${translate(list)};`,
   ':': (translate, fields) => {
     const createField = ([name, ...parameters]) =>
@@ -20,6 +20,5 @@ module.exports = {
 
     const deconstructedFields = fields.map(createField).join(', ')
     return `const {${deconstructedFields}} = ${translate(object)}`
-  },
-  '`': (translate, [...elements]) => elements.map(translate).join('\n')
+  }
 }
