@@ -12,7 +12,9 @@ module.exports = operators => {
 
     const parts = expression.split('.')
 
-    return parts.length > 1 ? wrap(parts.reduce((object, field) => `(${wrap(object)}).${field}`)) : wrap(parts[0])
+    return parts.length > 1
+      ? wrap(parts.reduce((object, field) => `(${wrap(object)}).${field}`))
+      : wrap(parts[0])
   }
 
   const evaluate = expression => {

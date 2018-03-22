@@ -6,6 +6,7 @@ const replace = require('./replace')
 
 module.exports = code => {
   const parsed = parse(code)
+  console.log(parsed)
   const replaced = replace(parsed)
   const evaluator = evaluate(operators)
   const evaluated = replaced.map(evaluator).join('\n')

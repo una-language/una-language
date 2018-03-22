@@ -12,14 +12,16 @@
 
 = a <-
   >> 'Evaluate a'
-  + 1 1
+  + 1 2
 
 = b --
   >> 'Evaluate b'
   + 1 1
 
-console.log a
-console.log b
+>> a
+>> b
+>> a
+>> b
 
 = add
   -> first

@@ -5,11 +5,13 @@ const glob = require('glob')
 const path = require('path')
 const read = require('./io/read')
 const write = require('./io/write')
-const translate = require('../translate')
+const translate = require('./translate')
 
 const outputFiles = []
 const compilePath = path.join(process.cwd(), process.argv[2])
-const compileDirectory = fileSystem.lstatSync(compilePath).isFile() ? path.dirname(compilePath) : compilePath
+const compileDirectory = fileSystem.lstatSync(compilePath).isFile()
+  ? path.dirname(compilePath)
+  : compilePath
 
 const compile = inputFile => {
   const writeCode = code => {
