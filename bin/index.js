@@ -1,11 +1,11 @@
 #! /usr/bin/env node
 
+const compile = require('./compile')
 const fileSystem = require('fs')
 const glob = require('glob')
 const path = require('path')
 const read = require('./io/read')
 const write = require('./io/write')
-const translate = require('./translate')
 
 const outputFiles = []
 const compilePath = path.join(process.cwd(), process.argv[2])
@@ -13,7 +13,7 @@ const compileDirectory = fileSystem.lstatSync(compilePath).isFile()
   ? path.dirname(compilePath)
   : compilePath
 
-const compile = inputFile => {
+const compileFile = inputFile => {
   const writeCode = code => {
     const outputFile = inputFile.substring(0, inputFile.length - 3) + '.js'
     outputFiles.push(outputFile)
@@ -21,7 +21,7 @@ const compile = inputFile => {
   }
 
   return read(inputFile)
-    .then(translate)
+    .then(compile)
     .then(writeCode)
 }
 
@@ -40,5 +40,5 @@ const run = () => {
 
 glob(compileDirectory + '/**/*.sv', (error, files) => {
   if (error) return console.error(error)
-  Promise.all(files.map(compile)).then(run)
+  Promise.all(files.map(compileFile)).then(run)
 })

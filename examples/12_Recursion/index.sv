@@ -5,4 +5,4 @@
      fibonacci (- number 1)
      fibonacci (- number 2)
 
->> fibonacci 7
+console.log fibonacci 7

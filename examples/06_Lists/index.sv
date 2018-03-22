@@ -1,11 +1,11 @@
 = digits | 0 1 2 3 4 5 6 7 8 9
 
->> digits
+console.log digits
 
 |= digits zero one two
->> zero
->> one
->> two
+console.log zero
+console.log one
+console.log two
 
 = numbers |
   12
@@ -13,13 +13,13 @@
   57
   93
 
->> numbers
+console.log numbers
 
->> numbers.get 0
+console.log numbers.get 0
 
->> numbers.length
->> numbers.size
+console.log numbers.length
+console.log numbers.size
 
->> numbers.addFirst 0
->> numbers.addLast 123
->> numbers.add 145
+console.log numbers.addFirst 0
+console.log numbers.addLast 123
+console.log numbers.add 145

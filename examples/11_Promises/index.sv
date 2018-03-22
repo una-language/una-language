@@ -5,4 +5,4 @@
 |> (api.sendMessage message)
   -> response (api.processResponse response)
   -> result (api.fixResult result)
-  -> fixed (>> fixed)
+  -> fixed (console.log fixed)

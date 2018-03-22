@@ -1,3 +1,3 @@
 = greeting 'Hello World!'
 
->> greeting
+console.log greeting

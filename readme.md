@@ -7,7 +7,7 @@
 #### 1. Hello World
 
 ```
->> 'Hello World!'
+console.log 'Hello World!'
 ```
 
 Output:
@@ -21,7 +21,7 @@ Hello World!
 ```
 = number 5
 
->> number
+console.log number
 ```
 
 Output:
@@ -39,8 +39,8 @@ Output:
   = doubled * first 2
   + doubled second
 
->> next 2
->> doubleFirstAndAddSecond 3 7
+console.log next 2
+console.log doubleFirstAndAddSecond 3 7
 ```
 
 Output:
@@ -51,31 +51,31 @@ Output:
 ```
 
 #### 4. Functional expressions and complex values
-Functional expressions `<-` are simple functions without arguments. Their value is evaluated every time it's called. Complex values are evaluated only once and used as simple constants.
+Functional expressions `<-` are simple functions without arguments. Their value is translated every time it's called. Complex values are translated only once and used as simple constants.
 
 ```
 = a <-
-  >> 'Evaluate a'
+  console.log 'translate a'
   + 1 2
 
 = b --
-  >> 'Evaluate b'
+  console.log 'translate b'
   + 1 1
 
->> a
->> b
->> a
->> b
+console.log a
+console.log b
+console.log a
+console.log b
 ```
 
 Output:
 
 ```
-Evaluate b
-Evaluate a
+translate b
+translate a
 3
 2
-Evaluate a
+translate a
 3
 2
 ```
@@ -85,7 +85,7 @@ Evaluate a
 ##### Construction
 ```
 = digits | 0 1 2 3 4 5 6 7 8 9
->> digits
+console.log digits
 ```
 
 Output:
@@ -98,9 +98,9 @@ List [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
 
 ```
 |= digits zero one two
->> zero
->> one
->> two
+console.log zero
+console.log one
+console.log two
 ```
 
 Output:
@@ -124,13 +124,13 @@ Output:
   e
   f | 4 5 6
 
->> object
->> object.a
->> object.b
->> object.b.c
->> object.b.d
->> object.e
->> object.f
+console.log object
+console.log object.a
+console.log object.b
+console.log object.b.c
+console.log object.b.d
+console.log object.e
+console.log object.f
 ```
 
 Output:
@@ -150,10 +150,10 @@ List [ 4, 5, 6 ]
 ```
 := object a (b c d) f
 
->> a
->> c
->> d
->> f
+console.log a
+console.log c
+console.log d
+console.log f
 ```
 
 Output:
@@ -167,9 +167,9 @@ List [ 4, 5, 6 ]
 
 ##### Elvis
 ```
->> ?. object.b.c
->> ?. object.b.x
->> ?. object.x.y
+console.log ?. object.b.c
+console.log ?. object.b.x
+console.log ?. object.x.y
 ```
 
 Output:

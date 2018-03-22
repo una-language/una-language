@@ -1,5 +1,5 @@
 = next (--> './next')
 := (--> './numbers') a b
 
->> (next a)
->> (next b)
+console.log (next a)
+console.log (next b)
