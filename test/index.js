@@ -15,17 +15,17 @@ FileSystem.readdirSync(testsDirectory)
         .map(file => FileSystem.readFileSync(file, 'utf8'))
 
       const compiled = compile(input)
-      it('compiles', () => assert.equal(compiled, output))
+      it('compiles', () => assert.equal(output, compiled))
 
       const requireHeader = `require("sova-standard-library")`
       const clean = compiled.substring(compiled.length, requireHeader.length)
 
       const expectedLogs = result.split('\n').filter(line => line)
       const logs = []
-      console.log = value => logs.push(value)
+      console.log = value => logs.push(...value.toString().split('\n'))
 
       eval(clean)
       console.log = print
-      it('runs', () => assert.deepEqual(logs, expectedLogs))
+      it('runs', () => assert.deepEqual(expectedLogs, logs))
     })
   )
