@@ -1,5 +1,3 @@
-require('sova-standard-library')
-
 console.log(`Single quoted string with "text inside double quotes"`)
 console.log(`Double quoted string with 'text inside single quotes'`)
 const planet = `Earth`

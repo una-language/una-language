@@ -1,9 +1,24 @@
 const assert = require('chai').assert
 const compile = require('../bin/compile')
 const FileSystem = require('fs')
+const prettier = require('prettier')
 const testsDirectory = './test/'
 
 const print = console.log
+const formatCode = code => {
+  const withoutEmptyLines = code
+    .split('\n')
+    .filter(line => line)
+    .join('\n')
+  return prettier.format(withoutEmptyLines)
+}
+
+const compileAndFormatInput = input => {
+  const compiled = compile(input)
+  const requireHeader = `require("sova-standard-library")`
+  const clean = compiled.substring(compiled.length, requireHeader.length)
+  return formatCode(clean)
+}
 
 FileSystem.readdirSync(testsDirectory)
   .map(file => `${testsDirectory}${file}`)
@@ -14,17 +29,16 @@ FileSystem.readdirSync(testsDirectory)
         .map(name => `${directory}/${name}`)
         .map(file => FileSystem.readFileSync(file, 'utf8'))
 
-      const compiled = compile(input)
-      it('compiles', () => assert.equal(output, compiled))
+      const compiledOutput = compileAndFormatInput(input)
+      const expectedOutput = formatCode(output)
 
-      const requireHeader = `require("sova-standard-library")`
-      const clean = compiled.substring(compiled.length, requireHeader.length)
+      it('compiles', () => assert.equal(expectedOutput, compiledOutput))
 
       const expectedLogs = result.split('\n').filter(line => line)
       const logs = []
       console.log = value => logs.push(...value.toString().split('\n'))
 
-      eval(clean)
+      eval(compiledOutput)
       console.log = print
       it('runs', () => assert.deepEqual(expectedLogs, logs))
     })
