@@ -2,6 +2,7 @@ const assert = require('chai').assert
 const compile = require('../bin/compile')
 const FileSystem = require('fs')
 const prettier = require('prettier')
+const lib = require('../lib')
 const testsDirectory = './test/'
 
 const print = console.log
