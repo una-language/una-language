@@ -12,14 +12,12 @@ const createFunction = (translate, lines, parameters) => {
 }
 
 module.exports = {
-  '=': (translate, [name, ...parameters]) => `const ${name} = ${translate(parameters)};`,
+  '=': (translate, [name, ...parameters]) => `const ${translate(name)} = ${translate(parameters)};`,
   '?': (translate, [condition, trueBranch, falseBranch]) =>
     `(${translate(condition)} ? ${translate(trueBranch)} : ${translate(falseBranch)})`,
   '->': (translate, [parameters, ...lines]) =>
     createFunction(translate, lines, Array.isArray(parameters) ? parameters.join(', ') : parameters),
-  '<-': (translate, lines) => {
-    return `(${createFunction(translate, lines, [])})()`
-  },
-  'module.exports': (translate, entity) => `module.exports = ${translate(entity)};`,
+  '<-': (translate, lines) => `(${createFunction(translate, lines, [])})()`,
+  '-->': (translate, entity) => `module.exports = ${translate(entity)};`,
   '`': (translate, elements) => `[${elements.map(translate).join(', ')}].join('\\n')`
 }

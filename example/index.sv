@@ -1,8 +1,8 @@
-= fibonacci -> number
-  ? (<= number 1)
-    number
-    +
-     fibonacci (- number 1)
-     fibonacci (- number 2)
+= object :
+  a 1
+  b :
+    c 2
 
-console.log (fibonacci 7)
+= (: a ( b : c:d )) object
+console.log a
+console.log d

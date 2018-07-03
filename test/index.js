@@ -2,7 +2,6 @@ const assert = require('chai').assert
 const compile = require('../bin/compile')
 const FileSystem = require('fs')
 const prettier = require('prettier')
-const lib = require('../lib')
 const testsDirectory = './test/'
 
 const print = console.log
@@ -16,9 +15,7 @@ const formatCode = code => {
 
 const compileAndFormatInput = input => {
   const compiled = compile(input)
-  const requireHeader = `require("sova-standard-library")`
-  const clean = compiled.substring(compiled.length, requireHeader.length)
-  return formatCode(clean)
+  return formatCode(compiled)
 }
 
 FileSystem.readdirSync(testsDirectory)

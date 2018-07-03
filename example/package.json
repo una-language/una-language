@@ -2,9 +2,6 @@
   "scripts": {
     "start": "sova index.sv"
   },
-  "dependencies": {
-    "sova-standard-library": "0.0.21"
-  },
   "devDependencies": {
     "sova": "0.0.21"
   }

@@ -1,1 +1,5 @@
-module.exports = Object.assign(require('./basic'), require('./data'), require('./syntax'))
+module.exports = {
+  ...require('./basic'),
+  ...require('./data'),
+  ...require('./syntax')
+}

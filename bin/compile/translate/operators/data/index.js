@@ -1,24 +1,7 @@
 module.exports = {
-  '|': (translate, elements) => `Sova.list(${elements.join(', ')})`,
-  '|=': (translate, [list, ...elements]) => `const [${elements.join(', ')}] = ${translate(list)};`,
+  '.': (translate, elements) => `[${elements.map(translate).join(', ')}]`,
   ':': (translate, fields) => {
-    const createField = ([name, ...parameters]) =>
-      parameters.length === 0 ? name : `${name} : ${translate(parameters)}`
-
-    const translatedFields = fields.map(createField).join(', ')
-    return `Sova.map({${translatedFields}})`
-  },
-  ':=': (translate, [object, ...fields]) => {
-    const createField = field => {
-      if (!Array.isArray(field)) return field
-
-      const [fieldName, ...subFields] = field
-      const translatedSubFields = subFields.map(createField).join(', ')
-
-      return `${fieldName} : {${translatedSubFields}}`
-    }
-
-    const deconstructedFields = fields.map(createField).join(', ')
-    return `const {${deconstructedFields}} = ${translate(object)}`
+    const createField = field => (Array.isArray(field) ? `${field[0]} : ${translate(field.slice(1))}` : field)
+    return `{${fields.map(createField).join(', ')}}`
   }
 }

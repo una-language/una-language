@@ -9,9 +9,7 @@ const write = require('./io/write')
 
 const outputFiles = []
 const compilePath = path.join(process.cwd(), process.argv[2])
-const compileDirectory = fileSystem.lstatSync(compilePath).isFile()
-  ? path.dirname(compilePath)
-  : compilePath
+const compileDirectory = fileSystem.lstatSync(compilePath).isFile() ? path.dirname(compilePath) : compilePath
 
 const compileFile = inputFile => {
   const writeCode = code => {

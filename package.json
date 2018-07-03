@@ -9,8 +9,8 @@
   },
   "dependencies": {
     "glob": "^7.1.2",
-    "lodash": "^4.17.4",
-    "prettier": "^1.9.2"
+    "lodash": "^4.17.10",
+    "prettier": "^1.13.7"
   },
   "repository": {
     "type": "git",

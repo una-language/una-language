@@ -5,13 +5,12 @@ const translate = require('./translate')
 module.exports = input => {
   const tree = parse(input)
   const translated = tree.map(translate).join('\n')
-  const header = 'require("sova-standard-library")\n\n'
-  const complete = `${header}${translated}`
-  const formatted = prettier.format(complete, {
+  const formatted = prettier.format(translated, {
     printWidth: 120,
     semi: false,
     singleQuote: true
   })
 
+  console.log(formatted)
   return formatted
 }
