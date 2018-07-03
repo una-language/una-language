@@ -1,6 +1,3 @@
-= first --> './first'
-= second --> './second'
-
 <-- :
-  first
-  addSecond -> (. number) (+ number second)
+  first (--> './first')
+  addSecond -> (. number) (+ number (--> './second'))
