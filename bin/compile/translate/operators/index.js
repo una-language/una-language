@@ -1,5 +1,6 @@
 module.exports = {
   ...require('./basic'),
-  ...require('./data'),
+  ...require('./collections'),
+  ...require('./function'),
   ...require('./syntax')
 }

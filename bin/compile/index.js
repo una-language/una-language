@@ -11,6 +11,5 @@ module.exports = input => {
     singleQuote: true
   })
 
-  console.log(formatted)
   return formatted
 }
