@@ -10,6 +10,6 @@ console.log rest
 console.log fiveNumbers
 
 = nextNumbers numbers.map
-  -> number (+ number 1)
+  -> (. number) (+ number 1)
 
 console.log nextNumbers
