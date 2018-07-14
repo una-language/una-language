@@ -5,13 +5,9 @@ const translate = require('./translate')
 module.exports = input => {
   const tree = parse(input)
   const translated = tree.map(translate).join('\n')
-  const formatted = prettier.format(translated, {
+  return prettier.format(translated, {
     printWidth: 120,
     semi: false,
     singleQuote: true
   })
-
-  console.log(formatted)
-
-  return formatted
 }

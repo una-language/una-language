@@ -3,7 +3,7 @@
     "start": "sova index.sv"
   },
   "devDependencies": {
-    "sova": "0.0.22"
+    "sova": "0.0.24"
   },
   "dependencies": {
     "lodash": "^4.17.10"
