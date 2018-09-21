@@ -15,10 +15,7 @@
 console.log
   ? (> a b) 'Greater' 'Less'
 ```
-Output:
-```
-Less
-```
+Output: `Less`
 
 ## [Documentation](https://github.com/sergeyshpadyrev/sova/wiki)
 
