@@ -20,7 +20,7 @@ const parametrizedFunction = asynchronyous => (translate, [parametersArray, ...l
           .map(translate)
           .join(', ')
 
-  return createFunction(translate, lines, parameters, true)
+  return createFunction(translate, lines, parameters, asynchronyous)
 }
 
 module.exports = {
