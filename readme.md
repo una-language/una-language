@@ -7,6 +7,19 @@
 - Python-like indentation structure
 - Transpiling to JavaScript
 
+## Showcase
+```
+= a 1
+= b 2
+ 
+console.log
+  ? (> a b) 'Greater' 'Less'
+```
+Output:
+```
+Less
+```
+
 ## [Documentation](https://github.com/sergeyshpadyrev/sova/wiki)
 
 ## [Examples](https://github.com/sergeyshpadyrev/sova/tree/master/example)
