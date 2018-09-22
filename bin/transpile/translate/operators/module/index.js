@@ -1,4 +1,4 @@
 module.exports = {
-  '<--': (translate, [name, dependency]) => `const ${translate(name)} = require(${translate(dependency)})`,
-  '-->': (translate, entity) => `module.exports = ${translate(entity)};`
+  '<--': (translate, [path]) => `require(${translate(path)})`,
+  '-->': (translate, [entity]) => `module.exports = ${translate(entity)};`
 }
