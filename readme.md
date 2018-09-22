@@ -1,22 +1,28 @@
 # Sova
 
-<i>Sova</i> is a functional programming language inspired by Lisp, Python, JavaScript and Scala. It is compiled to JavaScript so it uses JavaScript environment and you can use any JavaScript code in Sova
+<i>Sova</i> is a functional programming language inspired by Lisp, Python and JavaScript
+
+## Features
+- Lisp-like syntax
+- Python-like indentation structure
+- Transpiling to JavaScript
 
 ## Showcase
-
 ```
-= fibonacci -> number
-  ? (<= number 1)
-    number
-    +
-     fibonacci (- number 1)
-     fibonacci (- number 2)
+= a 1
+= b 2
+ 
+console.log
+  ? (> a b) 'Greater' 'Less'
+```
+transpiles to:
+```javascript
+const a = 1;
+const b = 1;
 
-console.log (fibonacci 7)
+console.log(a > b ? 'Greater' : 'Less');
 ```
 
-Output:
+## [Documentation](https://github.com/sergeyshpadyrev/sova/wiki)
 
-```
-13
-```
+## [Examples](https://github.com/sergeyshpadyrev/sova/tree/master/example)
