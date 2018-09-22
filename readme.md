@@ -15,7 +15,13 @@
 console.log
   ? (> a b) 'Greater' 'Less'
 ```
-Result output: `Less`
+transpiles to:
+```javascript
+const a = 1;
+const b = 1;
+
+console.log(a > b ? 'Greater' : 'Less');
+```
 
 ## [Documentation](https://github.com/sergeyshpadyrev/sova/wiki)
 
