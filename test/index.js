@@ -10,7 +10,7 @@ const formatCode = code => {
     .split('\n')
     .filter(line => line)
     .join('\n')
-  return prettier.format(withoutEmptyLines)
+  return prettier.format(withoutEmptyLines, { parser: 'babylon' })
 }
 
 const transpileAndFormatInput = input => {
