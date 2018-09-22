@@ -3,13 +3,21 @@
 const fileSystem = require('fs')
 const glob = require('glob')
 const path = require('path')
-const read = require('./io/read')
 const transpile = require('./transpile')
-const write = require('./io/write')
 
 const outputFiles = []
 const transpilePath = path.join(process.cwd(), process.argv[2])
 const transpileDirectory = fileSystem.lstatSync(transpilePath).isFile() ? path.dirname(transpilePath) : transpilePath
+
+const read = filePath =>
+  new Promise((resolve, reject) =>
+    fileSystem.readFile(filePath, 'utf8', (error, content) => (error ? reject(error) : resolve(content)))
+  )
+
+const write = (fileName, content) =>
+  fileSystem.writeFile(fileName, content, error => {
+    if (error) throw error
+  })
 
 const transpileFile = inputFile => {
   const writeCode = code => {

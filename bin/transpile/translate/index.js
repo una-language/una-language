@@ -1,4 +1,10 @@
-const rules = require('./operators')
+const rules = {
+  ...require('./rules/basic'),
+  ...require('./rules/collections'),
+  ...require('./rules/function'),
+  ...require('./rules/module'),
+  ...require('./rules/syntax')
+}
 
 const translate = ({ value, children }) =>
   children && children.length

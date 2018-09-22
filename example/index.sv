@@ -1,5 +1,4 @@
-= a 1
-= b 2
+= name 'John'
 
 console.log
- + a b
+ 'Hello ${name}!'
