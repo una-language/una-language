@@ -20,10 +20,10 @@ console.log
 ```
 transpiles to:
 ```javascript
-const a = 1;
-const b = 1;
+const a = 1
+const b = 1
 
-console.log(a > b ? 'Greater' : 'Less');
+console.log(a > b ? 'Greater' : 'Less')
 ```
 
 ## [Documentation](https://github.com/sergeyshpadyrev/sova/wiki)
