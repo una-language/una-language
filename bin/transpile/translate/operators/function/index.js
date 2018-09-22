@@ -11,16 +11,9 @@ const createFunction = (translate, lines, parameters, asynchronyous) => {
   return `${asynchronyous ? 'async' : ''} (${parameters}) => {${body} return ${last};}`
 }
 
-const parametrizedFunction = asynchronyous => (translate, [parametersArray, ...lines]) => {
-  const parameters =
-    parametersArray.length === 0
-      ? []
-      : parametersArray
-          .slice(1)
-          .map(translate)
-          .join(', ')
-
-  return createFunction(translate, lines, parameters, asynchronyous)
+const parametrizedFunction = asynchronyous => (translate, [parameters, ...lines]) => {
+  const arguments = parameters.children.length ? parameters.children.map(translate).join(', ') : []
+  return createFunction(translate, lines, arguments, asynchronyous)
 }
 
 module.exports = {

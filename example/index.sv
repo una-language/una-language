@@ -1,7 +1,0 @@
-<-- './constant'
-<-- './string'
-<-- './array'
-<-- './object'
-<-- './function'
-<-- './module'
-<-- './fizzbuzz'

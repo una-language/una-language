@@ -1,5 +1,5 @@
 const assert = require('chai').assert
-const compile = require('../bin/compile')
+const transpile = require('../bin/transpile')
 const FileSystem = require('fs')
 const prettier = require('prettier')
 const testsDirectory = './test/'
@@ -13,9 +13,9 @@ const formatCode = code => {
   return prettier.format(withoutEmptyLines)
 }
 
-const compileAndFormatInput = input => {
-  const compiled = compile(input)
-  return formatCode(compiled)
+const transpileAndFormatInput = input => {
+  const transpiled = transpile(input)
+  return formatCode(transpiled)
 }
 
 FileSystem.readdirSync(testsDirectory)
@@ -27,16 +27,16 @@ FileSystem.readdirSync(testsDirectory)
         .map(name => `${directory}/${name}`)
         .map(file => FileSystem.readFileSync(file, 'utf8'))
 
-      const compiledOutput = compileAndFormatInput(input)
+      const transpiledOutput = transpileAndFormatInput(input)
       const expectedOutput = formatCode(output)
 
-      it('compiles', () => assert.equal(expectedOutput, compiledOutput))
+      it('transpiles', () => assert.equal(expectedOutput, transpiledOutput))
 
       const expectedLogs = result.split('\n').filter(line => line)
       const logs = []
       console.log = value => logs.push(...value.toString().split('\n'))
 
-      eval(compiledOutput)
+      eval(transpiledOutput)
       console.log = print
       it('runs', () => assert.deepEqual(expectedLogs, logs))
     })

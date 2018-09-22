@@ -1,17 +1,17 @@
 #! /usr/bin/env node
 
-const compile = require('./compile')
 const fileSystem = require('fs')
 const glob = require('glob')
 const path = require('path')
 const read = require('./io/read')
+const transpile = require('./transpile')
 const write = require('./io/write')
 
 const outputFiles = []
-const compilePath = path.join(process.cwd(), process.argv[2])
-const compileDirectory = fileSystem.lstatSync(compilePath).isFile() ? path.dirname(compilePath) : compilePath
+const transpilePath = path.join(process.cwd(), process.argv[2])
+const transpileDirectory = fileSystem.lstatSync(transpilePath).isFile() ? path.dirname(transpilePath) : transpilePath
 
-const compileFile = inputFile => {
+const transpileFile = inputFile => {
   const writeCode = code => {
     const outputFile = inputFile.substring(0, inputFile.length - 3) + '.js'
     outputFiles.push(outputFile)
@@ -19,14 +19,14 @@ const compileFile = inputFile => {
   }
 
   return read(inputFile)
-    .then(compile)
+    .then(transpile)
     .then(writeCode)
 }
 
 const run = () => {
-  const scriptPath = fileSystem.lstatSync(compilePath).isFile()
-    ? compilePath.substring(0, compilePath.length - 3) + '.js'
-    : `${compileDirectory}/index.js`
+  const scriptPath = fileSystem.lstatSync(transpilePath).isFile()
+    ? transpilePath.substring(0, transpilePath.length - 3) + '.js'
+    : `${transpileDirectory}/index.js`
 
   const process = require('child_process').fork(scriptPath)
   process.on('error', console.error)
@@ -36,7 +36,7 @@ const run = () => {
   })
 }
 
-glob(compileDirectory + '/**/*.sv', (error, files) => {
+glob(transpileDirectory + '/**/*.sv', (error, files) => {
   if (error) return console.error(error)
-  Promise.all(files.map(compileFile)).then(run)
+  Promise.all(files.map(transpileFile)).then(run)
 })
