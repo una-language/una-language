@@ -2,6 +2,9 @@
 
 <i>Sova</i> is a functional programming language inspired by Lisp, Python and JavaScript
 
+## WARNING!!!
+_Sova_ is experimental yet. It's not production ready
+
 ## Features
 - Lisp-like syntax
 - Python-like indentation structure
