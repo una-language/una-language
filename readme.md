@@ -1,6 +1,9 @@
 # Sova
 
-<i>Sova</i> is a functional programming language inspired by Lisp, Python and JavaScript
+<i>Sova</i> is an experimental functional programming language inspired by Lisp, Python and JavaScript
+
+## WARNING!!!
+_Sova_ is experimental yet. It's not production ready
 
 ## Features
 - Lisp-like syntax
@@ -17,10 +20,10 @@ console.log
 ```
 transpiles to:
 ```javascript
-const a = 1;
-const b = 1;
+const a = 1
+const b = 1
 
-console.log(a > b ? 'Greater' : 'Less');
+console.log(a > b ? 'Greater' : 'Less')
 ```
 
 ## [Documentation](https://github.com/sergeyshpadyrev/sova/wiki)
