@@ -1,0 +1,11 @@
+{
+  "scripts": {
+    "start": "sova index.sv"
+  },
+  "devDependencies": {
+    "sova": "0.0.26"
+  },
+  "dependencies": {
+    "lodash": "^4.17.10"
+  }
+}
