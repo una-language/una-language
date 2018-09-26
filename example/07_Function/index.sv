@@ -1,7 +1,7 @@
-= addOne -> (. number)
+= addOne -> (number)
   + number 1
 
-= doubleAndAddOne -> (. number)
+= doubleAndAddOne -> (number)
   = doubled (* number 2)
   addOne doubled
 

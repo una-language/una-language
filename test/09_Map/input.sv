@@ -2,7 +2,7 @@
   a 1
   b :
    c 2
-   d . 3 4 5
+   d | 3 4 5
   e 'hello'
 
 console.log object.a
