@@ -1,9 +1,12 @@
 const _ = require('lodash')
 const parseParenthesises = require('parenthesis')
 
-const clean = ([head, ...tail]) => {
+const clean = ([head, ...tail], substitutions) => {
   if (!head) return []
-  if (Array.isArray(head)) return [clean(head), ...clean(tail)]
+
+  const cleanedTail = clean(tail, substitutions)
+
+  if (Array.isArray(head)) return [clean(head, substitutions), ...cleanedTail]
 
   const cleanedHead = head
     .replace('(', '')
@@ -11,15 +14,25 @@ const clean = ([head, ...tail]) => {
     .trim()
     .split(' ')
     .filter(nonEmpty => nonEmpty)
+    .map(token => (substitutions.hasOwnProperty(token) ? '`' + substitutions[token] + '`' : token))
 
-  return [...cleanedHead, ...clean(tail)]
+  return [...cleanedHead, ...cleanedTail]
 }
 
 const structurize = ([head, ...tail], spaces = 0) => {
   if (!head) return []
 
+  const substitutions = Object.assign(
+    {},
+    ...parseParenthesises(head, { brackets: ["''"] })
+      .filter(Array.isArray)
+      .map(token => ({ [`$#${Math.floor(Math.random() * Number.MAX_SAFE_INTEGER)}`]: token[0] }))
+  )
+  let text = head
+  Object.keys(substitutions).forEach(id => (text = text.replace(`'${substitutions[id]}'`, `${id}`)))
+
   const children = _.takeWhile(tail, line => line.search(/\S/) > spaces)
-  const headStructure = clean(parseParenthesises(head, { brackets: ['()'] }))
+  const headStructure = clean(parseParenthesises(text, { brackets: ['()'] }), substitutions)
   const childrenStructure = structurize(children, spaces + 2)
   const nextStructure = structurize(_.drop(tail, children.length), spaces)
   const structure = [...headStructure, ...childrenStructure]
