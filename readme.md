@@ -16,6 +16,7 @@ But what is data? Generally, we use only a few types of data: numbers, strings, 
 But what is this function? It's simply a map from input data state to output data state. This function can consist of other small functions and these functions can also consist of smaller functions and so on. Thus software development is just creating a mapping function from one data state to another.
 
 ### Parentheses from LISP + Intendation from Python
+All expressions on the child lines are applied to the last expression on the parent line
 ```
 a (b c) d
   e f
@@ -25,5 +26,5 @@ a (b c) d
 
 // is equivalent to
 
-a (b c) d (e f) (g h i) j
+a (b c) (d (e f) (g (h i) j)
 ```
