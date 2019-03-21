@@ -1,31 +1,66 @@
 # Sova
 
-<i>Sova</i> is an experimental functional programming language inspired by Lisp, Python and JavaScript
+<i>Sova</i> is an experiment of creating functional programming language inspired by Lisp, Python and JavaScript
 
-## WARNING!!!
-_Sova_ is experimental yet. It's not production ready
+## Common knowledge
 
-## Features
-- Lisp-like syntax
-- Python-like indentation structure
-- Transpiling to JavaScript
+### Application order
 
-## Showcase
+#### Spaces
 ```
-= a 1
-= b 2
- 
-console.log
-  ? (> a b) 'Greater' 'Less'
+a b c
 ```
-transpiles to:
-```javascript
-const a = 1
-const b = 1
+Application order here is `b` and `c` applied to `a`
 
-console.log(a > b ? 'Greater' : 'Less')
+#### Parenthesises
+```
+a (b c)
+```
+Application order here is `c` applied to `b` and the result is applied to `a`
+
+#### Intendation
+```
+a b c
+  d
+  e
+```
+Application order here is `d` and `e` applied to `c` - `b` and the result of application is applied to `a`
+
+### Data Structures
+
+#### List
+
+_Symbol_: `_` </br>
+_Parameters_: list elements
+
+_Example_:
+```
+= numbers _ 1 2 3 4
+
+// or expanded
+
+= numbers _
+  1
+  2
+  3
+  4
 ```
 
-## [Documentation](https://github.com/sergeyshpadyrev/sova/wiki)
+#### Map
+_Symbol_: `|` </br>
+_Parameters_: keys and values
 
-## [Examples](https://github.com/sergeyshpadyrev/sova/tree/master/example)
+_Example_:
+```
+= user |
+  name "John"
+  lastName: "Doe"
+  age: 32
+  address :
+    city "London"
+    street "Piccadilly"
+    
+// or inline
+
+= user (| (name "John") (lastName: "Doe") (age: 32) (address (: (city "London") (street "Picadilly"))))
+```
