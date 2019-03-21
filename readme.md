@@ -4,6 +4,16 @@
 
 ## Common knowledge
 
+What is software development? Basically, any software can be represented with simple scheme:
+```
+               ------------
+Input Data -> |  Algorithm | -> Output Data
+               ------------
+```
+So any software is just an algorithm that turns input data to output data.
+
+But what is data? Generally, we use not so many types of data: numbers, strings, booleans, lists and maps. All other types of data can be represented as combination of these basic types
+
 ### Application order
 
 #### Spaces
