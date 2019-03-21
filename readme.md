@@ -12,7 +12,7 @@ Input Data -> |  Algorithm | -> Output Data
 ```
 So any software is just an algorithm that turns input data to output data. That's all
 
-But what is data? Generally, we use not so many types of data: numbers, strings, booleans, lists and maps. All other types of data can be represented as combination of these basic types. [Alonzo Church](https://en.wikipedia.org/wiki/Alonzo_Church) in theory and <a href="https://en.wikipedia.org/wiki/John_McCarthy_(computer_scientist)">John McCarthy</a> in practice proved that all types of data can be represented as list but only sith deal in absolutes
+But what is data? Generally, we use only a few types of data: numbers, strings, booleans, lists and maps. All other types of data can be represented as combination of these basic types. [Alonzo Church](https://en.wikipedia.org/wiki/Alonzo_Church) in theory and <a href="https://en.wikipedia.org/wiki/John_McCarthy_(computer_scientist)">John McCarthy</a> in practice proved that all types of data can be represented as list but only sith deal in absolutes
 
 ### Application order
 
