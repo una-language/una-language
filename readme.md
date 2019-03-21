@@ -56,7 +56,7 @@ _Example_:
   name "John"
   lastName: "Doe"
   age: 32
-  address :
+  address |
     city "London"
     street "Piccadilly"
     
