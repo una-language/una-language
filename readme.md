@@ -23,7 +23,7 @@ a b c
 ```
 Application order here is `b` and `c` applied to `a`
 
-#### Parenthesises
+#### Parentheses
 ```
 a (b c)
 ```
@@ -70,7 +70,7 @@ _Example_:
   address |
     city "London"
     street "Piccadilly"
-    
+
 // or inline
 
 = user (| (name "John") (lastName: "Doe") (age: 32) (address (: (city "London") (street "Picadilly"))))
