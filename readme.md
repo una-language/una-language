@@ -15,63 +15,15 @@ But what is data? Generally, we use only a few types of data: numbers, strings, 
 
 But what is this function? It's simply a map from input data state to output data state. This function can consist of other small functions and these functions can also consist of smaller functions and so on. Thus software development is just creating a mapping function from one data state to another.
 
-### Application order
-
-#### Spaces
+### Parentheses from LISP + Intendation from Python
 ```
-a b c
-```
-Application order here is `b` and `c` applied to `a`
+a (b c) d
+  e f
+  g h
+    i
+  j
 
-#### Parentheses
-```
-a (b c)
-```
-Application order here is `c` applied to `b` and the result is applied to `a`
+// is equivalent to
 
-#### Intendation
-```
-a b c
-  d
-  e
-```
-Application order here is `d` and `e` applied to `c` - `b` and the result of application is applied to `a`
-
-### Data Structures
-
-#### List
-
-_Symbol_: `_` </br>
-_Parameters_: list elements
-
-_Example_:
-```
-= numbers _ 1 2 3 4
-
-// or expanded
-
-= numbers _
-  1
-  2
-  3
-  4
-```
-
-#### Map
-_Symbol_: `|` </br>
-_Parameters_: keys and values
-
-_Example_:
-```
-= user |
-  name "John"
-  lastName: "Doe"
-  age: 32
-  address |
-    city "London"
-    street "Piccadilly"
-
-// or inline
-
-= user (| (name "John") (lastName: "Doe") (age: 32) (address (: (city "London") (street "Picadilly"))))
+a (b c) d (e f) (g h i) j
 ```
