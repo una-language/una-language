@@ -37,4 +37,10 @@ _Symbol_: `=` </br>
 _Parameters_:
 - 1: constant name
 - 2: expression
-- 3-∞: parameters that are applied to expression 
+- 3-∞: parameters that are applied to expression
+_Example_:
+```
+= greeting "Hello World!"
+
+= sum + 1 2
+```
