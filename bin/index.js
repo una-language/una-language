@@ -1,50 +1,41 @@
-#! /usr/bin/env node
+// What will be:
+// bash find all sv files and pass their paths to nodejs compiler
+// create build folder - copy all output and simple js files
+// run node on that
 
-const fileSystem = require('fs')
-const glob = require('glob')
-const path = require('path')
+const { bash, getParentDirectory, node, parameters } = require('./util')
 const transpile = require('./transpile')
 
-const outputFiles = []
-const transpilePath = path.join(process.cwd(), process.argv[2])
-const transpileDirectory = fileSystem.lstatSync(transpilePath).isFile() ? path.dirname(transpilePath) : transpilePath
+const run = async () => {
+  const outputDirectory = './output'
+  await bash(`rm -rf ${outputDirectory}`)
+  await bash(`mkdir ${outputDirectory}`)
 
-const read = filePath =>
-  new Promise((resolve, reject) =>
-    fileSystem.readFile(filePath, 'utf8', (error, content) => (error ? reject(error) : resolve(content)))
+  const inputDirectory = parameters[0]
+  const inputJavascriptFiles = await bash(`find ${inputDirectory} -name "*.js"`)
+  const inputSovaFiles = await bash(`find ${inputDirectory} -name "*.sv"`)
+
+  // Copy all javascript files from input directory to output directory
+  await Promise.all(
+    inputJavascriptFiles.map(async inputJavascriptFile => {
+      const outputJavascriptFile = outputDirectory + inputJavascriptFile.replace(inputDirectory, '')
+      const outputFileDirectory = getParentDirectory(outputJavascriptFile)
+      await bash(`mkdir -p ${outputFileDirectory} && cp ${inputJavascriptFile} ${outputFileDirectory}`)
+    })
   )
 
-const write = (fileName, content) =>
-  fileSystem.writeFile(fileName, content, error => {
-    if (error) throw error
-  })
+  await Promise.all(
+    inputSovaFiles.map(async inputSovaFile => {
+      const outputJavascriptFile = outputDirectory + inputSovaFile.replace(inputDirectory, '').slice(0, -3) + '.js'
+      const outputFileDirectory = getParentDirectory(outputJavascriptFile)
+      const inputSovaFileContent = await bash(`cat ${inputSovaFile}`)
+      const outputJavascriptFileContent = transpile(inputSovaFileContent)
+      await bash(`mkdir -p ${outputFileDirectory}`)
+      await bash(`cat <<EOT >> ${outputJavascriptFile}\n${outputJavascriptFileContent}\nEOT`)
+    })
+  )
 
-const transpileFile = inputFile => {
-  const writeCode = code => {
-    const outputFile = inputFile.substring(0, inputFile.length - 3) + '.js'
-    outputFiles.push(outputFile)
-    return write(outputFile, code)
-  }
-
-  return read(inputFile)
-    .then(transpile)
-    .then(writeCode)
+  node(outputDirectory)
 }
 
-const run = () => {
-  const scriptPath = fileSystem.lstatSync(transpilePath).isFile()
-    ? transpilePath.substring(0, transpilePath.length - 3) + '.js'
-    : `${transpileDirectory}/index.js`
-
-  const process = require('child_process').fork(scriptPath)
-  process.on('error', console.error)
-  process.on('exit', exitCode => {
-    if (exitCode !== 0) console.error(`Exit with code ${exitCode}`)
-    outputFiles.forEach(fileSystem.unlinkSync)
-  })
-}
-
-glob(transpileDirectory + '/**/*.sv', (error, files) => {
-  if (error) return console.error(error)
-  Promise.all(files.map(transpileFile)).then(run)
-})
+run()
