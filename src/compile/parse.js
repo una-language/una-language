@@ -1,15 +1,46 @@
 const _ = require('lodash')
+const parser = require('parsimmon')
 
 const convertTabs = lines => {
   if (lines.length === 0) return ''
   const [head, ...tail] = lines
   const sublines = _.takeWhile(tail, line => line.level > head.level)
-  const currentExpression = `( ${head.value} ${convertTabs(sublines)})`
-  const nextExpressions = convertTabs(_.drop(tail, sublines.length))
-  return currentExpression + (head.level === 0 && nextExpressions.length > 0 ? '\n' : '') + nextExpressions
+  const currentexpression = `( ${head.value} ${convertTabs(sublines)})`
+  const nextexpressions = convertTabs(_.drop(tail, sublines.length))
+  return currentexpression + (head.level === 0 && nextexpressions.length > 0 ? '\n' : '') + nextexpressions
 }
+
+const optimize = ast => {
+  if (!Array.isArray(ast)) return ast
+  if (ast.length === 1) return optimize(ast[0])
+  return ast.map(optimize)
+}
+
+const language = parser.createLanguage({
+  expression: rules => parser.alt(rules.string, rules.number, rules.symbol, rules.list),
+  symbol: () => parser.regexp(/[a-zA-Z_=:.-][=a-zA-Z0-9_=:.-]*/).desc('symbol'),
+  string: () =>
+    parser
+      .regexp(/'((?:\\.|.)*?)'/, 1)
+      .map(string => `"${string}"`)
+      .desc('string'),
+  number: () =>
+    parser
+      .regexp(/[0-9]+/)
+      .map(parseFloat)
+      .desc('number'),
+  list: rules =>
+    rules.expression
+      .trim(parser.optWhitespace)
+      .many()
+      .wrap(parser.string('('), parser.string(')')),
+  file: rules => rules.expression.trim(parser.optWhitespace).many()
+})
 
 module.exports = lines => {
   const indentedLines = lines.map(line => ({ level: line.search(/\S/) / 2, value: line.trim() }))
-  const lispLines = convertTabs(indentedLines)
+  const code = convertTabs(indentedLines)
+  const ast = language.file.tryParse(code)
+  const optimizedAst = optimize(ast)
+  return optimizedAst
 }

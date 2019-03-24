@@ -15,4 +15,5 @@ reader.on('line', line => {
 })
 reader.on('close', () => {
   const parsed = parse(lines)
+  console.log(parsed)
 })
