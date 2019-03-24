@@ -1,0 +1,19 @@
+#!/bin/sh
+
+# script directory
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
+input_directory=$1
+output_directory="output"
+
+# Clean output directory
+rm -rf $output_directory
+
+# Copy all non-sova files
+rsync -R $(find $input_directory -type f -not -name "*.sv") $output_directory
+
+# Compile all sova files
+for sovaFile in $(find $input_directory -type f -name "*.sv")
+do
+	cat $sovaFile | $DIR/compile/compile.js | cat
+done

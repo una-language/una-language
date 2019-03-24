@@ -1,2 +1,9 @@
-= x 1
-= greeting "Hello World!"
+= users _
+  :
+    name Alice
+    age 20
+  : (name Bob) (age 25)
+
+
+console.log
+  users
