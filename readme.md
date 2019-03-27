@@ -1,6 +1,6 @@
 # Sova
 
-<i>Sova</i> is an experiment of creating functional programming language inspired by Lisp, Python and JavaScript
+<i>Sova</i> is an experimental functional programming language inspired by Lisp, Python and JavaScript
 
 ## Common knowledge
 
