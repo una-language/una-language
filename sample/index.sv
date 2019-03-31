@@ -6,4 +6,3 @@
 
 
 console.log users
-console.log (.0 users)

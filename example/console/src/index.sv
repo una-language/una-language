@@ -1,4 +1,3 @@
-// Print the name of a man who's age is the closest to the average age of all people
 =-> 'lodash' _
 
 = people |
