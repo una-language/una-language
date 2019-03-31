@@ -1,5 +1,8 @@
 {
   "scripts": {
     "start": "sova src/ output/ && node output"
+  },
+  "dependencies": {
+    "express": "4.16.4"
   }
 }

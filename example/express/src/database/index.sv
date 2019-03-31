@@ -1,0 +1,7 @@
+= users :
+  a1: "Alice"
+  b2: "Bob"
+  c3: "Chris"
+
+<-= :
+  getUserById (-> (id) (|: users id))
