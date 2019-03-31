@@ -18,7 +18,7 @@ const optimize = ast => {
 
 const language = parser.createLanguage({
   expression: rules => parser.alt(rules.string, rules.number, rules.symbol, rules.list),
-  symbol: () => parser.regexp(/[a-zA-Z_=:.-][=a-zA-Z0-9_=:.-]*/).desc('symbol'),
+  symbol: () => parser.regexp(/[a-zA-Z_|=:.?!-][=a-zA-Z0-9_=|:.?!-]*/).desc('symbol'),
   string: () =>
     parser
       .regexp(/'((?:\\.|.)*?)'/, 1)
