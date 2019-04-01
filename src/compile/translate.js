@@ -16,6 +16,12 @@ const unary = symbol => parameter => `(${symbol}${expression(parameter)})`
 
 const languageConstructions = {
     '=': (left, ...right) => `const ${expression(left)} = ${expression(right)};`,
+    '?': (ifCondition, thenCase, elseCase) =>
+        !!elseCase
+            ? `${expression(ifCondition)} ? ${expression(thenCase)} : ${expression(elseCase)}`
+            : `if (${expression(ifCondition)}) {${expression(thenCase)}}`,
+    '|': (...elements) => `[${elements.map(expression).join(', ')}]`,
+    '<-': returningValue => `return ${expression(returningValue)}`,
 
     '+': nary('+'),
     '-': (...parameters) => (parameters.length > 1 ? nary(...parameters) : unary(...parameters)),
@@ -34,9 +40,7 @@ const languageConstructions = {
     '==': nary('=='),
     '!=': nary('!='),
     '===': nary('==='),
-    '!==': nary('!=='),
-
-    '|': (...elements) => `[${elements.map(expression).join(', ')}]`
+    '!==': nary('!==')
 }
 
 const value = ast => ast
