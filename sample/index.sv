@@ -1,8 +1,3 @@
-= users |
-  :
-    name 'Alice'
-    age 20
-  : (name 'Bob') (age 25)
+= x (+ 1 2)
 
-
-console.log users
+console.log x
