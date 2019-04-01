@@ -1,5 +1,5 @@
 const application = (head, ...tail) =>
-  `(${head}(${tail.map(expression).join(", ")}))`;
+  `${head}(${tail.map(expression).join(", ")})`;
 
 const expression = ast => {
   if (!Array.isArray(ast)) return value(ast);
@@ -19,7 +19,7 @@ const languageConstructionsHelpers = {
 };
 
 const languageConstructions = {
-  "=": (left, ...right) => `const ${expression(left)} = ${expression(right)}`,
+  "=": (left, ...right) => `const ${expression(left)} = ${expression(right)};`,
 
   "+": languageConstructionsHelpers.nary("+")
 };

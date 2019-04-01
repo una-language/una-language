@@ -13,7 +13,9 @@ rm -rf $output_directory
 rsync -R $(find $input_directory -type f -not -name "*.sv") $output_directory
 
 # Compile all sova files
-for sovaFile in $(find $input_directory -type f -name "*.sv")
+for sova_file in $(find $input_directory -type f -name "*.sv")
 do
-	cat $sovaFile | $DIR/compile/compile.js | cat
+	cat $sova_file | $DIR/compile/compile.js >> './output/index.js'
 done
+
+node './output/index.js'
