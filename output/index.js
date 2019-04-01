@@ -1,3 +1,3 @@
-const x = 1 + 2
+const x = 2 >= 3
 console.log(x)
 

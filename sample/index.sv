@@ -1,3 +1,3 @@
-= x (+ 1 2)
+= x >= 2 3
 
 console.log x
