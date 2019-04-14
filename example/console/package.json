@@ -1,11 +1,11 @@
 {
-  "scripts": {
-    "start": "sova src/ output/ && node output"
-  },
-  "dependencies": {
-    "lodash": "4.17.11"
-  },
-  "devDependencies": {
-    "sova": "../.."
-  }
+    "scripts": {
+        "start": "sova src/ output/ && node output"
+    },
+    "dependencies": {
+        "lodash": "4.17.11"
+    },
+    "devDependencies": {
+        "sova": "../.."
+    }
 }

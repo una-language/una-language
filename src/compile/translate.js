@@ -35,12 +35,12 @@ const unary = symbol => parameter => `(${symbol}${expression(parameter)})`
 const languageConstructions = {
     '=': (left, ...right) => `const ${expression(left)} = ${expression(right)};`,
     '?': (ifCondition, thenCase, elseCase) =>
-        !!elseCase
+        elseCase !== undefined
             ? `${expression(ifCondition)} ? ${expression(thenCase)} : ${expression(elseCase)}`
             : `if (${expression(ifCondition)}) {${expression(thenCase)}}`,
 
     '|': (...elements) => `[${elements.map(expression).join(', ')}]`,
-    ':': () => null, // map
+    ':': (...fields) => `{${fields.map(mapField).join(', ')}}`,
 
     '->': func,
     '<-': (...returningValue) => `return ${expression(returningValue)}`,
@@ -53,7 +53,7 @@ const languageConstructions = {
     '<-=': exportedValue => `module.exports = ${expression(exportedValue)}`,
 
     '+': nary('+'),
-    '-': (...parameters) => (parameters.length > 1 ? nary(...parameters) : unary(...parameters)),
+    '-': (...parameters) => (parameters.length > 1 ? nary('-')(...parameters) : unary('-')(...parameters)),
     '*': nary('*'),
     '/': nary('/'),
     '%': nary('%'),
@@ -70,6 +70,12 @@ const languageConstructions = {
     '!=': nary('!='),
     '===': nary('==='),
     '!==': nary('!==')
+}
+
+const mapField = field => {
+    if (!Array.isArray(field)) return expression(field)
+    const [head, ...tail] = field
+    return tail.length ? `${expression(head)} : ${expression(tail)}` : expression(head)
 }
 
 const methodApplication = (methodName, container, ...parameters) => {
