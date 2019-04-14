@@ -42,13 +42,14 @@ const languageConstructions = {
     '|': (...elements) => `[${elements.map(expression).join(', ')}]`,
     ':': () => null, // map
 
-    '->': func, // function (check that last line is return but can already have <- sign)
+    '->': func,
     '<-': (...returningValue) => `return ${expression(returningValue)}`,
 
-    '-->': (...parameters) => `async ${func(...parameters)}`, // async function
-    '<--': (...parameters) => `await ${expression(parameters)}`, // await
+    '-->': (...parameters) => `async ${func(...parameters)}`,
+    '<--': (...parameters) => `await ${expression(parameters)}`,
 
-    '=->': () => null, // require
+    '=->': (name, ...parameters) =>
+        parameters.length > 0 ? `const ${expression(...parameters)} = require(${name})` : `require(${name})`, // require
     '<-=': exportedValue => `module.exports = ${expression(exportedValue)}`,
 
     '+': nary('+'),

@@ -10,7 +10,7 @@ output_directory=$2
 rm -rf $output_directory
 
 # Copy all non-sova files
-rsync -R $(find $input_directory -type f -not -name "*.sv") $output_directory
+rsync -a --exclude '*.sv' $input_directory/* $output_directory
 
 # Compile all sova files
 for sova_file in $(find $input_directory -type f -name "*.sv")

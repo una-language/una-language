@@ -1,3 +1,5 @@
+=-> './jsthing'
+
 = checkNumber -> number
   ? (=== number 1) (<- 'One')
   ? (=== number 2) (<- 'Two')
