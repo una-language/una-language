@@ -12,10 +12,10 @@ rm -rf $output_directory
 # Copy all non-sova files
 rsync -a --exclude '*.sv' $input_directory/* $output_directory
 
-# Compile all sova files
+# # Compile all sova files
 for sova_file in $(find $input_directory -type f -name "*.sv")
 do
-	cat $sova_file | $DIR/compile/compile.js >> './output/index.js'
+	relative_sova_file_path=${sova_file#$input_directory}
+	js_file="$output_directory/${relative_sova_file_path%.*}.js"
+	cat $sova_file | $DIR/compile/compile.js >> $js_file
 done
-
-node './output/index.js'

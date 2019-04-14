@@ -20,8 +20,8 @@ const language = parser.createLanguage({
             .desc('string'),
     number: () =>
         parser
-            .regexp(/[0-9.]+/)
-            .map(parseFloat)
+            .regexp(/-?(0|[1-9][0-9]*)([.][0-9]+)?([eE][+-]?[0-9]+)?/)
+            .map(Number)
             .desc('number'),
     list: rules =>
         rules.expression

@@ -1,4 +1,7 @@
-const application = (head, ...tail) => `${head}(${tail.map(expression).join(', ')})`
+const application = (head, ...tail) =>
+    tail.length === 1 && Array.isArray(tail[0]) && tail[0].length === 0
+        ? `${head}()`
+        : `${head}(${tail.map(expression).join(', ')})`
 
 const expression = ast => {
     if (!Array.isArray(ast)) return value(ast)
@@ -83,7 +86,8 @@ const methodApplication = (methodName, container, ...parameters) => {
         .split('')
         .slice(1)
         .join('')
-    return application(`${expression(container)}.${method}`, ...parameters)
+    const appliedMethod = `${expression(container)}.${method}`
+    return parameters.length > 0 ? application(appliedMethod, ...parameters) : appliedMethod
 }
 
 const value = ast => ast

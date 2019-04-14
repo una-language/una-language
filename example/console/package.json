@@ -1,11 +1,8 @@
 {
     "scripts": {
-        "start": "sova src/ output/ && node output"
+        "start": "../../src/sova src src-js/ && node src-js"
     },
     "dependencies": {
         "lodash": "4.17.11"
-    },
-    "devDependencies": {
-        "sova": "../.."
     }
 }
