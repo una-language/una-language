@@ -7,3 +7,5 @@
   <- 'Ten or more'
 
 console.log (checkNumber 6)
+
+.log console 1

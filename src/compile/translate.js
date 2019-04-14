@@ -7,7 +7,7 @@ const expression = ast => {
 
     const [head, ...tail] = ast
     if (languageConstructions.hasOwnProperty(head)) return languageConstructions[head](...tail)
-    // if (head.startsWith('.')) // method application ///check ...array to work
+    if (head.startsWith('.')) return methodApplication(head, ...tail)
 
     return application(head, ...tail)
 }
@@ -70,6 +70,14 @@ const languageConstructions = {
     '!=': nary('!='),
     '===': nary('==='),
     '!==': nary('!==')
+}
+
+const methodApplication = (methodName, container, ...parameters) => {
+    const method = methodName
+        .split('')
+        .slice(1)
+        .join('')
+    return application(`${expression(container)}.${method}`, ...parameters)
 }
 
 const value = ast => ast

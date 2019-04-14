@@ -12,4 +12,5 @@ const checkNumber = number => {
   return 'Ten or more'
 }
 console.log(checkNumber(6))
+console.log(1)
 
