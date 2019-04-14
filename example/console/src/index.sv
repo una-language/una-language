@@ -13,6 +13,16 @@ console.log '-----------'
 =-> './comparison'
 console.log '-----------\n'
 
+console.log 'Condition'
+console.log '-----------'
+=-> './condition'
+console.log '-----------\n'
+
+console.log 'Function'
+console.log '-----------'
+=-> './function'
+console.log '-----------\n'
+
 console.log 'Average age'
 console.log '-----------'
 =-> './average-age'
