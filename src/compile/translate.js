@@ -44,6 +44,7 @@ const languageConstructions = {
 
     '|': (...elements) => `[${elements.map(expression).join(', ')}]`,
     ':': (...fields) => `{${fields.map(mapField).join(', ')}}`,
+    '.': (container, field) => `${expression(container)}[${expression(field)}]`,
 
     '->': func,
     '<-': (...returningValue) => `return ${expression(returningValue)}`,
@@ -53,7 +54,7 @@ const languageConstructions = {
 
     '=->': (name, ...parameters) =>
         parameters.length > 0 ? `const ${expression(...parameters)} = require(${name})` : `require(${name})`, // require
-    '<-=': exportedValue => `module.exports = ${expression(exportedValue)}`,
+    '<-=': (...exportedValue) => `module.exports = ${expression(exportedValue)}`,
 
     '+': nary('+'),
     '-': (...parameters) => (parameters.length > 1 ? nary('-')(...parameters) : unary('-')(...parameters)),

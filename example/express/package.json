@@ -1,11 +1,8 @@
 {
-  "scripts": {
-    "start": "sova src/ output/ && node output"
-  },
-  "dependencies": {
-    "express": "4.16.4"
-  },
-  "devDependencies": {
-    "sova": "../.."
-  }
+    "scripts": {
+        "start": "../../src/sova src src-js/ && node src-js"
+    },
+    "dependencies": {
+        "express": "4.16.4"
+    }
 }
