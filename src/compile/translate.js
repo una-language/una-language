@@ -4,7 +4,10 @@ const application = (head, ...tail) =>
         : `${head}(${tail.map(expression).join(', ')})`
 
 const expression = ast => {
-    if (!Array.isArray(ast)) return value(ast)
+    if (!Array.isArray(ast)) {
+        if (languageConstructions.hasOwnProperty(ast)) return languageConstructions[ast]()
+        return value(ast)
+    }
     if (ast.length === 0) return `()`
     if (ast.length === 1) return expression(ast[0])
 
@@ -47,7 +50,7 @@ const languageConstructions = {
     '.': (container, field) => `${expression(container)}[${expression(field)}]`,
 
     '->': func,
-    '<-': (...returningValue) => `return ${expression(returningValue)}`,
+    '<-': (...returningValue) => (returningValue.length > 0 ? `return ${expression(returningValue)}` : 'return;'),
 
     '-->': (...parameters) => `async ${func(...parameters)}`,
     '<--': (...parameters) => `await ${expression(parameters)}`,
