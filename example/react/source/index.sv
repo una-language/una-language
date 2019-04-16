@@ -1,9 +1,12 @@
 =-> 'react' React
 =-> 'react-dom' ReactDOM
+=-> './styles' styles
 
 = (: createElement:e) React
 
-= App -> ()
-  e 'div' null 'Hello'
+= App -> ((: name))
+  e 'div' (: (style styles.container))
+    e 'div' (: (style styles.hello)) 'Hello'
+    e 'div' (: (style styles.name)) name
 
-ReactDOM.render (e App) (document.getElementById 'root')
+ReactDOM.render (e App (: (name 'John'))) (document.getElementById 'root')
