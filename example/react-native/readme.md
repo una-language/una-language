@@ -1,6 +1,7 @@
 # React Native Application Example
 
 This example contains React Native application that renders `Hello`
+
 To launch this example you need to do the following:
 
 ```bash
