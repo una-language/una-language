@@ -23,6 +23,16 @@ console.log '-----------'
 =-> './function'
 console.log '-----------\n'
 
+console.log 'List'
+console.log '-----------'
+=-> './list'
+console.log '-----------\n'
+
+console.log 'Map'
+console.log '-----------'
+=-> './map'
+console.log '-----------\n'
+
 console.log 'Average age'
 console.log '-----------'
 =-> './average-age'
