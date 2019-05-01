@@ -1,6 +1,6 @@
 # Console Application Example
 
-This example contains Sova common syntax constructions
+This example contains Sova common syntax constructions.
 
 To launch this example you need to do the following:
 
