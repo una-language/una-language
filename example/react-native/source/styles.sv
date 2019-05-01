@@ -1,0 +1,11 @@
+<-= :
+  container :
+    alignItems 'center'
+    display 'flex'
+    flex 1
+    flexDirection 'row'
+    justifyContent 'space-around'
+  hello :
+    color 'blue'
+    fontSize 20
+    fontStyle 'italic'
