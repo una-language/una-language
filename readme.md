@@ -12,6 +12,8 @@
 
 Every programming language has a lot of boilerplate in it's syntax. The purpose of this project is to create a programming language with minimalistic and very clean syntax.
 
+## [Documentation](/wiki)
+
 ## Examples
 
 -   [Console Application](/example/console)
