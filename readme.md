@@ -18,3 +18,17 @@ Every programming language has a lot of boilerplate in it's syntax. The purpose 
 -   [Express Application](/example/express)
 -   [React Application](/example/react)
 -   [React Native Application](/example/react-native)
+
+## Next steps
+
+Need to add syntax for:
+
+-   try catch
+-   class declaration and instantiation
+-   string right parsing and string interpolation
+-   comments
+
+Add tests for:
+
+-   parser
+-   translator
