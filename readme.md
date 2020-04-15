@@ -48,9 +48,11 @@ console.log (sum zeroToNine)
 
 ### Boolean logic operators
 
-! | not
-&& | and
-|| | or
+```
+!     | not
+&&    | and
+||    | or
+```
 
 ### Comparison operators
 
