@@ -70,5 +70,5 @@ console.log (sum zeroToNine)
 ### Slicing operators
 
 ```
-::1   | slicing like in Python
+[::1]   | slicing like in Python
 ```
