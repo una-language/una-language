@@ -66,9 +66,3 @@ console.log (sum zeroToNine)
 <     | less
 <=    | less or equals
 ```
-
-### Slicing operators
-
-```
-[::1]   | slicing like in Python
-```
