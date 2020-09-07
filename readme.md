@@ -6,6 +6,10 @@
 -   Python indentation and comfort
 -   Compilation to JavaScript
 
+## Make
+- normal strings and string interpolation
+- collections
+
 ## Showcase
 
 ```
