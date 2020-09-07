@@ -11,10 +11,13 @@ plus = (x y) ->
     x + y
 ```
 
-New function apply
+New expression calculation
 
 ```
-result = plus 1 2
+result = <-
+    a = 1
+    b = 2
+    a + b
 ```
 
 Better composition of objects
