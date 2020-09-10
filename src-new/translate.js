@@ -1,3 +1,16 @@
+// TODO add binary ? (? condition action)
+// TODO add function
+// TODO add curry function
+// TODO add async function
+// TODO add await
+// TODO add expression evaluation
+// TODO add import with setting (import or require)
+// TODO add export with setting (export or module.exports)
+// TODO add .
+// TODO add function apply
+// TODO add | list
+// TODO add : map
+
 const expression = node => {
     switch (node.type) {
         case '=':

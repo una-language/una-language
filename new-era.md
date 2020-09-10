@@ -16,6 +16,13 @@ plus = (x y) ->
     x + y
 ```
 
+New functions with currying:
+
+```
+plus = a -> b ->
+  a + b
+```
+
 New expression calculation
 
 ```
