@@ -1,3 +1,4 @@
+Everything should be symbols not words (even return)
 New equation:
 
 ```
@@ -18,6 +19,15 @@ result = <-
     a = 1
     b = 2
     a + b
+```
+
+New await expression calculation
+
+```
+result = <--
+  a = <-- fetch 'GET' '/posts' (: id 3)
+  b = a + 2
+  b / 2
 ```
 
 Better composition of objects
