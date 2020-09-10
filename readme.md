@@ -1,14 +1,15 @@
-# Sova
+# Una
 
-<i>Sova</i> is an experimental functional programming language based on:
+<i>Una</i> is an experimental functional programming language based on:
 
 -   Lisp-like syntax
 -   Python indentation and comfort
 -   Compilation to JavaScript
 
 ## Make
-- normal strings and string interpolation
-- collections
+
+-   normal strings and string interpolation
+-   collections
 
 ## Showcase
 
