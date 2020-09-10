@@ -71,3 +71,19 @@ test('==', () => {
 test('!=', () => {
     testTranslate({ type: '!=', left: '1', right: '2' }, '(1 !== 2)')
 })
+
+test('?', () => {
+    testTranslate(
+        { type: '?', condition: { type: '>', left: '1', right: '2' }, left: '"First"', right: '"Second"' },
+        '((1 > 2) ? "First" : "Second")'
+    )
+    testTranslate(
+        {
+            type: '?',
+            condition: { type: '&&', params: ['a', 'b'] },
+            left: { type: '+', params: ['1', '2'] },
+            right: { type: '*', params: ['1', '2'] }
+        },
+        '((a && b) ? (1 + 2) : (1 * 2))'
+    )
+})

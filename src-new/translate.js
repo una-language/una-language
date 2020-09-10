@@ -24,6 +24,9 @@ const expression = node => {
         case '!=':
             let sign = node.type === '==' ? '===' : node.type === '!=' ? '!==' : node.type
             return `(${expression(node.left)} ${sign} ${expression(node.right)})`
+
+        case '?':
+            return `(${expression(node.condition)} ? ${expression(node.left)} : ${expression(node.right)})`
     }
 
     return node
