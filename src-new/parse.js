@@ -1,3 +1,3 @@
 module.exports = text => {
-    return null
+    return []
 }

@@ -1,0 +1,7 @@
+const parse = require('./parse')
+
+const testParse = (text, trees) => expect(parse(text)).toEqual(trees)
+
+test('Assignment', () => {
+    testParse('', [])
+})
