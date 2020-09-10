@@ -5,6 +5,7 @@ const expression = node => {
         case '+':
         case '*':
         case '/':
+        case '%':
         case '&&':
         case '||':
             return `(${node.params.map(expression).join(` ${node.type} `)})`

@@ -28,6 +28,11 @@ test('/', () => {
     testTranslate({ type: '/', params: ['1', '2', '3'] }, '(1 / 2 / 3)')
 })
 
+test('%', () => {
+    testTranslate({ type: '%', params: ['1', '2'] }, '(1 % 2)')
+    testTranslate({ type: '%', params: ['1', '2', '3'] }, '(1 % 2 % 3)')
+})
+
 test('&&', () => {
     testTranslate({ type: '&&', params: ['true', 'false'] }, '(true && false)')
     testTranslate({ type: '&&', params: ['true', 'false', 'booleanVariable'] }, '(true && false && booleanVariable)')
