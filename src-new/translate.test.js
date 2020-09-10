@@ -42,3 +42,27 @@ test('!', () => {
     testTranslate({ type: '!', value: 'true' }, '!true')
     testTranslate({ type: '!', value: 'booleanVariable' }, '!booleanVariable')
 })
+
+test('>', () => {
+    testTranslate({ type: '>', left: '1', right: '2' }, '(1 > 2)')
+})
+
+test('>=', () => {
+    testTranslate({ type: '>=', left: '1', right: '2' }, '(1 >= 2)')
+})
+
+test('<', () => {
+    testTranslate({ type: '<', left: '1', right: '2' }, '(1 < 2)')
+})
+
+test('<=', () => {
+    testTranslate({ type: '<=', left: '1', right: '2' }, '(1 <= 2)')
+})
+
+test('==', () => {
+    testTranslate({ type: '==', left: '1', right: '2' }, '(1 === 2)')
+})
+
+test('!=', () => {
+    testTranslate({ type: '!=', left: '1', right: '2' }, '(1 !== 2)')
+})

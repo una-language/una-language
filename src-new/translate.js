@@ -14,6 +14,15 @@ const expression = node => {
                 : `-${expression(node.params[0])}`
         case '!':
             return `!${expression(node.value)}`
+
+        case '>':
+        case '>=':
+        case '<':
+        case '<=':
+        case '==':
+        case '!=':
+            let sign = node.type === '==' ? '===' : node.type === '!=' ? '!==' : node.type
+            return `(${expression(node.left)} ${sign} ${expression(node.right)})`
     }
 
     return node

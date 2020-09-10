@@ -1,5 +1,6 @@
 Everything should be symbols not words (even return)
 Everything should be done by TDD
+Make == like === in JS and even with deepEquals
 Add macros
 
 New equation:
