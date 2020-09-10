@@ -1,7 +1,7 @@
 const transform = require('./transform')
 
-const testTransform = (tree, js) => expect(transform(tree).trim()).toEqual(js.trim())
+const testTransform = (raw, tree) => expect(transform(raw)).toEqual(tree)
 
-test('Assignment', () => {
-    testTransform({}, 'result')
+test('Empty', () => {
+    testTransform([], {})
 })
