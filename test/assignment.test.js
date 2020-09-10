@@ -1,3 +1,7 @@
-test('1 + 2 = 3', () => {
-    expect(1 + 2).toBe(3)
+const una = require('../src-new')
+
+const testUna = (unaCode, jsCode) => expect(una(unaCode).trim()).toEqual(jsCode.trim())
+
+test('Assignment', () => {
+    testUna('', 'result')
 })
