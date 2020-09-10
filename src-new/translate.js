@@ -7,7 +7,7 @@ const expression = node => {
         case '/':
             return node.params.map(expression).join(` ${node.type} `)
         case '-':
-            return node.params.length > 1 ? node.params.map(expression).join(' - ') : `-${node.params[0]}`
+            return node.params.length > 1 ? node.params.map(expression).join(' - ') : `-${expression(node.params[0])}`
     }
 
     return node
