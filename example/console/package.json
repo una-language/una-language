@@ -3,6 +3,6 @@
         "start": "../../src/sova source src/ && node src"
     },
     "dependencies": {
-        "lodash": "4.17.11"
+        "lodash": "4.17.19"
     }
 }
