@@ -1,4 +1,5 @@
 Everything should be symbols not words (even return)
+Everything should be done by TDD
 New equation:
 
 ```

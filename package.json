@@ -1,22 +1,22 @@
 {
-  "name": "sova",
-  "version": "0.0.26",
-  "bin": {
-    "sova": "src/sova"
-  },
-  "dependencies": {
-    "lodash": "^4.17.10",
-    "parsimmon": "^1.12.0",
-    "prettier": "^1.13.7"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/sergeyshpadyrev/sova.git"
-  },
-  "author": "Sergey Shpadyrev",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/sergeyshpadyrev/sova/issues"
-  },
-  "homepage": "https://github.com/sergeyshpadyrev/sova#readme"
+    "name": "sova",
+    "version": "0.0.26",
+    "bin": {
+        "sova": "src/sova"
+    },
+    "dependencies": {
+        "lodash": "4.17.20",
+        "parsimmon": "1.16.0",
+        "prettier": "2.1.1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/sergeyshpadyrev/sova.git"
+    },
+    "author": "Sergey Shpadyrev",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/sergeyshpadyrev/sova/issues"
+    },
+    "homepage": "https://github.com/sergeyshpadyrev/sova#readme"
 }
