@@ -1,73 +1,13 @@
 # Una
 
-<i>Una</i> is an experimental functional programming language based on:
-
--   Lisp-like syntax
--   Python indentation and comfort
--   Compilation to JavaScript
-
-## Make
-
--   normal strings and string interpolation
--   collections
+<i>Una</i> is an experimental functional programming language that took the best parts from Javascript, Python and Lisp.
 
 ## Showcase
 
 ```
-= sum
-    -> numbers
-        numbers.reduce (-> (x y) (+ x y)) 0
+sum = numbers ->
+    numbers.reduce ((x y) -> (x + y)) 0
 
-
-= zeroToNine (range 0 10)
-console.log (sum zeroToNine)
-```
-
-## Syntax
-
-### General operators
-
-```
-=     | declaration
-->    | function
-<-    | code execution (()  => {return 1})()
--->   | async function
-<--   | await
-=->   | import module
-<-=   | export module
-?     | if (long with 3 parts) (short with 2 parts)
-
-:     | map
-|     | list
-```
-
-### Arithmetic operators
-
-```
-+     | addition
--     | subtraction
-*     | multiplication
-/     | division
-%     | mod
-```
-
-### Boolean logic operators
-
-```
-!     | not
-&&    | and
-||    | or
-```
-
-### Comparison operators
-
-```
-==    | equals
-===   | type-accurate equals
-!=    | not equals
-!==   | type-accurate not equals
->     | greater
->=    | greater or equals
-<     | less
-<=    | less or equals
+numbers = | 1 2 3 4 5 6
+console.log (sum numbers)
 ```
