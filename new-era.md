@@ -3,60 +3,71 @@ Everything should be done by TDD
 Make == like === in JS and even with deepEquals
 Add macros
 
-New equation:
+Declaration
 
 ```
-a = 1
+= a 1
 ```
 
-New function declaration and arithmetic operations
+Function
 
 ```
-plus = (x y) ->
-    x + y
+= plus -> (x y) (+ x y)
+
+= plus -> (x y)
+  + x y
+
+= plus
+  -> (x y)
+    + x y
 ```
 
-New functions with currying:
+Expression calculation
 
 ```
-plus = a -> b ->
-  a + b
+= result <-
+  = a 1
+  = b 2
+  + a b
 ```
 
-New expression calculation
+Await expression calculation
 
 ```
-result <-
-    a = 1
-    b = 2
-    a + b
+= result <--
+  = a <-- fetch 'GET' '/posts' (: id 3)
+  = b + a 2
+  / b 2
 ```
 
-New await expression calculation
+Lists
 
 ```
-result <--
-  a <-- fetch 'GET' '/posts' (: id 3)
-  b = a + 2
-  b / 2
+= numbers | 1 2 3 4 5 6 7 8
 ```
 
-Better composition of objects
+Maps
 
 ```
-people = |
-  : name 'Alice' age 24
-  : name 'Bob' age 15
+
+= object : (a 1) (b 2) (c (: d e))
+= object
+  a 1
+  b 2
+  c :
+  d
+  e
 ```
 
-Better decomposition of objects:
+Import module
 
 ```
-: a b (c : d e) = object
-```
-
-New import
+= Module <-= 'module'
 
 ```
-Module <-= 'module'
+
+Export module
+
+```
+=-> Module
 ```
