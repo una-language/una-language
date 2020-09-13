@@ -26,7 +26,7 @@ plus = a -> b ->
 New expression calculation
 
 ```
-result = <-
+result <-
     a = 1
     b = 2
     a + b
@@ -35,8 +35,8 @@ result = <-
 New await expression calculation
 
 ```
-result = <--
-  a = <-- fetch 'GET' '/posts' (: id 3)
+result <--
+  a <-- fetch 'GET' '/posts' (: id 3)
   b = a + 2
   b / 2
 ```
@@ -52,5 +52,11 @@ people = |
 Better decomposition of objects:
 
 ```
-: a b c = object
+: a b (c : d e) = object
+```
+
+New import
+
+```
+Module <-= 'module'
 ```
