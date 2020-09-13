@@ -2,6 +2,7 @@ Everything should be symbols not words (even return)
 Everything should be done by TDD
 Make == like === in JS and even with deepEquals
 Add macros
+Make comments as //
 
 Declaration
 
@@ -55,8 +56,10 @@ Maps
   a 1
   b 2
   c :
-  d
-  e
+    d
+    e
+
+= ((a b) ) object
 ```
 
 Import module
