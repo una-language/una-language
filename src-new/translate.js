@@ -11,6 +11,8 @@
 // TODO add | list
 // TODO add : map
 
+// TODO make all nodes like this {type:"=", children: []}
+
 const expression = node => {
     switch (node.type) {
         case '=':

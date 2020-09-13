@@ -3,6 +3,7 @@ Everything should be done by TDD
 Make == like === in JS and even with deepEquals
 Add macros
 Make comments as //
+Add babel plugin (https://github.com/jashkenas/coffeescript/issues/4969#issuecomment-366662444)
 
 Declaration
 
@@ -21,6 +22,13 @@ Function
 = plus
   -> (x y)
     + x y
+```
+
+Async
+
+```
+= asFunc --> (x y)
+  <-- fetchSomething x y
 ```
 
 Expression calculation
