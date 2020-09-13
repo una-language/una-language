@@ -1,25 +1,21 @@
 {
     "author": "Sergey Shpadyrev",
-    "bin": {
-        "sova": "src/sova"
-    },
     "bugs": {
-        "url": "https://github.com/sergeyshpadyrev/sova/issues"
+        "url": "https://github.com/sergeyshpadyrev/una/issues"
     },
     "devDependencies": {
         "jest": "^26.4.2"
     },
     "dependencies": {
-        "lodash": "4.17.20",
         "parsimmon": "1.16.0",
         "prettier": "2.1.1"
     },
-    "homepage": "https://github.com/sergeyshpadyrev/sova#readme",
+    "homepage": "https://github.com/sergeyshpadyrev/una#readme",
     "license": "MIT",
-    "name": "sova",
+    "name": "una",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/sergeyshpadyrev/sova.git"
+        "url": "git+https://github.com/sergeyshpadyrev/una.git"
     },
     "scripts": {
         "test": "jest"

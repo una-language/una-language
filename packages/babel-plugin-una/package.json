@@ -1,0 +1,21 @@
+{
+    "author": "Sergey Shpadyrev",
+    "bugs": {
+        "url": "https://github.com/sergeyshpadyrev/una/issues"
+    },
+    "dependencies": {
+        "@babel/parser": "^7.11.5",
+        "una": "0.0.1"
+    },
+    "homepage": "https://github.com/sergeyshpadyrev/una#readme",
+    "license": "MIT",
+    "name": "babel-plugin-una",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/sergeyshpadyrev/una.git"
+    },
+    "scripts": {
+        "test": "jest"
+    },
+    "version": "0.0.1"
+}
