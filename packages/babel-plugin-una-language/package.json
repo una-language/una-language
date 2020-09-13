@@ -5,11 +5,11 @@
     },
     "dependencies": {
         "@babel/parser": "^7.11.5",
-        "una": "0.0.1"
+        "una-language": "0.0.1"
     },
     "homepage": "https://github.com/sergeyshpadyrev/una#readme",
     "license": "MIT",
-    "name": "babel-plugin-una",
+    "name": "babel-plugin-una-language",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/sergeyshpadyrev/una.git"
@@ -17,5 +17,5 @@
     "scripts": {
         "test": "jest"
     },
-    "version": "0.0.1"
+    "version": "0.0.3"
 }

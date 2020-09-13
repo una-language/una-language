@@ -1,6 +1,6 @@
 module.exports = function (api) {
-  api.cache(true);
-  return {
-    plugins: ["una"],
-  };
-};
+    api.cache(true)
+    return {
+        plugins: ['una-language']
+    }
+}

@@ -1,5 +1,5 @@
 const parser = require('@babel/parser')
-const una = require('una')
+const una = require('una-language')
 
 module.exports = () => ({
     parserOverride: (code, opts) =>
