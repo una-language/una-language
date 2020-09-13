@@ -44,7 +44,7 @@ Await expression calculation
 Lists
 
 ```
-= numbers | 1 2 3 4 5 6 7 8
+= numbers :: 1 2 3 4 5 6 7 8
 ```
 
 Maps
@@ -73,4 +73,14 @@ Export module
 
 ```
 =-> Module
+
+=-> :
+  defaults Module
+```
+
+And/or
+
+```
+= & true false
+= | true false
 ```
