@@ -5,9 +5,11 @@
 ## Showcase
 
 ```
-sum = numbers ->
-    numbers.reduce ((x y) -> (x + y)) 0
+= sum -> numbers
+    numbers.reduce
+        -> (x y) (+ x y)
+        0
 
-numbers = | 1 2 3 4 5 6
+= numbers | 1 2 3 4 5 6
 console.log (sum numbers)
 ```

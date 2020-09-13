@@ -12,6 +12,7 @@
     },
     "homepage": "https://github.com/sergeyshpadyrev/una#readme",
     "license": "MIT",
+    "main": "src/index.js",
     "name": "una",
     "repository": {
         "type": "git",
