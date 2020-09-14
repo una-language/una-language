@@ -13,35 +13,50 @@
 
 // TODO make all nodes like this {type:"=", children: []}
 
+const changeSign = type => {
+    switch (type) {
+        case '==':
+            return '==='
+        case '!=':
+            return '!=='
+        case '&':
+            return '&&'
+        case '|':
+            return '||'
+        default:
+            return type
+    }
+}
+
+const unary = node => `${node.type}${expression(node.children[0])}`
+const nary = node => `(${node.children.map(expression).join(` ${changeSign(node.type)} `)})`
+
 const expression = node => {
     switch (node.type) {
         case '=':
-            return `const ${expression(node.left)} = ${expression(node.right)}`
+            return `const ${expression(node.children[0])} = ${expression(node.children[1])}`
         case '+':
         case '*':
         case '/':
         case '%':
-        case '&&':
-        case '||':
-            return `(${node.params.map(expression).join(` ${node.type} `)})`
-        case '-':
-            return node.params.length > 1
-                ? `(${node.params.map(expression).join(' - ')})`
-                : `-${expression(node.params[0])}`
-        case '!':
-            return `!${expression(node.value)}`
-
+        case '&':
+        case '|':
         case '>':
         case '>=':
         case '<':
         case '<=':
         case '==':
         case '!=':
-            let sign = node.type === '==' ? '===' : node.type === '!=' ? '!==' : node.type
-            return `(${expression(node.left)} ${sign} ${expression(node.right)})`
+            return nary(node)
+        case '!':
+            return unary(node)
+        case '-':
+            return node.children.length > 1 ? nary(node) : unary(node)
 
         case '?':
-            return `(${expression(node.condition)} ? ${expression(node.left)} : ${expression(node.right)})`
+            return `(${expression(node.children[0])} ? ${expression(
+                node.children[1]
+            )} : ${expression(node.children[2])})`
     }
 
     return node

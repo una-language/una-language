@@ -1,8 +1,8 @@
-// const parse = require('./parse')
-// const prettier = require('prettier')
-// const prettierOptions = { parser: 'babel', printWidth: 120, semi: false, singleQuote: true }
-// const transform = require('./transform')
-// const translate = require('./translate')
+const parse = require('./parse')
+const prettier = require('prettier')
+const prettierOptions = { parser: 'babel', printWidth: 120, semi: false, singleQuote: true }
+const transform = require('./transform')
+const translate = require('./translate')
 
 // module.exports = text => {
 //     const expressions = parse(text)
@@ -10,6 +10,8 @@
 //     return prettier.format(js, prettierOptions)
 // }
 
-module.exports = () => {
+module.exports = text => {
+    const expressions = parse(text)
+    console.log(expressions)
     return 'console.log("333");'
 }

@@ -92,3 +92,6 @@ And/or
 = & true false
 = | true false
 ```
+
+Una 2 - normal lists overriding default
+lodash and rambda smooth integration
