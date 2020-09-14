@@ -4,6 +4,7 @@ const transform = raw => {
 
     const [operator, ...params] = raw
     if (operator === '=') return { type: '=', children: [params[0], transform(params.slice(1))] }
+    return { type: operator, children: params.map(transform) }
 }
 
 module.exports = transform
