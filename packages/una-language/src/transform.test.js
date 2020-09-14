@@ -9,3 +9,6 @@ test('=', () => {
 test('+', () => {
     testTransform(['+', 1, 2], { type: '+', children: [1, 2] })
 })
+
+// TODO add test on apply
+// getFunction(1)("abc")
