@@ -4,14 +4,8 @@ const prettierOptions = { parser: 'babel', printWidth: 120, semi: false, singleQ
 const transform = require('./transform')
 const translate = require('./translate')
 
-// module.exports = text => {
-//     const expressions = parse(text)
-//     const js = expressions.map(transform).map(translate).join('\n')
-//     return prettier.format(js, prettierOptions)
-// }
-
 module.exports = text => {
     const expressions = parse(text)
-    console.log(expressions)
-    return 'console.log("333");'
+    const js = expressions.map(transform).map(translate).join('\n')
+    return prettier.format(js, prettierOptions)
 }

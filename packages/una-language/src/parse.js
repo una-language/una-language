@@ -36,6 +36,8 @@ const language = parser.createLanguage({
 })
 
 module.exports = text => {
+    if (!text.trim()) return []
+
     const lines = text.split('\n')
     const indentedLines = lines.map(line => ({
         level: line.search(/\S/) / 2,
