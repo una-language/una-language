@@ -1,4 +1,3 @@
-// TODO add :: list
 // TODO add : map
 // TODO add .
 // TODO add evaluation of argumentless functions like Math.random, maybe with (<- Math.random)
@@ -65,6 +64,9 @@ const expression = node => {
         case '<-=':
             return `const ${children[1]} = require(${children[0]})`
 
+        case '::':
+            return `[${children.map(expression).join(', ')}]`
+
         case '+':
         case '*':
         case '/':
@@ -82,6 +84,7 @@ const expression = node => {
             return unary(node)
         case '-':
             return children.length > 1 ? nary(node) : unary(node)
+
         default:
             return !!children && children.length > 0
                 ? `${type}(${children.map(expression).join(', ')})`
