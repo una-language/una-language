@@ -135,7 +135,6 @@ test('->', () => {
 // TODO add tests for async function
 
 test('<-', () => {
-    // TODO add test for one line evaluation
     testTranslate(
         {
             type: '=',
@@ -153,4 +152,21 @@ test('<-', () => {
         },
         'const sum = (() => { const a = 1; const b = 2; return (a + b); })()'
     )
+})
+
+test('<--', () => {
+    testTranslate(
+        {
+            type: '=',
+            children: [
+                'result',
+                {
+                    type: '<--',
+                    children: ['promise']
+                }
+            ]
+        },
+        'const result = await promise'
+    )
+    //TODO write test for await with function apply <-- fetch 'GET'
 })

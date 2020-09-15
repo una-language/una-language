@@ -60,6 +60,8 @@ const expression = node => {
             return `async ${func(node)}`
         case '<-':
             return `(${func({ type: '->', params: [], children: node.children })})()`
+        case '<--':
+            return `await ${expression(node.children[0])}`
 
         case '+':
         case '*':

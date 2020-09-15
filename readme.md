@@ -2,18 +2,6 @@
 
 <i>Una</i> is a functional programming language that took the best parts from Javascript, Lisp and Python.
 
-## Showcase
-
-```
-= sum -> numbers
-    numbers.reduce
-        -> (x y) (+ x y)
-        0
-
-= numbers | 1 2 3 4 5 6
-console.log (sum numbers)
-```
-
 ## Installation
 
 To use <i>Una</i> to your project you need to install babel plugin:
@@ -41,3 +29,15 @@ then
 #### <-
 
 #### <--
+
+## Advanced techniques
+
+### Pattern matching
+
+```
+= count <-
+    ? (== value 0) 1
+    ? (== value 1) 2
+    ? (< value 10) 3
+    4
+```
