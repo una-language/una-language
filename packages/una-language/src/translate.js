@@ -8,10 +8,9 @@
 // TODO add export with setting (export or module.exports)
 // TODO add .
 // TODO add function apply
-// TODO add | list
+// TODO add :: list
 // TODO add : map
-
-// TODO make all nodes like this {type:"=", children: []}
+// TODO add return
 
 const changeSign = type => {
     switch (type) {
@@ -28,6 +27,21 @@ const changeSign = type => {
     }
 }
 
+const func = node => {
+    const params = node.params.map(expression).join(', ')
+    if (node.children.length === 1) return `(${params}) => ${expression(node.children[0])}`
+
+    const body = node.children
+        .map((line, index) => {
+            const isLastLine = index === node.children.length - 1
+            const translatedLine = `${expression(line)};`
+            return isLastLine ? `return ${translatedLine}` : translatedLine
+        })
+        .join(' ')
+
+    return `(${params}) => { ${body} }`
+}
+
 const unary = node => `${node.type}${expression(node.children[0])}`
 const nary = node => `(${node.children.map(expression).join(` ${changeSign(node.type)} `)})`
 
@@ -35,6 +49,14 @@ const expression = node => {
     switch (node.type) {
         case '=':
             return `const ${expression(node.children[0])} = ${expression(node.children[1])}`
+        case '?':
+            return `(${expression(node.children[0])} ? ${expression(
+                node.children[1]
+            )} : ${expression(node.children[2])})`
+
+        case '->':
+            return func(node)
+
         case '+':
         case '*':
         case '/':
@@ -52,11 +74,6 @@ const expression = node => {
             return unary(node)
         case '-':
             return node.children.length > 1 ? nary(node) : unary(node)
-
-        case '?':
-            return `(${expression(node.children[0])} ? ${expression(
-                node.children[1]
-            )} : ${expression(node.children[2])})`
     }
 
     return node

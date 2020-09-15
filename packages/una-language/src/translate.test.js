@@ -100,3 +100,22 @@ test('?', () => {
         '((a && b) ? (1 + 2) : (1 * 2))'
     )
 })
+
+test('->', () => {
+    testTranslate(
+        { type: '->', children: [{ type: '+', children: ['x', 'y'] }], params: ['x', 'y'] },
+        '(x, y) => (x + y)'
+    )
+    testTranslate(
+        {
+            type: '->',
+            params: ['x', 'y'],
+            children: [
+                { type: '=', children: ['a', { type: '*', children: ['x', '2'] }] },
+                { type: '=', children: ['b', { type: '*', children: ['y', '3'] }] },
+                { type: '+', children: ['a', 'b'] }
+            ]
+        },
+        '(x, y) => { const a = (x * 2); const b = (y * 3); return (a + b); }'
+    )
+})
