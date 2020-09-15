@@ -99,6 +99,16 @@ test('?', () => {
         },
         '((a && b) ? (1 + 2) : (1 * 2))'
     )
+    testTranslate(
+        {
+            type: '?',
+            children: [
+                { type: '>', children: ['2', '1'] },
+                { type: '+', children: ['1', '2'] }
+            ]
+        },
+        'if ((2 > 1)) return (1 + 2)'
+    )
 })
 
 test('->', () => {
@@ -119,3 +129,10 @@ test('->', () => {
         '(x, y) => { const a = (x * 2); const b = (y * 3); return (a + b); }'
     )
 })
+
+// test('<-', () => {
+//     testTranslate(
+//         { type: '<-' },
+//         'const sum = (function() {const a = 1; const b = 2; return a + b; })()'
+//     )
+// })

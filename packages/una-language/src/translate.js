@@ -1,4 +1,3 @@
-// TODO add binary ? (? condition action)
 // TODO add function
 // TODO add curry function
 // TODO add async function
@@ -50,6 +49,9 @@ const expression = node => {
         case '=':
             return `const ${expression(node.children[0])} = ${expression(node.children[1])}`
         case '?':
+            if (node.children.length === 2)
+                return `if (${expression(node.children[0])}) return ${expression(node.children[1])}`
+
             return `(${expression(node.children[0])} ? ${expression(
                 node.children[1]
             )} : ${expression(node.children[2])})`
