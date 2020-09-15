@@ -31,3 +31,13 @@ yarn add -D babel-plugin-una-language
 then
 
 ## Documentation
+
+### Functional operators
+
+#### ->
+
+#### -->
+
+#### <-
+
+#### <--

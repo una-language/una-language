@@ -128,11 +128,29 @@ test('->', () => {
         },
         '(x, y) => { const a = (x * 2); const b = (y * 3); return (a + b); }'
     )
+
+    //TODO add tests for curried function
 })
 
-// test('<-', () => {
-//     testTranslate(
-//         { type: '<-' },
-//         'const sum = (function() {const a = 1; const b = 2; return a + b; })()'
-//     )
-// })
+// TODO add tests for async function
+
+test('<-', () => {
+    // TODO add test for one line evaluation
+    testTranslate(
+        {
+            type: '=',
+            children: [
+                'sum',
+                {
+                    type: '<-',
+                    children: [
+                        { type: '=', children: ['a', '1'] },
+                        { type: '=', children: ['b', '2'] },
+                        { type: '+', children: ['a', 'b'] }
+                    ]
+                }
+            ]
+        },
+        'const sum = (() => { const a = 1; const b = 2; return (a + b); })()'
+    )
+})

@@ -1,5 +1,3 @@
-// TODO add function
-// TODO add curry function
 // TODO add async function
 // TODO add await
 // TODO add expression evaluation
@@ -9,7 +7,7 @@
 // TODO add function apply
 // TODO add :: list
 // TODO add : map
-// TODO add return
+// TODO add evaluation of argumentless functions like Math.random
 
 const changeSign = type => {
     switch (type) {
@@ -58,6 +56,10 @@ const expression = node => {
 
         case '->':
             return func(node)
+        case '-->':
+            return `async ${func(node)}`
+        case '<-':
+            return `(${func({ type: '->', params: [], children: node.children })})()`
 
         case '+':
         case '*':
