@@ -134,6 +134,19 @@ test('->', () => {
 
 // TODO add tests for async function
 
+test('=->', () => {
+    testTranslate({ type: '=->', children: ['a'] }, 'module.exports = a')
+    testTranslate(
+        {
+            type: '=->',
+            children: [
+                { type: '->', params: ['x'], children: [{ type: '+', children: ['x', '1'] }] }
+            ]
+        },
+        'module.exports = (x) => (x + 1)'
+    )
+})
+
 test('<-', () => {
     testTranslate(
         {
@@ -168,5 +181,15 @@ test('<--', () => {
         },
         'const result = await promise'
     )
-    //TODO write test for await with function apply <-- fetch 'GET'
+})
+
+test('<-=', () => {
+    testTranslate(
+        {
+            type: '<-=',
+            children: ["'A'", 'a']
+        },
+        "const a = require('A')"
+    )
+    // TODO add object decomposition import here
 })

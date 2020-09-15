@@ -1,5 +1,5 @@
-//TODO add expansion for assignment like this = a + 1 2
-//TODO add expansion for await like this = result <-- fetch 'GET' 'posts' (: id 1)
+// TODO function params flattening
+// TODO async function params flattening
 
 const transform = raw => {
     if (!Array.isArray(raw)) return raw
@@ -7,9 +7,9 @@ const transform = raw => {
 
     const [operator, ...params] = raw
 
-    if (operator === '=')
-        return { type: '=', children: [transform(params[0]), transform(params.slice(1))] }
-    if (operator === '<--') return { type: '<--', children: [transform(params)] }
+    if (['=', '<-='].includes(operator))
+        return { type: operator, children: [transform(params[0]), transform(params.slice(1))] }
+    if (['<--', '=->'].includes(operator)) return { type: operator, children: [transform(params)] }
     return { type: operator, children: params.map(transform) }
 }
 

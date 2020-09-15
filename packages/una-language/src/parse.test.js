@@ -1,5 +1,4 @@
 const parse = require('./parse')
-
 const testParse = (text, expressions) => expect(parse(text)).toEqual(expressions)
 
 test('=', () => {
