@@ -193,3 +193,7 @@ test('<-=', () => {
     )
     // TODO add object decomposition import here
 })
+
+test('apply', () => {
+    testTranslate({ type: 'apply', children: ['1', '2'] }, 'apply(1, 2)')
+})
