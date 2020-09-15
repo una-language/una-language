@@ -1,8 +1,7 @@
-// TODO add .
-// TODO add function apply
 // TODO add :: list
 // TODO add : map
-// TODO add evaluation of argumentless functions like Math.random
+// TODO add .
+// TODO add evaluation of argumentless functions like Math.random, maybe with (<- Math.random)
 
 // TODO change params for function to children[0]
 // TODO change all nodes to {value, children}. If it's elementary then {value: 1, children:[]}
