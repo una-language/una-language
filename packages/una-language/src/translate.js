@@ -1,5 +1,6 @@
 // TODO add : map
 // TODO add .
+// Add syntax for [key] for objects and arrays
 // TODO add evaluation of argumentless functions like Math.random, maybe with (<- Math.random)
 
 // TODO change params for function to children[0]
@@ -53,19 +54,27 @@ const expression = node => {
 
         case '->':
             return func(node)
-        case '-->':
-            return `async ${func(node)}`
-        case '=->':
-            return `module.exports = ${expression(children[0])}`
         case '<-':
             return `(${func({ type: '->', params: [], children: children })})()`
+        case '-->':
+            return `async ${func(node)}`
         case '<--':
             return `await ${expression(children[0])}`
+        case '=->':
+            return `module.exports = ${expression(children[0])}`
         case '<-=':
             return `const ${children[1]} = require(${children[0]})`
 
         case '::':
             return `[${children.map(expression).join(', ')}]`
+        case ':':
+            return `{${children
+                .map(child =>
+                    child.children.length > 0
+                        ? `${expression(child.type)}: ${expression(child.children)}`
+                        : child.type
+                )
+                .join(', ')}}`
 
         case '+':
         case '*':

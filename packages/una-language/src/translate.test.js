@@ -230,6 +230,17 @@ test('?', () => {
 
 test('::', () => {
     testTranslate({ type: '::', children: ['1', '2'] }, '[1, 2]')
+    // TODO add tests for nested arrays and maps
+    // TODO add tests for getting value by index
+})
+
+test(':', () => {
+    testTranslate({ type: ':', children: [{ type: 'a', children: ['1'] }] }, '{a: 1}')
+    testTranslate({ type: ':', children: [{ type: 'a', children: [] }] }, '{a}')
+
+    // TODO add tests for nested maps
+    // TODO add tests for dynamic keys like ["key"]
+    // TODO add test for getting value by key
 })
 
 // ------------------------------------------------------------------------------

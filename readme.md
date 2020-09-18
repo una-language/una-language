@@ -115,13 +115,14 @@ Write here about ==, !=, >, <, >=, <=
 
 :
 
+Add here that ... works just like in JavaScript
+
 ## Future work
 
 What else has to be done:
 
 <ul>
 <li>Exception handling</li>
-<li>Strings and escaping</li>
 <li>Strings interpolation</li>
 <li>Visual Studio Code syntax highlighting plugin</li>
 </ul>
