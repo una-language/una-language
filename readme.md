@@ -54,7 +54,7 @@ Write here about evaluation of multiple lines
 ##### <--
 
 Write here about await
-Write here about await Promise.all (when multiple operators)
+Write here about await of multiple lines (I think not to do it like Promise.all but just as sync symmetry)
 
 ##### -->
 
@@ -91,3 +91,13 @@ Write here about =, !=, >, <, >=, <=
     ? (< value 10) 3
     4
 ```
+
+### Collections
+
+#### List
+
+::
+
+#### Map
+
+:
