@@ -181,6 +181,8 @@ test('<--', () => {
         },
         'const result = await promise'
     )
+
+    // TODO add test for multiple arguments work like Promise.all
 })
 
 test('<-=', () => {

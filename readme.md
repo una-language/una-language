@@ -20,30 +20,38 @@ then
 
 ## Documentation
 
-### Functional operators
+### Symmetries
 
-#### ->
+The whole idea of Una is based on three universal symmetries.
 
-#### -->
+#### Synchronous computation symmetry
 
-#### <-
+##### <-
 
-#### <--
+##### ->
 
-### Import and export modules
+#### Asynchronous computation symmetry
 
-#### =->
+##### <--
 
-#### <-=
+##### -->
 
-## Advanced techniques
+#### Module symmetry
 
-### Pattern matching
+##### <-=
+
+##### =->
+
+### Conditions
+
+####
+
+#### Pattern matching
 
 ```
-= count <-
-    ? (== value 0) 1
-    ? (== value 1) 2
+<- count
+    ? (= value 0) 1
+    ? (= value 1) 2
     ? (< value 10) 3
     4
 ```

@@ -1,6 +1,8 @@
 // TODO add : map
 // TODO add .
 // TODO add evaluation of argumentless functions like Math.random, maybe with (<- Math.random)
+// TODO make <-- with multiple arguments work like Promise.all
+// TODO remake == on = because it's not used already
 
 // TODO change params for function to children[0]
 // TODO change all nodes to {value, children}. If it's elementary then {value: 1, children:[]}
