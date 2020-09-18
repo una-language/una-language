@@ -1,6 +1,6 @@
 # Una
 
-<i>Una</i> is a functional programming language that took the best parts from Javascript, Lisp and Python:
+<i>Una</i> is an experimental functional programming language that took the best parts from Javascript, Lisp and Python. It's not fully ready for production yet but you can already use it.
 
 ## Features:
 
@@ -36,33 +36,42 @@ TODO: write here about adding extension option to babel, babel-node etc.
 
 ## Documentation
 
+### Application order
+
+### Assignment
+
+```
+= name "John"
+= number 1
+```
+
 ### Symmetries
 
-The whole idea of Una is based on three universal symmetries.
+Una has three symmetries: synchronous computations symmetry, asynchronous computation symmetry and module symmetry.
 
 #### Synchronous computation symmetry
+
+##### ->
 
 ##### <-
 
 Write here about simple assignment
 Write here about evaluation of multiple lines
 
-##### ->
-
 #### Asynchronous computation symmetry
+
+##### -->
 
 ##### <--
 
 Write here about await
 Write here about await of multiple lines (I think not to do it like Promise.all but just as sync symmetry)
 
-##### -->
-
 #### Module symmetry
 
-##### <-=
-
 ##### =->
+
+##### <-=
 
 ### Arithmetical operators
 
@@ -74,7 +83,7 @@ Write here about &, |, !
 
 ### Comparison operators
 
-Write here about =, !=, >, <, >=, <=
+Write here about ==, !=, >, <, >=, <=
 
 ### Conditional operator
 
@@ -101,3 +110,14 @@ Write here about =, !=, >, <, >=, <=
 #### Map
 
 :
+
+## Future work
+
+What else has to be done:
+
+<ul>
+<li>Exception handling</li>
+<li>Strings and escaping</li>
+<li>Strings interpolation</li>
+<li>Visual Studio Code syntax highlighting plugin</li>
+</ul>
