@@ -14,7 +14,7 @@
 
 ## Installation
 
-To use <i>Una</i> to your project you need to install babel plugin:
+To use <i>Una</i> in your project you need to install babel plugin:
 
 ```
 npm i --save-dev babel-plugin-una-language
