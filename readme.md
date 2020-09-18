@@ -1,6 +1,16 @@
 # Una
 
-<i>Una</i> is a functional programming language that took the best parts from Javascript, Lisp and Python.
+<i>Una</i> is a functional programming language that took the best parts from Javascript, Lisp and Python:
+
+## Features:
+
+<ul>
+<li>Una has very simple syntax based on symmetries</li>
+<li>Una is being transpiled to JavaScript. So you can start using it in your JavaScript project right now</li>
+<li>Una is fully compatible with JavaScript. You can import Una modules from JavaScript and JavaScript modules from Una.</li>
+</ul>
+
+**If you liked this project, please support us with a star** 🌟
 
 ## Installation
 
@@ -16,7 +26,13 @@ or
 yarn add -D babel-plugin-una-language
 ```
 
-then
+then add the plugin to your babel config:
+
+```
+plugins: ['una-language']
+```
+
+TODO: write here about adding extension option to babel, babel-node etc.
 
 ## Documentation
 
@@ -28,11 +44,17 @@ The whole idea of Una is based on three universal symmetries.
 
 ##### <-
 
+Write here about simple assignment
+Write here about evaluation of multiple lines
+
 ##### ->
 
 #### Asynchronous computation symmetry
 
 ##### <--
+
+Write here about await
+Write here about await Promise.all (when multiple operators)
 
 ##### -->
 
@@ -42,9 +64,23 @@ The whole idea of Una is based on three universal symmetries.
 
 ##### =->
 
-### Conditions
+### Arithmetical operators
 
-####
+Write here about +, - (unary and nary), \*, /, %
+
+### Logical operators
+
+Write here about &, |, !
+
+### Comparison operators
+
+Write here about =, !=, >, <, >=, <=
+
+### Conditional operator
+
+```
+? (> a 1) "Greater" "Less"
+```
 
 #### Pattern matching
 
