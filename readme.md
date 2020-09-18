@@ -9,7 +9,7 @@
 ## Features:
 
 <ul>
-<li>Una has very simple syntax based on symmetries</li>
+<li>Una has very simple functional syntax</li>
 <li>Una is being transpiled to JavaScript. So you can start using it in your JavaScript project right now</li>
 <li>Una is fully compatible with JavaScript. You can import Una from JavaScript and JavaScript from Una.</li>
 </ul>
