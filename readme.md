@@ -1,3 +1,7 @@
+[![npm version](https://img.shields.io/npm/v/una-language)](https://badge.fury.io/js/una-language)
+[![License: MIT](https://img.shields.io/npm/l/una-language)](https://opensource.org/licenses/MIT)
+![test](https://github.com/sergeyshpadyrev/una/workflows/test/badge.svg?branch=master)
+
 # Una
 
 <i>Una</i> is an experimental functional programming language that took the best parts from Javascript, Lisp and Python. It's not fully ready for production yet but you can already use it.
