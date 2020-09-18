@@ -10,7 +10,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     env:
-      working_directory: ./packages/una-language
+      working-directory: ./packages/una-language
 
     strategy:
       matrix:
