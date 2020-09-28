@@ -7,8 +7,9 @@ test('=', () => {
     testTranslate(['=', 'a', '1'], 'const a = 1')
 })
 
-test('apply', () => {
+test('.', () => {
     testTranslate(['apply', '1', '2'], 'apply(1, 2)')
+    testTranslate(['.map', 'numbers', ['->', 'x', ['+', 'x', '1']]], 'numbers.map((x) => (x + 1))')
 })
 
 // ------------------------------------------------------------------------------
@@ -16,6 +17,7 @@ test('apply', () => {
 // -- Symmetries ----------------------------------------------------------------
 
 test('->', () => {
+    testTranslate(['->', 'x', ['+', 'x', '1']], '(x) => (x + 1)')
     testTranslate(['->', ['x', 'y'], ['+', 'x', 'y']], '(x, y) => (x + y)')
     testTranslate(
         [

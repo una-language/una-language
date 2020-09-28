@@ -1,9 +1,6 @@
-// TODO add .
 // Add syntax for [key] for objects and arrays
+// add syntax for try catch !?
 // TODO add evaluation of argumentless functions like  (Math.random ())
-
-// TODO change params for function to children[0]
-// TODO change all nodes to {value, children}. If it's elementary then {value: 1, children:[]}
 
 const changeSign = value => {
     switch (value) {
@@ -22,7 +19,9 @@ const changeSign = value => {
 
 const func = node => {
     const [paramsLine, ...lines] = node.slice(1)
-    const params = paramsLine.map(expression).join(', ')
+    const params = Array.isArray(paramsLine)
+        ? paramsLine.map(expression).join(', ')
+        : expression(paramsLine)
     if (lines.length === 1) return `(${params}) => ${expression(lines[0])}`
 
     const body = lines
@@ -48,6 +47,12 @@ const expression = node => {
     if (node.length === 0) return expression[node[0]]
 
     const [value, ...children] = node
+    if (typeof value === 'string' && value.startsWith('.'))
+        return `${expression(children[0])}.${value.substring(1)}(${children
+            .slice(1)
+            .map(expression)
+            .join(', ')})`
+
     switch (value) {
         case '=':
             return `const ${expression(children[0])} = ${expression(children[1])}`
