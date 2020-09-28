@@ -5,8 +5,8 @@
 // TODO change params for function to children[0]
 // TODO change all nodes to {value, children}. If it's elementary then {value: 1, children:[]}
 
-const changeSign = type => {
-    switch (type) {
+const changeSign = value => {
+    switch (value) {
         case '==':
             return '==='
         case '!=':
@@ -16,17 +16,18 @@ const changeSign = type => {
         case '|':
             return '||'
         default:
-            return type
+            return value
     }
 }
 
 const func = node => {
-    const params = node.params.map(expression).join(', ')
-    if (node.children.length === 1) return `(${params}) => ${expression(node.children[0])}`
+    const [paramsLine, ...lines] = node.slice(1)
+    const params = paramsLine.map(expression).join(', ')
+    if (lines.length === 1) return `(${params}) => ${expression(lines[0])}`
 
-    const body = node.children
+    const body = lines
         .map((line, index) => {
-            const isLastLine = index === node.children.length - 1
+            const isLastLine = index === lines.length - 1
             const translatedLine = `${expression(line)};`
             return isLastLine ? `return ${translatedLine}` : translatedLine
         })
@@ -35,12 +36,19 @@ const func = node => {
     return `(${params}) => { ${body} }`
 }
 
-const unary = node => `${node.type}${expression(node.children[0])}`
-const nary = node => `(${node.children.map(expression).join(` ${changeSign(node.type)} `)})`
+const unary = node => `${node[0]}${expression(node[1])}`
+const nary = node =>
+    `(${node
+        .slice(1)
+        .map(expression)
+        .join(` ${changeSign(node[0])} `)})`
 
 const expression = node => {
-    const { children, type } = node
-    switch (type) {
+    if (!Array.isArray(node)) return node
+    if (node.length === 0) return expression[node[0]]
+
+    const [value, ...children] = node
+    switch (value) {
         case '=':
             return `const ${expression(children[0])} = ${expression(children[1])}`
         case '?':
@@ -54,7 +62,7 @@ const expression = node => {
         case '->':
             return func(node)
         case '<-':
-            return `(${func({ type: '->', params: [], children: children })})()`
+            return `(${func(['->', [], ...children])})()`
         case '-->':
             return `async ${func(node)}`
         case '<--':
@@ -69,9 +77,9 @@ const expression = node => {
         case ':':
             return `{${children
                 .map(child =>
-                    child.children.length > 0
-                        ? `${expression(child.type)}: ${expression(child.children[0])}`
-                        : expression(child.type)
+                    child.length > 1
+                        ? `${expression(child[0])}: ${expression(child[1])}`
+                        : expression(child[0])
                 )
                 .join(', ')}}`
 
@@ -95,7 +103,7 @@ const expression = node => {
 
         default:
             return !!children && children.length > 0
-                ? `${type}(${children.map(expression).join(', ')})`
+                ? `${value}(${children.map(expression).join(', ')})`
                 : node
     }
 }
