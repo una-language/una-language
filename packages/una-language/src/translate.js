@@ -1,7 +1,6 @@
-// TODO add : map
 // TODO add .
 // Add syntax for [key] for objects and arrays
-// TODO add evaluation of argumentless functions like Math.random, maybe with (<- Math.random)
+// TODO add evaluation of argumentless functions like  (Math.random ())
 
 // TODO change params for function to children[0]
 // TODO change all nodes to {value, children}. If it's elementary then {value: 1, children:[]}
@@ -71,8 +70,8 @@ const expression = node => {
             return `{${children
                 .map(child =>
                     child.children.length > 0
-                        ? `${expression(child.type)}: ${expression(child.children)}`
-                        : child.type
+                        ? `${expression(child.type)}: ${expression(child.children[0])}`
+                        : expression(child.type)
                 )
                 .join(', ')}}`
 
