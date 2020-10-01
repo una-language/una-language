@@ -1,6 +1,5 @@
-// Add syntax for [key] for objects and arrays
-// add syntax for try catch !?
-// TODO add evaluation of argumentless functions like  (Math.random ())
+// TODO add syntax for try catch !?
+// TODO remake =-> to = a <-= 'a'
 
 const changeSign = value => {
     switch (value) {
@@ -44,10 +43,10 @@ const nary = node =>
 
 const expression = node => {
     if (!Array.isArray(node)) return node
-    if (node.length === 0) return expression[node[0]]
+    if (node.length === 1) return expression[node[0]]
 
     const [value, ...children] = node
-    if (typeof value === 'string' && value.startsWith('.'))
+    if (typeof value === 'string' && value.startsWith('.') && value.length > 1)
         return `${expression(children[0])}.${value.substring(1)}(${children
             .slice(1)
             .map(expression)
@@ -87,6 +86,8 @@ const expression = node => {
                         : expression(child[0])
                 )
                 .join(', ')}}`
+        case '.':
+            return `${expression(children[0])}[${expression(children[1])}]`
 
         case '+':
         case '*':

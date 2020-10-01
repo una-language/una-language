@@ -9,7 +9,9 @@ test('=', () => {
 
 test('.', () => {
     testTranslate(['apply', '1', '2'], 'apply(1, 2)')
+    testTranslate(['apply', []], 'apply()')
     testTranslate(['.map', 'numbers', ['->', 'x', ['+', 'x', '1']]], 'numbers.map((x) => (x + 1))')
+    testTranslate(['.', 'object', 'key'], 'object[key]')
 })
 
 // ------------------------------------------------------------------------------

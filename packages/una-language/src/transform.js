@@ -3,6 +3,7 @@
 
 const transform = raw => {
     if (!Array.isArray(raw)) return raw
+    if (raw.length === 0) return raw
     if (raw.length === 1) return transform(raw[0])
 
     const [value, ...children] = raw
