@@ -1,5 +1,3 @@
-// TODO add syntax for try catch ?!
-
 const changeSign = value => {
     switch (value) {
         case '==':
@@ -23,12 +21,10 @@ const func = node => {
     if (lines.length === 1) return `(${params}) => ${expression(lines[0])}`
 
     const body = lines
-        .map((line, index) => {
-            const isLastLine = index === lines.length - 1
-            const translatedLine = `${expression(line)};`
-            return isLastLine ? `return ${translatedLine}` : translatedLine
-        })
-        .join(' ')
+        .map((line, index) =>
+            index === lines.length - 1 ? `return ${expression(line)}` : expression(line)
+        )
+        .join('; ')
 
     return `(${params}) => { ${body} }`
 }
@@ -54,6 +50,7 @@ const expression = node => {
     switch (value) {
         case '=':
             return `const ${expression(children[0])} = ${expression(children[1])}`
+
         case '?':
             if (children.length === 2)
                 return `if (${expression(children[0])}) return ${expression(children[1])}`
@@ -61,6 +58,19 @@ const expression = node => {
             return `(${expression(children[0])} ? ${expression(children[1])} : ${expression(
                 children[2]
             )})`
+        case '?!':
+            const errorHandlerIndex = children.findIndex(
+                child => child.length > 1 && child[0] === '->'
+            )
+            const tryPart = children.slice(0, errorHandlerIndex)
+            const finallyPart = children.slice(errorHandlerIndex + 1, children.length)
+            return `try { ${tryPart.map(expression).join('; ')} } catch (_error_) { (${expression(
+                children[errorHandlerIndex]
+            )})(_error_) }${
+                finallyPart.length > 0
+                    ? ` finally { ${finallyPart.map(expression).join('; ')} }`
+                    : ''
+            }`
 
         case '->':
             return func(node)

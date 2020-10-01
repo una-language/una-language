@@ -6,6 +6,18 @@ test('=', () => {
     testUna('= a 1', 'const a = 1')
 })
 
+// test('?!', () => {
+//     testUna(
+//         `
+// ?!
+//   = func null
+//   func ()
+//   -> error (console.log 'Error:' error)
+//   console.log 'Finally'
+// `
+//     )
+// })
+
 test('.', () => {
     testUna('apply ()', 'apply()')
 })

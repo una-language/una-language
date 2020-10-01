@@ -1,17 +1,33 @@
 const translate = require('./translate')
 const testTranslate = (tree, js) => expect(translate(tree).trim()).toEqual(js.trim())
 
-// -- Assignment and application ------------------------------------------------
+// -- Assignment and basic operators --------------------------------------------
 
 test('=', () => {
     testTranslate(['=', 'a', '1'], 'const a = 1')
 })
 
-test('.', () => {
-    testTranslate(['apply', '1', '2'], 'apply(1, 2)')
-    testTranslate(['apply', []], 'apply()')
-    testTranslate(['.map', 'numbers', ['->', 'x', ['+', 'x', '1']]], 'numbers.map((x) => (x + 1))')
-    testTranslate(['.', 'object', 'key'], 'object[key]')
+test('?', () => {
+    testTranslate(['?', ['>', '1', '2'], '"First"', '"Second"'], '((1 > 2) ? "First" : "Second")')
+    testTranslate(
+        ['?', ['&', 'a', 'b'], ['+', '1', '2'], ['*', '1', '2']],
+        '((a && b) ? (1 + 2) : (1 * 2))'
+    )
+    testTranslate(['?', ['>', '2', '1'], ['+', '1', '2']], 'if ((2 > 1)) return (1 + 2)')
+})
+
+test('?!', () => {
+    testTranslate(
+        [
+            '?!',
+            ['=', 'func', 'null'],
+            ['func', []],
+            ['->', 'error', ['console.log', "'Error:'", 'error']]
+        ],
+        "try { const func = null; func() } catch (_error_) { ((error) => console.log('Error:', error))(_error_) }"
+    )
+    // TODO test try finally, try catch finally
+    // Todo check await in try/catch/finally
 })
 
 // ------------------------------------------------------------------------------
@@ -29,7 +45,7 @@ test('->', () => {
             ['=', 'b', ['*', 'y', '3']],
             ['+', 'a', 'b']
         ],
-        '(x, y) => { const a = (x * 2); const b = (y * 3); return (a + b); }'
+        '(x, y) => { const a = (x * 2); const b = (y * 3); return (a + b) }'
     )
 
     //TODO add tests for curried function
@@ -38,7 +54,7 @@ test('->', () => {
 test('<-', () => {
     testTranslate(
         ['=', 'sum', ['<-', ['=', 'a', '1'], ['=', 'b', '2'], ['+', 'a', 'b']]],
-        'const sum = (() => { const a = 1; const b = 2; return (a + b); })()'
+        'const sum = (() => { const a = 1; const b = 2; return (a + b) })()'
     )
 
     // TODO add test for evaluation of no param function as Math.random
@@ -142,19 +158,6 @@ test('!=', () => {
 
 // ------------------------------------------------------------------------------
 
-// -- Conditional operator ------------------------------------------------------
-
-test('?', () => {
-    testTranslate(['?', ['>', '1', '2'], '"First"', '"Second"'], '((1 > 2) ? "First" : "Second")')
-    testTranslate(
-        ['?', ['&', 'a', 'b'], ['+', '1', '2'], ['*', '1', '2']],
-        '((a && b) ? (1 + 2) : (1 * 2))'
-    )
-    testTranslate(['?', ['>', '2', '1'], ['+', '1', '2']], 'if ((2 > 1)) return (1 + 2)')
-})
-
-// ------------------------------------------------------------------------------
-
 // -- Collections ---------------------------------------------------------------
 
 test('::', () => {
@@ -171,6 +174,13 @@ test(':', () => {
 
     // TODO add tests for dynamic keys like ["key"]
     // TODO add test for getting value by key
+})
+
+test('.', () => {
+    testTranslate(['apply', '1', '2'], 'apply(1, 2)')
+    testTranslate(['apply', []], 'apply()')
+    testTranslate(['.map', 'numbers', ['->', 'x', ['+', 'x', '1']]], 'numbers.map((x) => (x + 1))')
+    testTranslate(['.', 'object', 'key'], 'object[key]')
 })
 
 // ------------------------------------------------------------------------------
