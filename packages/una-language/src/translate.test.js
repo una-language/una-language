@@ -58,7 +58,7 @@ test('=->', () => {
 })
 
 test('<-=', () => {
-    testTranslate(['<-=', "'A'", 'a'], "const a = require('A')")
+    testTranslate(['=', 'a', ['<-=', "'A'"]], "const a = require('A')")
     // TODO add object decomposition import here
 })
 

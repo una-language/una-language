@@ -8,8 +8,7 @@ const transform = raw => {
 
     const [value, ...children] = raw
 
-    if (['=', '<-='].includes(value))
-        return [value, transform(children[0]), transform(children.slice(1))]
+    if (['='].includes(value)) return [value, transform(children[0]), transform(children.slice(1))]
     if (['<--', '=->'].includes(value)) return [value, transform(children)]
     return raw.map(transform)
 }

@@ -1,5 +1,4 @@
-// TODO add syntax for try catch !?
-// TODO remake =-> to = a <-= 'a'
+// TODO add syntax for try catch ?!
 
 const changeSign = value => {
     switch (value) {
@@ -74,7 +73,7 @@ const expression = node => {
         case '=->':
             return `module.exports = ${expression(children[0])}`
         case '<-=':
-            return `const ${children[1]} = require(${children[0]})`
+            return `require(${children[0]})`
 
         case '::':
             return `[${children.map(expression).join(', ')}]`
