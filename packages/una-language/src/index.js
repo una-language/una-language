@@ -1,6 +1,14 @@
 const parse = require('./parse')
 const prettier = require('prettier')
-const prettierOptions = { parser: 'babel', printWidth: 120, semi: false, singleQuote: true }
+const prettierOptions = {
+    arrowParens: 'avoid',
+    parser: 'babel',
+    printWidth: 120,
+    semi: false,
+    singleQuote: true,
+    tabWidth: 2,
+    trailingComma: 'none'
+}
 const transform = require('./transform')
 const translate = require('./translate')
 
