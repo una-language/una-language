@@ -6,7 +6,7 @@ const prettierOptions = {
     printWidth: 120,
     semi: false,
     singleQuote: true,
-    tabWidth: 2,
+    tabWidth: 4,
     trailingComma: 'none'
 }
 const transform = require('./transform')

@@ -63,10 +63,12 @@ const expression = node => {
                 child => child.length > 1 && child[0] === '->'
             )
             const tryPart = children.slice(0, errorHandlerIndex)
+            const catchPart = children[errorHandlerIndex]
             const finallyPart = children.slice(errorHandlerIndex + 1, children.length)
-            return `try { ${tryPart.map(expression).join('; ')} } catch (_error_) { (${expression(
-                children[errorHandlerIndex]
-            )})(_error_) }${
+
+            return `try { ${tryPart.map(expression).join('; ')} } catch (${expression(
+                catchPart[1]
+            )}) { ${catchPart.slice(2).map(expression).join('; ')} }${
                 finallyPart.length > 0
                     ? ` finally { ${finallyPart.map(expression).join('; ')} }`
                     : ''

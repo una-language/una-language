@@ -24,7 +24,7 @@ test('?!', () => {
             ['func', []],
             ['->', 'error', ['console.log', "'Error:'", 'error']]
         ],
-        "try { const func = null; func() } catch (_error_) { ((error) => console.log('Error:', error))(_error_) }"
+        "try { const func = null; func() } catch (error) { console.log('Error:', error) }"
     )
     // TODO test try finally, try catch finally
     // Todo check await in try/catch/finally

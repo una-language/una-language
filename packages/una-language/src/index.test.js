@@ -6,17 +6,27 @@ test('=', () => {
     testUna('= a 1', 'const a = 1')
 })
 
-// test('?!', () => {
-//     testUna(
-//         `
-// ?!
-//   = func null
-//   func ()
-//   -> error (console.log 'Error:' error)
-//   console.log 'Finally'
-// `
-//     )
-// })
+test('?!', () => {
+    testUna(
+        `
+?!
+  = func null
+  func ()
+  -> error (console.log 'Error:' error)
+  console.log 'Finally'
+`,
+        `
+try {
+    const func = null
+    func()
+} catch (error) {
+    console.log('Error:', error)
+} finally {
+    console.log('Finally')
+}
+`
+    )
+})
 
 test('.', () => {
     testUna('apply ()', 'apply()')
@@ -37,9 +47,9 @@ test('->', () => {
   + a b x`,
         `
 const func = x => {
-  const a = 1
-  const b = 2
-  return a + b + x
+    const a = 1
+    const b = 2
+    return a + b + x
 }`
     )
 })
