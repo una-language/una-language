@@ -68,7 +68,7 @@ Write here about evaluation of multiple lines
 ##### <--
 
 Write here about await
-Write here about await of multiple lines (I think not to do it like Promise.all but just as sync symmetry)
+Write here about await of multiple lines (it works just as <-)
 
 #### Module symmetry
 
@@ -118,6 +118,10 @@ Write here about ==, !=, >, <, >=, <=
 :
 
 Add here that ... works just like in JavaScript
+
+#### Key operation
+
+.
 
 ## What's next?
 
