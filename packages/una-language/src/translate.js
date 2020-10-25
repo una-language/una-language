@@ -83,9 +83,8 @@ const expression = node => {
         case '<--':
             return `await ${expression(children[0])}`
         case '=->':
-            // TODO =-> = work as export const
-
-            return `export default ${expression(children[0])}`
+            const isConst = Array.isArray(children[0]) && children[0][0] === '='
+            return `export ${isConst ? '' : 'default '}${expression(children[0])}`
         case '<-=':
             return `import ${expression(children[1])} from ${children[0]}`
 

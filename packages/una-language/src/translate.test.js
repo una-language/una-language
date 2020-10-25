@@ -69,12 +69,14 @@ test('<--', () => {
 })
 
 test('=->', () => {
-    testTranslate(['=->', 'a'], 'module.exports = a')
-    testTranslate(['=->', ['->', ['x'], ['+', 'x', '1']]], 'module.exports = (x) => (x + 1)')
+    testTranslate(['=->', 'a'], 'export default a')
+    testTranslate(['=->', ['->', ['x'], ['+', 'x', '1']]], 'export default (x) => (x + 1)')
+
+    testTranslate(['=->', ['=', 'a', '1']], 'export const a = 1')
 })
 
 test('<-=', () => {
-    testTranslate(['<-=', "'a'", 'a'], "const a = require('a')")
+    testTranslate(['<-=', "'a'", 'a'], "import a from 'a'")
     // TODO add object decomposition import here
 })
 

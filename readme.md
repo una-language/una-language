@@ -74,6 +74,9 @@ Write here about await of multiple lines (I think not to do it like Promise.all 
 
 ##### =->
 
+=-> a
+=-> = a 1
+
 ##### <-=
 
 ### Arithmetical operators
