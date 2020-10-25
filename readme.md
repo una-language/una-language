@@ -122,7 +122,6 @@ Add here that ... works just like in JavaScript
 ## What's next?
 
 <ul>
-<li>Config in babel plugin with additional operators with transform and translate</li>
 <li>Visual Studio Code syntax highlighting plugin</li>
 <li>github.io site creation</li>
 </ul>
