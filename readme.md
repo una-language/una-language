@@ -9,9 +9,8 @@
 ## Features:
 
 <ul>
-<li>Una has very simple functional syntax</li>
-<li>Una is being transpiled to JavaScript. So you can start using it in your JavaScript project right now</li>
-<li>Una is fully compatible with JavaScript. You can import Una from JavaScript and JavaScript from Una.</li>
+<li>Simple syntax</li>
+<li>Transpilation to JavaScript</li>
 </ul>
 
 **If you liked this project, please support us with a star** 🌟
@@ -117,12 +116,10 @@ Write here about ==, !=, >, <, >=, <=
 
 Add here that ... works just like in JavaScript
 
-## Future work
-
-What else has to be done:
+## What's next?
 
 <ul>
-<li>Exception handling</li>
-<li>Strings interpolation</li>
+<li>Config in babel plugin with additional operators with transform and translate</li>
 <li>Visual Studio Code syntax highlighting plugin</li>
+<li>github.io site creation</li>
 </ul>

@@ -1,5 +1,5 @@
-= database <-= './database' 
-= express <-= 'express' 
+<-= './database' database
+<-= 'express' express
 
 = application express ()
 

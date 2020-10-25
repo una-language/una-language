@@ -83,9 +83,11 @@ const expression = node => {
         case '<--':
             return `await ${expression(children[0])}`
         case '=->':
-            return `module.exports = ${expression(children[0])}`
+            // TODO =-> = work as export const
+
+            return `export default ${expression(children[0])}`
         case '<-=':
-            return `require(${children[0]})`
+            return `import ${expression(children[1])} from ${children[0]}`
 
         case '::':
             return `[${children.map(expression).join(', ')}]`

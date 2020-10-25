@@ -65,7 +65,7 @@ test('<-', () => {
 test('<--', () => {
     testTranslate(['=', 'result', ['<--', 'promise']], 'const result = await promise')
 
-    // TODO add test for multiple arguments work like Promise.all
+    // TODO add test for multiple arguments work like <-
 })
 
 test('=->', () => {
@@ -74,7 +74,7 @@ test('=->', () => {
 })
 
 test('<-=', () => {
-    testTranslate(['=', 'a', ['<-=', "'A'"]], "const a = require('A')")
+    testTranslate(['<-=', "'a'", 'a'], "const a = require('a')")
     // TODO add object decomposition import here
 })
 
