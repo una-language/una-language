@@ -81,7 +81,6 @@ const expression = node => {
         case '-->':
             return `async ${func(node)}`
         case '<--':
-            // TODO make it work like <-
             return `await ${expression(children[0])}`
         case '=->':
             const isConst = Array.isArray(children[0]) && children[0][0] === '='

@@ -5,21 +5,33 @@ const convertTabs = lines => {
     if (lines.length === 0) return ''
     const [head, ...tail] = lines
     const sublines = _.takeWhile(tail, line => line.level > head.level)
-    const currentexpression = `( ${head.value} ${convertTabs(sublines)})`
-    const nextexpressions = convertTabs(_.drop(tail, sublines.length))
+    const currentExpression = `( ${head.value} ${convertTabs(sublines)})`
+    const nextExpressions = convertTabs(_.drop(tail, sublines.length))
     return (
-        currentexpression +
-        (head.level === 0 && nextexpressions.length > 0 ? '\n' : '') +
-        nextexpressions
+        currentExpression +
+        (head.level === 0 && nextExpressions.length > 0 ? '\n' : '') +
+        nextExpressions
     )
 }
 
 const language = parser.createLanguage({
-    expression: rules => parser.alt(rules.string, rules.number, rules.symbol, rules.list),
+    expression: rules =>
+        parser.alt(
+            rules.stringSingleQuote,
+            rules.stringDoubleQuote,
+            rules.number,
+            rules.symbol,
+            rules.list
+        ),
     symbol: () => parser.regexp(/[a-zA-Z_|=:+*/.?<>&!-][=a-zA-Z0-9_=|:+*/.?<&>!-]*/).desc('symbol'),
-    string: () =>
+    stringSingleQuote: () =>
         parser
             .regexp(/'((?:\\.|.)*?)'/, 1)
+            .map(string => `'${string}'`)
+            .desc('string'),
+    stringDoubleQuote: () =>
+        parser
+            .regexp(/"((?:\\.|.)*?)"/, 1)
             .map(string => `"${string}"`)
             .desc('string'),
     number: () =>
@@ -39,10 +51,7 @@ module.exports = text => {
     if (!text.trim()) return []
 
     const lines = text.split('\n').filter(line => line.trim())
-    const indentedLines = lines.map(line => ({
-        level: line.search(/\S/) / 2,
-        value: line.trim()
-    }))
+    const indentedLines = lines.map(line => ({ level: line.search(/\S/) / 2, value: line.trim() }))
     const code = convertTabs(indentedLines)
     return language.file.tryParse(code)
 }
