@@ -78,6 +78,7 @@ test('=->', () => {
 test('<-=', () => {
     testTranslate(['<-=', "'a'", 'a'], "import a from 'a'")
     // TODO add object decomposition import here
+    // TODO add import 'index.css' test here
 })
 
 // ------------------------------------------------------------------------------

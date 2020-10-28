@@ -86,7 +86,9 @@ const expression = node => {
             const isConst = Array.isArray(children[0]) && children[0][0] === '='
             return `export ${isConst ? '' : 'default '}${expression(children[0])}`
         case '<-=':
-            return `import ${expression(children[1])} from ${children[0]}`
+            return children.length >= 2
+                ? `import ${expression(children[1])} from ${children[0]}`
+                : `import ${children[0]}`
 
         case '::':
             return `[${children.map(expression).join(', ')}]`

@@ -54,4 +54,37 @@ const func = x => {
     )
 })
 
+test('react', () => {
+    testUna(
+        `
+<-= 'index.css'
+<-= 'react' React
+<-= 'react-dom' ReactDOM
+<-= './styles' styles
+
+= (: (createElement e)) React
+
+= App -> ((: name))
+    e 'div' (: (style styles.container))
+    e 'div' (: (style styles.hello)) 'Hello'
+    e 'div' (: (style styles.name)) name
+
+ReactDOM.render (e App (: (name 'John'))) (document.getElementById 'root')
+`,
+        `
+import 'index.css'
+import React from 'react'
+import ReactDOM from 'react-dom'
+import styles from './styles'
+const { createElement: e } = React
+const App = ({ n: a }) => {
+    e('div', { style: styles.container })
+    e('div', { style: styles.hello }, 'Hello')
+    return e('div', { style: styles.name }, name)
+}
+ReactDOM.render(e(App, { name: 'John' }), document.getElementById('root'))
+`
+    )
+})
+
 //TODO check object?.value?.subvalue (elvis) works

@@ -10,6 +10,11 @@ const transform = raw => {
 
     if (['='].includes(value)) return [value, transform(children[0]), transform(children.slice(1))]
     if (['<--', '=->'].includes(value)) return [value, transform(children)]
+    if (['->', '-->'].includes(value)) {
+        const parameters = Array.isArray(children[0]) ? children[0].map(transform) : children[0]
+        return [value, parameters, ...children.slice(1).map(transform)]
+    }
+
     return raw.map(transform)
 }
 
