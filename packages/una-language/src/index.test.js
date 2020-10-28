@@ -57,10 +57,10 @@ const func = x => {
 test('react', () => {
     testUna(
         `
-<-= 'index.css'
-<-= 'react' React
-<-= 'react-dom' ReactDOM
-<-= './styles' styles
+=-> 'index.css'
+=-> 'react' React
+=-> 'react-dom' ReactDOM
+=-> './styles' styles
 
 = (: (createElement e)) React
 

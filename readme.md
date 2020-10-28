@@ -74,10 +74,10 @@ Write here about await of multiple lines (it works just as <-)
 
 ##### =->
 
-=-> a
-=-> = a 1
-
 ##### <-=
+
+<-= a
+<-= = a 1
 
 ### Arithmetical operators
 

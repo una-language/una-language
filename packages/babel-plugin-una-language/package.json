@@ -5,7 +5,7 @@
     },
     "dependencies": {
         "@babel/parser": "^7.11.5",
-        "una-language": "0.0.8"
+        "una-language": "0.0.9"
     },
     "homepage": "https://github.com/sergeyshpadyrev/una#readme",
     "license": "MIT",
@@ -17,5 +17,5 @@
     "scripts": {
         "test": "jest"
     },
-    "version": "0.0.8"
+    "version": "0.0.9"
 }

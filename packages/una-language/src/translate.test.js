@@ -68,15 +68,15 @@ test('<--', () => {
     // TODO add test for multiple arguments work like <-
 })
 
-test('=->', () => {
-    testTranslate(['=->', 'a'], 'export default a')
-    testTranslate(['=->', ['->', ['x'], ['+', 'x', '1']]], 'export default (x) => (x + 1)')
+test('<-=', () => {
+    testTranslate(['<-=', 'a'], 'export default a')
+    testTranslate(['<-=', ['->', ['x'], ['+', 'x', '1']]], 'export default (x) => (x + 1)')
 
-    testTranslate(['=->', ['=', 'a', '1']], 'export const a = 1')
+    testTranslate(['<-=', ['=', 'a', '1']], 'export const a = 1')
 })
 
-test('<-=', () => {
-    testTranslate(['<-=', "'a'", 'a'], "import a from 'a'")
+test('=->', () => {
+    testTranslate(['=->', "'a'", 'a'], "import a from 'a'")
     // TODO add object decomposition import here
     // TODO add import 'index.css' test here
 })
