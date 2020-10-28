@@ -38,7 +38,7 @@ const nary = node =>
 
 const expression = node => {
     if (!Array.isArray(node)) return node
-    if (node.length === 1) return expression[node[0]]
+    if (node.length === 1) return expression(node[0])
 
     const [value, ...children] = node
     if (typeof value === 'string' && value.startsWith('.') && value.length > 1)
@@ -96,7 +96,7 @@ const expression = node => {
             return `{${children
                 .map(child =>
                     child.length > 1
-                        ? `${expression(child[0])}: ${expression(child[1])}`
+                        ? `${expression(child[0])}: ${expression(child.slice(1))}`
                         : expression(child[0])
                 )
                 .join(', ')}}`
