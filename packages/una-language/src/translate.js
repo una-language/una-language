@@ -106,7 +106,7 @@ module.exports = config => {
                         return `export ${isConst ? '' : 'default '}${expression(children[0])}`
                     case 'require':
                         return isConst
-                            ? `module.exports[${expression(children[0][1])}] = ${expression(
+                            ? `module.exports.${expression(children[0][1])} = ${expression(
                                   children[0].slice(2)
                               )}`
                             : `module.exports = ${expression(children[0])}`
