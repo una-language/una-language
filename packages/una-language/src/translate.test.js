@@ -49,8 +49,7 @@ test('->', () => {
         ],
         '(x, y) => { const a = (x * 2); const b = (y * 3); return (a + b) }'
     )
-
-    //TODO add tests for curried function
+    testTranslate(['->', 'a', ['->', 'b', ['+', 'a', 'b']]], '(a) => (b) => (a + b)')
 })
 
 test('<-', () => {
@@ -70,8 +69,6 @@ test('<--', () => {
         [['=', 'result', ['<--', ['=', 'a', ['<--', 'promise']], ['a']]]],
         'const result = await (async () => { const a = await promise; return a })()'
     )
-
-    // TODO add test for multiple arguments work like <-
 })
 
 test('<-=', () => {
@@ -94,7 +91,8 @@ test('=->', () => {
     testTranslate(['=->', "'a'", 'a'], "import a from 'a'")
     testTranslate(['=->', "'a'", 'a'], "const a = require('a')", { modules: 'require' })
 
-    // TODO add object decomposition import here
+    testTranslate(['=->', "'a'", [':', 'a']], "import {a} from 'a'")
+    testTranslate(['=->', "'a'", [':', 'a']], "const {a} = require('a')", { modules: 'require' })
 })
 
 // ------------------------------------------------------------------------------
@@ -182,16 +180,17 @@ test('!=', () => {
 test('::', () => {
     testTranslate(['::', '1', '2'], '[1, 2]')
     testTranslate(['=', ['::', 'a', 'b'], 'array'], 'const [a, b] = array')
-
-    // TODO add tests for nested arrays with nested maps
+    testTranslate(['::', [':', ['a', '1'], ['b', '2']], ['::', '1', '2']], '[{a: 1, b: 2}, [1, 2]]')
 })
 
 test(':', () => {
     testTranslate([':', ['a', '1']], '{a: 1}')
     testTranslate([':', 'a'], '{a}')
     testTranslate([':', ['a', [':', ['b', '1']]]], '{a: {b: 1}}')
-
-    // TODO add tests for nested maps with nested arrays
+    testTranslate(
+        [':', ['a', [':', ['b', '1']]], ['c', '2'], ['d', ['::', '3', '4']]],
+        '{a: {b: 1}, c: 2, d: [3, 4]}'
+    )
     // TODO add tests for dynamic keys like ["key"]
 })
 
