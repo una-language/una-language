@@ -39,6 +39,10 @@ TODO: write here about adding extension option to babel, babel-node etc.
 
 ## Documentation
 
+## Babel plugin options
+
+modules - "require" | "import" (default : 'import')
+
 ### Application order
 
 ### Assignment

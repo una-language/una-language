@@ -9,10 +9,14 @@ const prettierOptions = {
     tabWidth: 4,
     trailingComma: 'none'
 }
-const transform = require('./transform')
-const translate = require('./translate')
+const setDefaultConfig = require('./config')
 
-module.exports = text => {
+module.exports = (text, config = {}) => {
+    config = setDefaultConfig(config)
+
+    const translate = require('./translate')(config)
+    const transform = require('./transform')
+
     const expressions = parse(text)
     const js = expressions.map(transform).map(translate).join('\n')
     return prettier.format(js, prettierOptions)

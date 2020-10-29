@@ -1,5 +1,7 @@
+const setDefaultConfig = require('./config')
 const translate = require('./translate')
-const testTranslate = (tree, js) => expect(translate(tree).trim()).toEqual(js.trim())
+const testTranslate = (tree, js, config = {}) =>
+    expect(translate(setDefaultConfig(config))(tree).trim()).toEqual(js.trim())
 
 // -- Assignment and basic operators --------------------------------------------
 
@@ -73,12 +75,16 @@ test('<-=', () => {
     testTranslate(['<-=', ['->', ['x'], ['+', 'x', '1']]], 'export default (x) => (x + 1)')
 
     testTranslate(['<-=', ['=', 'a', '1']], 'export const a = 1')
+
+    // TODO test module.exports  = 123
+    // TODO test module.exports.name = 123
 })
 
 test('=->', () => {
     testTranslate(['=->', "'a'", 'a'], "import a from 'a'")
     // TODO add object decomposition import here
     // TODO add import 'index.css' test here
+    // TODO test require here
 })
 
 // ------------------------------------------------------------------------------
