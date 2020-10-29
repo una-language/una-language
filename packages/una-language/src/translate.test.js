@@ -58,14 +58,18 @@ test('<-', () => {
         ['=', 'sum', ['<-', ['=', 'a', '1'], ['=', 'b', '2'], ['+', 'a', 'b']]],
         'const sum = (() => { const a = 1; const b = 2; return (a + b) })()'
     )
-
-    // TODO add test for evaluation of no param function as Math.random
 })
 
-// TODO add tests for async function
+test('->', () => {
+    testTranslate(['-->', 'x', ['+', 'x', '1']], 'async (x) => (x + 1)')
+})
 
 test('<--', () => {
     testTranslate(['=', 'result', ['<--', 'promise']], 'const result = await promise')
+    testTranslate(
+        [['=', 'result', ['<--', ['=', 'a', ['<--', 'promise']], ['a']]]],
+        'const result = await (async () => { const a = await promise; return a })()'
+    )
 
     // TODO add test for multiple arguments work like <-
 })
@@ -84,11 +88,13 @@ test('<-=', () => {
 })
 
 test('=->', () => {
+    testTranslate(['=->', "'a'"], "import 'a'")
+    testTranslate(['=->', "'a'"], "require('a')", { modules: 'require' })
+
     testTranslate(['=->', "'a'", 'a'], "import a from 'a'")
     testTranslate(['=->', "'a'", 'a'], "const a = require('a')", { modules: 'require' })
+
     // TODO add object decomposition import here
-    // TODO add import 'index.css' test here
-    // TODO test require here
 })
 
 // ------------------------------------------------------------------------------
@@ -175,9 +181,9 @@ test('!=', () => {
 
 test('::', () => {
     testTranslate(['::', '1', '2'], '[1, 2]')
-    // TODO add tests for nested arrays and maps
-    // TODO add tests for getting value by index
-    // add tests for array decomposition
+    testTranslate(['=', ['::', 'a', 'b'], 'array'], 'const [a, b] = array')
+
+    // TODO add tests for nested arrays with nested maps
 })
 
 test(':', () => {
@@ -185,15 +191,21 @@ test(':', () => {
     testTranslate([':', 'a'], '{a}')
     testTranslate([':', ['a', [':', ['b', '1']]]], '{a: {b: 1}}')
 
+    // TODO add tests for nested maps with nested arrays
     // TODO add tests for dynamic keys like ["key"]
-    // TODO add test for getting value by key
 })
 
 test('.', () => {
-    testTranslate(['apply', '1', '2'], 'apply(1, 2)')
-    testTranslate(['apply', []], 'apply()')
     testTranslate(['.map', 'numbers', ['->', 'x', ['+', 'x', '1']]], 'numbers.map((x) => (x + 1))')
     testTranslate(['.', 'object', 'key'], 'object[key]')
+    testTranslate(['.', 'array', '0'], 'array[0]')
+})
+
+test('apply', () => {
+    testTranslate(['apply', '1', '2'], 'apply(1, 2)')
+    testTranslate(['apply', []], 'apply()')
+
+    testTranslate(['=', 'number', ['Math.random', []]], 'const number = Math.random()')
 })
 
 // ------------------------------------------------------------------------------

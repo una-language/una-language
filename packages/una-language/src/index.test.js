@@ -87,4 +87,8 @@ ReactDOM.render(e(App, { name: 'John' }), document.getElementById('root'))
     )
 })
 
+test('apply', () => {
+    testUna('= number Math.random ()', 'const number = Math.random()')
+})
+
 //TODO check object?.value?.subvalue (elvis) works

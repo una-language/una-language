@@ -82,7 +82,9 @@ module.exports = config => {
             case '-->':
                 return `async ${func(node)}`
             case '<--':
-                return `await ${expression(children[0])}`
+                return children.length > 1
+                    ? `await (async ${func(['->', [], ...children])})()`
+                    : `await ${expression(children[0])}`
             case '=->':
                 const isSingleImport = children.length < 2
                 switch (config.modules) {
@@ -98,9 +100,7 @@ module.exports = config => {
                         throw new Error("Option 'modules' can be only 'import' or 'require'")
                 }
             case '<-=':
-                // TODO add module.exports
                 const isConst = Array.isArray(children[0]) && children[0][0] === '='
-
                 switch (config.modules) {
                     case 'import':
                         return `export ${isConst ? '' : 'default '}${expression(children[0])}`
