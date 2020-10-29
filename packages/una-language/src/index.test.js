@@ -77,7 +77,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import styles from './styles'
 const { createElement: e } = React
-const App = ({ n: a }) => {
+const App = ({ name }) => {
     e('div', { style: styles.container })
     e('div', { style: styles.hello }, 'Hello')
     return e('div', { style: styles.name }, name)

@@ -95,7 +95,9 @@ const expression = node => {
         case ':':
             return `{${children
                 .map(child =>
-                    child.length > 1
+                    typeof child === 'string'
+                        ? expression(child)
+                        : child.length > 1
                         ? `${expression(child[0])}: ${expression(child.slice(1))}`
                         : expression(child[0])
                 )
