@@ -10,4 +10,6 @@
         e 'div' (: (style styles.hello)) 'Hello'
         e 'div' (: (style styles.name)) name
 
-ReactDOM.render (e App (: (name 'John'))) (document.getElementById 'root')
+ReactDOM.render 
+    e App (: (name 'John')) 
+    document.getElementById 'root'
