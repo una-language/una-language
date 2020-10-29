@@ -1,0 +1,10 @@
+<-= :
+  container :
+    alignItems 'center'
+    display 'flex'
+    flex 1
+    flexDirection 'column'
+    justifyContent 'center'
+  text :
+    color 'red'
+    fontSize 20

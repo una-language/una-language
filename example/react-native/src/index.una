@@ -1,0 +1,11 @@
+=-> 'react' React
+=-> 'react-native' (: View Text)
+=-> './styles' styles
+
+= (: (createElement e)) React
+
+= App -> ()
+    e View (: (style styles.container))
+        e Text (: (style styles.text)) 'Hello World!'
+
+<-= App
