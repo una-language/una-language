@@ -121,7 +121,9 @@ module.exports = config => {
                         typeof child === 'string'
                             ? expression(child)
                             : child.length > 1
-                            ? `${expression(child[0])}: ${expression(child.slice(1))}`
+                            ? child[0] === '.'
+                                ? `[${expression(child[1])}]: ${expression(child.slice(2))}`
+                                : `${expression(child[0])}: ${expression(child.slice(1))}`
                             : expression(child[0])
                     )
                     .join(', ')}}`

@@ -198,6 +198,8 @@ test('.', () => {
     testTranslate(['.map', 'numbers', ['->', 'x', ['+', 'x', '1']]], 'numbers.map((x) => (x + 1))')
     testTranslate(['.', 'object', 'key'], 'object[key]')
     testTranslate(['.', 'array', '0'], 'array[0]')
+
+    testTranslate([':', ['.', 'key', 'value']], '{[key]: value}')
 })
 
 test('apply', () => {

@@ -44,10 +44,6 @@ const numbers = [1, 2, 3]
     )
 })
 
-test('.', () => {
-    testUna('apply ()', 'apply()')
-})
-
 test('+', () => {
     testUna('+ 1 2', '1 + 2')
 })
@@ -105,6 +101,11 @@ ReactDOM.render(e(App, { name: 'John' }), document.getElementById('root'))
 
 test('apply', () => {
     testUna('= number Math.random ()', 'const number = Math.random()')
+})
+
+test('.', () => {
+    testUna('apply ()', 'apply()')
+    testUna('= object (: (. key value))', 'const object = { [key]: value }')
 })
 
 test('...', () => {

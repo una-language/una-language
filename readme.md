@@ -127,7 +127,9 @@ func ()
 
 #### Key operation
 
-.
+. - used for object[key]
+. - used for array[index]
+. - used for {[key]: value} (. key value)
 
 #### Expansion
 
