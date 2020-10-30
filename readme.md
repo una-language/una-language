@@ -94,6 +94,17 @@ Write here about ==, !=, >, <, >=, <=
 ? (> a 1) "Greater" "Less"
 ```
 
+##### Simple if/else
+
+```
+= func -> ()
+   ? true
+     <- (console.log 1)
+     <- (console.log 2)
+
+func ()
+```
+
 #### Pattern matching
 
 ```
