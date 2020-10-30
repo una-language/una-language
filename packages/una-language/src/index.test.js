@@ -107,4 +107,18 @@ test('apply', () => {
     testUna('= number Math.random ()', 'const number = Math.random()')
 })
 
+test('...', () => {
+    testUna(
+        `
+= func -> ...props
+  console.log props
+func 1 2
+`,
+        `
+const func = (...props) => console.log(props)
+func(1, 2)
+`
+    )
+})
+
 //TODO check object?.value?.subvalue (elvis) works

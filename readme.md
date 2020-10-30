@@ -125,11 +125,13 @@ func ()
 
 :
 
-Add here that ... works just like in JavaScript
-
 #### Key operation
 
 .
+
+#### Expansion
+
+Add here that ... works just like in JavaScript
 
 ## What's next?
 
