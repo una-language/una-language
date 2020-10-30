@@ -138,9 +138,10 @@ Add here that ... works just like in JavaScript
 ## What's next?
 
 <ul>
+<li>Error throwing</li>
 <li>Comments</li>
-<li>Bit operators</li>
 <li>Regular expressions</li>
+<li>Bit operators</li>
 <li>Visual Studio Code syntax highlighting plugin</li>
 <li>github.io site creation</li>
 <li>REPL</li>
