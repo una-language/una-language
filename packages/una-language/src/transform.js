@@ -1,5 +1,12 @@
-// TODO function params flattening
-// TODO async function params flattening
+const pipeline = children => {
+    if (children.length === 1) return children
+    const [first, second, ...rest] = children
+    const application =
+        Array.isArray(second) && typeof second !== 'string'
+            ? [second[0], first, ...second.slice(1)]
+            : [second, first]
+    return pipeline([application, ...rest])
+}
 
 const transform = raw => {
     if (!Array.isArray(raw)) return raw
@@ -14,6 +21,7 @@ const transform = raw => {
         const parameters = Array.isArray(children[0]) ? children[0].map(transform) : children[0]
         return [value, parameters, ...children.slice(1).map(transform)]
     }
+    if (['|>'].includes(value)) return transform(pipeline(children))
 
     return raw.map(transform)
 }

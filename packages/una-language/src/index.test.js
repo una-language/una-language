@@ -1,5 +1,4 @@
 const una = require('./index')
-
 const testUna = (text, js) => expect(una(text).trim()).toEqual(js.trim())
 
 test('=', () => {
@@ -24,6 +23,23 @@ try {
 } finally {
     console.log('Finally')
 }
+`
+    )
+})
+
+test('|>', () => {
+    testUna(
+        `
+= numbers |> (:: 1 2 3)
+  .map (-> x (+ x 1))
+  .filter (-> x (> x 2))
+  .reduce (-> (x y) (+ x y)) 0
+    `,
+        `
+const numbers = [1, 2, 3]
+    .map(x => x + 1)
+    .filter(x => x > 2)
+    .reduce((x, y) => x + y, 0)
 `
     )
 })

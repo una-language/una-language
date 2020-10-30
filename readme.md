@@ -4,16 +4,9 @@
 
 # Una
 
-<i>Una</i> is an experimental functional programming language that took the best parts from Javascript, Lisp and Python. It's not fully ready for production yet but you can already use it.
+<i>Una</i> is a functional programming language that transpiles to JavaScript and looks like the bastard son of Lisp and Python.
 
-## Features:
-
-<ul>
-<li>Simple syntax</li>
-<li>Transpilation to JavaScript</li>
-</ul>
-
-**If you liked this project, please support us with a star** 🌟
+**If you liked this project, please support it with a star** 🌟
 
 ## Installation
 
@@ -35,17 +28,17 @@ then add the plugin to your babel config:
 plugins: ['una-language']
 ```
 
-TODO: write here about adding extension option to babel, babel-node etc.
-
-## Documentation
+TODO: write here about adding extension option to nodejs, webpack and metro packagers
 
 ## Babel plugin options
 
 modules - "require" | "import" (default : 'import')
 
-### Application order
+## Documentation
 
 ### Assignment
+
+Let's start with assignment
 
 ```
 = name "John"
@@ -130,6 +123,10 @@ Add here that ... works just like in JavaScript
 ## What's next?
 
 <ul>
+<li>Comments</li>
+<li>Bit operators</li>
+<li>Regular expressions</li>
 <li>Visual Studio Code syntax highlighting plugin</li>
 <li>github.io site creation</li>
+<li>REPL</li>
 </ul>
