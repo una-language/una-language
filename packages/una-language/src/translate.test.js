@@ -202,6 +202,10 @@ test('.', () => {
     testTranslate([':', ['.', 'key', 'value']], '{[key]: value}')
 })
 
+test('`', () => {
+    testTranslate(['`', ["'Number: ${0}'", 'number']], '`Number: ${number}`')
+})
+
 test('apply', () => {
     testTranslate(['apply', '1', '2'], 'apply(1, 2)')
     testTranslate(['apply', []], 'apply()')

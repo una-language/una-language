@@ -147,6 +147,21 @@ module.exports = config => {
                 return unary(node)
             case '-':
                 return children.length > 1 ? nary(node) : unary(node)
+            case '`':
+                // TODO handle here escaping before $ like \${0}
+                const interpolatedString = children
+                    .map(([string, ...substitutions]) =>
+                        substitutions.reduce(
+                            (accumulator, substitution, index) =>
+                                accumulator.replace(
+                                    `\${${index}}`,
+                                    `\${${expression(substitution)}}`
+                                ),
+                            string.substring(1, string.length - 1)
+                        )
+                    )
+                    .join('\n')
+                return `\`${interpolatedString}\``
 
             default:
                 return !!children && children.length > 0

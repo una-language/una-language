@@ -27,36 +27,36 @@ try {
     )
 })
 
-test('??', () => {
-    testUna(
-        `
-?? type
-    'a'
-    'b'
-        = x 1
-        = y 2
-        + x y
-    'c'
-        = z 4
-        z
-    . 5
-`,
-        `
-switch (type) {
-    case 'a':
-    case 'b':
-        const x = 1
-        const y = 2
-        return x + y
-    case 'c':
-        const z = 4
-        return z
-    default:
-        return 5
-}
-`
-    )
-})
+// test('??', () => {
+//     testUna(
+//         `
+// ?? type
+//     'a'
+//     'b'
+//         = x 1
+//         = y 2
+//         + x y
+//     'c'
+//         = z 4
+//         z
+//     . 5
+// `,
+//         `
+// switch (type) {
+//     case 'a':
+//     case 'b':
+//         const x = 1
+//         const y = 2
+//         return x + y
+//     case 'c':
+//         const z = 4
+//         return z
+//     default:
+//         return 5
+// }
+// `
+//     )
+// })
 
 test('|>', () => {
     testUna(
