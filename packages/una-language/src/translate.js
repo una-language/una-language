@@ -154,7 +154,7 @@ module.exports = config => {
                         substitutions.reduce(
                             (accumulator, substitution, index) =>
                                 accumulator.replace(
-                                    `\${${index}}`,
+                                    new RegExp(`(?<!\\\\)\\$\\{${index}\\}`, 'g'),
                                     `\${${expression(substitution)}}`
                                 ),
                             string.substring(1, string.length - 1)

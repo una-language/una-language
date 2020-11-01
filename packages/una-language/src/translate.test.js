@@ -204,6 +204,12 @@ test('.', () => {
 
 test('`', () => {
     testTranslate(['`', ["'Number: ${0}'", 'number']], '`Number: ${number}`')
+    testTranslate(['`', ["'A: ${0} - ${1}'", 'a', 'b']], '`A: ${a} - ${b}`')
+    testTranslate(['`', ["'B: ${0}'", ['+', '1', '2']]], '`B: ${(1 + 2)}`')
+    testTranslate(['`', ["'C: ${0}'", ['->', 'x', ['+', 'x', '1']]]], '`C: ${(x) => (x + 1)}`')
+    testTranslate(['`', ["'D: ${0}'", 'd'], ["'E: ${0}'", 'e']], '`D: ${d}\nE: ${e}`')
+
+    testTranslate(['`', ["'F: \\${0} ${0}'", 'f']], '`F: \\${0} ${f}`')
 })
 
 test('apply', () => {
