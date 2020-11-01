@@ -10,37 +10,35 @@
 
 ## Installation
 
-To use <i>Una</i> in your project you need to install transpiler and babel plugin:
+Install transpiler and babel plugin:
 
 ```
 npm i --save-dev una-language babel-plugin-una-language
 ```
 
-then add the plugin to your `babel.config.js`:
+Add the babel plugin to your `babel.config.js`:
 
 ```javascript
 {
-    ...,
-    plugins: [..., 'una-language'],
-    ...
+    plugins: ['una-language']
 }
 ```
 
-Then you need to setup your building tool to support transpiling `.una` files to JavaScript:
+Setup your building tool to support transpiling `.una` files to JavaScript:
 
 #### NodeJS
 
-If you use `require` instead of `import` you need to pass `modules: 'require'` to your plugin properties in `babel.config.js` like this:
+If you use `require` instead of `import` you need to pass `modules: 'require'` property to your plugin configuration in `babel.config.js` like this:
 
 ```javascript
 {
-    ...,
-    plugins: [..., ['una-language', { modules: 'require' }]],
-    ...
+    plugins: [['una-language', { modules: 'require' }]],
 }
 ```
 
-If you have problems setting it up you can check out [Express example](example/express)
+// TODO add info about passing extension to babel-node
+
+If you have problems setting it up you can check out [our Express example](example/express)
 
 #### React
 
@@ -61,7 +59,7 @@ Then add `una` file extension to `config/webpack.config.js` for `babel-loader` l
 }
 ```
 
-If you have problems setting it up you can check out [React example](example/react)
+If you have problems setting it up you can check out [our React example](example/react)
 
 #### React Native
 
@@ -75,7 +73,7 @@ module.exports = {
 }
 ```
 
-If you have problems setting it up you can check out [React Native example](example/react-native)
+If you have problems setting it up you can check out [our React Native example](example/react-native)
 
 ## Documentation
 
