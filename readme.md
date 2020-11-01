@@ -13,7 +13,7 @@ Una is a functional programming language that is being transpiled to JavaScript 
 Install transpiler and babel plugin:
 
 ```
-npm i --save-dev una-language babel-plugin-una-language
+npm i -D una-language babel-plugin-una-language
 ```
 
 Add the babel plugin to your `babel.config.js`:
