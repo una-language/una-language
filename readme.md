@@ -44,13 +44,13 @@ If you have problems setting it up you can check out [our Express example](examp
 
 I assume that you use `create-react-app`.
 
-Add `una` file extension to `config/paths.js` to `moduleFileExtensions` like this:
+Add `una` file extension to `moduleFileExtensions` in `config/paths.js` like this:
 
 ```javascript
 const moduleFileExtensions = [..., 'una']
 ```
 
-Then add `una` file extension to `config/webpack.config.js` for `babel-loader` loader like this:
+Then add `una` file extension to `babel-loader` in `config/webpack.config.js` like this:
 
 ```javascript
 {
