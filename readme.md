@@ -2,11 +2,11 @@
 [![License: MIT](https://img.shields.io/npm/l/una-language)](https://opensource.org/licenses/MIT)
 ![test](https://github.com/sergeyshpadyrev/una/workflows/test/badge.svg?branch=master)
 
+**If you like this project, please support it with a star** 🌟
+
 # Una
 
-<i>Una</i> is a functional programming language that transpiles to JavaScript and looks like the bastard son of Lisp and Python.
-
-**If you liked this project, please support it with a star** 🌟
+<i>Una</i> is a functional programming language that is being transpiled to JavaScript and looks like the bastard son of Lisp, JavaScript and Python.
 
 ## Installation
 
@@ -26,7 +26,7 @@ then add the plugin to your `babel.config.js`:
 }
 ```
 
-Then you need to :
+Then you need to setup your building tool to support transpiling `.una` files to JavaScript:
 
 #### NodeJS
 
