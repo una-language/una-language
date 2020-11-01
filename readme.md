@@ -54,8 +54,7 @@ Then add `una` file extension to `babel-loader` in `config/webpack.config.js` li
 
 ```javascript
 {
- test: /\.(js|mjs|jsx|ts|tsx|una)$/,
- ...
+    test: /\.(js|mjs|jsx|ts|tsx|una)$/
 }
 ```
 
