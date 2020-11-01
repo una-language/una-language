@@ -78,11 +78,23 @@ If you have problems setting it up you can check out [our React Native example](
 
 ### Assignment
 
-Let's start with assignment
-
 ```
 = name "John"
 = number 1
+```
+
+### Application order
+
+```
+a (b c) (d e)
+```
+
+is the same as
+
+```
+a
+  b c
+  d e
 ```
 
 ### Symmetries
@@ -149,8 +161,8 @@ func ()
 
 ```
 <- count
-    ? (= value 0) 1
-    ? (= value 1) 2
+    ? (== value 0) 1
+    ? (== value 1) 2
     ? (< value 10) 3
     4
 ```
