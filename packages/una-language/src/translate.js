@@ -148,7 +148,6 @@ module.exports = config => {
             case '-':
                 return children.length > 1 ? nary(node) : unary(node)
             case '`':
-                // TODO handle here escaping before $ like \${0}
                 const interpolatedString = children
                     .map(([string, ...substitutions]) =>
                         substitutions.reduce(
