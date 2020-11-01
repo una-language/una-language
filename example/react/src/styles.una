@@ -8,11 +8,20 @@
     'flex: 1;'
     'flex-direction: row;'
     'justify-content: space-around;'
+  Count `
+    styled.div
+    'color: blue;'
+    'font-size: 18;'
   Hello `
     styled.div
     'color: ${0};' (-> ((: color)) color)
     'font-size: 20;'
     'font-style: italic;'
+  IncrementCount `
+    styled.div
+    'color: black;'
+    'font-size: 18;'
+    'font-weight: bold;'
   Name `
     styled.div
     'color: red;'

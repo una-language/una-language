@@ -93,6 +93,11 @@ test('=->', () => {
 
     testTranslate(['=->', "'a'", [':', 'a']], "import {a} from 'a'")
     testTranslate(['=->', "'a'", [':', 'a']], "const {a} = require('a')", { modules: 'require' })
+
+    testTranslate(
+        ['=->', "'react'", 'React', [':', 'useState']],
+        "import React, {useState} from 'react'"
+    )
 })
 
 // ------------------------------------------------------------------------------

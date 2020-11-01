@@ -92,11 +92,15 @@ module.exports = config => {
                     case 'import':
                         return isSingleImport
                             ? `import ${children[0]}`
-                            : `import ${expression(children[1])} from ${children[0]}`
+                            : `import ${children.slice(1).map(expression).join(', ')} from ${
+                                  children[0]
+                              }`
                     case 'require':
                         return isSingleImport
                             ? `require(${children[0]})`
-                            : `const ${expression(children[1])} = require(${children[0]})`
+                            : `const ${children.slice(1).map(expression).join(', ')} = require(${
+                                  children[0]
+                              })`
                     default:
                         throw new Error("Option 'modules' can be only 'import' or 'require'")
                 }

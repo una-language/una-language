@@ -127,7 +127,8 @@ const App = ({ name }) => {
 }
 ReactDOM.render(e(App, { name: 'John' }), document.getElementById('root'))
 `
-    )
+    ),
+        testUna(`=-> 'react' React (: (useState))`, `import React, { useState } from 'react'`)
 })
 
 test('styled-components', () => {
