@@ -208,9 +208,11 @@ test('`', () => {
     testTranslate(['`', ["'B: ${0}'", ['+', '1', '2']]], '`B: ${(1 + 2)}`')
     testTranslate(['`', ["'C: ${0}'", ['->', 'x', ['+', 'x', '1']]]], '`C: ${(x) => (x + 1)}`')
     testTranslate(['`', ["'D: ${0}'", 'd'], ["'E: ${0}'", 'e']], '`D: ${d}\nE: ${e}`')
-
     testTranslate(['`', ["'F: \\${0} ${0}'", 'f']], '`F: \\${0} ${f}`')
-    //TODO add interpolation with variable like foo`
+    testTranslate(
+        ['`', 'styled.div', ["'Number: ${0}'", 'number']],
+        'styled.div`Number: ${number}`'
+    )
 })
 
 test('apply', () => {

@@ -42,6 +42,7 @@ module.exports = config => {
         if (node.length === 1) return expression(node[0])
 
         const [value, ...children] = node
+
         if (typeof value === 'string' && value.startsWith('.') && value.length > 1)
             return `${expression(children[0])}.${value.substring(1)}(${children
                 .slice(1)
@@ -148,7 +149,15 @@ module.exports = config => {
             case '-':
                 return children.length > 1 ? nary(node) : unary(node)
             case '`':
-                const interpolatedString = children
+                const firstChild = Array.isArray(children[0]) ? children[0][0] : children[0]
+                const hasIdentifier =
+                    typeof firstChild === 'string' &&
+                    !firstChild.startsWith("'") &&
+                    !firstChild.startsWith('"')
+                const identifier = hasIdentifier ? expression(children[0]) : ''
+                const lines = children.slice(hasIdentifier ? 1 : 0)
+
+                const interpolatedString = lines
                     .map(([string, ...substitutions]) =>
                         substitutions.reduce(
                             (accumulator, substitution, index) =>
@@ -160,8 +169,7 @@ module.exports = config => {
                         )
                     )
                     .join('\n')
-                return `\`${interpolatedString}\``
-
+                return `${identifier}\`${interpolatedString}\``
             default:
                 return !!children && children.length > 0
                     ? `${value}(${children.map(expression).join(', ')})`
