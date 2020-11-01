@@ -195,7 +195,7 @@ func ()
 
 Add here that ... works just like in JavaScript
 
-## What's next?
+## What is going to be done soon?
 
 <ul>
 <li>Add error throwing</li>
