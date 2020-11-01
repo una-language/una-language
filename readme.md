@@ -74,7 +74,7 @@ module.exports = {
 
 If you have problems setting it up you can check out [our React Native example](example/react-native)
 
-## Documentation
+## Syntax
 
 ### Assignment
 
