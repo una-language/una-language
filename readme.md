@@ -6,7 +6,7 @@
 
 # Una
 
-`Una` is a functional programming language that is being transpiled to JavaScript and looks like the bastard son of Lisp, JavaScript and Python.
+Una is a functional programming language that is being transpiled to JavaScript and looks like the bastard son of Lisp, JavaScript and Python.
 
 ## Installation
 
@@ -24,7 +24,7 @@ Add the babel plugin to your `babel.config.js`:
 }
 ```
 
-Setup your building tool to support transpiling `.una` files to JavaScript:
+Setup your build tool to support transpiling `.una` files to JavaScript:
 
 #### NodeJS
 
@@ -36,7 +36,7 @@ If you use `require` instead of `import` you need to pass `modules: 'require'` p
 }
 ```
 
-// TODO add info about passing extension to babel-node
+// TODO add info about passing extension to babel-node to package.json
 
 If you have problems setting it up you can check out [our Express example](example/express)
 
