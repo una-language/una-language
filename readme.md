@@ -88,8 +88,7 @@ If you have problems setting it up check out [our React Native example](example/
 ### Assignment
 
 ```
-= name "John"
-= number 1
+= name 'John'
 ```
 
 ### Application order
