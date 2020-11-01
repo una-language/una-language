@@ -203,6 +203,7 @@ test('.', () => {
 })
 
 test('`', () => {
+    testTranslate(['`', "'Number'"], '`Number`')
     testTranslate(['`', ["'Number: ${0}'", 'number']], '`Number: ${number}`')
     testTranslate(['`', ["'A: ${0} - ${1}'", 'a', 'b']], '`A: ${a} - ${b}`')
     testTranslate(['`', ["'B: ${0}'", ['+', '1', '2']]], '`B: ${(1 + 2)}`')

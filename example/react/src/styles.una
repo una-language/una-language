@@ -1,14 +1,19 @@
+=-> 'styled-components' styled
+
 <-= :
-  container :
-    alignItems 'center'
-    display 'flex'
-    flex 1
-    flexDirection 'row'
-    justifyContent 'space-around'
-  hello :
-    color 'blue'
-    fontSize 20
-    fontStyle 'italic'
-  name :
-    color 'red'
-    fontSize 30
+  Container `
+    styled.div
+    'align-items: center;'
+    'display: flex;'
+    'flex: 1;'
+    'flex-direction: row;'
+    'justify-content: space-around;'
+  Hello `
+    styled.div
+    'color: ${0};' (-> ((: color)) color)
+    'font-size: 20;'
+    'font-style: italic;'
+  Name `
+    styled.div
+    'color: red;'
+    'font-size: 30;'

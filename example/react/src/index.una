@@ -1,14 +1,14 @@
 =-> './index.css'
 =-> 'react' React
 =-> 'react-dom' ReactDOM
-=-> './styles' styles
+=-> './styles' S
 
 = (: (createElement e)) React
 
 = App -> ((: name))
-    e 'div' (: (style styles.container))
-        e 'div' (: (style styles.hello)) 'Hello'
-        e 'div' (: (style styles.name)) name
+    e S.Container (: ())
+        e S.Hello (: (color 'green')) 'Hello'
+        e S.Name (: ()) name
 
 ReactDOM.render 
     e App (: (name 'John')) 

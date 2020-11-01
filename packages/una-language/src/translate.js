@@ -158,8 +158,11 @@ module.exports = config => {
                 const lines = children.slice(hasIdentifier ? 1 : 0)
 
                 const interpolatedString = lines
-                    .map(([string, ...substitutions]) =>
-                        substitutions.reduce(
+                    .map(line => {
+                        if (typeof line === 'string') return line.substring(1, line.length - 1)
+
+                        const [string, ...substitutions] = line
+                        return substitutions.reduce(
                             (accumulator, substitution, index) =>
                                 accumulator.replace(
                                     new RegExp(`(?<!\\\\)\\$\\{${index}\\}`, 'g'),
@@ -167,7 +170,7 @@ module.exports = config => {
                                 ),
                             string.substring(1, string.length - 1)
                         )
-                    )
+                    })
                     .join('\n')
                 return `${identifier}\`${interpolatedString}\``
             default:

@@ -16,3 +16,7 @@ test(`string`, () => {
 
     testParse(`(apply '()')`, [[['apply', "'()'"]]])
 })
+
+test(`string interpolation`, () => {
+    testParse("` styled.div 'color: red;'", [['`', 'styled.div', "'color: red;'"]])
+})

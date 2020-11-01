@@ -130,6 +130,23 @@ ReactDOM.render(e(App, { name: 'John' }), document.getElementById('root'))
     )
 })
 
+test('styled-components', () => {
+    testUna(
+        `
+\`
+  styled.div
+  'color: red;'
+  'font-size: 30;'
+`,
+        `
+styled.div\`
+    color: red;
+    font-size: 30;
+\`
+`
+    )
+})
+
 test('apply', () => {
     testUna('= number Math.random ()', 'const number = Math.random()')
 })
