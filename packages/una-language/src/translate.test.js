@@ -210,6 +210,7 @@ test('`', () => {
     testTranslate(['`', ["'D: ${0}'", 'd'], ["'E: ${0}'", 'e']], '`D: ${d}\nE: ${e}`')
 
     testTranslate(['`', ["'F: \\${0} ${0}'", 'f']], '`F: \\${0} ${f}`')
+    //TODO add interpolation with variable like foo`
 })
 
 test('apply', () => {
