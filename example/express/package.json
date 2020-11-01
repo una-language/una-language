@@ -8,6 +8,7 @@
         "una-language": "0.0.15"
     },
     "scripts": {
+        "build": "babel src -d build",
         "start": "babel-node --extensions .una src/index"
     },
     "dependencies": {

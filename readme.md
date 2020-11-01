@@ -10,23 +10,72 @@
 
 ## Installation
 
-To use <i>Una</i> in your project you need to install babel plugin:
+To use <i>Una</i> in your project you need to install transpiler and babel plugin:
 
 ```
 npm i --save-dev una-language babel-plugin-una-language
 ```
 
-then add the plugin to your babel config:
+then add the plugin to your `babel.config.js`:
 
+```javascript
+{
+    ...,
+    plugins: [..., 'una-language'],
+    ...
+}
 ```
-plugins: ['una-language']
+
+Then you need to :
+
+#### NodeJS
+
+If you use `require` instead of `import` you need to pass `modules: 'require'` to your plugin properties in `babel.config.js` like this:
+
+```javascript
+{
+    ...,
+    plugins: [..., ['una-language', { modules: 'require' }]],
+    ...
+}
 ```
 
-TODO: write here about adding extension option to nodejs, webpack and metro packagers
+If you have problems setting it up you can check out [Express example](example/express)
 
-## Babel plugin options
+#### React
 
-modules - "require" | "import" (default : 'import')
+I assume that you use `create-react-app`.
+
+Add `una` file extension to `config/paths.js` to `moduleFileExtensions` like this:
+
+```javascript
+const moduleFileExtensions = [..., 'una']
+```
+
+Then add `una` file extension to `config/webpack.config.js` for `babel-loader` loader like this:
+
+```javascript
+{
+ test: /\.(js|mjs|jsx|ts|tsx|una)$/,
+ ...
+}
+```
+
+If you have problems setting it up you can check out [React example](example/react)
+
+#### React Native
+
+Add `una` file extension to `metro.config.js` like this:
+
+```javascript
+module.exports = {
+    resolver: {
+        sourceExts: [..., 'una']
+    }
+}
+```
+
+If you have problems setting it up you can check out [React Native example](example/react-native)
 
 ## Documentation
 
@@ -132,11 +181,11 @@ Add here that ... works just like in JavaScript
 ## What's next?
 
 <ul>
-<li>Error throwing</li>
-<li>Comments</li>
-<li>Regular expressions</li>
-<li>Bit operators</li>
-<li>Visual Studio Code syntax highlighting plugin</li>
-<li>github.io site creation</li>
-<li>REPL</li>
+<li>Add error throwing</li>
+<li>Add comments</li>
+<li>Add regular expressions</li>
+<li>Add bit operators</li>
+<li>Create a Visual Studio Code syntax highlighting plugin</li>
+<li>Create a website on github.io</li>
+<li>Create REPL</li>
 </ul>
