@@ -6,7 +6,7 @@
 
 # Una
 
-Una is a functional programming language that is being transpiled to JavaScript and looks like the bastard son of Lisp, JavaScript and Python.
+Una is a functional programming language that is being transpiled to JavaScript and looks like a bastard son of Lisp, JavaScript and Python.
 
 ## Installation
 
