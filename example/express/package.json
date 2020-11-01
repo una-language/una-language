@@ -2,14 +2,15 @@
     "author": "Sergey Shpadyrev",
     "license": "ISC",
     "devDependencies": {
+        "@babel/cli": "7.12.1",
         "@babel/core": "7.11.6",
         "@babel/node": "7.10.5",
         "babel-plugin-una-language": "1.0.0",
         "una-language": "0.0.15"
     },
     "scripts": {
-        "build": "babel src -d build",
-        "start": "babel-node --extensions .una src/index"
+        "build": "babel src -d build --extensions .una",
+        "start": "babel-node --extensions .una src"
     },
     "dependencies": {
         "express": "4.17.1"

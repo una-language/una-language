@@ -36,7 +36,16 @@ If you use `require` instead of `import` you need to pass `modules: 'require'` p
 }
 ```
 
-// TODO add info about passing extension to babel-node to package.json
+Add `una` extension to cli properties of `babel` and `babel-node` scripts in `package.json` like this:
+
+```javascript
+{
+  "scripts": {
+      "build": "babel src -d build --extensions .una",
+      "start": "babel-node --extensions .una src"
+  }
+}
+```
 
 If you have problems setting it up you can check out [our Express example](example/express)
 
