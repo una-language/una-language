@@ -24,9 +24,10 @@
   "devDependencies": {
     "@babel/core": "7.9.0",
     "babel-jest": "25.2.6",
-    "babel-plugin-una-language": "0.0.11",
+    "babel-plugin-una-language": "1.0.0",
     "jest": "25.2.6",
-    "react-test-renderer": "16.13.1"
+    "react-test-renderer": "16.13.1",
+    "una-language": "0.0.15"
   },
   "jest": {
     "preset": "react-native"

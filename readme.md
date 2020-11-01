@@ -13,13 +13,7 @@
 To use <i>Una</i> in your project you need to install babel plugin:
 
 ```
-npm i --save-dev babel-plugin-una-language
-```
-
-or
-
-```
-yarn add -D babel-plugin-una-language
+npm i --save-dev una-language babel-plugin-una-language
 ```
 
 then add the plugin to your babel config:

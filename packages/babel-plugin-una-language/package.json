@@ -3,10 +3,6 @@
     "bugs": {
         "url": "https://github.com/sergeyshpadyrev/una/issues"
     },
-    "dependencies": {
-        "@babel/parser": "^7.11.5",
-        "una-language": "0.0.15"
-    },
     "homepage": "https://github.com/sergeyshpadyrev/una#readme",
     "license": "MIT",
     "name": "babel-plugin-una-language",
@@ -14,8 +10,5 @@
         "type": "git",
         "url": "git+https://github.com/sergeyshpadyrev/una.git"
     },
-    "scripts": {
-        "test": "jest"
-    },
-    "version": "0.0.15"
+    "version": "1.0.0"
 }
