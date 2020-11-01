@@ -85,13 +85,9 @@ If you have problems setting it up check out [our React Native example](example/
 
 ## Syntax
 
-### Assignment
+### Application
 
-```
-= name 'John'
-```
-
-### Application order
+`a b` is the same as `(a b)`
 
 ```
 a (b c) (d e)
@@ -103,6 +99,22 @@ is the same as
 a
   b c
   d e
+```
+
+### Assignment
+
+```
+= name 'John'
+```
+
+```
+= name apply 1
+```
+
+is the same as
+
+```
+= name (apply 1)
 ```
 
 ### Symmetries
