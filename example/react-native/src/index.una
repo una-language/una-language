@@ -1,11 +1,16 @@
 =-> 'react' React
 =-> 'react-native' (: View Text)
-=-> './styles' styles
+=-> './styles' S
 
 = (: (createElement e)) React
 
 = App -> ()
-    e View (: (style styles.container))
-        e Text (: (style styles.text)) 'Hello World!'
+    = (:: count setCount) (React.useState 0)
+    e S.Container (: ())
+        e S.Hello (: (color 'green')) 'Hello'
+        e S.IncrementCount 
+            : (onPress (-> () (setCount (+ count 1))))
+            'Press me'
+        e S.Count (: ()) count
 
 <-= App

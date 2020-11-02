@@ -1,10 +1,24 @@
+=-> 'styled-components' styled
+
 <-= :
-  container :
-    alignItems 'center'
-    display 'flex'
-    flex 1
-    flexDirection 'column'
-    justifyContent 'center'
-  text :
-    color 'red'
-    fontSize 20
+  Container `
+    styled.View
+    'align-items: center;'
+    'display: flex;'
+    'flex: 1;'
+    'flex-direction: column;'
+    'justify-content: space-around;'
+  Count `
+    styled.Text
+    'color: blue;'
+    'font-size: 18;'
+  Hello `
+    styled.Text
+    'color: ${0};' (-> ((: color)) color)
+    'font-size: 20;'
+    'font-style: italic;'
+  IncrementCount `
+    styled.Text
+    'color: black;'
+    'font-size: 18;'
+    'font-weight: bold;'
