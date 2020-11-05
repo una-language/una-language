@@ -27,6 +27,18 @@ try {
     )
 })
 
+test('|>', () => {
+    testUna(
+        `
+= numbers |> (:: 1 2 3)
+  _.map (-> x (+ x 1))
+    `,
+        `
+const numbers = _.map(x => x + 1, [1, 2, 3])
+`
+    )
+})
+
 test('<|', () => {
     testUna(
         `
