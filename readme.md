@@ -137,7 +137,9 @@ a
     f g
 ```
 
-### Assignment
+### Basic
+
+#### Assignment
 
 The most used operator in any programming language is assignment `=`. Because of Una is pure functional language `=` is not really assignment but only declaration of a constant.
 
@@ -172,74 +174,68 @@ Or even like this:
   y
 ```
 
-### Symmetries
+#### Arithmetical operators
 
-Una has three symmetries: synchronous computations symmetry, asynchronous computation symmetry and module symmetry.
+Una has all basic arithmetical operators that works the same as in JavaScript:
 
-#### Synchronous computation symmetry
+-   `+` - plus
+-   `-` - subtraction
+-   `*` - multiplication
+-   `/` - division
+-   `%` - modulo
 
-##### ->
+Example:
 
-##### <-
+```
+= a (+ 1 2)
+= b (- 2 1)
+= c (* 3 2)
+= d (/ 4 2)
+= e (% 5 2)
+```
 
-Write here about simple assignment
-Write here about evaluation of multiple lines
+All of these operators can get any amount of parameters more than two:
 
-#### Asynchronous computation symmetry
+```
+= a (+ 1 2 3 4)
+```
 
-##### -->
+And `-` can also take one parameter:
 
-##### <--
+```
+= a (- 1)
+```
 
-Write here about await
-Write here about await of multiple lines (it works just as <-)
+But it can be written even simpler:
 
-#### Module symmetry
+```
+= a -1
+```
 
-##### =->
+One more example with the result equals `25`:
 
-##### <-=
+```
+= a +
+  * 2 4
+  / 9 3
+  + (* 3 2) (/ 4 2)
+  *
+    + 1 2
+    / 6 3
+```
 
-<-= a
-<-= = a 1
-
-### Arithmetical operators
-
-Write here about +, - (unary and nary), \*, /, %
-
-### Logical operators
-
-Write here about &, |, !
-
-### Comparison operators
+#### Comparison operators
 
 Write here about ==, !=, >, <, >=, <=
 
-### Conditional operator
+#### Logical operators
+
+Write here about &, |, !
+
+#### Conditional operator
 
 ```
 ? (> a 1) "Greater" "Less"
-```
-
-##### Simple if/else
-
-```
-= func -> ()
-   ? true
-     <- (console.log 1)
-     <- (console.log 2)
-
-func ()
-```
-
-#### Pattern matching
-
-```
-<- count
-    ? (== value 0) 1
-    ? (== value 1) 2
-    ? (< value 10) 3
-    4
 ```
 
 ### Collections
@@ -262,7 +258,61 @@ func ()
 
 Add here that ... works just like in JavaScript
 
-## What is going to be done soon?
+### Symmetries
+
+Una has three symmetries: synchronous computations symmetry, asynchronous computation symmetry and module symmetry.
+
+#### Synchronous computation symmetry
+
+##### ->
+
+##### <-
+
+Write here about simple assignment
+Write here about evaluation of multiple lines
+
+###### Simple if/else
+
+```
+= func -> ()
+   ? true
+     <- (console.log 1)
+     <- (console.log 2)
+
+func ()
+```
+
+##### Pattern matching
+
+```
+<- count
+    ? (== value 0) 1
+    ? (== value 1) 2
+    ? (< value 10) 3
+    4
+```
+
+#### Asynchronous computation symmetry
+
+##### -->
+
+##### <--
+
+Write here about await
+Write here about await of multiple lines (it works just as <-)
+
+#### Module symmetry
+
+##### =->
+
+##### <-=
+
+<-= a
+<-= = a 1
+
+## Next work
+
+What is going to be done soon?
 
 <ul>
 <li>Add error throwing</li>
