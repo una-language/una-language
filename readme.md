@@ -85,6 +85,8 @@ If you have problems setting it up check out [our React Native example](example/
 
 ## Syntax
 
+Before starting you should understand that Una is being transpiled to JavaScript and most operators in Una work just like in JavaScript. So you have to be familiar with JavaScript to understand how everything work here.
+
 ### Application
 
 The most important thing you should know about Una is how application order works.
@@ -283,22 +285,41 @@ Example:
 
 Una has three conditional operators:
 
--   `?` - ternary
--   `?!` - binary returnable
+-   `?` - returnable condtion
+-   `?!` - nonreturnable condition
 -   `??` - switch case
 
-Ternary works just like in JavaScript:
+Returnable ternary conditional operator works just like in JavaScript:
 
 ```
 = value
   ? (> 2 1) "Greater" "Less"
 ```
 
-Binary returnable conditional operator is used in sync/async functions and sync/async computations to return value by some condition. For example, following code in function will return `"One"` if `number` equals `1`:
+Returnable binary conditional operator is used in sync/async functions and sync/async computations to return value by some condition. For example, following code in function will return `"One"` if `number` equals `1`:
 
 ```
-?! (== number 1) "One"
+? (== number 1) "One"
 ```
+
+Nonreturnable binary conditional operator works like single `if` in JavaScript :
+
+```
+?! (== value 0)
+  <- (console.log 'Catched!')
+  <- (console.log 'Not catched!')
+```
+
+Nonreturnable ternary conditional operator works like `if` with `else` in JavaScript:
+
+```
+?! (== value 0)
+    <- (console.log 'Catched!')
+    <- (console.log 'Not catched!')
+
+```
+
+The meaning of `<-` operator you will find futher.
 
 Switch-case conditional operator works justl like in JavaScript except of it always return:
 
@@ -335,7 +356,7 @@ Una has four symmetries: sync symmetry, async symmetry, error symmetry and modul
 
 ##### ->
 
-Right sync arrow is used for function creation. First parameter is function parameters. Last parameter is return of the function. All parameters between are simple code lines.
+Right sync arrow is function. First parameter is function parameters. Last parameter is return of the function. All parameters between are simple code lines.
 
 ```
 = sum -> (x y)
@@ -378,43 +399,69 @@ To call parameterless function just use `()`
   Math.random ()
 ```
 
+These functions can be used as lambda functions and be passed as a parameter to another function or can be returned as value from another function.
+
 ##### <-
 
-Write here about evaluation of multiple lines
+Left sync arrow is immediatly invoked function. So it allows to isolate some part of code and run it.
+In following example result immediatly calculates as `3`.
 
 ```
--> ()
-   ? true
-     <- (console.log 1)
-     <- (console.log 2)
+= result <-
+    + a 1
+    + b 2
+    + a b
 ```
 
-##### Use with binary conditional operator
+It's pretty good when you need to calculate something based on conditions:
 
 ```
 <-
-  ?! (== value 0) 1
-  ?! (== value 1) 2
-  ?! (< value 10) 3
-  4
+  ?! (== value 0) "Zero"
+  ?! (== value 1) "One"
+  ? (< value 10) "Less than ten" "More than ten"
+```
+
+Also you can use this operator with conditional operators `?` and `?!`:
+
+```
+-> number
+  ?! (== number 0)
+    <- (console.log "Number is zero!")
+
+  ? (> number 2)
+    "Greter than two"
+    "Less than two"
 ```
 
 #### Asynchronous computation symmetry
 
 ##### -->
 
+Right async arrow is async function.
+
+```
+= getUserPosts ---> user
+  database.loadPosts user.postIds
+```
+
 ##### <--
 
-Write here about await
-Write here about await of multiple lines (it works just as <-)
+Left async arrow is await.
+
+```
+= checkIfUserIsAdmin --> userId
+    = user <-- (database.loadUser userId)
+    == user.role 'admin'
+```
 
 #### Error symmetry
 
-##### |->
+##### !->
 
 Throw error
 
-##### <-|
+##### <-!
 
 Try catch
 
@@ -426,6 +473,14 @@ Try catch
 
 <-= a
 <-= = a 1
+
+#### Chaining symmetry
+
+##### |>
+
+##### <|
+
+|> write here about mapreduce
 
 ## Interop with JavaScript
 
