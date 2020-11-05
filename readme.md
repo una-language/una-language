@@ -494,53 +494,43 @@ Una has a lot of symmetrical operators.
 Right sync arrow `->` is function. First parameter is function parameters. Last parameter is return of the function. All parameters between are simple code lines.
 
 ```
-
 = sum -> (x y)
-
--   x y
+  + x y
 
 = onePlusTwo -> ()
-= one 1
-= two 2
-
--   one two
-
+  = one 1
+  = two 2
+  + one two
 ```
 
 If you need to return something before last line you can use binary returnable conditional operator `?!`:
 
 ```
-
 = func -> (x y)
-?! (== x 0) "Nothing"
-= sum (+ x y)
-? (> sum 5)
-"Great"
-"Not so great"
-
+  ?! (== x 0) "Nothing"
+  = sum (+ x y)
+  ? (> sum 5)
+    "Great"
+    "Not so great"
 ```
 
 Calling function is just an application of it to parameters:
 
 ```
-
 = a (sum 1 2)
 = b sum 1 2
 = c
-sum 1 2
+  sum 1 2
 = d sum
-1
-2
-
+  1
+  2
 ```
 
 To call parameterless function just use `()`
 
 ```
-
 = randomNumber
-Math.random ()
-
+  Math.random ()
 ```
 
 These functions can be used as lambda functions and be passed as a parameter to another function or can be returned as value from another function.
@@ -551,47 +541,41 @@ Left sync arrow `<-` is immediatly invoked function. So it allows to isolate som
 In following example result immediatly calculates as `3`.
 
 ```
-
-= result <- + a 1 + b 2 + a b
-
+= result <-
+  + a 1
+  + b 2
+  + a b
 ```
 
 It's pretty good when you need to calculate something based on conditions:
 
 ```
-
 <-
-?! (== value 0) "Zero"
-?! (== value 1) "One"
-? (< value 10) "Less than ten" "More than ten"
-
+  ? (== value 0) "Zero"
+  ? (== value 1) "One"
+  ? (< value 10) "Less than ten" "More than ten"
 ```
 
 Also you can use this operator with conditional operators `?` and `?!`:
 
 ```
-
 -> number
-?! (== number 0)
-<- (console.log "Number is zero!")
-
-? (> number 2)
-"Greter than two"
-"Less than two"
-
+  ?! (== number 0)
+    <- (console.log "Number is zero!")
+  ? (> number 2)
+    "Greter than two"
+    "Less than two"
 ```
 
-#### Asynchronous computation symmetry
+#### Async symmetry
 
 ##### Right
 
 Right async arrow `-->` is async function.
 
 ```
-
 = getUserPosts ---> user
-database.loadPosts user.postIds
-
+  database.loadPosts user.postIds
 ```
 
 ##### Left
@@ -599,11 +583,9 @@ database.loadPosts user.postIds
 Left async arrow `<--` is await.
 
 ```
-
 = checkIfUserIsAdmin --> userId
-= user <-- (database.loadUser userId)
-== user.role 'admin'
-
+  = user <-- (database.loadUser userId)
+  == user.role 'admin'
 ```
 
 #### Error symmetry
@@ -613,13 +595,10 @@ Left async arrow `<--` is await.
 Right error arrow `!->` is throwing error.
 
 ```
-
 = addOneToNuber -> number
-? (isNaN number)
-!-> "number is not valid"
-
--   number 1
-
+  ? (isNaN number)
+    !-> "number is not valid"
+  + number 1
 ```
 
 ##### Left
@@ -627,13 +606,11 @@ Right error arrow `!->` is throwing error.
 Left error arrow `<-!` is try-catch-finally.
 
 ```
-
 <-!
-= func null
-func ()
--> error (console.log 'Error:' error)
-console.log 'Finally'
-
+  = func null
+  func ()
+  -> error (console.log 'Error:' error)
+  console.log 'Finally'
 ```
 
 #### Module symmetry
@@ -647,12 +624,10 @@ If you pass `modules: 'require'` to babel plugin options it works as `require`.
 If you pass `modules: 'import'` or pass nothing to babel plugin options it works as `import`.
 
 ```
-
 =-> './index.css'
 =-> 'react' React
 =-> 'react' (: createElement)
 =-> 'react' React (: createElement)
-
 ```
 
 ##### Left
@@ -664,17 +639,13 @@ If you pass `modules: 'import'` or pass nothing to babel plugin options it works
 Default module export:
 
 ```
-
 <-= a
-
 ```
 
 If you want to export constant:
 
 ```
-
 <-= = a 1
-
 ```
 
 #### Chaining symmetry
@@ -686,20 +657,18 @@ If you want to use such functional programming libraries as `rambda` you will fi
 In following example `phone` constant equals `'IPHONE'`:
 
 ```
-
 =-> 'ramda' (: get ...)
 = electronics ::
-:
-title ' iPhone '
-type 'phone'
+  :
+    title ' iPhone '
+    type 'phone'
 
 = phones |>
-electronics
-find (propEq 'type' 'phone')
-prop 'title'
-toUpper
-trim
-
+  electronics
+  find (propEq 'type' 'phone')
+  prop 'title'
+  toUpper
+  trim
 ```
 
 ##### <|
@@ -709,25 +678,21 @@ Left chainging arrow `<|` is chaining by last parameter.
 Because of Lisp-like application order it's hard to do chains with default JavaScript array methods. Look how ugly it looks:
 
 ```
-
 = sum .reduce
-.filter
-.map (:: 1 2 3) (-> x (+ x 1))
--> x (> x 2)
--> (x y) (+ x y)
-0
-
+  .filter
+    .map (:: 1 2 3) (-> x (+ x 1))
+    -> x (> x 2)
+  -> (x y) (+ x y)
+  0
 ```
 
 With `<|` it can be rewritten as:
 
 ```
-
-= sum |> (:: 1 2 3)
-.map (-> x (+ x 1))
-.filter (-> x (> x 2))
-.reduce (-> (x y) (+ x y)) 0
-
+= sum <| (:: 1 2 3)
+  .map (-> x (+ x 1))
+  .filter (-> x (> x 2))
+  .reduce (-> (x y) (+ x y)) 0
 ```
 
 ## Working with React and React Native
@@ -735,22 +700,19 @@ With `<|` it can be rewritten as:
 There's no JSX in Una. So instead of JSX you should use React.createElement, where first parameter is component, second parameters is passing props, and the rest of parameters are children.
 
 ```
-
 =-> 'react' React
 
 = (: (createElement e)) React
 
 = Component -> ((: count name))
-e div (: (style (: backgroundColor 'red')))
-e div (: ()) count
-e div (: ()) name
-
+  e div (: (style (: backgroundColor 'red')))
+    e div (: ()) count
+    e div (: ()) name
 ```
 
 For styling I recommend to use `styled-components`. I will make code much cleaner. Here's the short example of React app with `styled components`:
 
 ```
-
 =-> './index.css'
 =-> 'react' React
 =-> 'react-dom' ReactDOM
@@ -759,19 +721,18 @@ For styling I recommend to use `styled-components`. I will make code much cleane
 = (: (createElement e)) React
 
 = App -> ((: name))
-= (:: count setCount) (React.useState 0)
-e S.Container (: ())
-e S.Hello (: (color 'green')) 'Hello, '
-e S.Name (: ()) name
-e S.IncrementCount
-: (onClick (-> () (setCount (+ count 1))))
-'Press me'
-e S.Count (: ()) count
+  = (:: count setCount) (React.useState 0)
+  e S.Container (: ())
+    e S.Hello (: (color 'green')) 'Hello, '
+    e S.Name (: ()) name
+    e S.IncrementCount
+      : (onClick (-> () (setCount (+ count 1))))
+      'Press me'
+    e S.Count (: ()) count
 
 ReactDOM.render
-e App (: (name 'John'))
-document.getElementById 'root'
-
+  e App (: (name 'John'))
+  document.getElementById 'root'
 ```
 
 For better understanding you can check out [our React example](example/react) and [our React Native example](example/react-native)
@@ -788,7 +749,3 @@ What is going to be done soon?
 -   Create a Visual Studio Code syntax highlighting plugin
 -   Create a website on github.io
 -   Create REPL
-
-```
-
-```
