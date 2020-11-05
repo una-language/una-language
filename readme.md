@@ -287,7 +287,7 @@ Una has three conditional operators:
 
 -   `?` - returnable condtion
 -   `?!` - nonreturnable condition
--   `??` - switch case
+-   `??` - switch case (<i>coming soon</i>)
 
 Returnable ternary conditional operator works just like in JavaScript:
 
@@ -320,11 +320,9 @@ Nonreturnable ternary conditional operator works like `if` with `else` in JavaSc
 
 The meaning of `<-` operator you will find futher.
 
-Switch-case conditional operator works justl like in JavaScript except of it always return. Case `.` means default:
+#### String interpolation
 
-```
-??
-```
+Write here about `\``
 
 ### Collections
 
@@ -469,10 +467,14 @@ Right error arrow `!->` is throwing error.
 
 ##### Left
 
-Left error arrow `<-!` is try-catch-finally:
+Left error arrow `<-!` is try-catch-finally.
 
 ```
-
+<-!
+  = func null
+  func ()
+  -> error (console.log 'Error:' error)
+  console.log 'Finally'
 ```
 
 #### Module symmetry
@@ -603,12 +605,11 @@ For better understanding you can check out [our React example](example/react) an
 
 What is going to be done soon?
 
-<ul>
-<li>Class instanciation (`new` operator)</li>
-<li>Regular expressions</li>
-<li>Comments</li>
-<li>Bit operators</li>
-<li>Create a Visual Studio Code syntax highlighting plugin</li>
-<li>Create a website on github.io</li>
-<li>Create REPL</li>
-</ul>
+-   Switch-case operator `??`
+-   Class instanciation (`new` operator)
+-   Regular expressions
+-   Comments
+-   Bit operators
+-   Create a Visual Studio Code syntax highlighting plugin
+-   Create a website on github.io
+-   Create REPL
