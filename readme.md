@@ -151,10 +151,25 @@ This operator takes its second parameter and assigns it to the first one. If the
 = z (calclulate x y)
 ```
 
-Or we can write the same without parantheses:
+Or the same with indentation:
+
+```
+= z
+    calculate x y
+```
+
+Or we can write it much simplier without parantheses:
 
 ```
 = z calclulate x y
+```
+
+Or even like this:
+
+```
+= z calclulate
+    x
+    y
 ```
 
 ### Symmetries
