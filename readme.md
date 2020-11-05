@@ -487,9 +487,7 @@ console.log rest
 
 Una has a lot of symmetrical operators.
 
-#### Sync symmetry
-
-##### Right
+#### Right arrow of sync symmetry
 
 Right sync arrow `->` is function. First parameter is function parameters. Last parameter is return of the function. All parameters between are simple code lines.
 
@@ -535,7 +533,7 @@ To call parameterless function just use `()`
 
 These functions can be used as lambda functions and be passed as a parameter to another function or can be returned as value from another function.
 
-##### Left
+#### Left arrow of sync symmetry
 
 Left sync arrow `<-` is immediatly invoked function. So it allows to isolate some part of code and run it.
 In following example result immediatly calculates as `3`.
@@ -567,9 +565,7 @@ Also you can use this operator with conditional operators `?` and `?!`:
     "Less than two"
 ```
 
-#### Async symmetry
-
-##### Right
+#### Right arrow of async symmetry
 
 Right async arrow `-->` is async function.
 
@@ -578,7 +574,7 @@ Right async arrow `-->` is async function.
   database.loadPosts user.postIds
 ```
 
-##### Left
+#### Left arrow of async symmetry
 
 Left async arrow `<--` is await.
 
@@ -588,9 +584,7 @@ Left async arrow `<--` is await.
   == user.role 'admin'
 ```
 
-#### Error symmetry
-
-##### Right
+#### Right arrow of error symmetry
 
 Right error arrow `!->` is throwing error.
 
@@ -601,7 +595,7 @@ Right error arrow `!->` is throwing error.
   + number 1
 ```
 
-##### Left
+#### Left arrow of error symmetry
 
 Left error arrow `<-!` is try-catch-finally.
 
@@ -613,11 +607,9 @@ Left error arrow `<-!` is try-catch-finally.
   console.log 'Finally'
 ```
 
-#### Module symmetry
+#### Right arrow of module symmetry
 
 Una modules are fully compatiable with JavaScript. You can import JavaScript modules to Una and you can import Una modules to JavaScript.
-
-##### Right
 
 Right module arrow `=->` is import.
 If you pass `modules: 'require'` to babel plugin options it works as `require`.
@@ -630,7 +622,7 @@ If you pass `modules: 'import'` or pass nothing to babel plugin options it works
 =-> 'react' React (: createElement)
 ```
 
-##### Left
+##### Left arrow of module symmetry
 
 Right module arrow `<-=` is export.
 If you pass `modules: 'require'` to babel plugin options it works as `modules.export =`.
@@ -648,9 +640,7 @@ If you want to export constant:
 <-= = a 1
 ```
 
-#### Chaining symmetry
-
-##### Right
+#### Right arrow of chaining symmetry
 
 Right chainging arrow `|>` is chaining by last parameter.
 If you want to use such functional programming libraries as `rambda` you will find `|>` operator very useful.
@@ -671,7 +661,7 @@ In following example `phone` constant equals `'IPHONE'`:
   trim
 ```
 
-##### <|
+#### Left arrow of chaining symmetry
 
 Left chainging arrow `<|` is chaining by last parameter.
 
