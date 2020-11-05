@@ -307,7 +307,6 @@ Nonreturnable binary conditional operator works like single `if` in JavaScript :
 ```
 ?! (== value 0)
   <- (console.log 'Catched!')
-  <- (console.log 'Not catched!')
 ```
 
 Nonreturnable ternary conditional operator works like `if` with `else` in JavaScript:
@@ -321,10 +320,10 @@ Nonreturnable ternary conditional operator works like `if` with `else` in JavaSc
 
 The meaning of `<-` operator you will find futher.
 
-Switch-case conditional operator works justl like in JavaScript except of it always return:
+Switch-case conditional operator works justl like in JavaScript except of it always return. Case `.` means default:
 
 ```
-
+??
 ```
 
 ### Collections
@@ -350,7 +349,7 @@ Add here that ... works just like in JavaScript
 
 ### Symmetries
 
-Una has four symmetries: sync symmetry, async symmetry, error symmetry and module symmetry.
+Una has a lot of symmetrical operators
 
 #### Sync symmetry
 
@@ -459,20 +458,54 @@ Left async arrow is await.
 
 ##### !->
 
-Throw error
+Right error arrow is throwing error.
+
+```
+!-> "Failed"
+```
 
 ##### <-!
 
-Try catch
+Left error arrow is try-catch-finally:
+
+```
+
+```
 
 #### Module symmetry
 
+Una modules are fully compatiable with JavaScript. You can import JavaScript modules to Una and you can import Una modules to JavaScript.
+
 ##### =->
+
+Right module arrow is import.
+If you pass `modules: 'require'` to babel plugin options it works as `require`.
+If you pass `modules: 'import'` or pass nothing to babel plugin options it works as `import`.
+
+```
+=-> './index.css'
+=-> 'react' React
+=-> 'react' (: createElement)
+=-> 'react' React (: createElement)
+```
 
 ##### <-=
 
+Right module arrow is export.
+If you pass `modules: 'require'` to babel plugin options it works as `modules.export =`.
+If you pass `modules: 'import'` or pass nothing to babel plugin options it works as `export`.
+
+Default module export:
+
+```
 <-= a
+```
+
+If you want to export constant:
+
+```
 <-= = a 1
+```
 
 #### Chaining symmetry
 
@@ -480,7 +513,7 @@ Try catch
 
 ##### <|
 
-|> write here about mapreduce
+write here about mapreduce
 
 ## Interop with JavaScript
 
@@ -490,11 +523,47 @@ Try catch
 
 ### React and React Native
 
-Write here about `createElement` instead of JSX
+There's no JSX in Una. So instead of JSX you should use React.createElement, where first parameter is component, second parameters is passing props, and the rest of parameters are children.
+
+```
+=-> 'react' React
+
+= (: (createElement e)) React
+
+= Component -> ((: count name))
+  e div (: (style (: backgroundColor 'red')))
+    e div (: ()) count
+    e div (: ()) name
+```
+
+For styling I recommend to use `styled-components`. I will make code much cleaner. Here's the short example of React app with `styled components`:
+
+```
+=-> './index.css'
+=-> 'react' React
+=-> 'react-dom' ReactDOM
+=-> './styles' S
+
+= (: (createElement e)) React
+
+= App -> ((: name))
+    = (:: count setCount) (React.useState 0)
+    e S.Container (: ())
+        e S.Hello (: (color 'green')) 'Hello, '
+        e S.Name (: ()) name
+        e S.IncrementCount
+            : (onClick (-> () (setCount (+ count 1))))
+            'Press me'
+        e S.Count (: ()) count
+
+ReactDOM.render
+    e App (: (name 'John'))
+    document.getElementById 'root'
+```
 
 For better understanding you can check out [our React example](example/react) and [our React Native example](example/react-native)
 
-## Next work
+## Futher work
 
 What is going to be done soon?
 
