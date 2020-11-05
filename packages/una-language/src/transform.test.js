@@ -23,6 +23,14 @@ test('<-=', () => {
     testTransform(['<-=', '+', '1', '2'], ['<-=', ['+', '1', '2']])
 })
 
+test('|>', () => {
+    testTransform(['|>', 'number', 'double'], ['double', 'number'])
+    testTransform(
+        ['|>', ['::', '1', '2', '3'], ['_.map', ['->', 'x', ['+', 'x', '1']]]],
+        ['_.map', ['->', 'x', ['+', 'x', '1']], ['::', '1', '2', '3']]
+    )
+})
+
 test('<|', () => {
     testTransform(['<|', 'number', 'double'], ['double', 'number'])
     testTransform(
