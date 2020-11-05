@@ -353,9 +353,9 @@ Una has a lot of symmetrical operators
 
 #### Sync symmetry
 
-##### ->
+##### Right
 
-Right sync arrow is function. First parameter is function parameters. Last parameter is return of the function. All parameters between are simple code lines.
+Right sync arrow `->` is function. First parameter is function parameters. Last parameter is return of the function. All parameters between are simple code lines.
 
 ```
 = sum -> (x y)
@@ -400,9 +400,9 @@ To call parameterless function just use `()`
 
 These functions can be used as lambda functions and be passed as a parameter to another function or can be returned as value from another function.
 
-##### <-
+##### Left
 
-Left sync arrow is immediatly invoked function. So it allows to isolate some part of code and run it.
+Left sync arrow `<-` is immediatly invoked function. So it allows to isolate some part of code and run it.
 In following example result immediatly calculates as `3`.
 
 ```
@@ -435,18 +435,18 @@ Also you can use this operator with conditional operators `?` and `?!`:
 
 #### Asynchronous computation symmetry
 
-##### -->
+##### Right
 
-Right async arrow is async function.
+Right async arrow `-->` is async function.
 
 ```
 = getUserPosts ---> user
   database.loadPosts user.postIds
 ```
 
-##### <--
+##### Left
 
-Left async arrow is await.
+Left async arrow `<--` is await.
 
 ```
 = checkIfUserIsAdmin --> userId
@@ -456,17 +456,20 @@ Left async arrow is await.
 
 #### Error symmetry
 
-##### !->
+##### Right
 
-Right error arrow is throwing error.
+Right error arrow `!->` is throwing error.
 
 ```
-!-> "Failed"
+= addOneToNuber -> number
+  ? (isNaN number)
+    !-> "number is not valid"
+  + number 1
 ```
 
-##### <-!
+##### Left
 
-Left error arrow is try-catch-finally:
+Left error arrow `<-!` is try-catch-finally:
 
 ```
 
@@ -476,9 +479,9 @@ Left error arrow is try-catch-finally:
 
 Una modules are fully compatiable with JavaScript. You can import JavaScript modules to Una and you can import Una modules to JavaScript.
 
-##### =->
+##### Right
 
-Right module arrow is import.
+Right module arrow `=->` is import.
 If you pass `modules: 'require'` to babel plugin options it works as `require`.
 If you pass `modules: 'import'` or pass nothing to babel plugin options it works as `import`.
 
@@ -489,9 +492,9 @@ If you pass `modules: 'import'` or pass nothing to babel plugin options it works
 =-> 'react' React (: createElement)
 ```
 
-##### <-=
+##### Left
 
-Right module arrow is export.
+Right module arrow `<-=` is export.
 If you pass `modules: 'require'` to babel plugin options it works as `modules.export =`.
 If you pass `modules: 'import'` or pass nothing to babel plugin options it works as `export`.
 
@@ -509,19 +512,52 @@ If you want to export constant:
 
 #### Chaining symmetry
 
-##### |>
+##### Right
+
+Right chainging arrow `|>` is chaining by last parameter.
+If you want to use such functional programming libraries as `rambda` you will find `|>` operator very useful.
+In following example `phone` constant equals `'IPHONE'`:
+
+```
+=-> 'ramda' (: get ...)
+= electronics ::
+  :
+    title ' iPhone '
+    type 'phone'
+
+= phones |>
+  electronics
+  find (propEq 'type' 'phone')
+  prop 'title'
+  toUpper
+  trim
+```
 
 ##### <|
 
-write here about mapreduce
+Left chainging arrow `<|` is chaining by last parameter.
 
-## Interop with JavaScript
+Because of Lisp-like application order it's hard to do chains with default JavaScript array methods. Look how ugly it looks:
 
-### Basic
+```
+= sum .reduce
+  .filter
+    .map (:: 1 2 3) (-> x (+ x 1))
+    -> x (> x 2)
+  -> (x y) (+ x y)
+  0
+```
 
-### Modules
+With `<|` it can be rewritten as:
 
-### React and React Native
+```
+= sum |> (:: 1 2 3)
+    .map (-> x (+ x 1))
+    .filter (-> x (> x 2))
+    .reduce (-> (x y) (+ x y)) 0
+```
+
+## Working with React and React Native
 
 There's no JSX in Una. So instead of JSX you should use React.createElement, where first parameter is component, second parameters is passing props, and the rest of parameters are children.
 

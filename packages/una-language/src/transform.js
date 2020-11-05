@@ -21,7 +21,7 @@ const transform = raw => {
         const parameters = Array.isArray(children[0]) ? children[0].map(transform) : children[0]
         return [value, parameters, ...children.slice(1).map(transform)]
     }
-    if (['|>'].includes(value)) return transform(pipeline(children))
+    if (['<|'].includes(value)) return transform(pipeline(children))
 
     return raw.map(transform)
 }
