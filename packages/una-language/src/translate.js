@@ -2,8 +2,12 @@ const changeSign = value => {
     switch (value) {
         case '==':
             return '==='
+        case '~=':
+            return '=='
         case '!=':
             return '!=='
+        case '!~=':
+            return '!='
         case '&':
             return '&&'
         case '|':
@@ -146,7 +150,9 @@ module.exports = config => {
             case '<':
             case '<=':
             case '==':
+            case '~=':
             case '!=':
+            case '!~=':
                 return nary(node)
             case '!':
                 return unary(node)

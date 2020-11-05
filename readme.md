@@ -176,7 +176,7 @@ Or even like this:
 
 #### Arithmetical operators
 
-Una has all basic arithmetical operators that works the same as in JavaScript:
+Una has all basic arithmetical operators that work the same as in JavaScript:
 
 -   `+` - plus
 -   `-` - subtraction
@@ -226,11 +226,58 @@ One more example with the result equals `25`:
 
 #### Comparison operators
 
-Write here about ==, !=, >, <, >=, <=
+Una has all basic comparison operators that work the same as in JavaScript:
+
+-   `==` - strictly equals (like `===` in JavaScript)
+-   `!=` - not strictly equals (like `!==` in JavaScript)
+-   `~=` - not nonstrictly equals (like `==` in JavaScript)
+-   `!~=` - not nonstrictly equals (like `!=` in JavaScript)
+-   `>` - greater
+-   `>=` - greater or equals
+-   `<` - less
+-   `<=` - less or equals
+
+Example:
+
+```
+= a (== 1 1)
+= b (~= 1 '1')
+= c (!= 1 '1')
+= d (!~= 1 '2')
+= e (> 2 1)
+= f (>= 2 1)
+= g (< 1 2)
+= h (<= 1 2)
+```
 
 #### Logical operators
 
-Write here about &, |, !
+Una has all basic logical operators that work the same as in JavaScript:
+
+-   `&` - and
+-   `|` - or
+-   `!` - not
+
+Example:
+
+```
+= a (& true false)
+= b (| true false)
+= c (! true)
+```
+
+`&` and `|` operators can get any amount of parameters:
+
+```
+= a (& b c true)
+= d (| e f false)
+```
+
+`!` operator can be written even simpler:
+
+```
+= a !b
+```
 
 #### Conditional operator
 
@@ -310,15 +357,28 @@ Write here about await of multiple lines (it works just as <-)
 <-= a
 <-= = a 1
 
+## Interop with JavaScript
+
+### Modules
+
+### React and React Native
+
+Write here about `createElement` instead of JSX
+
+For better understanding you can check out [our React example](example/react) and [our React Native example](example/react-native)
+
+### Non supported features
+
+Write here about bit operators and classes
+
 ## Next work
 
 What is going to be done soon?
 
 <ul>
-<li>Add error throwing</li>
-<li>Add comments</li>
-<li>Add regular expressions</li>
-<li>Add bit operators</li>
+<li>Error throwing</li>
+<li>Comments</li>
+<li>Regular expressions</li>
 <li>Create a Visual Studio Code syntax highlighting plugin</li>
 <li>Create a website on github.io</li>
 <li>Create REPL</li>
