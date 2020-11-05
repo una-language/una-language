@@ -91,7 +91,7 @@ The most important thing you should know about Una is how application order work
 You can set the application order in two different ways:
 
 -   wrap up expression with parentheses
--   move expression to next line with additional indentation
+-   move expression to the next line with additional indentation
 
 Let's look at the example. We won't use real operators, just letters.
 Here we apply `a` to `b`:
@@ -106,20 +106,20 @@ Here we apply `a` to the result of application of `b` to `c`:
 a (b c)
 ```
 
-This expression we can also write like using indentation:
+This expression we can also write using indentation:
 
 ```
 a
   b c
 ```
 
-I think the underlying idea is pretty obvious. Let's look at more complicated example:
+I think the underlying idea is pretty obvious but let's look at more complicated example:
 
 ```
 a (b (c d)) (e (f g))
 ```
 
-It's the same as:
+It can be writte like this:
 
 ```
 a
@@ -127,7 +127,7 @@ a
   e (f g)
 ```
 
-or even more indented-style:
+or even like this:
 
 ```
 a
@@ -139,18 +139,22 @@ a
 
 ### Assignment
 
+The most used operator in any programming language is assignment `=`. Because of Una is pure functional language `=` is not really assignment but only declaration of a constant.
+
 ```
 = name 'John'
 ```
 
-```
-= name apply 1
-```
-
-is the same as
+This operator takes its second parameter and assigns it to the first one. If there're more parameters, at first it applies the second parameter to the rest of them and then assigns the result to the first one. Sounds complicated but it's simple. It just means that we can write assigning expression with parantheses:
 
 ```
-= name (apply 1)
+= z (calclulate x y)
+```
+
+Or we can write the same without parantheses:
+
+```
+= z calclulate x y
 ```
 
 ### Symmetries
