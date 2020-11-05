@@ -322,7 +322,28 @@ The meaning of `<-` operator you will find futher.
 
 #### String interpolation
 
-Write here about `\``
+Operator `\`` is used for string interpolation. Look at this example:
+
+```
+= name 'John'
+= count 5
+= fruit 'apples'
+
+= text `
+  'Hello, ${0}' name
+  'I have ${0} ${1}'
+    count
+    fruit
+
+console.log text
+```
+
+This code will print:
+
+```
+Hello, John
+I have 5 apples
+```
 
 ### Collections
 
