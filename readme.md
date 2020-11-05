@@ -279,17 +279,32 @@ Example:
 = a !b
 ```
 
-### Conditions
+#### Conditional operators
 
-#### Conditional operator
+Una has three conditional operators:
+
+-   `?` - ternary
+-   `?!` - binary returnable
+-   `??` - switch case
+
+Ternary works just like in JavaScript:
 
 ```
-? (> a 1) "Greater" "Less"
+= value
+  ? (> 2 1) "Greater" "Less"
 ```
 
-#### Switch case
+Binary returnable conditional operator is used in sync/async functions and sync/async computations to return value by some condition. For example, following code in function will return `"One"` if `number` equals `1`:
 
-??
+```
+?! (== number 1) "One"
+```
+
+Switch-case conditional operator works justl like in JavaScript except of it always return:
+
+```
+
+```
 
 ### Collections
 
@@ -314,18 +329,58 @@ Add here that ... works just like in JavaScript
 
 ### Symmetries
 
-Una has four symmetries: synchronous computation symmetry, asynchronous computation symmetry, error symmetry and module symmetry.
+Una has four symmetries: sync symmetry, async symmetry, error symmetry and module symmetry.
 
-#### Synchronous computation symmetry
+#### Sync symmetry
 
 ##### ->
 
+Right sync arrow is used for function creation. First parameter is function parameters. Last parameter is return of the function. All parameters between are simple code lines.
+
+```
+= sum -> (x y)
+  + x y
+
+= onePlusTwo -> ()
+  = one 1
+  = two 2
+  + one two
+```
+
+If you need to return something before last line you can use binary returnable conditional operator `?!`:
+
+```
+= func -> (x y)
+  ?! (== x 0) "Nothing"
+  = sum (+ x y)
+  ? (> sum 5)
+    "Great"
+    "Not so great"
+
+```
+
+Calling function is just an application of it to parameters:
+
+```
+= a (sum 1 2)
+= b sum 1 2
+= c
+  sum 1 2
+= d sum
+  1
+  2
+```
+
+To call parameterless function just use `()`
+
+```
+= randomNumber
+  Math.random ()
+```
+
 ##### <-
 
-Write here about simple assignment
 Write here about evaluation of multiple lines
-
-###### Simple if/else
 
 ```
 -> ()
@@ -338,9 +393,9 @@ Write here about evaluation of multiple lines
 
 ```
 <-
-  ? (== value 0) 1
-  ? (== value 1) 2
-  ? (< value 10) 3
+  ?! (== value 0) 1
+  ?! (== value 1) 2
+  ?! (< value 10) 3
   4
 ```
 
