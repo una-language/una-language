@@ -155,7 +155,7 @@ Or the same with indentation:
 
 ```
 = z
-    calculate x y
+  calculate x y
 ```
 
 Or we can write it much simplier without parantheses:
@@ -168,8 +168,8 @@ Or even like this:
 
 ```
 = z calclulate
-    x
-    y
+  x
+  y
 ```
 
 ### Symmetries
