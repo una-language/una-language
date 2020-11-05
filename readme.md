@@ -178,7 +178,7 @@ Or even like this:
 
 Una has all basic arithmetical operators that work the same as in JavaScript:
 
--   `+` - plus
+-   `+` - addition
 -   `-` - subtraction
 -   `*` - multiplication
 -   `/` - division
