@@ -279,11 +279,17 @@ Example:
 = a !b
 ```
 
+### Conditions
+
 #### Conditional operator
 
 ```
 ? (> a 1) "Greater" "Less"
 ```
+
+#### Switch case
+
+??
 
 ### Collections
 
@@ -295,11 +301,12 @@ Example:
 
 :
 
-#### Key operation
+#### Work with collections
 
 . - used for object[key]
 . - used for array[index]
 . - used for {[key]: value} (. key value)
+. - used for .map array e.g.
 
 #### Expansion
 
@@ -307,7 +314,7 @@ Add here that ... works just like in JavaScript
 
 ### Symmetries
 
-Una has three symmetries: synchronous computations symmetry, asynchronous computation symmetry and module symmetry.
+Una has four symmetries: synchronous computation symmetry, asynchronous computation symmetry, error symmetry and module symmetry.
 
 #### Synchronous computation symmetry
 
@@ -321,22 +328,20 @@ Write here about evaluation of multiple lines
 ###### Simple if/else
 
 ```
-= func -> ()
+-> ()
    ? true
      <- (console.log 1)
      <- (console.log 2)
-
-func ()
 ```
 
-##### Pattern matching
+##### Use with binary conditional operator
 
 ```
-<- count
-    ? (== value 0) 1
-    ? (== value 1) 2
-    ? (< value 10) 3
-    4
+<-
+  ? (== value 0) 1
+  ? (== value 1) 2
+  ? (< value 10) 3
+  4
 ```
 
 #### Asynchronous computation symmetry
@@ -347,6 +352,16 @@ func ()
 
 Write here about await
 Write here about await of multiple lines (it works just as <-)
+
+#### Error symmetry
+
+##### |->
+
+Throw error
+
+##### <-|
+
+Try catch
 
 #### Module symmetry
 
@@ -359,6 +374,8 @@ Write here about await of multiple lines (it works just as <-)
 
 ## Interop with JavaScript
 
+### Basic
+
 ### Modules
 
 ### React and React Native
@@ -367,18 +384,15 @@ Write here about `createElement` instead of JSX
 
 For better understanding you can check out [our React example](example/react) and [our React Native example](example/react-native)
 
-### Non supported features
-
-Write here about bit operators and classes
-
 ## Next work
 
 What is going to be done soon?
 
 <ul>
-<li>Error throwing</li>
-<li>Comments</li>
+<li>Class instanciation (`new` operator)</li>
 <li>Regular expressions</li>
+<li>Comments</li>
+<li>Bit operators</li>
 <li>Create a Visual Studio Code syntax highlighting plugin</li>
 <li>Create a website on github.io</li>
 <li>Create REPL</li>
