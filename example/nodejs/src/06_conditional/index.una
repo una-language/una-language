@@ -4,3 +4,12 @@ console.log
 ? (> 2 1)
   console.log "A"
   console.log "B"
+
+= addOneIfNotZero -> number
+  ?! (== number 0) 0
+  + number 1
+
+console.log
+  addOneIfNotZero(0)
+  addOneIfNotZero(1)
+  addOneIfNotZero(2)
