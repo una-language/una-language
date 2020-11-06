@@ -354,6 +354,15 @@ Hello, John
 I have 5 apples
 ```
 
+Also you can pass special interpolation function as first argument. For example, as in `styled-components`:
+
+```
+= Container `
+  styled.div
+  'background-color: ${0};'
+    -> ((: theme)) theme.colors.red
+```
+
 ### Collections
 
 There're two basic collection types in Una:

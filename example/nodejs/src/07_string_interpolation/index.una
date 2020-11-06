@@ -1,0 +1,11 @@
+= name 'John'
+= count 5
+= fruit 'apples'
+
+= text `
+  'Hello, ${0}' name
+  'I have ${0} ${1}'
+    count
+    fruit
+
+console.log text
