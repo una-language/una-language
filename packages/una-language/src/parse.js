@@ -24,7 +24,7 @@ const language = parser.createLanguage({
             rules.list
         ),
     symbol: () =>
-        parser.regexp(/[a-zA-Z_|=:+*/`.?<>%&!-][=a-zA-Z0-9_=|:+*/`.?<&>%!-]*/).desc('symbol'),
+        parser.regexp(/[a-zA-Z_|=:+*/`.?<>%&~!-][=a-zA-Z0-9_=|:+*/`.?<&>%!~-]*/).desc('symbol'),
     stringSingleQuote: () =>
         parser
             .regexp(/'((?:\\.|.)*?)'/, 1)
