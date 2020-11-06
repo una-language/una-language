@@ -1,1 +1,3 @@
-console.log 'Hello World'
+=-> './01_assignment'
+=-> './02_application'
+=-> './03_arithmetical'
