@@ -15,21 +15,28 @@ test('?', () => {
         ['?', ['&', 'a', 'b'], ['+', '1', '2'], ['*', '1', '2']],
         '((a && b) ? (1 + 2) : (1 * 2))'
     )
-    testTranslate(['?', ['>', '2', '1'], ['+', '1', '2']], 'if ((2 > 1)) return (1 + 2)')
+    testTranslate(
+        ['?', ['>', '2', '1'], ['console.log', '"Greater"']],
+        'if ((2 > 1)) { console.log("Greater") }'
+    )
+
+    testTranslate(
+        ['?', ['>', '2', '1'], ['<-', ['console.log', '"Greater"']]],
+        'if ((2 > 1)) { (() => console.log("Greater"))() }'
+    )
+
+    testTranslate(
+        ['?', ['>', '2', '1'], ['<-', ['?!', ['==', 'a', '1'], 'a'], ['console.log', '"Greater"']]],
+        'if ((2 > 1)) { (() => { if ((a === 1)) return a; return console.log("Greater") })() }'
+    )
 })
 
 test('?!', () => {
+    testTranslate(['?!', ['>', '2', '1'], ['+', '1', '2']], 'if ((2 > 1)) return (1 + 2)')
     testTranslate(
-        [
-            '?!',
-            ['=', 'func', 'null'],
-            ['func', []],
-            ['->', 'error', ['console.log', "'Error:'", 'error']]
-        ],
-        "try { const func = null; func() } catch (error) { console.log('Error:', error) }"
+        ['?!', ['>', '2', '1'], ['=', 'a', '1'], ['=', 'b', '2'], ['+', 'a', 'b']],
+        'if ((2 > 1)) { const a = 1; const b = 2; return (a + b) }'
     )
-    // TODO test try finally, try catch finally
-    // Todo check await in try/catch/finally
 })
 
 // ------------------------------------------------------------------------------
@@ -98,6 +105,20 @@ test('=->', () => {
         ['=->', "'react'", 'React', [':', 'useState']],
         "import React, {useState} from 'react'"
     )
+})
+
+test('<-!', () => {
+    testTranslate(
+        [
+            '<-!',
+            ['=', 'func', 'null'],
+            ['func', []],
+            ['->', 'error', ['console.log', "'Error:'", 'error']]
+        ],
+        "try { const func = null; func() } catch (error) { console.log('Error:', error) }"
+    )
+    // TODO test try finally, try catch finally
+    // Todo check await in try/catch/finally
 })
 
 // ------------------------------------------------------------------------------

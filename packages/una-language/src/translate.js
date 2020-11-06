@@ -59,26 +59,25 @@ module.exports = config => {
 
             case '?':
                 if (children.length === 2)
-                    return `if (${expression(children[0])}) return ${expression(children[1])}`
+                    return `if (${expression(children[0])}) { ${expression(children[1])} }`
 
                 return `(${expression(children[0])} ? ${expression(children[1])} : ${expression(
                     children[2]
                 )})`
-            case '?!':
-                const errorHandlerIndex = children.findIndex(
-                    child => child.length > 1 && child[0] === '->'
-                )
-                const tryPart = children.slice(0, errorHandlerIndex)
-                const catchPart = children[errorHandlerIndex]
-                const finallyPart = children.slice(errorHandlerIndex + 1, children.length)
 
-                return `try { ${tryPart.map(expression).join('; ')} } catch (${expression(
-                    catchPart[1]
-                )}) { ${catchPart.slice(2).map(expression).join('; ')} }${
-                    finallyPart.length > 0
-                        ? ` finally { ${finallyPart.map(expression).join('; ')} }`
-                        : ''
-                }`
+            case '?!':
+                const returnBodyLines = children.slice(1)
+                const returnBody =
+                    returnBodyLines.length === 1
+                        ? `return ${expression(returnBodyLines[0])}`
+                        : `{ ${returnBodyLines
+                              .map((line, index) =>
+                                  index === returnBodyLines.length - 1
+                                      ? `return ${expression(line)}`
+                                      : expression(line)
+                              )
+                              .join('; ')} }`
+                return `if (${expression(children[0])}) ${returnBody}`
 
             case '->':
                 return func(node)
@@ -122,6 +121,21 @@ module.exports = config => {
                     default:
                         throw new Error("Option 'modules' can be only 'import' or 'require'")
                 }
+            case '<-!':
+                const errorHandlerIndex = children.findIndex(
+                    child => child.length > 1 && child[0] === '->'
+                )
+                const tryPart = children.slice(0, errorHandlerIndex)
+                const catchPart = children[errorHandlerIndex]
+                const finallyPart = children.slice(errorHandlerIndex + 1, children.length)
+
+                return `try { ${tryPart.map(expression).join('; ')} } catch (${expression(
+                    catchPart[1]
+                )}) { ${catchPart.slice(2).map(expression).join('; ')} }${
+                    finallyPart.length > 0
+                        ? ` finally { ${finallyPart.map(expression).join('; ')} }`
+                        : ''
+                }`
             case '::':
                 return `[${children.map(expression).join(', ')}]`
             case ':':

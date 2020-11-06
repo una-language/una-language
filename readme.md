@@ -285,40 +285,42 @@ Example:
 
 Una has three conditional operators:
 
--   `?` - returnable condtion
--   `?!` - nonreturnable condition
+-   `?` - condtion
+-   `?!` - condition with return
 -   `??` - switch case (<i>coming soon</i>)
 
-Returnable ternary conditional operator works just like in JavaScript:
+Ternary conditional operator works just like in JavaScript:
 
 ```
 = value
   ? (> 2 1) "Greater" "Less"
 ```
 
-Returnable binary conditional operator is used in sync/async functions and sync/async computations to return value by some condition. For example, following code in function will return `"One"` if `number` equals `1`:
+You can use this operator like single `if` or like `if-else` in JavaScript using `<-` operator described below:
 
 ```
-? (== number 1) "One"
+? (== value 0)
+  <- (console.log 'Zero!')
+
+? (> value 10)
+  <- (console.log "Greater")
+  <- (console.log "Less")
 ```
 
-Nonreturnable binary conditional operator works like single `if` in JavaScript :
+Returnable conditional operator `?!` is used in sync/async functions and sync/async computations to return value by some condition. For example, following code in function will return `"One"` if `number` equals `1`:
 
 ```
-?! (== value 0)
-  <- (console.log 'Catched!')
+?! (== number 1) "One"
 ```
 
-Nonreturnable ternary conditional operator works like `if` with `else` in JavaScript:
+This operator can have multiline returnable block:
 
 ```
-?! (== value 0)
-    <- (console.log 'Catched!')
-    <- (console.log 'Not catched!')
-
+?! (== number 1)
+  = a 1
+  = b 2
+  + a b
 ```
-
-The meaning of `<-` operator you will find futher.
 
 #### String interpolation
 
@@ -522,7 +524,7 @@ Right sync arrow `->` is function. First parameter is function parameters. Last 
   + one two
 ```
 
-If you need to return something before last line you can use binary returnable conditional operator `?!`:
+If you need to return something before last line you can use returnable conditional operator `?!`:
 
 ```
 = func -> (x y)
@@ -575,15 +577,15 @@ It's pretty good when you need to calculate something based on conditions:
   ? (< value 10) "Less than ten" "More than ten"
 ```
 
-Also you can use this operator with conditional operators `?` and `?!`:
+Also you can use this operator with conditional operator `?` to make non returnable code:
 
 ```
 -> number
-  ?! (== number 0)
-    <- (console.log "Number is zero!")
-  ? (> number 2)
-    "Greter than two"
-    "Less than two"
+  ? (== number 0)
+    <-
+      console.log "Number is zero!"
+      console.log "Hooray!"
+  + number 1
 ```
 
 #### Right arrow of async symmetry
