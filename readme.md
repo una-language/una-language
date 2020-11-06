@@ -322,6 +322,14 @@ This operator can have multiline returnable block:
   + a b
 ```
 
+#### Return
+
+In Una you don't need to return value explicitly very often. But still return operator `<-!` exists.
+
+```
+<-! value
+```
+
 #### String interpolation
 
 Operator `\`` is used for string interpolation. Look at this example:
@@ -609,25 +617,26 @@ Left async arrow `<--` is await.
 
 #### Right arrow of error symmetry
 
-Right error arrow `!->` is throwing error.
+Right error arrow `|->` is try-catch operator. First parameter is catch function. Other parameters are try lines. Unlike JavaScript try-catch, `|->` always has returnable value. And there's no finally block
 
 ```
-= addOneToNuber -> number
-  ? (isNaN number)
-    !-> "number is not valid"
-  + number 1
+= value |->
+  -> error
+    console.log error
+    2
+  = func null
+  func ()
 ```
 
 #### Left arrow of error symmetry
 
-Left error arrow `<-!` is try-catch-finally.
+Left error arrow `<-|` is throwing error.
 
 ```
-<-!
-  = func null
-  func ()
-  -> error (console.log 'Error:' error)
-  console.log 'Finally'
+= addOneToNuber -> number
+  ? (isNaN number)
+    <-| "number is not valid"
+  + number 1
 ```
 
 #### Right arrow of module symmetry
@@ -762,3 +771,4 @@ What is going to be done soon?
 -   Create a Visual Studio Code syntax highlighting plugin
 -   Create a website on github.io
 -   Create REPL
+-   Rewrite una transpiler to Una

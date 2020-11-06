@@ -31,24 +31,33 @@ const func = x => {
 })
 
 // Error symmetry
-test('<-!', () => {
+test('|->', () => {
     testUna(
         `
-<-!
+= value |->
+  -> error 2
   = func null
   func ()
-  -> error (console.log 'Error:' error)
-  console.log 'Finally'
 `,
         `
-try {
-    const func = null
-    func()
-} catch (error) {
-    console.log('Error:', error)
-} finally {
-    console.log('Finally')
-}
+const value = (() => {
+    try {
+        const func = null
+        return func()
+    } catch (error) {
+        return 2
+    }
+})() 
+`
+    )
+})
+test('<-|', () => {
+    testUna(
+        `
+<-| 'Failed'
+`,
+        `
+throw new Error('Failed')
 `
     )
 })

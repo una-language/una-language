@@ -18,20 +18,21 @@ const changeSign = value => {
 }
 
 module.exports = config => {
-    const func = node => {
-        const [paramsLine, ...lines] = node.slice(1)
-        const params = Array.isArray(paramsLine)
-            ? paramsLine.map(expression).join(', ')
-            : expression(paramsLine)
-        if (lines.length === 1) return `(${params}) => ${expression(lines[0])}`
-
-        const body = lines
+    const createBody = lines =>
+        lines
             .map((line, index) =>
                 index === lines.length - 1 ? `return ${expression(line)}` : expression(line)
             )
             .join('; ')
 
-        return `(${params}) => { ${body} }`
+    const func = node => {
+        const [paramsLine, ...lines] = node.slice(1)
+        const params = Array.isArray(paramsLine)
+            ? paramsLine.map(expression).join(', ')
+            : expression(paramsLine)
+        return lines.length === 1
+            ? `(${params}) => ${expression(lines[0])}`
+            : `(${params}) => { ${createBody(lines)} }`
     }
 
     const unary = node => `${node[0]}${expression(node[1])}`
@@ -70,13 +71,7 @@ module.exports = config => {
                 const returnBody =
                     returnBodyLines.length === 1
                         ? `return ${expression(returnBodyLines[0])}`
-                        : `{ ${returnBodyLines
-                              .map((line, index) =>
-                                  index === returnBodyLines.length - 1
-                                      ? `return ${expression(line)}`
-                                      : expression(line)
-                              )
-                              .join('; ')} }`
+                        : `{ ${createBody(returnBodyLines)} }`
                 return `if (${expression(children[0])}) ${returnBody}`
 
             case '->':
@@ -121,21 +116,14 @@ module.exports = config => {
                     default:
                         throw new Error("Option 'modules' can be only 'import' or 'require'")
                 }
+            case '|->':
+                return `(() => { try { ${createBody(children.slice(1))} } catch (${expression(
+                    children[0][1]
+                )}) { ${createBody(children[0].slice(2))} }})()`
+            case '<-|':
+                return `throw new Error(${expression(children[0])})`
             case '<-!':
-                const errorHandlerIndex = children.findIndex(
-                    child => child.length > 1 && child[0] === '->'
-                )
-                const tryPart = children.slice(0, errorHandlerIndex)
-                const catchPart = children[errorHandlerIndex]
-                const finallyPart = children.slice(errorHandlerIndex + 1, children.length)
-
-                return `try { ${tryPart.map(expression).join('; ')} } catch (${expression(
-                    catchPart[1]
-                )}) { ${catchPart.slice(2).map(expression).join('; ')} }${
-                    finallyPart.length > 0
-                        ? ` finally { ${finallyPart.map(expression).join('; ')} }`
-                        : ''
-                }`
+                return `return ${expression(children[0])}`
             case '::':
                 return `[${children.map(expression).join(', ')}]`
             case ':':
@@ -169,6 +157,8 @@ module.exports = config => {
             case '!~=':
                 return nary(node)
             case '!':
+                return unary(node)
+            case '!!':
                 return unary(node)
             case '-':
                 return children.length > 1 ? nary(node) : unary(node)

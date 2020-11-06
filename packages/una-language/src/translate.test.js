@@ -103,18 +103,19 @@ test('<-=', () => {
 })
 
 // Error symmetry
-test('<-!', () => {
+test('|->', () => {
     testTranslate(
-        [
-            '<-!',
-            ['=', 'func', 'null'],
-            ['func', []],
-            ['->', 'error', ['console.log', "'Error:'", 'error']]
-        ],
-        "try { const func = null; func() } catch (error) { console.log('Error:', error) }"
+        ['|->', ['->', 'error', '2'], ['=', 'func', 'null'], ['func', []]],
+        '(() => { try { const func = null; return func() } catch (error) { return 2 }})()'
     )
-    // TODO test try finally, try catch finally
-    // Todo check await in try/catch/finally
+})
+test('<-|', () => {
+    testTranslate(['<-|', '"Failed"'], 'throw new Error("Failed")')
+})
+
+// Return
+test('<-!', () => {
+    testTranslate(['<-!', 'value'], 'return value')
 })
 
 // Arithmetics
