@@ -114,8 +114,8 @@ test('<-|', () => {
 })
 
 // Return
-test('<-!', () => {
-    testTranslate(['<-!', 'value'], 'return value')
+test('<!', () => {
+    testTranslate(['<!', 'value'], 'return value')
 })
 
 // Arithmetics

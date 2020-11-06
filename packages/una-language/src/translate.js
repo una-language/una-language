@@ -122,7 +122,7 @@ module.exports = config => {
                 )}) { ${createBody(children[0].slice(2))} }})()`
             case '<-|':
                 return `throw new Error(${expression(children[0])})`
-            case '<-!':
+            case '<!':
                 return `return ${expression(children[0])}`
             case '::':
                 return `[${children.map(expression).join(', ')}]`

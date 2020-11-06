@@ -323,10 +323,10 @@ This operator can have multiline returnable block:
 
 #### Return
 
-In Una you don't need to return value explicitly very often. But still return operator `<-!` exists.
+In Una you don't need to return value explicitly very often. But still return operator `<!` exists.
 
 ```
-<-! value
+<! value
 ```
 
 #### String interpolation
