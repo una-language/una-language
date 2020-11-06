@@ -1,0 +1,6 @@
+console.log
+  ? (> 2 1) "Greater" "Less"
+
+? (> 2 1)
+  console.log "A"
+  console.log "B"

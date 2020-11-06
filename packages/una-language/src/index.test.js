@@ -165,3 +165,19 @@ func(1, 2)
 `
     )
 })
+
+// Semicolon
+test(';', () => {
+    testUna(
+        `
+console.log
+  ? (> 2 1) "Greater" "Less"
+  
+? (> 2 1)
+  console.log "A"
+  console.log "B"
+`,
+        `console.log(2 > 1 ? 'Greater' : 'Less')
+2 > 1 ? console.log('A') : console.log('B')`
+    )
+})

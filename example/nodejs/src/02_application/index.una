@@ -1,5 +1,4 @@
 = number Math.random ()
 = anotherNumber Math.sqrt 4
 
-console.log number
-console.log anotherNumber
+console.log number anotherNumber

@@ -18,6 +18,6 @@ module.exports = (text, config = {}) => {
     const transform = require('./transform')
 
     const expressions = parse(text)
-    const js = expressions.map(transform).map(translate).join('\n')
+    const js = expressions.map(transform).map(translate).join(';\n')
     return prettier.format(js, prettierOptions)
 }

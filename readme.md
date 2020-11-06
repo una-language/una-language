@@ -285,9 +285,8 @@ Example:
 
 Una has three conditional operators:
 
--   `?` - condtion
+-   `?` - ternary condtion
 -   `?!` - condition with return
--   `??` - switch case (<i>coming soon</i>)
 
 Ternary conditional operator works just like in JavaScript:
 
