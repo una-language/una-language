@@ -1,43 +1,17 @@
 const una = require('./index')
 const testUna = (text, js) => expect(una(text).trim()).toEqual(js.trim())
 
+// Assignment
 test('=', () => {
     testUna('= a 1', 'const a = 1')
 })
 
-test('|>', () => {
-    testUna(
-        `
-= numbers |> (:: 1 2 3)
-  _.map (-> x (+ x 1))
-    `,
-        `
-const numbers = _.map(x => x + 1, [1, 2, 3])
-`
-    )
+// Application
+test('apply', () => {
+    testUna('= number Math.random ()', 'const number = Math.random()')
 })
 
-test('<|', () => {
-    testUna(
-        `
-= numbers <| (:: 1 2 3)
-  .map (-> x (+ x 1))
-  .filter (-> x (> x 2))
-  .reduce (-> (x y) (+ x y)) 0
-    `,
-        `
-const numbers = [1, 2, 3]
-    .map(x => x + 1)
-    .filter(x => x > 2)
-    .reduce((x, y) => x + y, 0)
-`
-    )
-})
-
-test('+', () => {
-    testUna('+ 1 2', '1 + 2')
-})
-
+// Sync symmetry
 test('->', () => {
     testUna('= plusOne -> x (+ x 1)', 'const plusOne = x => x + 1')
     testUna('= plus -> (x y) (+ x y)', 'const plus = (x, y) => x + y')
@@ -56,6 +30,7 @@ const func = x => {
     )
 })
 
+// Error symmetry
 test('<-!', () => {
     testUna(
         `
@@ -78,6 +53,41 @@ try {
     )
 })
 
+// Chaining symmetry
+test('|>', () => {
+    testUna(
+        `
+= numbers |> (:: 1 2 3)
+  _.map (-> x (+ x 1))
+    `,
+        `
+const numbers = _.map(x => x + 1, [1, 2, 3])
+`
+    )
+})
+test('<|', () => {
+    testUna(
+        `
+= numbers <| (:: 1 2 3)
+  .map (-> x (+ x 1))
+  .filter (-> x (> x 2))
+  .reduce (-> (x y) (+ x y)) 0
+    `,
+        `
+const numbers = [1, 2, 3]
+    .map(x => x + 1)
+    .filter(x => x > 2)
+    .reduce((x, y) => x + y, 0)
+`
+    )
+})
+
+// Arithmetics
+test('+', () => {
+    testUna('+ 1 2', '1 + 2')
+})
+
+// React
 test('react', () => {
     testUna(
         `
@@ -92,7 +102,6 @@ test('react', () => {
     e 'div' (: (style styles.container))
     e 'div' (: (style styles.hello)) 'Hello'
     e 'div' (: (style styles.name)) name
-
 ReactDOM.render (e App (: (name 'John'))) (document.getElementById 'root')
 `,
         `
@@ -111,7 +120,6 @@ ReactDOM.render(e(App, { name: 'John' }), document.getElementById('root'))
     ),
         testUna(`=-> 'react' React (: (useState))`, `import React, { useState } from 'react'`)
 })
-
 test('styled-components', () => {
     testUna(
         `
@@ -129,10 +137,7 @@ styled.div\`
     )
 })
 
-test('apply', () => {
-    testUna('= number Math.random ()', 'const number = Math.random()')
-})
-
+// Collections
 test('.', () => {
     testUna('apply ()', 'apply()')
     testUna('= object (: (. key value))', 'const object = { [key]: value }')
@@ -151,5 +156,3 @@ func(1, 2)
 `
     )
 })
-
-//TODO check object?.value?.subvalue (elvis) works

@@ -3,12 +3,19 @@ const translate = require('./translate')
 const testTranslate = (tree, js, config = {}) =>
     expect(translate(setDefaultConfig(config))(tree).trim()).toEqual(js.trim())
 
-// -- Assignment and basic operators --------------------------------------------
-
+// Assignment
 test('=', () => {
     testTranslate(['=', 'a', '1'], 'const a = 1')
 })
 
+// Application
+test('apply', () => {
+    testTranslate(['apply', '1', '2'], 'apply(1, 2)')
+    testTranslate(['apply', []], 'apply()')
+    testTranslate(['=', 'number', ['Math.random', []]], 'const number = Math.random()')
+})
+
+// Conditions
 test('?', () => {
     testTranslate(['?', ['>', '1', '2'], '"First"', '"Second"'], '((1 > 2) ? "First" : "Second")')
     testTranslate(
@@ -19,18 +26,15 @@ test('?', () => {
         ['?', ['>', '2', '1'], ['console.log', '"Greater"']],
         'if ((2 > 1)) { console.log("Greater") }'
     )
-
     testTranslate(
         ['?', ['>', '2', '1'], ['<-', ['console.log', '"Greater"']]],
         'if ((2 > 1)) { (() => console.log("Greater"))() }'
     )
-
     testTranslate(
         ['?', ['>', '2', '1'], ['<-', ['?!', ['==', 'a', '1'], 'a'], ['console.log', '"Greater"']]],
         'if ((2 > 1)) { (() => { if ((a === 1)) return a; return console.log("Greater") })() }'
     )
 })
-
 test('?!', () => {
     testTranslate(['?!', ['>', '2', '1'], ['+', '1', '2']], 'if ((2 > 1)) return (1 + 2)')
     testTranslate(
@@ -39,10 +43,7 @@ test('?!', () => {
     )
 })
 
-// ------------------------------------------------------------------------------
-
-// -- Symmetries ----------------------------------------------------------------
-
+// Sync symmetry
 test('->', () => {
     testTranslate(['->', 'x', ['+', 'x', '1']], '(x) => (x + 1)')
     testTranslate(['->', ['x', 'y'], ['+', 'x', 'y']], '(x, y) => (x + y)')
@@ -58,7 +59,6 @@ test('->', () => {
     )
     testTranslate(['->', 'a', ['->', 'b', ['+', 'a', 'b']]], '(a) => (b) => (a + b)')
 })
-
 test('<-', () => {
     testTranslate(
         ['=', 'sum', ['<-', ['=', 'a', '1'], ['=', 'b', '2'], ['+', 'a', 'b']]],
@@ -66,10 +66,10 @@ test('<-', () => {
     )
 })
 
-test('->', () => {
+// Async symmetry
+test('-->', () => {
     testTranslate(['-->', 'x', ['+', 'x', '1']], 'async (x) => (x + 1)')
 })
-
 test('<--', () => {
     testTranslate(['=', 'result', ['<--', 'promise']], 'const result = await promise')
     testTranslate(
@@ -78,35 +78,31 @@ test('<--', () => {
     )
 })
 
-test('<-=', () => {
-    testTranslate(['<-=', 'a'], 'export default a')
-    testTranslate(['<-=', 'a'], 'module.exports = a', { modules: 'require' })
-
-    testTranslate(['<-=', ['->', ['x'], ['+', 'x', '1']]], 'export default (x) => (x + 1)')
-    testTranslate(['<-=', ['->', ['x'], ['+', 'x', '1']]], 'module.exports = (x) => (x + 1)', {
-        modules: 'require'
-    })
-
-    testTranslate(['<-=', ['=', 'a', '1']], 'export const a = 1')
-    testTranslate(['<-=', ['=', 'a', '1']], 'module.exports.a = 1', { modules: 'require' })
-})
-
+// Module symmetry
 test('=->', () => {
     testTranslate(['=->', "'a'"], "import 'a'")
     testTranslate(['=->', "'a'"], "require('a')", { modules: 'require' })
-
     testTranslate(['=->', "'a'", 'a'], "import a from 'a'")
     testTranslate(['=->', "'a'", 'a'], "const a = require('a')", { modules: 'require' })
-
     testTranslate(['=->', "'a'", [':', 'a']], "import {a} from 'a'")
     testTranslate(['=->', "'a'", [':', 'a']], "const {a} = require('a')", { modules: 'require' })
-
     testTranslate(
         ['=->', "'react'", 'React', [':', 'useState']],
         "import React, {useState} from 'react'"
     )
 })
+test('<-=', () => {
+    testTranslate(['<-=', 'a'], 'export default a')
+    testTranslate(['<-=', 'a'], 'module.exports = a', { modules: 'require' })
+    testTranslate(['<-=', ['->', ['x'], ['+', 'x', '1']]], 'export default (x) => (x + 1)')
+    testTranslate(['<-=', ['->', ['x'], ['+', 'x', '1']]], 'module.exports = (x) => (x + 1)', {
+        modules: 'require'
+    })
+    testTranslate(['<-=', ['=', 'a', '1']], 'export const a = 1')
+    testTranslate(['<-=', ['=', 'a', '1']], 'module.exports.a = 1', { modules: 'require' })
+})
 
+// Error symmetry
 test('<-!', () => {
     testTranslate(
         [
@@ -121,102 +117,76 @@ test('<-!', () => {
     // Todo check await in try/catch/finally
 })
 
-// ------------------------------------------------------------------------------
-
-// -- Arithmetical operators ----------------------------------------------------
-
+// Arithmetics
 test('+', () => {
     testTranslate(['+', '1', '2'], '(1 + 2)')
     testTranslate(['+', '1', '2', '3'], '(1 + 2 + 3)')
     testTranslate(['+', '1', ['+', '2', '3']], '(1 + (2 + 3))')
 })
-
 test('-', () => {
     testTranslate(['-', '1'], '-1')
     testTranslate(['-', '2', '1'], '(2 - 1)')
     testTranslate(['-', '2', '1', '0'], '(2 - 1 - 0)')
 })
-
 test('*', () => {
     testTranslate(['*', '1', '2'], '(1 * 2)')
     testTranslate(['*', '1', '2', '3'], '(1 * 2 * 3)')
 })
-
 test('/', () => {
     testTranslate(['/', '1', '2'], '(1 / 2)')
     testTranslate(['/', '1', '2', '3'], '(1 / 2 / 3)')
 })
-
 test('%', () => {
     testTranslate(['%', '1', '2'], '(1 % 2)')
     testTranslate(['%', '1', '2', '3'], '(1 % 2 % 3)')
 })
 
-// ------------------------------------------------------------------------------
-
-// -- Logical operators ---------------------------------------------------------
-
+// Logic
 test('&', () => {
     testTranslate(['&', 'true', 'false'], '(true && false)')
     testTranslate(['&', 'true', 'false', 'booleanVariable'], '(true && false && booleanVariable)')
 })
-
 test('|', () => {
     testTranslate(['|', 'true', 'false'], '(true || false)')
     testTranslate(['|', 'true', 'false', 'booleanVariable'], '(true || false || booleanVariable)')
 })
-
 test('!', () => {
     testTranslate(['!', 'true'], '!true')
     testTranslate(['!', 'booleanVariable'], '!booleanVariable')
 })
 
-// ------------------------------------------------------------------------------
-
-// -- Comparison operators ------------------------------------------------------
-
+// Comparison
 test('>', () => {
     testTranslate(['>', '1', '2'], '(1 > 2)')
 })
-
 test('>=', () => {
     testTranslate(['>=', '1', '2'], '(1 >= 2)')
 })
-
 test('<', () => {
     testTranslate(['<', '1', '2'], '(1 < 2)')
 })
-
 test('<=', () => {
     testTranslate(['<=', '1', '2'], '(1 <= 2)')
 })
-
 test('==', () => {
     testTranslate(['==', '1', '2'], '(1 === 2)')
 })
-
 test('~=', () => {
     testTranslate(['~=', '1', '2'], '(1 == 2)')
 })
-
 test('!=', () => {
     testTranslate(['!=', '1', '2'], '(1 !== 2)')
 })
-
 test('!~=', () => {
     testTranslate(['!~=', '1', '2'], '(1 != 2)')
 })
 
-// ------------------------------------------------------------------------------
-
-// -- Collections ---------------------------------------------------------------
-
+// Collections
 test('::', () => {
     testTranslate(['::', '1', '2'], '[1, 2]')
     testTranslate(['=', ['::', 'a', 'b'], 'array'], 'const [a, b] = array')
     testTranslate(['::', [':', ['a', '1'], ['b', '2']], ['::', '1', '2']], '[{a: 1, b: 2}, [1, 2]]')
 })
-
 test(':', () => {
     testTranslate([':', ['a', '1']], '{a: 1}')
     testTranslate([':', 'a'], '{a}')
@@ -227,7 +197,6 @@ test(':', () => {
     )
     // TODO add tests for dynamic keys like ["key"]
 })
-
 test('.', () => {
     testTranslate(['.map', 'numbers', ['->', 'x', ['+', 'x', '1']]], 'numbers.map((x) => (x + 1))')
     testTranslate(['.', 'object', 'key'], 'object[key]')
@@ -236,6 +205,7 @@ test('.', () => {
     testTranslate([':', ['.', 'key', 'value']], '{[key]: value}')
 })
 
+// String interpolation
 test('`', () => {
     testTranslate(['`', "'Number'"], '`Number`')
     testTranslate(['`', ["'Number: ${0}'", 'number']], '`Number: ${number}`')
@@ -249,12 +219,3 @@ test('`', () => {
         'styled.div`Number: ${number}`'
     )
 })
-
-test('apply', () => {
-    testTranslate(['apply', '1', '2'], 'apply(1, 2)')
-    testTranslate(['apply', []], 'apply()')
-
-    testTranslate(['=', 'number', ['Math.random', []]], 'const number = Math.random()')
-})
-
-// ------------------------------------------------------------------------------
