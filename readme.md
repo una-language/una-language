@@ -763,6 +763,7 @@ For better understanding you can check out [our React example](example/react) an
 
 What is going to be done soon?
 
+-   Add example of how to use Una for Jest tests
 -   Switch-case operator `??`
 -   Class instanciation (`new` operator)
 -   Regular expressions

@@ -4,7 +4,7 @@
         "url": "https://github.com/sergeyshpadyrev/una/issues"
     },
     "devDependencies": {
-        "jest": "^26.4.2"
+        "jest": "26.4.2"
     },
     "dependencies": {
         "parsimmon": "1.16.0",
