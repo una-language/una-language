@@ -1,0 +1,20 @@
+= numbers :: 1 2 3
+= (:: one two three) numbers
+console.log one
+
+= user : (name 'John') (age 12)
+= (: name) user
+console.log name
+
+= (: (name title)) user
+console.log title
+
+= anotherUser :
+  name 'John'
+  age 12
+  passport :
+    id 1
+    country 'USA'
+
+= (: (passport (: id))) anotherUser
+console.log id

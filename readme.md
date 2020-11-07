@@ -476,7 +476,7 @@ Also `.` is used to setup dynamic key for a field in map. Just like `{[key]:valu
 = key 'name'
 = value 'John'
 = object :
-  . key name
+  . key value
 ```
 
 #### Method calls

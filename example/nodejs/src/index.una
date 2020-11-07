@@ -5,4 +5,7 @@
 =-> './05_logical'
 =-> './06_conditional'
 =-> './07_string_interpolation'
-=-> './08_collections'
+=-> './08_collections_construction'
+=-> './09_collections_deconstruction'
+=-> './10_collections_elements'
+=-> './11_collections_expansion'

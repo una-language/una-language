@@ -1,0 +1,22 @@
+= list :: 1 2 3
+= map : (a 1) (b 2)
+
+console.log (. list 0)
+console.log (. map 'a')
+
+= key 'name'
+= value 'John'
+= object :
+  . key value
+
+console.log object
+
+= numbers :: 1 2 3
+= incrementedNumbers
+  numbers.map (-> x (+ x 1))
+
+= otherIncrementedNumbers
+  .map numbers (-> x (+ x 1))
+
+console.log incrementedNumbers
+console.log otherIncrementedNumbers

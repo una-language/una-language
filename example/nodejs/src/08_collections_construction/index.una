@@ -1,0 +1,41 @@
+= numbers :: 1 2 3
+console.log numbers
+
+= user :
+  name 'John'
+  age 13
+  parents :
+    mother :
+      name 'Alice'
+      age 42
+    father :
+      name 'Bob'
+      age 39
+
+console.log user
+
+
+= users ::
+  : (name 'Alice') (age 32)
+  : (name 'Bob') (age 25)
+
+console.log users
+
+= anotherUser :
+  name 'Chris'
+  posts ::
+    : (title 'Post 1') (likes 30)
+    : (title 'Post 2') (likes 44)
+    : (title 'Post 3') (likes 2)
+console.log anotherUser
+
+= a 1
+= anotherNumbers :: a 2 3
+console.log anotherNumbers
+
+= name 'John'
+= newUser :
+  name
+  age 13
+console.log newUser
+
