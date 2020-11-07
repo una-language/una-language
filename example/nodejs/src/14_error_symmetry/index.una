@@ -1,0 +1,15 @@
+= addOneToNumber -> number
+  ? (isNaN number)
+    <-| "number is not valid"
+  + number 1
+
+= run -> ()
+  = value |->
+    -> error
+      console.log error.message
+      2
+    addOneToNumber "John"
+  value
+
+= result run ()
+console.log result

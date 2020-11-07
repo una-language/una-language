@@ -3,6 +3,6 @@
 
 = run --> ()
   = result <-- (getPromise ())
-  console.log result
-
+  console.log "Async result: " result
+  
 run ()

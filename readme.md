@@ -641,7 +641,7 @@ Right error arrow `|->` is try-catch operator. First parameter is catch function
 Left error arrow `<-|` is throwing error.
 
 ```
-= addOneToNuber -> number
+= addOneToNumber -> number
   ? (isNaN number)
     <-| "number is not valid"
   + number 1
