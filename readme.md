@@ -579,8 +579,8 @@ In following example result immediatly calculates as `3`.
 
 ```
 = result <-
-  + a 1
-  + b 2
+  = a 1
+  = b 2
   + a b
 ```
 
@@ -588,8 +588,8 @@ It's pretty good when you need to calculate something based on conditions:
 
 ```
 <-
-  ? (== value 0) "Zero"
-  ? (== value 1) "One"
+  ?! (== value 0) "Zero"
+  ?! (== value 1) "One"
   ? (< value 10) "Less than ten" "More than ten"
 ```
 
