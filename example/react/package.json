@@ -57,7 +57,7 @@
     "styled-components": "5.2.1",
     "terser-webpack-plugin": "2.3.8",
     "ts-pnp": "1.1.6",
-    "una-language": "0.1.0",
+    "una-language": "0.1.4",
     "url-loader": "2.3.0",
     "webpack": "4.42.0",
     "webpack-dev-server": "3.11.0",

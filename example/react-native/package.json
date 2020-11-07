@@ -28,7 +28,7 @@
     "babel-plugin-una-language": "1.0.0",
     "jest": "25.2.6",
     "react-test-renderer": "16.13.1",
-    "una-language": "0.1.0"
+    "una-language": "0.1.4"
   },
   "jest": {
     "preset": "react-native"
