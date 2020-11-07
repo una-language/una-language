@@ -13,3 +13,4 @@
 =-> './13_async_symmetry'
 =-> './14_error_symmetry'
 =-> './15_module_symmetry'
+=-> './16_chaining_symmetry'

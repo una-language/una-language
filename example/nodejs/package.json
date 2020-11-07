@@ -11,5 +11,8 @@
     "scripts": {
         "build": "babel src -d build --extensions .una",
         "start": "babel-node --extensions .una src"
+    },
+    "dependencies": {
+        "ramda": "0.27.1"
     }
 }
