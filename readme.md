@@ -85,7 +85,7 @@ If you have problems setting it up check out [our React Native example](example/
 
 ## Syntax
 
-Before starting you should understand that Una is being transpiled to JavaScript and most operators in Una work just like in JavaScript. So you have to be familiar with JavaScript to understand how everything work here.
+Before starting you should understand that Una is being transpiled to JavaScript and most operators in Una work just like in JavaScript. So you have to be familiar with JavaScript to understand how everything work here. If something is not clear you can check out [our NodeJS example](example/nodejs)
 
 ### Application
 
