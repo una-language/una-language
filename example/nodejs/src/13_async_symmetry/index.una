@@ -1,0 +1,8 @@
+= getPromise --> ()
+  Promise.resolve 23
+
+= run --> ()
+  = result <-- (getPromise ())
+  console.log result
+
+run ()
