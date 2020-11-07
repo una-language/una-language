@@ -28,6 +28,7 @@ const func = x => {
     return a + b + x
 }`
     )
+    testUna("= func -> () (: (name 'John'))", "const func = () => ({ name: 'John' })")
 })
 
 // Error symmetry

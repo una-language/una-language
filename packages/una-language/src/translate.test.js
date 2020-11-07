@@ -28,7 +28,7 @@ test('?', () => {
     )
     testTranslate(
         ['?', ['>', '2', '1'], ['<-', ['console.log', '"Greater"']]],
-        'if ((2 > 1)) { (() => console.log("Greater"))() }'
+        'if ((2 > 1)) { (() => (console.log("Greater")))() }'
     )
     testTranslate(
         ['?', ['>', '2', '1'], ['<-', ['?!', ['==', 'a', '1'], 'a'], ['console.log', '"Greater"']]],
@@ -45,8 +45,8 @@ test('?!', () => {
 
 // Sync symmetry
 test('->', () => {
-    testTranslate(['->', 'x', ['+', 'x', '1']], '(x) => (x + 1)')
-    testTranslate(['->', ['x', 'y'], ['+', 'x', 'y']], '(x, y) => (x + y)')
+    testTranslate(['->', 'x', ['+', 'x', '1']], '(x) => ((x + 1))')
+    testTranslate(['->', ['x', 'y'], ['+', 'x', 'y']], '(x, y) => ((x + y))')
     testTranslate(
         [
             '->',
@@ -57,7 +57,7 @@ test('->', () => {
         ],
         '(x, y) => { const a = (x * 2); const b = (y * 3); return (a + b) }'
     )
-    testTranslate(['->', 'a', ['->', 'b', ['+', 'a', 'b']]], '(a) => (b) => (a + b)')
+    testTranslate(['->', 'a', ['->', 'b', ['+', 'a', 'b']]], '(a) => ((b) => ((a + b)))')
 })
 test('<-', () => {
     testTranslate(
@@ -68,7 +68,7 @@ test('<-', () => {
 
 // Async symmetry
 test('-->', () => {
-    testTranslate(['-->', 'x', ['+', 'x', '1']], 'async (x) => (x + 1)')
+    testTranslate(['-->', 'x', ['+', 'x', '1']], 'async (x) => ((x + 1))')
 })
 test('<--', () => {
     testTranslate(['=', 'result', ['<--', 'promise']], 'const result = await promise')
@@ -94,8 +94,8 @@ test('=->', () => {
 test('<-=', () => {
     testTranslate(['<-=', 'a'], 'export default a')
     testTranslate(['<-=', 'a'], 'module.exports = a', { modules: 'require' })
-    testTranslate(['<-=', ['->', ['x'], ['+', 'x', '1']]], 'export default (x) => (x + 1)')
-    testTranslate(['<-=', ['->', ['x'], ['+', 'x', '1']]], 'module.exports = (x) => (x + 1)', {
+    testTranslate(['<-=', ['->', ['x'], ['+', 'x', '1']]], 'export default (x) => ((x + 1))')
+    testTranslate(['<-=', ['->', ['x'], ['+', 'x', '1']]], 'module.exports = (x) => ((x + 1))', {
         modules: 'require'
     })
     testTranslate(['<-=', ['=', 'a', '1']], 'export const a = 1')
@@ -198,7 +198,10 @@ test(':', () => {
     )
 })
 test('.', () => {
-    testTranslate(['.map', 'numbers', ['->', 'x', ['+', 'x', '1']]], 'numbers.map((x) => (x + 1))')
+    testTranslate(
+        ['.map', 'numbers', ['->', 'x', ['+', 'x', '1']]],
+        'numbers.map((x) => ((x + 1)))'
+    )
     testTranslate(['.', 'object', 'key'], 'object[key]')
     testTranslate(['.', 'array', '0'], 'array[0]')
     testTranslate([':', ['.', 'key', 'value']], '{[key]: value}')
@@ -211,7 +214,7 @@ test('`', () => {
     testTranslate(['`', ["'Number: ${0}'", 'number']], '`Number: ${number}`')
     testTranslate(['`', ["'A: ${0} - ${1}'", 'a', 'b']], '`A: ${a} - ${b}`')
     testTranslate(['`', ["'B: ${0}'", ['+', '1', '2']]], '`B: ${(1 + 2)}`')
-    testTranslate(['`', ["'C: ${0}'", ['->', 'x', ['+', 'x', '1']]]], '`C: ${(x) => (x + 1)}`')
+    testTranslate(['`', ["'C: ${0}'", ['->', 'x', ['+', 'x', '1']]]], '`C: ${(x) => ((x + 1))}`')
     testTranslate(['`', ["'D: ${0}'", 'd'], ["'E: ${0}'", 'e']], '`D: ${d}\nE: ${e}`')
     testTranslate(['`', ["'F: \\${0} ${0}'", 'f']], '`F: \\${0} ${f}`')
     testTranslate(

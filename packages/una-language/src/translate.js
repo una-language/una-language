@@ -31,7 +31,7 @@ module.exports = config => {
             ? paramsLine.map(expression).join(', ')
             : expression(paramsLine)
         return lines.length === 1
-            ? `(${params}) => ${expression(lines[0])}`
+            ? `(${params}) => (${expression(lines[0])})`
             : `(${params}) => { ${createBody(lines)} }`
     }
 
