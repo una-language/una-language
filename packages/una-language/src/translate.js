@@ -48,11 +48,12 @@ module.exports = config => {
 
         const [value, ...children] = node
 
-        if (typeof value === 'string' && value.startsWith('.') && value.length > 1)
-            return `${expression(children[0])}.${value.substring(1)}(${children
-                .slice(1)
-                .map(expression)
-                .join(', ')})`
+        if (typeof value === 'string' && value.startsWith('.') && value.length > 1) {
+            const field = `${expression(children[0])}.${value.substring(1)}`
+            return children.length > 1
+                ? `${field}(${children.slice(1).map(expression).join(', ')})`
+                : field
+        }
 
         switch (value) {
             case '=':

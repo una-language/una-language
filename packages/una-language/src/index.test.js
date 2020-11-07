@@ -150,6 +150,9 @@ styled.div\`
 test('.', () => {
     testUna('apply ()', 'apply()')
     testUna('= object (: (. key value))', 'const object = { [key]: value }')
+    testUna('= value (. object key)', `const value = object[key]`)
+    testUna('.map numbers (-> x (+ x 1))', 'numbers.map(x => x + 1)')
+    testUna('.key object', 'object.key')
 })
 
 test('...', () => {
@@ -164,6 +167,25 @@ const func = (...props) => console.log(props)
 func(1, 2)
 `
     )
+})
+
+// String interpolation
+test('`', () => {
+    testUna(
+        `
+= line \`
+  'hello \${0}' name      
+`,
+        `const line = \`hello \${name}\``
+    ),
+        testUna(
+            `
+= line \`
+  'hello \${0}'
+    \` ('my friend, \${0}' name)
+    `,
+            'const line = `hello ${`my friend, ${name}`}`'
+        )
 })
 
 // Semicolon

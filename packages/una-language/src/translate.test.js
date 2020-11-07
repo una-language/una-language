@@ -196,14 +196,13 @@ test(':', () => {
         [':', ['a', [':', ['b', '1']]], ['c', '2'], ['d', ['::', '3', '4']]],
         '{a: {b: 1}, c: 2, d: [3, 4]}'
     )
-    // TODO add tests for dynamic keys like ["key"]
 })
 test('.', () => {
     testTranslate(['.map', 'numbers', ['->', 'x', ['+', 'x', '1']]], 'numbers.map((x) => (x + 1))')
     testTranslate(['.', 'object', 'key'], 'object[key]')
     testTranslate(['.', 'array', '0'], 'array[0]')
-
     testTranslate([':', ['.', 'key', 'value']], '{[key]: value}')
+    testTranslate(['.key', 'object'], 'object.key')
 })
 
 // String interpolation
@@ -218,5 +217,9 @@ test('`', () => {
     testTranslate(
         ['`', 'styled.div', ["'Number: ${0}'", 'number']],
         'styled.div`Number: ${number}`'
+    )
+    testTranslate(
+        ['`', ["'hello ${0}'", ['`', ["'my friend, ${0}'", "'John'"]]]],
+        "`hello ${`my friend, ${'John'}`}`"
     )
 })
