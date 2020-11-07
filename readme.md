@@ -375,7 +375,7 @@ There're two basic collection types in Una:
 Here's an example of creating a list of numbers
 
 ```
-= numbers 1 2 3
+= numbers :: 1 2 3
 ```
 
 Here's an example of creating a map of user:
@@ -386,7 +386,7 @@ Here's an example of creating a map of user:
   age 13
   parents :
     mother :
-      name: 'Alice'
+      name 'Alice'
       age 42
     father :
       name 'Bob'

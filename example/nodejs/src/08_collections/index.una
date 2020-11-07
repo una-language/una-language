@@ -1,0 +1,15 @@
+= numbers :: 1 2 3
+console.log numbers
+
+= user :
+  name 'John'
+  age 13
+  parents :
+    mother :
+      name 'Alice'
+      age 42
+    father :
+      name 'Bob'
+      age 39
+
+console.log user
