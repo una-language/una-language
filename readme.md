@@ -687,7 +687,7 @@ If you want to use such functional programming libraries as `rambda` you will fi
 In following example `phone` constant equals `'IPHONE'`:
 
 ```
-=-> 'ramda' (: get ...)
+=-> 'ramda' R
 = electronics ::
   :
     title ' iPhone '
@@ -695,10 +695,11 @@ In following example `phone` constant equals `'IPHONE'`:
 
 = phones |>
   electronics
-  find (propEq 'type' 'phone')
-  prop 'title'
-  toUpper
-  trim
+  R.find
+    R.propEq 'type' 'phone'
+  R.prop 'title'
+  R.toUpper
+  R.trim
 ```
 
 #### Left arrow of chaining symmetry
