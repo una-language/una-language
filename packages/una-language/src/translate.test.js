@@ -200,6 +200,7 @@ test('::', () => {
     testTranslate(['::', '1', '2'], '[1, 2]')
     testTranslate(['=', ['::', 'a', 'b'], 'array'], 'const [a, b] = array')
     testTranslate(['::', [':', ['a', '1'], ['b', '2']], ['::', '1', '2']], '[{a: 1, b: 2}, [1, 2]]')
+    testTranslate(['::'], '[]')
 })
 test(':', () => {
     testTranslate([':', ['a', '1']], '{a: 1}')
@@ -209,6 +210,7 @@ test(':', () => {
         [':', ['a', [':', ['b', '1']]], ['c', '2'], ['d', ['::', '3', '4']]],
         '{a: {b: 1}, c: 2, d: [3, 4]}'
     )
+    testTranslate([':'], '{}')
 })
 test('.', () => {
     testTranslate(

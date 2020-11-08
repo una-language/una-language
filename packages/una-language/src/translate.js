@@ -43,7 +43,16 @@ module.exports = config => {
             .join(` ${changeSign(node[0])} `)})`
 
     const expression = node => {
-        if (!Array.isArray(node)) return node
+        if (!Array.isArray(node)) {
+            switch (node) {
+                case '::':
+                    return '[]'
+                case ':':
+                    return '{}'
+                default:
+                    return node
+            }
+        }
         if (node.length === 1) return expression(node[0])
 
         const [value, ...children] = node
