@@ -69,6 +69,11 @@ test('<--', () => {
         [['=', 'result', ['<--', ['=', 'a', ['<--', 'promise']], ['a']]]],
         'const result = await (async () => { const a = await promise; return a })()'
     )
+
+    testTranslate(
+        ['<--', ['=', 'a', ['<--', ['getAsync', '1']]], ['+', 'a', '1']],
+        'await (async () => { const a = await getAsync(1); return (a + 1) })()'
+    )
 })
 
 // Module symmetry

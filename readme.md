@@ -793,7 +793,8 @@ What is going to be done soon?
 -   Class instanciation (`new` operator)
 -   Regular expressions
 -   Comments
--   Bit operators
+-   Bit operators?
+-   Proper transpiler errors
 -   Create a Visual Studio Code syntax highlighting plugin
 -   Create a website on github.io
 -   Create REPL

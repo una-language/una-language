@@ -8,13 +8,6 @@ test('=', () => {
     testTransform(['=', 'a', '+', '1', '2'], ['=', 'a', ['+', '1', '2']])
 })
 
-// Left async symmetry
-test('<--', () => {
-    testTransform(['=', 'a', ['<--', ['promise']]], ['=', 'a', ['<--', 'promise']])
-    testTransform(['=', 'a', ['<--', 'promise']], ['=', 'a', ['<--', 'promise']])
-    testTransform(['=', 'a', '<--', 'promise'], ['=', 'a', ['<--', 'promise']])
-})
-
 // Left module symmetry
 test('<-=', () => {
     testTransform(['<-=', 'a'], ['<-=', 'a'])
