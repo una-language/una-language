@@ -58,23 +58,10 @@ module.exports = config => {
         switch (value) {
             case '=':
                 return `const ${expression(children[0])} = ${expression(children[1])}`
-
             case '?':
-                if (children.length === 2)
-                    return `if (${expression(children[0])}) { ${expression(children[1])} }`
-
-                return `(${expression(children[0])} ? ${expression(children[1])} : ${expression(
-                    children[2]
-                )})`
-
-            case '?!':
-                const returnBodyLines = children.slice(1)
-                const returnBody =
-                    returnBodyLines.length === 1
-                        ? `return ${expression(returnBodyLines[0])}`
-                        : `{ ${createBody(returnBodyLines)} }`
-                return `if (${expression(children[0])}) ${returnBody}`
-
+                return `(${expression(children[0])} ? ${expression(children[1])} : ${
+                    children.length > 2 ? expression(children[2]) : 'undefined'
+                })`
             case '->':
                 return func(node)
             case '<-':
@@ -128,8 +115,6 @@ module.exports = config => {
                 return `${isAsync ? 'await (async ' : '('}() => { ${tryCatch} })()`
             case '<-|':
                 return `throw new Error(${expression(children[0])})`
-            case '<!':
-                return `return ${expression(children[0])}`
             case '::':
                 return `[${children.map(expression).join(', ')}]`
             case ':':

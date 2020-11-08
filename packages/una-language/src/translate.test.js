@@ -22,24 +22,10 @@ test('?', () => {
         ['?', ['&', 'a', 'b'], ['+', '1', '2'], ['*', '1', '2']],
         '((a && b) ? (1 + 2) : (1 * 2))'
     )
+    testTranslate(['?', ['>', '1', '2'], '"First"'], '((1 > 2) ? "First" : undefined)')
     testTranslate(
-        ['?', ['>', '2', '1'], ['console.log', '"Greater"']],
-        'if ((2 > 1)) { console.log("Greater") }'
-    )
-    testTranslate(
-        ['?', ['>', '2', '1'], ['<-', ['console.log', '"Greater"']]],
-        'if ((2 > 1)) { (() => (console.log("Greater")))() }'
-    )
-    testTranslate(
-        ['?', ['>', '2', '1'], ['<-', ['?!', ['==', 'a', '1'], 'a'], ['console.log', '"Greater"']]],
-        'if ((2 > 1)) { (() => { if ((a === 1)) return a; return console.log("Greater") })() }'
-    )
-})
-test('?!', () => {
-    testTranslate(['?!', ['>', '2', '1'], ['+', '1', '2']], 'if ((2 > 1)) return (1 + 2)')
-    testTranslate(
-        ['?!', ['>', '2', '1'], ['=', 'a', '1'], ['=', 'b', '2'], ['+', 'a', 'b']],
-        'if ((2 > 1)) { const a = 1; const b = 2; return (a + b) }'
+        ['?', ['>', '1', '2'], ['<-', ['console.log', '"Hello"']]],
+        '((1 > 2) ? (() => (console.log("Hello")))() : undefined)'
     )
 })
 

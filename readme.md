@@ -283,19 +283,14 @@ Example:
 
 #### Conditional operators
 
-Una has three conditional operators:
-
--   `?` - ternary condtion
--   `?!` - condition with return
-
-Ternary conditional operator works just like in JavaScript:
+Operator `?` is ternary condition.
 
 ```
 = value
   ? (> 2 1) "Greater" "Less"
 ```
 
-You can use this operator like single `if` or like `if-else` in JavaScript using `<-` operator described below:
+You can use this operator with only 2 parameters, in that case the third one will always be undefined:
 
 ```
 ? (== value 0)
@@ -304,29 +299,6 @@ You can use this operator like single `if` or like `if-else` in JavaScript using
 ? (> value 10)
   <- (console.log "Greater")
   <- (console.log "Less")
-```
-
-Returnable conditional operator `?!` is used in sync/async functions and sync/async computations to return value by some condition. For example, following code in function will return `"One"` if `number` equals `1`:
-
-```
-?! (== number 1) "One"
-```
-
-This operator can have multiline returnable block:
-
-```
-?! (== number 1)
-  = a 1
-  = b 2
-  + a b
-```
-
-#### Return
-
-In Una you don't need to return value explicitly very often. But still return operator `<!` exists.
-
-```
-<! value
 ```
 
 #### String interpolation
