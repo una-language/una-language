@@ -1,13 +1,14 @@
 console.log
   ? (> 2 1) "Greater" "Less"
 
-? (> 2 1)
-  console.log "A"
-  console.log "B"
-
+= value ? (< 2 1)
+  "A"
+console.log value
+  
 = addOneIfNotZero -> number
-  ?! (== number 0) 0
-  + number 1
+  ? (== number 0) 
+    0
+    <- (+ number 1)
 
 console.log
   addOneIfNotZero(0)

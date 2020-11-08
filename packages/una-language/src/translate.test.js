@@ -112,12 +112,7 @@ test('|->', () => {
     )
 })
 test('<-|', () => {
-    testTranslate(['<-|', '"Failed"'], 'throw new Error("Failed")')
-})
-
-// Return
-test('<!', () => {
-    testTranslate(['<!', 'value'], 'return value')
+    testTranslate(['<-|', '"Failed"'], '(() => { throw new Error("Failed") })()')
 })
 
 // Arithmetics

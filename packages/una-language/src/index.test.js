@@ -80,10 +80,14 @@ const value = await (async () => {
 test('<-|', () => {
     testUna(
         `
-<-| 'Failed'
+= func -> ()
+  <-| 'Failed'
 `,
         `
-throw new Error('Failed')
+const func = () =>
+    (() => {
+        throw new Error('Failed')
+    })()
 `
     )
 })

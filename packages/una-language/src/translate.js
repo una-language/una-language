@@ -114,7 +114,7 @@ module.exports = config => {
                 const isAsync = children[0][0] === '<--' || children[1][0] === '-->'
                 return `${isAsync ? 'await (async ' : '('}() => { ${tryCatch} })()`
             case '<-|':
-                return `throw new Error(${expression(children[0])})`
+                return `(() => { throw new Error(${expression(children[0])}) })()`
             case '::':
                 return `[${children.map(expression).join(', ')}]`
             case ':':
