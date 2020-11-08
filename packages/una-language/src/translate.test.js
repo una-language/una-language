@@ -13,6 +13,10 @@ test('apply', () => {
     testTranslate(['apply', '1', '2'], 'apply(1, 2)')
     testTranslate(['apply', []], 'apply()')
     testTranslate(['=', 'number', ['Math.random', []]], 'const number = Math.random()')
+    testTranslate(
+        [['connect', 'mapStateToProps', 'mapMethodsToProps'], 'Component'],
+        'connect(mapStateToProps, mapMethodsToProps)(Component)'
+    )
 })
 
 // Conditions

@@ -186,7 +186,7 @@ module.exports = config => {
                 return `${identifier}\`${interpolatedString}\``
             default:
                 return !!children && children.length > 0
-                    ? `${value}(${children.map(expression).join(', ')})`
+                    ? `${expression(value)}(${children.map(expression).join(', ')})`
                     : node
         }
     }
