@@ -625,14 +625,27 @@ Left async arrow `<--` is await.
 
 #### Right arrow of error symmetry
 
-Right error arrow `|->` is try-catch operator. First parameter is catch function. Other parameters are try lines. It doesn't have `finally` block.
+Right error arrow `|->` is try-catch operator. First parameter is catch function. Other parameters are try lines. Unlike JavaScript `try-catch` operator `|->` in Una always returns some value and it doesn't have `finally` block.
 
 ```
 |->
+  <-
+    = getName null
+    getName ()
   -> error
     console.log error
-  = func null
-  func ()
+    'John'
+```
+
+If you need to run async code in try catch user `<--` instead of `<-` in try or `-->` instead `->` in catch:
+
+```
+|->
+  <--
+    getNameAsync ()
+  --> error
+    console.log error
+    "John"
 ```
 
 #### Left arrow of error symmetry

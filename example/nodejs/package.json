@@ -6,7 +6,7 @@
         "@babel/core": "7.11.6",
         "@babel/node": "7.10.5",
         "babel-plugin-una-language": "1.0.0",
-        "una-language": "0.1.4"
+        "una-language": "0.1.6"
     },
     "scripts": {
         "build": "babel src -d build --extensions .una",

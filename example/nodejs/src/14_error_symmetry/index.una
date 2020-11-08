@@ -3,13 +3,30 @@
     <-| "number is not valid"
   + number 1
 
-= run -> ()
+= syncTry -> ()
   |->
+    <- 
+      addOneToNumber "John"
+      'A'
     -> error
       console.log error.message
-      <! 'B'
-    addOneToNumber "John"
-    'A'
+      'B'
 
-= result run ()
+
+= getNameAsync --> () (Promise.resolve 'John')
+= asyncTry --> ()
+  |->
+    <--
+      getNameAsync ()
+    -> error
+      console.log error.message
+      'Bob'
+
+= result syncTry ()
 console.log result
+
+= runAsyncFunction --> () 
+  = value <-- (asyncTry ())
+  console.log "Async try" value
+
+runAsyncFunction()
