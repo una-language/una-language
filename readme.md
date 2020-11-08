@@ -627,6 +627,15 @@ Left async arrow `<--` is await.
   == user.role 'admin'
 ```
 
+You can have multiple lines of code in this operator:
+
+```
+= value <--
+  = a 1
+  = (: b) <-- (getAsync a)
+  b
+```
+
 #### Right arrow of error symmetry
 
 Right error arrow `|->` is try-catch operator. First parameter is catch function. Other parameters are try lines. Unlike JavaScript `try-catch` operator `|->` in Una always returns some value and it doesn't have `finally` block.
