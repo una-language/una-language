@@ -126,6 +126,10 @@ test('+', () => {
     testUna('+ 1 2', '1 + 2')
 })
 
+test('<-=', () => {
+    testUna(`<-= () a b`, `export { a, b }`)
+})
+
 // React
 test('react', () => {
     testUna(

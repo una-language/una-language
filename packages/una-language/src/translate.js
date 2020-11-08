@@ -109,9 +109,11 @@ module.exports = config => {
             case '<-=':
                 const areChildrenArray = Array.isArray(children[0])
                 const exportType =
-                    areChildrenArray && children[0][0] === '='
+                    Array.isArray(children[0]) && children[0][0] === '='
                         ? 'const'
-                        : areChildrenArray && children[0].length === 0
+                        : areChildrenArray &&
+                          Array.isArray(children[0][0]) &&
+                          children[0][0].length === 0
                         ? 'common'
                         : 'default'
 
@@ -119,13 +121,15 @@ module.exports = config => {
 
                 switch (exportType) {
                     case 'default':
+                        const defaultExportBody = expression(children[0])
                         return isES
-                            ? `export default ${expression(children[0])}`
-                            : `module.exports = ${expression(children[0])}`
+                            ? `export default ${defaultExportBody}`
+                            : `module.exports = ${defaultExportBody}`
                     case 'common':
+                        const exportBody = children[0].slice(1).map(expression).join(', ')
                         return isES
-                            ? `export { ${children.slice(1).map(expression).join(', ')} }`
-                            : `module.exports = { ${children.slice(1).map(expression).join(', ')} }`
+                            ? `export { ${exportBody} }`
+                            : `module.exports = { ${exportBody} }`
                     case 'const':
                         return isES
                             ? `export ${expression(children[0])}`

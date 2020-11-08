@@ -103,8 +103,8 @@ test('<-=', () => {
     testTranslate(['<-=', ['=', 'a', '1']], 'export const a = 1')
     testTranslate(['<-=', ['=', 'a', '1']], 'module.exports.a = 1', { modules: 'require' })
 
-    testTranslate(['<-=', [], 'a', 'b'], 'export { a, b }')
-    testTranslate(['<-=', [], 'a', 'b'], 'module.exports = { a, b }', { modules: 'require' })
+    testTranslate(['<-=', [[], 'a', 'b']], 'export { a, b }')
+    testTranslate(['<-=', [[], 'a', 'b']], 'module.exports = { a, b }', { modules: 'require' })
 })
 
 // Error symmetry
