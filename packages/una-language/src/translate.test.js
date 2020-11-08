@@ -105,8 +105,24 @@ test('<-=', () => {
 // Error symmetry
 test('|->', () => {
     testTranslate(
-        ['|->', ['->', 'error', '2'], ['=', 'func', 'null'], ['func', []]],
-        '(() => { try { const func = null; return func() } catch (error) { return 2 }})()'
+        [
+            '|->',
+            ['<-', ['=', 'func', 'null'], ['func', []]],
+            ['->', 'error', ['console.log', 'error'], '"A"']
+        ],
+        '(() => { try { const func = null; return func() } catch (error) { console.log(error); return "A" } })()'
+    )
+    testTranslate(
+        ['|->', ['<--', ['func', []]], ['->', 'error', ['console.log', 'error'], '"A"']],
+        'await (async () => { try { return func() } catch (error) { console.log(error); return "A" } })()'
+    )
+    testTranslate(
+        [
+            '|->',
+            ['<-', ['func', []]],
+            ['-->', 'error', ['console.log', 'error'], ['someAsyncFunc', []]]
+        ],
+        'await (async () => { try { return func() } catch (error) { console.log(error); return someAsyncFunc() } })()'
     )
 })
 test('<-|', () => {

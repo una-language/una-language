@@ -36,9 +36,12 @@ test('|->', () => {
     testUna(
         `
 = value |->
-  -> error 2
-  = func null
-  func ()
+  <-
+    = func null
+    func ()
+  -> error 
+    console.log error
+    'A'
 `,
         `
 const value = (() => {
@@ -46,9 +49,31 @@ const value = (() => {
         const func = null
         return func()
     } catch (error) {
-        return 2
+        console.log(error)
+        return 'A'
     }
-})() 
+})()
+`
+    )
+
+    testUna(
+        `
+= value |->
+  <--
+    getPromise 20
+  -> error 
+    console.log error
+    10
+`,
+        `
+const value = await (async () => {
+    try {
+        return getPromise(20)
+    } catch (error) {
+        console.log(error)
+        return 10
+    }
+})()
 `
     )
 })

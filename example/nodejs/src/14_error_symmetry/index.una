@@ -4,12 +4,12 @@
   + number 1
 
 = run -> ()
-  = value |->
+  |->
     -> error
       console.log error.message
-      2
+      <! 'B'
     addOneToNumber "John"
-  value
+    'A'
 
 = result run ()
 console.log result

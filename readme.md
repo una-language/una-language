@@ -625,13 +625,12 @@ Left async arrow `<--` is await.
 
 #### Right arrow of error symmetry
 
-Right error arrow `|->` is try-catch operator. First parameter is catch function. Other parameters are try lines. Unlike JavaScript try-catch, `|->` always has returnable value. And there's no finally block
+Right error arrow `|->` is try-catch operator. First parameter is catch function. Other parameters are try lines. It doesn't have `finally` block.
 
 ```
-= value |->
+|->
   -> error
     console.log error
-    2
   = func null
   func ()
 ```

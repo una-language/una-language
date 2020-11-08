@@ -118,9 +118,14 @@ module.exports = config => {
                         throw new Error("Option 'modules' can be only 'import' or 'require'")
                 }
             case '|->':
-                return `(() => { try { ${createBody(children.slice(1))} } catch (${expression(
-                    children[0][1]
-                )}) { ${createBody(children[0].slice(2))} }})()`
+                const tryBody = createBody(children[0].slice(1))
+                const catchBody = createBody(children[1].slice(2))
+                const tryCatch = `try { ${tryBody} } catch (${expression(
+                    children[1][1]
+                )}) { ${catchBody} }`
+
+                const isAsync = children[0][0] === '<--' || children[1][0] === '-->'
+                return `${isAsync ? 'await (async ' : '('}() => { ${tryCatch} })()`
             case '<-|':
                 return `throw new Error(${expression(children[0])})`
             case '<!':
