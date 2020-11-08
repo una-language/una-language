@@ -28,6 +28,13 @@ test('?', () => {
         '((1 > 2) ? (() => (console.log("Hello")))() : undefined)'
     )
 })
+test('?!', () => {
+    testTranslate(['?!', ['>', '2', '1'], ['+', '1', '2']], 'if ((2 > 1)) return (1 + 2)')
+    testTranslate(
+        ['?!', ['>', '2', '1'], ['=', 'a', '1'], ['=', 'b', '2'], ['+', 'a', 'b']],
+        'if ((2 > 1)) { const a = 1; const b = 2; return (a + b) }'
+    )
+})
 
 // Sync symmetry
 test('->', () => {

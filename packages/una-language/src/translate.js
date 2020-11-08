@@ -62,6 +62,13 @@ module.exports = config => {
                 return `(${expression(children[0])} ? ${expression(children[1])} : ${
                     children.length > 2 ? expression(children[2]) : 'undefined'
                 })`
+            case '?!':
+                const returnBodyLines = children.slice(1)
+                const returnBody =
+                    returnBodyLines.length === 1
+                        ? `return ${expression(returnBodyLines[0])}`
+                        : `{ ${createBody(returnBodyLines)} }`
+                return `if (${expression(children[0])}) ${returnBody}`
             case '->':
                 return func(node)
             case '<-':
@@ -131,7 +138,6 @@ module.exports = config => {
                     .join(', ')}}`
             case '.':
                 return `${expression(children[0])}[${expression(children[1])}]`
-
             case '+':
             case '*':
             case '/':
