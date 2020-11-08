@@ -699,10 +699,20 @@ Default module export:
 <-= a
 ```
 
-If you want to export constant:
+Constant export:
 
 ```
 <-= = a 1
+```
+
+Multiple constants export:
+
+```
+<-= ()
+  a
+  b
+  c
+  d
 ```
 
 #### Right arrow of chaining symmetry

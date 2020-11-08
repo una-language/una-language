@@ -107,19 +107,33 @@ module.exports = config => {
                         throw new Error("Option 'modules' can be only 'import' or 'require'")
                 }
             case '<-=':
-                const isConst = Array.isArray(children[0]) && children[0][0] === '='
-                switch (config.modules) {
-                    case 'import':
-                        return `export ${isConst ? '' : 'default '}${expression(children[0])}`
-                    case 'require':
-                        return isConst
-                            ? `module.exports.${expression(children[0][1])} = ${expression(
+                const areChildrenArray = Array.isArray(children[0])
+                const exportType =
+                    areChildrenArray && children[0][0] === '='
+                        ? 'const'
+                        : areChildrenArray && children[0].length === 0
+                        ? 'common'
+                        : 'default'
+
+                const isES = config.modules === 'import'
+
+                switch (exportType) {
+                    case 'default':
+                        return isES
+                            ? `export default ${expression(children[0])}`
+                            : `module.exports = ${expression(children[0])}`
+                    case 'common':
+                        return isES
+                            ? `export { ${children.slice(1).map(expression).join(', ')} }`
+                            : `module.exports = { ${children.slice(1).map(expression).join(', ')} }`
+                    case 'const':
+                        return isES
+                            ? `export ${expression(children[0])}`
+                            : `module.exports.${expression(children[0][1])} = ${expression(
                                   children[0].slice(2)
                               )}`
-                            : `module.exports = ${expression(children[0])}`
-                    default:
-                        throw new Error("Option 'modules' can be only 'import' or 'require'")
                 }
+
             case '|->':
                 const tryBody = createBody(children[0].slice(1))
                 const catchBody = createBody(children[1].slice(2))
