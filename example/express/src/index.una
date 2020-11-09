@@ -9,5 +9,6 @@ application.get '/'
 application.get '/user/:id'
   -> (request response) (response.send (database.getUserById request.params.id))  
 
-application.listen 8080
-  -> () (console.log 'Application is listening on port 8080')
+= port 3000
+application.listen port
+  -> () (console.log 'Application is listening on port:' port)
