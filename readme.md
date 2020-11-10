@@ -613,7 +613,7 @@ Also you can use this operator with conditional operator `?` to make non returna
 Right async arrow `-->` is async function.
 
 ```
-= getUserPosts ---> user
+= getUserPosts --> user
   database.loadPosts user.postIds
 ```
 
