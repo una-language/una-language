@@ -152,7 +152,7 @@ The most used operator in any programming language is assignment `=`. Because of
 This operator takes its second parameter and assigns it to the first one. If there're more parameters, at first it applies the second parameter to the rest of them and then assigns the result to the first one. Sounds complicated but it's simple. It just means that we can write assigning expression with parantheses:
 
 ```
-= z (calclulate x y)
+= z (calculate x y)
 ```
 
 Or the same with indentation:
@@ -165,13 +165,13 @@ Or the same with indentation:
 Or we can write it much simplier without parantheses:
 
 ```
-= z calclulate x y
+= z calculate x y
 ```
 
 Or even like this:
 
 ```
-= z calclulate
+= z calculate
   x
   y
 ```
