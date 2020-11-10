@@ -667,7 +667,7 @@ Left error arrow `<-|` is throwing error.
 
 ```
 = addOneToNumber -> number
-  ? (isNaN number)
+  ?! (isNaN number)
     <-| "number is not valid"
   + number 1
 ```
