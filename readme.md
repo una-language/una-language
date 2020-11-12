@@ -817,6 +817,6 @@ What is going to be done soon?
 -   Add example of how to use Una for Jest tests
 -   Proper transpiler errors
 -   Create a Visual Studio Code syntax highlighting plugin
--   Create a website on github.io
+-   Create a website with documentation and interactive compiler online (use https://docusaurus.io)
 -   Create REPL
 -   Rewrite Una transpiler to Una
