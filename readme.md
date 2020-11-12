@@ -821,3 +821,4 @@ What is going to be done soon?
 -   Create a website with documentation and interactive compiler online (use https://docusaurus.io)
 -   Create REPL
 -   Rewrite Una transpiler to Una
+-   Add changelog

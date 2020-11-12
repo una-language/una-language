@@ -1,0 +1,25 @@
+{
+    "name": "una-language-support",
+    "displayName": "Una Language Support",
+    "description": "Syntax highlighting for Una language",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.51.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "una",
+            "aliases": ["Una", "una"],
+            "extensions": [".una"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "una",
+            "scopeName": "source.una",
+            "path": "./syntaxes/una.tmLanguage.json"
+        }]
+    }
+}
