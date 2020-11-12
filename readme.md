@@ -807,14 +807,15 @@ For better understanding you can check out [our React example](example/react) an
 
 What is going to be done soon?
 
--   Add example of how to use Una for Jest tests
+-   Add `?.` elvis operator
+-   Regular expressions
 -   Switch-case operator `??`
 -   Class instanciation (`new` operator)
--   Regular expressions
+-   `import * as` import as `=-> ()`
 -   Comments
--   Bit operators?
+-   Add example of how to use Una for Jest tests
 -   Proper transpiler errors
 -   Create a Visual Studio Code syntax highlighting plugin
 -   Create a website on github.io
 -   Create REPL
--   Rewrite una transpiler to Una
+-   Rewrite Una transpiler to Una
