@@ -817,7 +817,7 @@ What is going to be done soon?
 -   Default parameters (like `(name = "John")` and `{name = "John"}`)
 -   Add example of how to use Una for Jest tests
 -   Proper transpiler errors
--   Create a Visual Studio Code syntax highlighting plugin (https://code.visualstudio.com/api/get-started/your-first-extension) (https://code.visualstudio.com/api/language-extensions/syntax-highlight-guide)
+-   Create a Visual Studio Code syntax highlighting extension (https://code.visualstudio.com/api/language-extensions/syntax-highlight-guide)
 -   Create a website with documentation and interactive compiler online (use https://docusaurus.io)
 -   Create REPL
 -   Rewrite Una transpiler to Una
