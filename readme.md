@@ -807,11 +807,12 @@ For better understanding you can check out [our React example](example/react) an
 
 What is going to be done soon?
 
--   Add `?.` elvis operator
+-   Elvis operator `?.`
+-   Separate expansion operator `...`
 -   Regular expressions
 -   Switch-case operator `??`
 -   Class instanciation (`new` operator)
--   `import * as` import as `=-> ()`
+-   Import operator`import * as` as `=-> ()`
 -   Comments
 -   Add example of how to use Una for Jest tests
 -   Proper transpiler errors
