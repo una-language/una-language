@@ -803,7 +803,7 @@ ReactDOM.render
 
 For better understanding you can check out [our React example](example/react) and [our React Native example](example/react-native)
 
-## Futher work
+## Next things to do
 
 What is going to be done soon?
 
