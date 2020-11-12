@@ -814,6 +814,7 @@ What is going to be done soon?
 -   Class instanciation (`new` operator)
 -   Import operator`import * as` as `=-> ()`
 -   Comments
+-   Default parameters (like `(name = "John")` and `{name = "John"}`)
 -   Add example of how to use Una for Jest tests
 -   Proper transpiler errors
 -   Create a Visual Studio Code syntax highlighting plugin
