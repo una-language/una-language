@@ -689,7 +689,7 @@ If you pass `modules: 'import'` or pass nothing to babel plugin options it works
 
 ##### Left arrow of module symmetry
 
-Right module arrow `<-=` is export.
+Left module arrow `<-=` is export.
 If you pass `modules: 'require'` to babel plugin options it works as `modules.export =`.
 If you pass `modules: 'import'` or pass nothing to babel plugin options it works as `export`.
 
