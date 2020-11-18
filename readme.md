@@ -426,7 +426,7 @@ When creating maps and lists you can use already declared consts:
 
 #### List and map deconstruction
 
-Just as in JavaScript you can deconstruct maps and lists
+Just like in JavaScript you can deconstruct maps and lists
 
 ```
 = numbers :: 1 2 3
