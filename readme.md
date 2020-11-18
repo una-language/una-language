@@ -283,7 +283,7 @@ Example:
 
 #### Conditional operators
 
-Una has three conditional operators:
+Una has two conditional operators:
 
 -   `?` - ternary condtion
 -   `?!` - condition with return
