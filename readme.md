@@ -121,7 +121,7 @@ I think the underlying idea is pretty obvious but let's look at more complicated
 a (b (c d)) (e (f g))
 ```
 
-It can be writte like this:
+It can be written like this:
 
 ```
 a
