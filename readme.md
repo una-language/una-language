@@ -6,7 +6,7 @@
 
 # Una
 
-Una is a functional programming language that is being transpiled to JavaScript and looks like a bastard son of Lisp, JavaScript and Python.
+Una is a functional programming language that is being transpiled to JavaScript and looks like a child of Lisp, JavaScript and Python.
 
 ## Installation
 
@@ -254,7 +254,7 @@ Example:
 
 #### Logical operators
 
-Una has all basic logical operators that work the same as in JavaScript:
+Una has all basic logical operators. But unlike JS single characters are used for `and` and `or`. 
 
 -   `&` - and
 -   `|` - or
