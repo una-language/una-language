@@ -802,23 +802,3 @@ ReactDOM.render
 ```
 
 For better understanding you can check out [our React example](example/react) and [our React Native example](example/react-native)
-
-## Next things to do
-
-What is going to be done soon?
-
--   Elvis operator `?.`
--   Separate expansion operator `...`
--   Regular expressions
--   Switch-case operator `??`
--   Class instanciation (`new` operator)
--   Import operator`import * as` as `=-> ()`
--   Comments
--   Default parameters (like `(name = "John")` and `{name = "John"}`)
--   Add example of how to use Una for Jest tests
--   Proper transpiler errors
--   Create a Visual Studio Code syntax highlighting extension (https://code.visualstudio.com/api/language-extensions/syntax-highlight-guide)
--   Create a website with documentation and interactive compiler online (use https://docusaurus.io)
--   Create REPL
--   Rewrite Una transpiler to Una
--   Add changelog
