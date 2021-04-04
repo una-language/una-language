@@ -34,11 +34,10 @@ module.exports = config => {
             return children.length > 1 ? `${field}(${children.slice(1).map(expression).join(', ')})` : field
         }
 
-        if (translateRules.hasOwnProperty(value)) return translateRules[value](expression, value, children)
+        const translateRule = translateRules[value]
+        if (translateRule) return translateRule(expression, value, children)
 
         switch (value) {
-            case '=':
-                return `const ${expression(children[0])} = ${expression(children[1])}`
             case '?':
                 return `(${expression(children[0])} ? ${expression(children[1])} : ${
                     children.length > 2 ? expression(children[2]) : 'undefined'
@@ -50,16 +49,7 @@ module.exports = config => {
                         ? `return ${expression(returnBodyLines[0])}`
                         : `{ ${createBody(returnBodyLines)} }`
                 return `if (${expression(children[0])}) ${returnBody}`
-            case '->':
-                return func(node)
-            case '<-':
-                return `(${func(['->', [], ...children])})()`
-            case '-->':
-                return `async ${func(node)}`
-            case '<--':
-                return children.length > 1
-                    ? `await (async ${func(['->', [], ...children])})()`
-                    : `await ${expression(children[0])}`
+
             case '=->':
                 const isSingleImport = children.length < 2
                 switch (config.modules) {
@@ -107,8 +97,7 @@ module.exports = config => {
                 return `${isAsync ? 'await (async ' : '('}() => { ${tryCatch} })()`
             case '<-|':
                 return `(() => { throw new Error(${expression(children[0])}) })()`
-            case '::':
-                return `[${children.map(expression).join(', ')}]`
+
             case ':':
                 return `{${children
                     .map(child =>
