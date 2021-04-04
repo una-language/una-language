@@ -14,7 +14,7 @@ module.exports = config => {
             return children.length > 1 ? `${field}(${children.slice(1).map(translate).join(', ')})` : field
         }
 
-        return !!children && children.length > 0 ? `${translate(value)}(${children.map(translate).join(', ')})` : node
+        return !!children && children.length > 0 ? `${translate(value)}(${children.map(translate).join(', ')})` : value
     }
 
     return translate
