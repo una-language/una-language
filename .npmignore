@@ -1,0 +1,5 @@
+.github/**/*
+**/*.test.js
+.prettierrc
+LICENSE
+README.md
