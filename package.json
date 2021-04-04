@@ -1,7 +1,7 @@
 {
     "author": "Sergey Shpadyrev",
     "bugs": {
-        "url": "https://github.com/sergeyshpadyrev/una/issues"
+        "url": "https://github.com/una-language/una-language/issues"
     },
     "devDependencies": {
         "jest": "26.4.2"
@@ -10,16 +10,16 @@
         "parsimmon": "1.16.0",
         "prettier": "2.1.1"
     },
-    "homepage": "https://github.com/sergeyshpadyrev/una#readme",
+    "homepage": "https://github.com/una-language/una-language#readme",
     "license": "MIT",
     "main": "src/index.js",
     "name": "una-language",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/sergeyshpadyrev/una.git"
+        "url": "git+https://github.com/una-language/una-language.git"
     },
     "scripts": {
         "test": "jest"
     },
-    "version": "0.1.14"
+    "version": "0.1.15"
 }
