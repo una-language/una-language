@@ -63,42 +63,6 @@ module.exports = config => {
                             : `module.exports.${expression(children[0][1])} = ${expression(children[0].slice(2))}`
                 }
 
-            case ':':
-                return `{${children
-                    .map(child =>
-                        typeof child === 'string'
-                            ? expression(child)
-                            : child.length > 1
-                            ? child[0] === '.'
-                                ? `[${expression(child[1])}]: ${expression(child.slice(2))}`
-                                : `${expression(child[0])}: ${expression(child.slice(1))}`
-                            : expression(child[0])
-                    )
-                    .join(', ')}}`
-
-            case '`':
-                const firstChild = Array.isArray(children[0]) ? children[0][0] : children[0]
-                const hasIdentifier =
-                    typeof firstChild === 'string' && !firstChild.startsWith("'") && !firstChild.startsWith('"')
-                const identifier = hasIdentifier ? expression(children[0]) : ''
-                const lines = children.slice(hasIdentifier ? 1 : 0)
-
-                const interpolatedString = lines
-                    .map(line => {
-                        if (typeof line === 'string') return line.substring(1, line.length - 1)
-
-                        const [string, ...substitutions] = line
-                        return substitutions.reduce(
-                            (accumulator, substitution, index) =>
-                                accumulator.replace(
-                                    new RegExp(`(?<!\\\\)\\$\\{${index}\\}`, 'g'),
-                                    `\${${expression(substitution)}}`
-                                ),
-                            string.substring(1, string.length - 1)
-                        )
-                    })
-                    .join('\n')
-                return `${identifier}\`${interpolatedString}\``
             default:
                 return !!children && children.length > 0
                     ? `${expression(value)}(${children.map(expression).join(', ')})`

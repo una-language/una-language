@@ -42,7 +42,6 @@ module.exports = {
     '!=': nary,
     '!~=': nary,
     '-': optionary,
-
     '=': (expression, value, children) => `const ${expression(children[0])} = ${expression(children[1])}`,
     '?': (expression, value, children) =>
         `(${expression(children[0])} ? ${expression(children[1])} : ${
@@ -56,7 +55,6 @@ module.exports = {
                 : `{ ${funcBody(expression, returnBodyLines)} }`
         return `if (${expression(children[0])}) ${returnBody}`
     },
-
     '->': (expression, value, children) => func(expression, children),
     '-->': (expression, value, children) => `async ${func(expression, children)}`,
     '|->': (expression, value, children) => {
@@ -67,14 +65,48 @@ module.exports = {
         const isAsync = children[0][0] === '<--' || children[1][0] === '-->'
         return `${isAsync ? 'await (async ' : '('}() => { ${tryCatch} })()`
     },
-
     '<-': (expression, value, children) => `(${func(expression, [[], ...children])})()`,
     '<--': (expression, value, children) =>
         children.length > 1
             ? `await (async ${func(expression, [[], ...children])})()`
             : `await ${expression(children[0])}`,
     '<-|': (expression, value, children) => `(() => { throw new Error(${expression(children[0])}) })()`,
-
     '::': (expression, value, children) => `[${children.map(expression).join(', ')}]`,
-    '.': (expression, value, children) => `${expression(children[0])}[${expression(children[1])}]`
+    ':': (expression, value, children) =>
+        `{${children
+            .map(child =>
+                typeof child === 'string'
+                    ? expression(child)
+                    : child.length > 1
+                    ? child[0] === '.'
+                        ? `[${expression(child[1])}]: ${expression(child.slice(2))}`
+                        : `${expression(child[0])}: ${expression(child.slice(1))}`
+                    : expression(child[0])
+            )
+            .join(', ')}}`,
+    '.': (expression, value, children) => `${expression(children[0])}[${expression(children[1])}]`,
+    '`': (expression, value, children) => {
+        const firstChild = Array.isArray(children[0]) ? children[0][0] : children[0]
+        const hasIdentifier =
+            typeof firstChild === 'string' && !firstChild.startsWith("'") && !firstChild.startsWith('"')
+        const identifier = hasIdentifier ? expression(children[0]) : ''
+        const lines = children.slice(hasIdentifier ? 1 : 0)
+
+        const interpolatedString = lines
+            .map(line => {
+                if (typeof line === 'string') return line.substring(1, line.length - 1)
+
+                const [string, ...substitutions] = line
+                return substitutions.reduce(
+                    (accumulator, substitution, index) =>
+                        accumulator.replace(
+                            new RegExp(`(?<!\\\\)\\$\\{${index}\\}`, 'g'),
+                            `\${${expression(substitution)}}`
+                        ),
+                    string.substring(1, string.length - 1)
+                )
+            })
+            .join('\n')
+        return `${identifier}\`${interpolatedString}\``
+    }
 }
