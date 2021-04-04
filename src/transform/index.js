@@ -1,4 +1,4 @@
-const transformRules = require('./transform.rules')
+const transformRules = require('./rules')
 
 const transform = raw => {
     if (!Array.isArray(raw)) return raw

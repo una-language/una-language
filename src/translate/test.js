@@ -1,5 +1,5 @@
-const setDefaultConfig = require('./config')
-const translate = require('./translate')
+const setDefaultConfig = require('../config')
+const translate = require('.')
 const testTranslate = (tree, js, config = {}) =>
     expect(translate(setDefaultConfig(config))(tree).trim()).toEqual(js.trim())
 
@@ -22,10 +22,7 @@ test('apply', () => {
 // Conditions
 test('?', () => {
     testTranslate(['?', ['>', '1', '2'], '"First"', '"Second"'], '((1 > 2) ? "First" : "Second")')
-    testTranslate(
-        ['?', ['&', 'a', 'b'], ['+', '1', '2'], ['*', '1', '2']],
-        '((a && b) ? (1 + 2) : (1 * 2))'
-    )
+    testTranslate(['?', ['&', 'a', 'b'], ['+', '1', '2'], ['*', '1', '2']], '((a && b) ? (1 + 2) : (1 * 2))')
     testTranslate(['?', ['>', '1', '2'], '"First"'], '((1 > 2) ? "First" : undefined)')
     testTranslate(
         ['?', ['>', '1', '2'], ['<-', ['console.log', '"Hello"']]],
@@ -45,13 +42,7 @@ test('->', () => {
     testTranslate(['->', 'x', ['+', 'x', '1']], '(x) => ((x + 1))')
     testTranslate(['->', ['x', 'y'], ['+', 'x', 'y']], '(x, y) => ((x + y))')
     testTranslate(
-        [
-            '->',
-            ['x', 'y'],
-            ['=', 'a', ['*', 'x', '2']],
-            ['=', 'b', ['*', 'y', '3']],
-            ['+', 'a', 'b']
-        ],
+        ['->', ['x', 'y'], ['=', 'a', ['*', 'x', '2']], ['=', 'b', ['*', 'y', '3']], ['+', 'a', 'b']],
         '(x, y) => { const a = (x * 2); const b = (y * 3); return (a + b) }'
     )
     testTranslate(['->', 'a', ['->', 'b', ['+', 'a', 'b']]], '(a) => ((b) => ((a + b)))')
@@ -88,10 +79,7 @@ test('=->', () => {
     testTranslate(['=->', "'a'", 'a'], "const a = require('a')", { modules: 'require' })
     testTranslate(['=->', "'a'", [':', 'a']], "import {a} from 'a'")
     testTranslate(['=->', "'a'", [':', 'a']], "const {a} = require('a')", { modules: 'require' })
-    testTranslate(
-        ['=->', "'react'", 'React', [':', 'useState']],
-        "import React, {useState} from 'react'"
-    )
+    testTranslate(['=->', "'react'", 'React', [':', 'useState']], "import React, {useState} from 'react'")
 })
 test('<-=', () => {
     testTranslate(['<-=', 'a'], 'export default a')
@@ -110,11 +98,7 @@ test('<-=', () => {
 // Error symmetry
 test('|->', () => {
     testTranslate(
-        [
-            '|->',
-            ['<-', ['=', 'func', 'null'], ['func', []]],
-            ['->', 'error', ['console.log', 'error'], '"A"']
-        ],
+        ['|->', ['<-', ['=', 'func', 'null'], ['func', []]], ['->', 'error', ['console.log', 'error'], '"A"']],
         '(() => { try { const func = null; return func() } catch (error) { console.log(error); return "A" } })()'
     )
     testTranslate(
@@ -122,11 +106,7 @@ test('|->', () => {
         'await (async () => { try { return func() } catch (error) { console.log(error); return "A" } })()'
     )
     testTranslate(
-        [
-            '|->',
-            ['<-', ['func', []]],
-            ['-->', 'error', ['console.log', 'error'], ['someAsyncFunc', []]]
-        ],
+        ['|->', ['<-', ['func', []]], ['-->', 'error', ['console.log', 'error'], ['someAsyncFunc', []]]],
         'await (async () => { try { return func() } catch (error) { console.log(error); return someAsyncFunc() } })()'
     )
 })
@@ -209,17 +189,11 @@ test(':', () => {
     testTranslate([':', ['a', '1']], '{a: 1}')
     testTranslate([':', 'a'], '{a}')
     testTranslate([':', ['a', [':', ['b', '1']]]], '{a: {b: 1}}')
-    testTranslate(
-        [':', ['a', [':', ['b', '1']]], ['c', '2'], ['d', ['::', '3', '4']]],
-        '{a: {b: 1}, c: 2, d: [3, 4]}'
-    )
+    testTranslate([':', ['a', [':', ['b', '1']]], ['c', '2'], ['d', ['::', '3', '4']]], '{a: {b: 1}, c: 2, d: [3, 4]}')
     testTranslate([':'], '{}')
 })
 test('.', () => {
-    testTranslate(
-        ['.map', 'numbers', ['->', 'x', ['+', 'x', '1']]],
-        'numbers.map((x) => ((x + 1)))'
-    )
+    testTranslate(['.map', 'numbers', ['->', 'x', ['+', 'x', '1']]], 'numbers.map((x) => ((x + 1)))')
     testTranslate(['.', 'object', 'key'], 'object[key]')
     testTranslate(['.', 'array', '0'], 'array[0]')
     testTranslate([':', ['.', 'key', 'value']], '{[key]: value}')
@@ -235,12 +209,6 @@ test('`', () => {
     testTranslate(['`', ["'C: ${0}'", ['->', 'x', ['+', 'x', '1']]]], '`C: ${(x) => ((x + 1))}`')
     testTranslate(['`', ["'D: ${0}'", 'd'], ["'E: ${0}'", 'e']], '`D: ${d}\nE: ${e}`')
     testTranslate(['`', ["'F: \\${0} ${0}'", 'f']], '`F: \\${0} ${f}`')
-    testTranslate(
-        ['`', 'styled.div', ["'Number: ${0}'", 'number']],
-        'styled.div`Number: ${number}`'
-    )
-    testTranslate(
-        ['`', ["'hello ${0}'", ['`', ["'my friend, ${0}'", "'John'"]]]],
-        "`hello ${`my friend, ${'John'}`}`"
-    )
+    testTranslate(['`', 'styled.div', ["'Number: ${0}'", 'number']], 'styled.div`Number: ${number}`')
+    testTranslate(['`', ["'hello ${0}'", ['`', ["'my friend, ${0}'", "'John'"]]]], "`hello ${`my friend, ${'John'}`}`")
 })

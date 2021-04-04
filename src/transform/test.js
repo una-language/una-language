@@ -1,4 +1,4 @@
-const transform = require('./transform')
+const transform = require('.')
 const testTransform = (raw, tree) => expect(transform(raw)).toEqual(tree)
 
 // Assignment

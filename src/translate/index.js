@@ -1,5 +1,5 @@
 module.exports = config => {
-    const translateRules = require('./translate.rules')(config)
+    const translateRules = require('./rules')(config)
     const translate = node => {
         if (!Array.isArray(node))
             return translateRules.hasOwnProperty(node) ? translateRules[node](translate, node, []) : node

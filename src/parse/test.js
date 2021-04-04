@@ -1,4 +1,4 @@
-const parse = require('./parse')
+const parse = require('.')
 const testParse = (text, expressions) => expect(parse(text)).toEqual(expressions)
 
 // Assignment
