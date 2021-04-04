@@ -1,19 +1,6 @@
 const translateRules = require('./translate.rules')
 
 module.exports = config => {
-    const createBody = lines =>
-        lines
-            .map((line, index) => (index === lines.length - 1 ? `return ${expression(line)}` : expression(line)))
-            .join('; ')
-
-    const func = node => {
-        const [paramsLine, ...lines] = node.slice(1)
-        const params = Array.isArray(paramsLine) ? paramsLine.map(expression).join(', ') : expression(paramsLine)
-        return lines.length === 1
-            ? `(${params}) => (${expression(lines[0])})`
-            : `(${params}) => { ${createBody(lines)} }`
-    }
-
     const expression = node => {
         if (!Array.isArray(node)) {
             switch (node) {
@@ -38,18 +25,6 @@ module.exports = config => {
         if (translateRule) return translateRule(expression, value, children)
 
         switch (value) {
-            case '?':
-                return `(${expression(children[0])} ? ${expression(children[1])} : ${
-                    children.length > 2 ? expression(children[2]) : 'undefined'
-                })`
-            case '?!':
-                const returnBodyLines = children.slice(1)
-                const returnBody =
-                    returnBodyLines.length === 1
-                        ? `return ${expression(returnBodyLines[0])}`
-                        : `{ ${createBody(returnBodyLines)} }`
-                return `if (${expression(children[0])}) ${returnBody}`
-
             case '=->':
                 const isSingleImport = children.length < 2
                 switch (config.modules) {
@@ -88,16 +63,6 @@ module.exports = config => {
                             : `module.exports.${expression(children[0][1])} = ${expression(children[0].slice(2))}`
                 }
 
-            case '|->':
-                const tryBody = createBody(children[0].slice(1))
-                const catchBody = createBody(children[1].slice(2))
-                const tryCatch = `try { ${tryBody} } catch (${expression(children[1][1])}) { ${catchBody} }`
-
-                const isAsync = children[0][0] === '<--' || children[1][0] === '-->'
-                return `${isAsync ? 'await (async ' : '('}() => { ${tryCatch} })()`
-            case '<-|':
-                return `(() => { throw new Error(${expression(children[0])}) })()`
-
             case ':':
                 return `{${children
                     .map(child =>
@@ -110,8 +75,7 @@ module.exports = config => {
                             : expression(child[0])
                     )
                     .join(', ')}}`
-            case '.':
-                return `${expression(children[0])}[${expression(children[1])}]`
+
             case '`':
                 const firstChild = Array.isArray(children[0]) ? children[0][0] : children[0]
                 const hasIdentifier =

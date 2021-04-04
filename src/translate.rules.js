@@ -44,14 +44,37 @@ module.exports = {
     '-': optionary,
 
     '=': (expression, value, children) => `const ${expression(children[0])} = ${expression(children[1])}`,
+    '?': (expression, value, children) =>
+        `(${expression(children[0])} ? ${expression(children[1])} : ${
+            children.length > 2 ? expression(children[2]) : 'undefined'
+        })`,
+    '?!': (expression, value, children) => {
+        const returnBodyLines = children.slice(1)
+        const returnBody =
+            returnBodyLines.length === 1
+                ? `return ${expression(returnBodyLines[0])}`
+                : `{ ${funcBody(expression, returnBodyLines)} }`
+        return `if (${expression(children[0])}) ${returnBody}`
+    },
+
     '->': (expression, value, children) => func(expression, children),
     '-->': (expression, value, children) => `async ${func(expression, children)}`,
+    '|->': (expression, value, children) => {
+        const tryBody = funcBody(expression, children[0].slice(1))
+        const catchBody = funcBody(expression, children[1].slice(2))
+        const tryCatch = `try { ${tryBody} } catch (${expression(children[1][1])}) { ${catchBody} }`
+
+        const isAsync = children[0][0] === '<--' || children[1][0] === '-->'
+        return `${isAsync ? 'await (async ' : '('}() => { ${tryCatch} })()`
+    },
 
     '<-': (expression, value, children) => `(${func(expression, [[], ...children])})()`,
     '<--': (expression, value, children) =>
         children.length > 1
             ? `await (async ${func(expression, [[], ...children])})()`
             : `await ${expression(children[0])}`,
+    '<-|': (expression, value, children) => `(() => { throw new Error(${expression(children[0])}) })()`,
 
-    '::': (expression, value, children) => `[${children.map(expression).join(', ')}]`
+    '::': (expression, value, children) => `[${children.map(expression).join(', ')}]`,
+    '.': (expression, value, children) => `${expression(children[0])}[${expression(children[1])}]`
 }
