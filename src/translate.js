@@ -1,16 +1,8 @@
 module.exports = config => {
     const translateRules = require('./translate.rules')(config)
     const translate = node => {
-        if (!Array.isArray(node)) {
-            switch (node) {
-                case '::':
-                    return '[]'
-                case ':':
-                    return '{}'
-                default:
-                    return node
-            }
-        }
+        if (!Array.isArray(node))
+            return translateRules.hasOwnProperty(node) ? translateRules[node](translate, node, []) : node
         if (node.length === 1) return translate(node[0])
 
         const [value, ...children] = node
