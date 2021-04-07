@@ -1,5 +1,7 @@
+const rulesCreator =  require('./translate.rules')
+
 module.exports = config => {
-    const translateRules = require('./rules')(config)
+    const translateRules = rulesCreator(config)
     const translate = node => {
         if (!Array.isArray(node))
             return translateRules.hasOwnProperty(node) ? translateRules[node](translate, node, []) : node
@@ -17,5 +19,5 @@ module.exports = config => {
         return !!children && children.length > 0 ? `${translate(value)}(${children.map(translate).join(', ')})` : value
     }
 
-    return translate
+    return expressions => expressions.map(translate)
 }

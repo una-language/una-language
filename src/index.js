@@ -1,14 +1,14 @@
-const parse = require('./parse')
-const prettier = require('prettier')
+const join = require('./phases/join')
+const parse = require('././phases/parse')
+const prettify = require('./phases/prettify')
+const transform = require('./phases/transform')
+const translate = require('./phases/translate')
 const setDefaultConfig = require('./config')
 
-module.exports = (text, config = {}) => {
-    config = setDefaultConfig(config)
+const phases = [parse, transform, translate, join, prettify]
 
-    const translate = require('./translate')(config)
-    const transform = require('./transform')
-
-    const expressions = parse(text)
-    const js = expressions.map(transform).map(translate).join(';\n')
-    return prettier.format(js, config.prettierOptions)
+module.exports = (code, options = {}) => {
+    const config = setDefaultConfig(options)
+    const pipeline = phases.map(phase => phase(config))
+    return pipeline.reduce((data, phase) => phase(data), code)
 }

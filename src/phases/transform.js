@@ -1,4 +1,4 @@
-const transformRules = require('./rules')
+const transformRules = require('./transform.rules')
 
 const transform = raw => {
     if (!Array.isArray(raw)) return raw
@@ -9,4 +9,4 @@ const transform = raw => {
     return transformRules.hasOwnProperty(value) ? transformRules[value](transform, value, children) : raw.map(transform)
 }
 
-module.exports = transform
+module.exports = config => expressions => expressions.map(transform)

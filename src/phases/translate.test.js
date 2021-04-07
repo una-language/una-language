@@ -1,7 +1,7 @@
 const setDefaultConfig = require('../config')
-const translate = require('.')
+const translate = require('./translate')
 const testTranslate = (tree, js, config = {}) =>
-    expect(translate(setDefaultConfig(config))(tree).trim()).toEqual(js.trim())
+    expect(translate(setDefaultConfig(config))([tree])[0].trim()).toEqual(js.trim())
 
 // Assignment
 test('=', () => {

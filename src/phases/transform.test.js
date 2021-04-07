@@ -1,5 +1,6 @@
-const transform = require('.')
-const testTransform = (raw, tree) => expect(transform(raw)).toEqual(tree)
+const setDefaultConfig = require('../config')
+const transform = require('./transform')(setDefaultConfig({}))
+const testTransform = (raw, tree) => expect(transform([raw])).toEqual([tree])
 
 // Assignment
 test('=', () => {

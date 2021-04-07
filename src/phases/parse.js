@@ -48,7 +48,7 @@ const language = parser.createLanguage({
     file: rules => rules.expression.trim(parser.optWhitespace).many()
 })
 
-module.exports = text => {
+const parse = text => {
     if (!text.trim()) return []
 
     const lines = text.split('\n').filter(line => line.trim())
@@ -56,3 +56,5 @@ module.exports = text => {
     const code = convertTabs(indentedLines)
     return language.file.tryParse(code)
 }
+
+module.exports = config => parse
