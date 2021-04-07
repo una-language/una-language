@@ -3,12 +3,12 @@
     "bugs": {
         "url": "https://github.com/una-language/una-language/issues"
     },
-    "devDependencies": {
-        "jest": "26.4.2"
-    },
     "dependencies": {
         "parsimmon": "1.16.0",
         "prettier": "2.1.1"
+    },
+    "devDependencies": {
+        "jest": "26.4.2"
     },
     "homepage": "https://github.com/una-language/una-language#readme",
     "license": "MIT",
