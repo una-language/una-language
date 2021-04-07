@@ -4,7 +4,14 @@ const operatorMapping = {
     '!=': '!==',
     '!~=': '!=',
     '&': '&&',
-    '|': '||'
+    '|': '||',
+    '_&': '&',
+    '_|': '|',
+    '_!': '~',
+    '_^': '^',
+    '_>>': '>>',
+    '_>>>': '>>>',
+    '_<<': '<<'
 }
 
 const getOperator = value => operatorMapping[value] || value
@@ -26,6 +33,7 @@ module.exports = config => ({
     '!': unary,
     '!!': unary,
     '+': nary,
+    '-': optionary,
     '*': nary,
     '/': nary,
     '**': nary,
@@ -40,7 +48,13 @@ module.exports = config => ({
     '~=': nary,
     '!=': nary,
     '!~=': nary,
-    '-': optionary,
+    '_&': nary,
+    '_|': nary,
+    '_!': unary,
+    '_^': nary,
+    '_>>': nary,
+    '_>>>': nary,
+    '_<<': nary,
     '=': (translate, value, children) => `const ${translate(children[0])} = ${translate(children[1])}`,
     '?': (translate, value, children) =>
         `(${translate(children[0])} ? ${translate(children[1])} : ${
