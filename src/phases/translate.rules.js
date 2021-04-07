@@ -28,6 +28,7 @@ module.exports = config => ({
     '+': nary,
     '*': nary,
     '/': nary,
+    '**': nary,
     '%': nary,
     '&': nary,
     '|': nary,
