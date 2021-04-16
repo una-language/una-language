@@ -15,8 +15,8 @@ const optionary = (translate, value, children) => (children.length > 1 ? nary : 
 const funcBody = (translate, lines) =>
     lines.map((line, index) => (index === lines.length - 1 ? `return ${translate(line)}` : translate(line))).join('; ')
 const func = (translate, children) => {
-    const [paramsLine, ...lines] = children
-    const params = Array.isArray(paramsLine) ? paramsLine.map(translate).join(', ') : translate(paramsLine)
+    const [rawParams, ...lines] = children
+    const params = rawParams.map(translate).join(', ')
     return lines.length === 1
         ? `(${params}) => (${translate(lines[0])})`
         : `(${params}) => { ${funcBody(translate, lines)} }`

@@ -11,7 +11,7 @@ const pipeline = (children, orderFirst) => {
 }
 
 const func = (transform, value, children) => {
-    const parameters = Array.isArray(children[0]) ? children[0].map(transform) : children[0]
+    const parameters = Array.isArray(children[0]) ? children[0].map(transform) : [transform(children[0])]
     return [value, parameters, ...children.slice(1).map(transform)]
 }
 

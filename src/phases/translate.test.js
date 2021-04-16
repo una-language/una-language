@@ -39,13 +39,13 @@ test('?!', () => {
 
 // Sync symmetry
 test('->', () => {
-    testTranslate(['->', 'x', ['+', 'x', '1']], '(x) => ((x + 1))')
+    testTranslate(['->', ['x'], ['+', 'x', '1']], '(x) => ((x + 1))')
     testTranslate(['->', ['x', 'y'], ['+', 'x', 'y']], '(x, y) => ((x + y))')
     testTranslate(
         ['->', ['x', 'y'], ['=', 'a', ['*', 'x', '2']], ['=', 'b', ['*', 'y', '3']], ['+', 'a', 'b']],
         '(x, y) => { const a = (x * 2); const b = (y * 3); return (a + b) }'
     )
-    testTranslate(['->', 'a', ['->', 'b', ['+', 'a', 'b']]], '(a) => ((b) => ((a + b)))')
+    testTranslate(['->', ['a'], ['->', ['b'], ['+', 'a', 'b']]], '(a) => ((b) => ((a + b)))')
 })
 test('<-', () => {
     testTranslate(
@@ -56,7 +56,7 @@ test('<-', () => {
 
 // Async symmetry
 test('-->', () => {
-    testTranslate(['-->', 'x', ['+', 'x', '1']], 'async (x) => ((x + 1))')
+    testTranslate(['-->', ['x'], ['+', 'x', '1']], 'async (x) => ((x + 1))')
 })
 test('<--', () => {
     testTranslate(['=', 'result', ['<--', 'promise']], 'const result = await promise')
@@ -98,15 +98,15 @@ test('<-=', () => {
 // Error symmetry
 test('|->', () => {
     testTranslate(
-        ['|->', ['<-', ['=', 'func', 'null'], ['func', []]], ['->', 'error', ['console.log', 'error'], '"A"']],
+        ['|->', ['<-', ['=', 'func', 'null'], ['func', []]], ['->', ['error'], ['console.log', 'error'], '"A"']],
         '(() => { try { const func = null; return func() } catch (error) { console.log(error); return "A" } })()'
     )
     testTranslate(
-        ['|->', ['<--', ['func', []]], ['->', 'error', ['console.log', 'error'], '"A"']],
+        ['|->', ['<--', ['func', []]], ['->', ['error'], ['console.log', 'error'], '"A"']],
         'await (async () => { try { return func() } catch (error) { console.log(error); return "A" } })()'
     )
     testTranslate(
-        ['|->', ['<-', ['func', []]], ['-->', 'error', ['console.log', 'error'], ['someAsyncFunc', []]]],
+        ['|->', ['<-', ['func', []]], ['-->', ['error'], ['console.log', 'error'], ['someAsyncFunc', []]]],
         'await (async () => { try { return func() } catch (error) { console.log(error); return someAsyncFunc() } })()'
     )
 })
@@ -193,7 +193,7 @@ test(':', () => {
     testTranslate([':'], '{}')
 })
 test('.', () => {
-    testTranslate(['.map', 'numbers', ['->', 'x', ['+', 'x', '1']]], 'numbers.map((x) => ((x + 1)))')
+    testTranslate(['.map', 'numbers', ['->', ['x'], ['+', 'x', '1']]], 'numbers.map((x) => ((x + 1)))')
     testTranslate(['.', 'object', 'key'], 'object[key]')
     testTranslate(['.', 'array', '0'], 'array[0]')
     testTranslate([':', ['.', 'key', 'value']], '{[key]: value}')
@@ -206,7 +206,7 @@ test('`', () => {
     testTranslate(['`', ["'Number: ${0}'", 'number']], '`Number: ${number}`')
     testTranslate(['`', ["'A: ${0} - ${1}'", 'a', 'b']], '`A: ${a} - ${b}`')
     testTranslate(['`', ["'B: ${0}'", ['+', '1', '2']]], '`B: ${(1 + 2)}`')
-    testTranslate(['`', ["'C: ${0}'", ['->', 'x', ['+', 'x', '1']]]], '`C: ${(x) => ((x + 1))}`')
+    testTranslate(['`', ["'C: ${0}'", ['->', ['x'], ['+', 'x', '1']]]], '`C: ${(x) => ((x + 1))}`')
     testTranslate(['`', ["'D: ${0}'", 'd'], ["'E: ${0}'", 'e']], '`D: ${d}\nE: ${e}`')
     testTranslate(['`', ["'F: \\${0} ${0}'", 'f']], '`F: \\${0} ${f}`')
     testTranslate(['`', 'styled.div', ["'Number: ${0}'", 'number']], 'styled.div`Number: ${number}`')
