@@ -154,6 +154,7 @@ test('|', () => {
 test('!', () => {
     testTranslate(['!', 'true'], '!true')
     testTranslate(['!', 'booleanVariable'], '!booleanVariable')
+    testTranslate(['!', ['>', 'x', '1']], '!(x > 1)')
 })
 
 // Comparison
@@ -249,4 +250,10 @@ test('`', () => {
     testTranslate(['`', ["'F: \\${0} ${0}'", 'f']], '`F: \\${0} ${f}`')
     testTranslate(['`', 'styled.div', ["'Number: ${0}'", 'number']], 'styled.div`Number: ${number}`')
     testTranslate(['`', ["'hello ${0}'", ['`', ["'my friend, ${0}'", "'John'"]]]], "`hello ${`my friend, ${'John'}`}`")
+})
+
+test('typeof', () => {
+    testTranslate(['typeof', 'true'], 'typeof true')
+    testTranslate(['typeof', ['+', '1', '2']], 'typeof (1 + 2)')
+    testTranslate(['typeof', ["'Hello'"]], "typeof 'Hello'")
 })

@@ -237,3 +237,13 @@ console.log
 2 > 1 ? console.log('A') : console.log('B')`
     )
 })
+
+// JavaScript operators
+test(';', () => {
+    testUna(
+        `
+console.log (typeof 'Hello')
+`,
+        `console.log(typeof 'Hello')`
+    )
+})

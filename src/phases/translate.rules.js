@@ -160,5 +160,6 @@ module.exports = config => ({
             })
             .join('\n')
         return `${identifier}\`${interpolatedString}\``
-    }
+    },
+    typeof: (translate, value, children) => `typeof ${translate(children[0])}`
 })
