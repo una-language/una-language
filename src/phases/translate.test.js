@@ -37,6 +37,11 @@ test('?!', () => {
     )
 })
 
+test('??', () => {
+    testTranslate(['??', 'null', '2'], '(null ?? 2)')
+    testTranslate(['??', 'null', 'false', '32'], '(null ?? false ?? 32)')
+})
+
 // Sync symmetry
 test('->', () => {
     testTranslate(['->', ['x'], ['+', 'x', '1']], '(x) => ((x + 1))')

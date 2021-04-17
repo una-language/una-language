@@ -68,6 +68,7 @@ module.exports = config => ({
                 : `{ ${funcBody(translate, returnBodyLines)} }`
         return `if (${translate(children[0])}) ${returnBody}`
     },
+    '??': nary,
     '->': (translate, value, children) => func(translate, children),
     '-->': (translate, value, children) => `async ${func(translate, children)}`,
     '|->': (translate, value, children) => {
