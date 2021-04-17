@@ -161,5 +161,7 @@ module.exports = config => ({
             .join('\n')
         return `${identifier}\`${interpolatedString}\``
     },
+    new: (translate, value, children) =>
+        `(new ${translate(children[0])}(${children.slice(1).map(translate).join(', ')}))`,
     typeof: (translate, value, children) => `typeof ${translate(children[0])}`
 })

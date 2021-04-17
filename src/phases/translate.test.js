@@ -252,6 +252,13 @@ test('`', () => {
     testTranslate(['`', ["'hello ${0}'", ['`', ["'my friend, ${0}'", "'John'"]]]], "`hello ${`my friend, ${'John'}`}`")
 })
 
+test('new', () => {
+    testTranslate(['new', 'Date'], '(new Date())')
+    testTranslate(['new', 'Date', []], '(new Date())')
+    testTranslate(['new', 'Cat', ['1']], '(new Cat(1))')
+    testTranslate(['new', 'Promise', ['->', ['resolve'], ['resolve', '3']]], '(new Promise((resolve) => (resolve(3))))')
+})
+
 test('typeof', () => {
     testTranslate(['typeof', 'true'], 'typeof true')
     testTranslate(['typeof', ['+', '1', '2']], 'typeof (1 + 2)')

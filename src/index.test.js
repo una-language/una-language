@@ -239,7 +239,16 @@ console.log
 })
 
 // JavaScript operators
-test(';', () => {
+test('new', () => {
+    testUna(
+        `
+console.log (new Date ())
+`,
+        `console.log(new Date())`
+    )
+})
+
+test('typeof', () => {
     testUna(
         `
 console.log (typeof 'Hello')
