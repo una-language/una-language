@@ -19,6 +19,11 @@ The functional programming language.
 
 ## Showcase
 
+### Hello World
+```
+console.log 'Hello, World!'
+```
+
 ### Fibonacci sequence
 This program prints the 10th number of Fibonacci sequence:
 ```
