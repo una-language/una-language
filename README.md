@@ -25,3 +25,23 @@ This program prints the 10th number of Fibonacci sequence:
 
 console.log (fibonacci 10)
 ```
+Result should be: `55`
+
+### Adult users average age
+This programs prints average age of adult users:
+```
+= users ::
+  : (name 'Alice') (age 12)
+  : (name 'Bob') (age 41)
+  : (name 'Chris') (age 32)
+  : (name 'Diana') (age 56)
+  : (name 'Ethan') (age 15)
+
+= adultUsers users.filter (-> user (> user.age 18))
+= averageAdultAge /
+  adultUsers.reduce (-> (acc user) (+ acc user.age)) 0
+  adultUsers.length
+
+console.log averageAdultAge
+```
+Result should be: `43`
