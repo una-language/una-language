@@ -8,4 +8,51 @@
 
 The functional programming language.
 
-[Documentation](https://una-language.com/docs/)
+## Documentation
+[Documentation](https://una-language.com/docs/) <br/>
+
+## Examples
+[NodeJS](https://github.com/una-language/examples/tree/main/nodejs) <br/>
+[Express](https://github.com/una-language/examples/tree/main/express) <br/>
+[React](https://github.com/una-language/examples/tree/main/react) <br/>
+[React Native](https://github.com/una-language/examples/tree/main/react-native) <br/>
+
+## Showcase
+
+### Hello World
+```
+console.log 'Hello, World!'
+```
+
+### Fibonacci sequence
+This program prints the 10th number of Fibonacci sequence:
+```
+= fibonacci -> index
+  ? (> index 1)
+    +
+      fibonacci (- index 1) 
+      fibonacci (- index 2)
+    index
+
+console.log (fibonacci 10)
+```
+Result should be: `55`
+
+### Adult users average age
+This programs prints average age of adult users:
+```
+= users ::
+  : (name 'Alice') (age 12)
+  : (name 'Bob') (age 41)
+  : (name 'Chris') (age 32)
+  : (name 'Diana') (age 56)
+  : (name 'Ethan') (age 15)
+
+= adultUsers users.filter (-> user (> user.age 18))
+= averageAdultAge /
+  adultUsers.reduce (-> (acc user) (+ acc user.age)) 0
+  adultUsers.length
+
+console.log averageAdultAge
+```
+Result should be: `43`
