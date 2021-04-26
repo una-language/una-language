@@ -1,11 +1,10 @@
 const join = require('./phases/join')
 const parse = require('././phases/parse')
-const prettify = require('./phases/prettify')
 const setDefaultConfig = require('./config')
 const transform = require('./phases/transform')
 const translate = require('./phases/translate')
 
-const phases = [parse, transform, translate, join, prettify]
+const phases = [parse, transform, translate, join]
 
 module.exports = (code, options = {}) => {
     const config = setDefaultConfig(options)

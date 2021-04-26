@@ -4,8 +4,7 @@
         "url": "https://github.com/una-language/una-language/issues"
     },
     "dependencies": {
-        "parsimmon": "1.16.0",
-        "prettier": "2.1.1"
+        "parsimmon": "1.16.0"
     },
     "devDependencies": {
         "jest": "26.4.2"
@@ -21,5 +20,5 @@
     "scripts": {
         "test": "jest"
     },
-    "version": "0.2.4"
+    "version": "0.2.5"
 }
