@@ -10,3 +10,18 @@ The functional programming language.
 
 [Documentation](https://una-language.com/docs/) <br/>
 [Examples](https://github.com/una-language/examples)
+
+## Showcase
+
+### Fibonacci sequence
+This program prints the 10th number of fibonacci sequence:
+```
+= fibonacci -> index
+  ? (> index 1)
+    +
+      fibonacci (- index 1) 
+      fibonacci (- index 2)
+    index
+
+console.log (fibonacci 10)
+```
