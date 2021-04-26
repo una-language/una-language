@@ -8,5 +8,5 @@
 
 The functional programming language.
 
-[Documentation](https://una-language.com/docs/)
+[Documentation](https://una-language.com/docs/) <br/>
 [Examples](https://github.com/una-language/examples)
