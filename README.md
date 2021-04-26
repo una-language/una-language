@@ -14,7 +14,7 @@ The functional programming language.
 ## Showcase
 
 ### Fibonacci sequence
-This program prints the 10th number of fibonacci sequence:
+This program prints the 10th number of Fibonacci sequence:
 ```
 = fibonacci -> index
   ? (> index 1)
