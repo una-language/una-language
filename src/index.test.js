@@ -167,6 +167,17 @@ const func = (...props) => (console.log(props));
 func(1, 2)
 `
     )
+
+    testUna(
+        `
+= object : (... a)
+= object2 : (... (: (b 1)))
+        `,
+        `
+const object = {...a};
+const object2 = {...{b: 1}}
+    `
+    )
 })
 
 // String interpolation

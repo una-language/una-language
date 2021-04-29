@@ -133,11 +133,14 @@ module.exports = config => ({
                     : child.length > 1
                     ? child[0] === '.'
                         ? `[${translate(child[1])}]: ${translate(child.slice(2))}`
+                        : child[0] === '...'
+                        ? translate(children)
                         : `${translate(child[0])}: ${translate(child.slice(1))}`
                     : translate(child[0])
             )
             .join(', ')}}`,
     '.': (translate, value, children) => `${translate(children[0])}[${translate(children[1])}]`,
+    '...': (translate, value, children) => `...${translate(children[0])}`,
     '`': (translate, value, children) => {
         const firstChild = Array.isArray(children[0]) ? children[0][0] : children[0]
         const hasIdentifier =

@@ -243,6 +243,12 @@ test('.', () => {
     testTranslate([':', ['.', 'key', 'value']], '{[key]: value}')
     testTranslate(['.key', 'object'], 'object.key')
 })
+test('.', () => {
+    testTranslate(['...object'], '...object')
+    testTranslate(['...', 'object'], '...object')
+    testTranslate(['...', [':', ['a', '1']]], '...{a: 1}')
+    testTranslate([':', ['...', 'a']], '{...a}')
+})
 
 // String interpolation
 test('`', () => {
