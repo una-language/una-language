@@ -1,3 +1,3 @@
 module.exports = config => ({
-    modules: config.modules || 'import', // 'import' || 'require'
+  modules: config.modules || 'import' // 'import' || 'require'
 })

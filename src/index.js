@@ -7,7 +7,7 @@ const translate = require('./phases/translate')
 const phases = [parse, transform, translate, join]
 
 module.exports = (code, options = {}) => {
-    const config = setDefaultConfig(options)
-    const pipeline = phases.map(phase => phase(config))
-    return pipeline.reduce((data, phase) => phase(data), code)
+  const config = setDefaultConfig(options)
+  const pipeline = phases.map(phase => phase(config))
+  return pipeline.reduce((data, phase) => phase(data), code)
 }

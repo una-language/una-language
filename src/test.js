@@ -2,26 +2,26 @@ const una = require('./index')
 const testUna = (text, result) => expect(eval(una(text)).toString().trim()).toEqual(result.trim())
 
 test('=', () => {
-    testUna(
-        `
+  testUna(
+    `
 = a 1
 a    
 `,
-        '1'
-    )
+    '1'
+  )
 })
 
 test('+', () => {
-    testUna('+ 2 3', '5')
+  testUna('+ 2 3', '5')
 })
 
 test('->', () => {
-    testUna(
-        `
+  testUna(
+    `
 = func -> x
   + x 1 
 func 2
     `,
-        '3'
-    )
+    '3'
+  )
 })
