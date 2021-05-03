@@ -243,7 +243,13 @@ test('.', () => {
   testTranslate([':', ['.', 'key', 'value']], '{[key]: value}')
   testTranslate(['.key', 'object'], 'object.key')
 })
-test('.', () => {
+test('?.', () => {
+  testTranslate(['?.', 'a', 'b'], 'a?.[b]')
+  testTranslate(['?.', 'a', "'b'"], "a?.['b']")
+  testTranslate(['a?.b?.c'], 'a?.b?.c')
+  testTranslate(['?.b', 'a', 'c'], 'a?.b(c)')
+})
+test('...', () => {
   testTranslate(['...object'], '...object')
   testTranslate(['...', 'object'], '...object')
   testTranslate(['...', [':', ['a', '1']]], '...{a: 1}')

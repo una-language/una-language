@@ -138,6 +138,7 @@ module.exports = config => ({
       )
       .join(', ')}}`,
   '.': (translate, value, children) => `${translate(children[0])}[${translate(children[1])}]`,
+  '?.': (translate, value, children) => `${translate(children[0])}?.[${translate(children[1])}]`,
   '...': (translate, value, children) => `...${translate(children[0])}`,
   '`': (translate, value, children) => {
     const firstChild = Array.isArray(children[0]) ? children[0][0] : children[0]

@@ -11,8 +11,11 @@ module.exports = config => {
     const translateRule = translateRules[value]
     if (translateRule) return translateRule(translate, value, children)
 
-    if (typeof value === 'string' && value.startsWith('.') && value.length > 1) {
-      const field = `${translate(children[0])}.${value.substring(1)}`
+    if (
+      typeof value === 'string' &&
+      ['.', '?.'].some(point => value.startsWith(point) && value.length > point.length)
+    ) {
+      const field = `${translate(children[0])}${value}`
       return children.length > 1 ? `${field}(${children.slice(1).map(translate).join(', ')})` : field
     }
 

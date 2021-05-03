@@ -155,6 +155,13 @@ test('.', () => {
   testUna('.key object', 'object.key')
 })
 
+test('?.', () => {
+  testUna('a?.b?.c', 'a?.b?.c')
+  testUna('?. a b', 'a?.[b]')
+  testUna("?. a 'b'", "a?.['b']")
+  testUna('?.b a c', 'a?.b(c)')
+})
+
 test('...', () => {
   testUna(
     `
