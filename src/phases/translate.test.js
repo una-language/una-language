@@ -248,6 +248,7 @@ test('?.', () => {
   testTranslate(['?.', 'a', "'b'"], "a?.['b']")
   testTranslate(['a?.b?.c'], 'a?.b?.c')
   testTranslate(['?.b', 'a', 'c'], 'a?.b(c)')
+  testTranslate(['?.b', 'a'], 'a?.b')
 })
 test('...', () => {
   testTranslate(['...object'], '...object')
