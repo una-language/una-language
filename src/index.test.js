@@ -240,3 +240,14 @@ console.log (typeof 'Hello')
     `console.log(typeof 'Hello')`
   )
 })
+
+test('instanceof', () => {
+  testUna(
+    `
+= func -> x (+ x 1)
+console.log (instanceof func Function)
+`,
+    `const func = (x) => ((x + 1));
+console.log(func instanceof Function)`
+  )
+})

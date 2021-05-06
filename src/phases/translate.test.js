@@ -282,3 +282,7 @@ test('typeof', () => {
   testTranslate(['typeof', ['+', '1', '2']], 'typeof (1 + 2)')
   testTranslate(['typeof', ["'Hello'"]], "typeof 'Hello'")
 })
+
+test('typeof', () => {
+  testTranslate(['instanceof', 'func', 'Function'], 'func instanceof Function')
+})
