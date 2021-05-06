@@ -163,5 +163,5 @@ module.exports = config => ({
   new: (translate, value, children) =>
     `(new ${translate(children[0])}(${children.slice(1).map(translate).join(', ')}))`,
   typeof: (translate, value, children) => `typeof ${translate(children[0])}`,
-  'instanceof': (translate, value, children) => `${translate(children[0])} instanceof ${translate(children[1])}`
+  instanceof: (translate, value, children) => `${translate(children[0])} instanceof ${translate(children[1])}`
 })

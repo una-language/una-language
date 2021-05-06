@@ -9,10 +9,13 @@
 The functional programming language.
 
 ## Documentation
+
 [Documentation](https://una-language.com/docs/) <br/>
 
 ## Examples
+
 [NodeJS](https://github.com/una-language/example-node) <br/>
+[Jest](https://github.com/una-language/example-jest) <br/>
 [Express](https://github.com/una-language/example-express) <br/>
 [React](https://github.com/una-language/example-react) <br/>
 [React Native](https://github.com/una-language/example-react-native) <br/>
@@ -20,14 +23,16 @@ The functional programming language.
 ## Showcase
 
 This program prints the 10th number of Fibonacci sequence:
+
 ```
 = fibonacci -> index
   ? (> index 1)
     +
-      fibonacci (- index 1) 
+      fibonacci (- index 1)
       fibonacci (- index 2)
     index
 
 console.log (fibonacci 10)
 ```
+
 Result is `55`
