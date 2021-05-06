@@ -4,6 +4,7 @@
         "url": "https://github.com/una-language/una-language/issues"
     },
     "dependencies": {
+        "lodash": "4.17.21",
         "parsimmon": "1.16.0"
     },
     "devDependencies": {
@@ -20,5 +21,5 @@
     "scripts": {
         "test": "jest"
     },
-    "version": "0.3.0"
+    "version": "0.3.1"
 }
