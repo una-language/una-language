@@ -13,7 +13,7 @@ The functional programming language.
 
 ## Examples
 [NodeJS](https://github.com/una-language/examples/tree/main/nodejs) <br/>
-[Express](https://github.com/una-language/examples/tree/main/express) <br/>
+[Express](https://github.com/una-language/example-express) <br/>
 [React](https://github.com/una-language/examples/tree/main/react) <br/>
 [React Native](https://github.com/una-language/examples/tree/main/react-native) <br/>
 
