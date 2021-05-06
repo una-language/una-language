@@ -12,10 +12,10 @@ The functional programming language.
 [Documentation](https://una-language.com/docs/) <br/>
 
 ## Examples
-[NodeJS](https://github.com/una-language/examples/tree/main/nodejs) <br/>
+[NodeJS](https://github.com/una-language/example-node) <br/>
 [Express](https://github.com/una-language/example-express) <br/>
-[React](https://github.com/una-language/examples/tree/main/react) <br/>
-[React Native](https://github.com/una-language/examples/tree/main/react-native) <br/>
+[React](https://github.com/una-language/example-react) <br/>
+[React Native](https://github.com/una-language/example-react-native) <br/>
 
 ## Showcase
 
