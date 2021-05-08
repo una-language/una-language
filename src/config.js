@@ -1,5 +1,5 @@
 module.exports = config => ({
   customTransformRules: config.customTransformRules || {},
-  customTranlateRules: config.customTranlateRules || {},
+  customTranslateRules: config.customTranslateRules || {},
   modules: config.modules || 'import' // 'import' || 'require'
 })
