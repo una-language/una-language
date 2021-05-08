@@ -1,6 +1,6 @@
 const setDefaultConfig = require('../config')
-const transform = require('./transform')(setDefaultConfig({}))
-const testTransform = (raw, tree) => expect(transform([raw])).toEqual([tree])
+const transform = require('./transform')
+const testTransform = (raw, tree, config = {}) => expect(transform(setDefaultConfig(config))([raw])).toEqual([tree])
 
 // Assignment
 test('=', () => {
@@ -42,4 +42,12 @@ test('<|', () => {
     ['<|', ['::', '1', '2', '3'], ['.map', ['->', 'x', ['+', 'x', '1']]]],
     ['.map', ['::', '1', '2', '3'], ['->', ['x'], ['+', 'x', '1']]]
   )
+})
+
+test('Custom transform rules', () => {
+  testTransform(['+++', '1', '2'], ['+++', '2', '1'], {
+    customTransformRules: {
+      '+++': (transform, value, children) => [value, transform(children[1]), transform(children[0])]
+    }
+  })
 })
