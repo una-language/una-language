@@ -25,3 +25,12 @@ func 2
     '3'
   )
 })
+
+test('regular expressions', () => {
+  testUna(
+    `= regexp new RegExp 'foo*'
+regexp.test 'table football'
+`,
+    'true'
+  )
+})
