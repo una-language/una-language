@@ -7,19 +7,21 @@ module.exports = config => {
       return translateRules.hasOwnProperty(node) ? translateRules[node](translate, node, []) : node
     if (node.length === 1) return translate(node[0])
 
-    const [value, ...children] = node
-    const translateRule = translateRules[value]
-    if (translateRule) return translateRule(translate, value, children)
+    const [operator, ...operands] = node
+    const translateRule = translateRules[operator]
+    if (translateRule) return translateRule(translate, operator, operands)
 
     if (
-      typeof value === 'string' &&
-      ['.', '?.'].some(point => value.startsWith(point) && value.length > point.length)
+      typeof operator === 'string' &&
+      ['.', '?.'].some(point => operator.startsWith(point) && operator.length > point.length)
     ) {
-      const field = `${translate(children[0])}${value}`
-      return children.length > 1 ? `${field}(${children.slice(1).map(translate).join(', ')})` : field
+      const field = `${translate(operands[0])}${operator}`
+      return operands.length > 1 ? `${field}(${operands.slice(1).map(translate).join(', ')})` : field
     }
 
-    return !!children && children.length > 0 ? `${translate(value)}(${children.map(translate).join(', ')})` : value
+    return !!operands && operands.length > 0
+      ? `${translate(operator)}(${operands.map(translate).join(', ')})`
+      : operator
   }
 
   return expressions => expressions.map(translate)

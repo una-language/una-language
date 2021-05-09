@@ -290,7 +290,7 @@ test('typeof', () => {
 test('Custom translate rules', () => {
   testTranslate(['+++', 'a', 'b'], '(a + b)', {
     customTranslateRules: {
-      '+++': (translate, value, children) => `(${translate(children[0])} + ${translate(children[1])})`
+      '+++': (translate, operator, operands) => `(${translate(operands[0])} + ${translate(operands[1])})`
     }
   })
 })

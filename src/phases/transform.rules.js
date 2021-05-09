@@ -1,6 +1,6 @@
-const pipeline = (children, orderFirst) => {
-  if (children.length === 1) return children
-  const [first, second, ...rest] = children
+const pipeline = (operands, orderFirst) => {
+  if (operands.length === 1) return operands
+  const [first, second, ...rest] = operands
   const application =
     Array.isArray(second) && typeof second !== 'string'
       ? orderFirst
@@ -10,16 +10,16 @@ const pipeline = (children, orderFirst) => {
   return pipeline([application, ...rest], orderFirst)
 }
 
-const func = (transform, value, children) => {
-  const parameters = Array.isArray(children[0]) ? children[0].map(transform) : [transform(children[0])]
-  return [value, parameters, ...children.slice(1).map(transform)]
+const func = (transform, operator, operands) => {
+  const parameters = Array.isArray(operands[0]) ? operands[0].map(transform) : [transform(operands[0])]
+  return [operator, parameters, ...operands.slice(1).map(transform)]
 }
 
 module.exports = {
-  '=': (transform, value, children) => [value, transform(children[0]), transform(children.slice(1))],
-  '<-=': (transform, value, children) => [value, transform(children)],
+  '=': (transform, operator, operands) => [operator, transform(operands[0]), transform(operands.slice(1))],
+  '<-=': (transform, operator, operands) => [operator, transform(operands)],
   '->': func,
   '-->': func,
-  '<|': (transform, value, children) => transform(pipeline(children, true)),
-  '|>': (transform, value, children) => transform(pipeline(children, false))
+  '<|': (transform, operator, operands) => transform(pipeline(operands, true)),
+  '|>': (transform, operator, operands) => transform(pipeline(operands, false))
 }

@@ -47,7 +47,7 @@ test('<|', () => {
 test('Custom transform rules', () => {
   testTransform(['+++', '1', '2'], ['+++', '2', '1'], {
     customTransformRules: {
-      '+++': (transform, value, children) => [value, transform(children[1]), transform(children[0])]
+      '+++': (transform, operator, operands) => [operator, transform(operands[1]), transform(operands[0])]
     }
   })
 })
