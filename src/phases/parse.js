@@ -10,7 +10,7 @@ const convertTabs = lines => {
   return currentExpression + (head.level === 0 && nextExpressions.length > 0 ? '\n' : '') + nextExpressions
 }
 
-module.exports = config => text => {
+module.exports = text => {
   if (!text.trim()) return []
 
   const lines = text.split('\n').filter(line => line.trim())

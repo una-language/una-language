@@ -1,1 +1,1 @@
-module.exports = config => expressions => expressions.join(';\n')
+module.exports = expressions => expressions.join(';\n')

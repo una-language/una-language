@@ -1,15 +1,15 @@
-const rulesCreator = require('./translate.rules')
-
-module.exports = config => {
-  const translateRules = rulesCreator(config)
+module.exports = operators => {
   const translate = node => {
-    if (!Array.isArray(node))
-      return translateRules.hasOwnProperty(node) ? translateRules[node](translate, node, []) : node
+    if (!Array.isArray(node)) {
+      const nodeOperator = operators(node)
+      return !!nodeOperator ? nodeOperator.translate(translate, node, []) : node
+    }
+
     if (node.length === 1) return translate(node[0])
 
     const [operator, ...operands] = node
-    const translateRule = translateRules[operator]
-    if (translateRule) return translateRule(translate, operator, operands)
+    const translateRule = operators(operator)
+    if (translateRule) return translateRule.translate(translate, operator, operands)
 
     if (
       typeof operator === 'string' &&

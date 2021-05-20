@@ -1,5 +1,4 @@
-const setDefaultConfig = require('../config')
-const parse = require('./parse')(setDefaultConfig({}))
+const parse = require('./parse')
 const testParse = (text, expressions) => expect(parse(text)).toEqual(expressions)
 
 // Assignment

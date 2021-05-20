@@ -1,7 +1,6 @@
-module.exports = config => {
+module.exports = operators => {
   const transformRules = {
-    ...require('./transform.rules'),
-    ...config.customTransformRules
+    ...require('./transform.rules')
   }
   const transform = raw => {
     if (!Array.isArray(raw)) return raw
