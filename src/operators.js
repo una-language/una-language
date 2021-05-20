@@ -243,7 +243,8 @@ const createOperators = config => [
   {
     match: 'instanceof',
     translate: (translate, operator, operands) => `${translate(operands[0])} instanceof ${translate(operands[1])}`
-  }
+  },
+  ...config.customOperators
 ]
 
 module.exports = config => {

@@ -46,10 +46,13 @@ test('<|', () => {
   )
 })
 
-// test('Custom transform rules', () => {
-//   testTransform(['+++', '1', '2'], ['+++', '2', '1'], {
-//     customTransformRules: {
-//       '+++': (transform, operator, operands) => [operator, transform(operands[1]), transform(operands[0])]
-//     }
-//   })
-// })
+test('Custom operators', () => {
+  testTransform(['+++', '1', '2'], ['+++', '2', '1'], {
+    customOperators: [
+      {
+        match: '+++',
+        transform: (transform, operator, operands) => [operator, transform(operands[1]), transform(operands[0])]
+      }
+    ]
+  })
+})

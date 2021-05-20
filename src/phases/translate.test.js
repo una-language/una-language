@@ -288,10 +288,13 @@ test('typeof', () => {
   testTranslate(['instanceof', 'func', 'Function'], 'func instanceof Function')
 })
 
-// test('Custom translate rules', () => {
-//   testTranslate(['+++', 'a', 'b'], '(a + b)', {
-//     customTranslateRules: {
-//       '+++': (translate, operator, operands) => `(${translate(operands[0])} + ${translate(operands[1])})`
-//     }
-//   })
-// })
+test('Custom operators', () => {
+  testTranslate(['+++', 'a', 'b'], '(a + b)', {
+    customOperators: [
+      {
+        match: '+++',
+        translate: (translate, operator, operands) => `(${translate(operands[0])} + ${translate(operands[1])})`
+      }
+    ]
+  })
+})
