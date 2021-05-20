@@ -15,6 +15,22 @@ const func = (translate, operands) => {
     ? `(${params}) => (${translate(lines[0])})`
     : `(${params}) => { ${funcBody(translate, lines)} }`
 }
+const funcTransform = (transform, operator, operands) => {
+  const parameters = Array.isArray(operands[0]) ? operands[0].map(transform) : [transform(operands[0])]
+  return [operator, parameters, ...operands.slice(1).map(transform)]
+}
+
+const pipelineTransform = (operands, orderFirst) => {
+  if (operands.length === 1) return operands
+  const [first, second, ...rest] = operands
+  const application =
+    Array.isArray(second) && typeof second !== 'string'
+      ? orderFirst
+        ? [second[0], first, ...second.slice(1)]
+        : [...second, first]
+      : [second, first]
+  return pipelineTransform([application, ...rest], orderFirst)
+}
 
 const createOperators = config => [
   { match: '+', translate: nary() },
@@ -46,6 +62,7 @@ const createOperators = config => [
 
   {
     match: '=',
+    transform: (transform, operator, operands) => [operator, transform(operands[0]), transform(operands.slice(1))],
     translate: (translate, operator, operands) => `const ${translate(operands[0])} = ${translate(operands[1])}`
   },
   {
@@ -103,10 +120,12 @@ const createOperators = config => [
 
   {
     match: '->',
+    transform: funcTransform,
     translate: (translate, operator, operands) => func(translate, operands)
   },
   {
     match: '-->',
+    transform: funcTransform,
     translate: (translate, operator, operands) => `async ${func(translate, operands)}`
   },
   {
@@ -139,6 +158,10 @@ const createOperators = config => [
     }
   },
   {
+    match: '|>',
+    transform: (transform, operator, operands) => transform(pipelineTransform(operands, false))
+  },
+  {
     match: '<-',
     translate: (translate, operator, operands) => `(${func(translate, [[], ...operands])})()`
   },
@@ -153,6 +176,7 @@ const createOperators = config => [
   },
   {
     match: '<-=',
+    transform: (transform, operator, operands) => [operator, transform(operands)],
     translate: (translate, operator, operands) => {
       const areOperandsArray = Array.isArray(operands[0])
       const exportType =
@@ -178,6 +202,11 @@ const createOperators = config => [
       }
     }
   },
+  {
+    match: '<|',
+    transform: (transform, operator, operands) => transform(pipelineTransform(operands, true))
+  },
+
   {
     match: '`',
     translate: (translate, operator, operands) => {
@@ -219,8 +248,10 @@ const createOperators = config => [
 
 module.exports = config => {
   const operators = createOperators(config)
-  return value =>
-    operators.find(operator =>
+  return (value, method) => {
+    const foundOperator = operators.find(operator =>
       typeof operator.match === 'function' ? operator.match(value) : operator.match === value
     )
+    return foundOperator && foundOperator[method]
+  }
 }

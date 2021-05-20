@@ -7,7 +7,7 @@ const translate = require('./phases/translate')
 
 module.exports = (code, options = {}) => {
   const config = setDefaultConfig(options)
-  const operators = createOperators(config)
-  const phases = [parse, transform(operators), translate(operators), join]
+  const findOperator = createOperators(config)
+  const phases = [parse, transform(findOperator), translate(findOperator), join]
   return phases.reduce((data, phase) => phase(data), code)
 }
