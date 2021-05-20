@@ -11,14 +11,6 @@ module.exports = operators => {
     const translateRule = operators(operator)
     if (translateRule) return translateRule.translate(translate, operator, operands)
 
-    if (
-      typeof operator === 'string' &&
-      ['.', '?.'].some(point => operator.startsWith(point) && operator.length > point.length)
-    ) {
-      const field = `${translate(operands[0])}${operator}`
-      return operands.length > 1 ? `${field}(${operands.slice(1).map(translate).join(', ')})` : field
-    }
-
     return !!operands && operands.length > 0
       ? `${translate(operator)}(${operands.map(translate).join(', ')})`
       : operator

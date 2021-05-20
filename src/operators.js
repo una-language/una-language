@@ -85,13 +85,21 @@ const createOperators = config => [
         )
         .join(', ')}}`
   },
+  { match: '...', translate: (translate, operator, operands) => `...${translate(operands[0])}` },
   { match: '.', translate: (translate, operator, operands) => `${translate(operands[0])}[${translate(operands[1])}]` },
   {
     match: '?.',
     translate: (translate, operator, operands) => `${translate(operands[0])}?.[${translate(operands[1])}]`
   },
-  // TODO add here also '.map' and '?.map' operators
-  { match: '...', translate: (translate, operator, operands) => `...${translate(operands[0])}` },
+  {
+    match: value =>
+      typeof value === 'string' &&
+      ['.', '?.'].some(point => value.startsWith(point) && value.length > point.length && value[point.length] !== '.'),
+    translate: (translate, operator, operands) => {
+      const field = `${translate(operands[0])}${operator}`
+      return operands.length > 1 ? `${field}(${operands.slice(1).map(translate).join(', ')})` : field
+    }
+  },
 
   {
     match: '->',
