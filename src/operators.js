@@ -6,21 +6,21 @@ const optionary = ary((translate, operator, operands) =>
   (operands.length > 1 ? nary : unary)(operator)(translate, operator, operands)
 )
 
-const funcBody = (translate, lines) =>
+const translateFunctionBody = (translate, lines) =>
   lines.map((line, index) => (index === lines.length - 1 ? `return ${translate(line)}` : translate(line))).join('; ')
-const func = (translate, operands) => {
+const translateFunction = (translate, operands) => {
   const [rawParams, ...lines] = operands
   const params = rawParams.map(translate).join(', ')
   return lines.length === 1
     ? `(${params}) => (${translate(lines[0])})`
-    : `(${params}) => { ${funcBody(translate, lines)} }`
+    : `(${params}) => { ${translateFunctionBody(translate, lines)} }`
 }
-const funcTransform = (transform, operator, operands) => {
+const transformFunction = (transform, operator, operands) => {
   const parameters = Array.isArray(operands[0]) ? operands[0].map(transform) : [transform(operands[0])]
   return [operator, parameters, ...operands.slice(1).map(transform)]
 }
 
-const pipelineTransform = (operands, orderFirst) => {
+const transformPipeline = (operands, orderFirst) => {
   if (operands.length === 1) return operands
   const [first, second, ...rest] = operands
   const application =
@@ -29,48 +29,56 @@ const pipelineTransform = (operands, orderFirst) => {
         ? [second[0], first, ...second.slice(1)]
         : [...second, first]
       : [second, first]
-  return pipelineTransform([application, ...rest], orderFirst)
+  return transformPipeline([application, ...rest], orderFirst)
+}
+
+const validateParametersCount = (minimumCount, maximumCount) => (operator, operands) => {
+  if (operands.length < minimumCount) throw new Error(`${operator} should have at least ${minimumCount} operands`)
+  if (maximumCount !== undefined && operands.length > maximumCount)
+    throw new Error(`${operator} should have no more than ${maximumCount} operands`)
 }
 
 const createOperators = config => [
-  { match: '+', translate: nary() },
-  { match: '-', translate: optionary() },
-  { match: '*', translate: nary() },
-  { match: '**', translate: nary() },
-  { match: '/', translate: nary() },
-  { match: '%', translate: nary() },
-  { match: '&', translate: nary('&&') },
-  { match: '|', translate: nary('||') },
-  { match: '!', translate: unary() },
-  { match: '!!', translate: unary() },
-  { match: '>', translate: nary() },
-  { match: '>=', translate: nary() },
-  { match: '<', translate: nary() },
-  { match: '<=', translate: nary() },
-  { match: '==', translate: nary('===') },
-  { match: '~=', translate: nary('==') },
-  { match: '!=', translate: nary('!==') },
-  { match: '!~=', translate: nary('!=') },
-  { match: '_&', translate: nary('&') },
-  { match: '_|', translate: nary('|') },
-  { match: '_!', translate: unary('~') },
-  { match: '_^', translate: nary('^') },
-  { match: '_>>', translate: nary('>>') },
-  { match: '_>>>', translate: nary('>>>') },
-  { match: '_<<', translate: nary('<<') },
-  { match: '??', translate: nary() },
+  { match: '+', translate: nary(), validate: validateParametersCount(2) },
+  { match: '-', translate: optionary(), validate: validateParametersCount(1) },
+  { match: '*', translate: nary(), validate: validateParametersCount(2) },
+  { match: '**', translate: nary(), validate: validateParametersCount(2) },
+  { match: '/', translate: nary(), validate: validateParametersCount(2) },
+  { match: '%', translate: nary(), validate: validateParametersCount(2) },
+  { match: '&', translate: nary('&&'), validate: validateParametersCount(2) },
+  { match: '|', translate: nary('||'), validate: validateParametersCount(2) },
+  { match: '!', translate: unary(), validate: validateParametersCount(1, 1) },
+  { match: '!!', translate: unary(), validate: validateParametersCount(1, 1) },
+  { match: '>', translate: nary(), validate: validateParametersCount(2, 2) },
+  { match: '>=', translate: nary(), validate: validateParametersCount(2, 2) },
+  { match: '<', translate: nary(), validate: validateParametersCount(2, 2) },
+  { match: '<=', translate: nary(), validate: validateParametersCount(2, 2) },
+  { match: '==', translate: nary('==='), validate: validateParametersCount(2, 2) },
+  { match: '~=', translate: nary('=='), validate: validateParametersCount(2, 2) },
+  { match: '!=', translate: nary('!=='), validate: validateParametersCount(2, 2) },
+  { match: '!~=', translate: nary('!='), validate: validateParametersCount(2, 2) },
+  { match: '_&', translate: nary('&'), validate: validateParametersCount(2) },
+  { match: '_|', translate: nary('|'), validate: validateParametersCount(2) },
+  { match: '_!', translate: unary('~'), validate: validateParametersCount(1, 1) },
+  { match: '_^', translate: nary('^'), validate: validateParametersCount(2) },
+  { match: '_>>', translate: nary('>>'), validate: validateParametersCount(2) },
+  { match: '_>>>', translate: nary('>>>'), validate: validateParametersCount(2) },
+  { match: '_<<', translate: nary('<<'), validate: validateParametersCount(2) },
+  { match: '??', translate: nary(), validate: validateParametersCount(2) },
 
   {
     match: '=',
     transform: (transform, operator, operands) => [operator, transform(operands[0]), transform(operands.slice(1))],
-    translate: (translate, operator, operands) => `const ${translate(operands[0])} = ${translate(operands[1])}`
+    translate: (translate, operator, operands) => `const ${translate(operands[0])} = ${translate(operands[1])}`,
+    validate: validateParametersCount(2)
   },
   {
     match: '?',
     translate: (translate, operator, operands) =>
       `(${translate(operands[0])} ? ${translate(operands[1])} : ${
         operands.length > 2 ? translate(operands[2]) : 'undefined'
-      })`
+      })`,
+    validate: validateParametersCount(2, 3)
   },
   {
     match: '?!',
@@ -79,9 +87,10 @@ const createOperators = config => [
       const returnBody =
         returnBodyLines.length === 1
           ? `return ${translate(returnBodyLines[0])}`
-          : `{ ${funcBody(translate, returnBodyLines)} }`
+          : `{ ${translateFunctionBody(translate, returnBodyLines)} }`
       return `if (${translate(operands[0])}) ${returnBody}`
-    }
+    },
+    validate: validateParametersCount(2)
   },
 
   { match: '::', translate: (translate, operator, operands) => `[${operands.map(translate).join(', ')}]` },
@@ -120,19 +129,19 @@ const createOperators = config => [
 
   {
     match: '->',
-    transform: funcTransform,
-    translate: (translate, operator, operands) => func(translate, operands)
+    transform: transformFunction,
+    translate: (translate, operator, operands) => translateFunction(translate, operands)
   },
   {
     match: '-->',
-    transform: funcTransform,
-    translate: (translate, operator, operands) => `async ${func(translate, operands)}`
+    transform: transformFunction,
+    translate: (translate, operator, operands) => `async ${translateFunction(translate, operands)}`
   },
   {
     match: '|->',
     translate: (translate, operator, operands) => {
-      const tryBody = funcBody(translate, operands[0].slice(1))
-      const catchBody = funcBody(translate, operands[1].slice(2))
+      const tryBody = translateFunctionBody(translate, operands[0].slice(1))
+      const catchBody = translateFunctionBody(translate, operands[1].slice(2))
       const tryCatch = `try { ${tryBody} } catch (${translate(operands[1][1])}) { ${catchBody} }`
 
       const isAsync = operands[0][0] === '<--' || operands[1][0] === '-->'
@@ -159,16 +168,18 @@ const createOperators = config => [
   },
   {
     match: '|>',
-    transform: (transform, operator, operands) => transform(pipelineTransform(operands, false))
+    transform: (transform, operator, operands) => transform(transformPipeline(operands, false))
   },
   {
     match: '<-',
-    translate: (translate, operator, operands) => `(${func(translate, [[], ...operands])})()`
+    translate: (translate, operator, operands) => `(${translateFunction(translate, [[], ...operands])})()`
   },
   {
     match: '<--',
     translate: (translate, operator, operands) =>
-      operands.length > 1 ? `await (async ${func(translate, [[], ...operands])})()` : `await ${translate(operands[0])}`
+      operands.length > 1
+        ? `await (async ${translateFunction(translate, [[], ...operands])})()`
+        : `await ${translate(operands[0])}`
   },
   {
     match: '<-|',
@@ -204,7 +215,7 @@ const createOperators = config => [
   },
   {
     match: '<|',
-    transform: (transform, operator, operands) => transform(pipelineTransform(operands, true))
+    transform: (transform, operator, operands) => transform(transformPipeline(operands, true))
   },
 
   {
