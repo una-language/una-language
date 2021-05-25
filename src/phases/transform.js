@@ -1,12 +1,12 @@
 module.exports = findOperator => {
-  const transform = raw => {
-    if (!Array.isArray(raw)) return raw
-    if (raw.length === 0) return raw
-    if (raw.length === 1) return transform(raw[0])
+  const transform = expression => {
+    if (!Array.isArray(expression)) return expression
+    if (expression.length === 0) return expression
+    if (expression.length === 1) return transform(expression[0])
 
-    const [operator, ...operands] = raw
+    const [operator, ...operands] = expression
     const transformOperator = findOperator(operator, 'transform')
-    return transformOperator ? transformOperator(transform, operator, operands) : raw.map(transform)
+    return transformOperator ? transformOperator(transform, operator, operands) : expression.map(transform)
   }
 
   return expressions => expressions.map(transform)

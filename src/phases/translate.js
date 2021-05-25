@@ -1,13 +1,13 @@
 module.exports = findOperator => {
-  const translate = node => {
-    if (!Array.isArray(node)) {
-      const translateNode = findOperator(node, 'translate')
-      return !!translateNode ? translateNode(translate, node, []) : node
+  const translate = expression => {
+    if (!Array.isArray(expression)) {
+      const translateExpression = findOperator(expression, 'translate')
+      return !!translateExpression ? translateExpression(translate, expression, []) : expression
     }
 
-    if (node.length === 1) return translate(node[0])
+    if (expression.length === 1) return translate(expression[0])
 
-    const [operator, ...operands] = node
+    const [operator, ...operands] = expression
     const translateOperator = findOperator(operator, 'translate')
     if (translateOperator) return translateOperator(translate, operator, operands)
 
