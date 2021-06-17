@@ -92,3 +92,47 @@ test('?', () => {
 test('?!', () => {
   checkParametersCount('?!', 2)
 })
+
+test('->', () => {
+  checkParametersCount('->', 2)
+})
+
+test('-->', () => {
+  checkParametersCount('-->', 2)
+})
+
+test('|->', () => {
+  checkParametersCount('|->', 2, 3)
+})
+
+test('|>', () => {
+  checkParametersCount('<|', 2)
+})
+
+test('<-', () => {
+  checkParametersCount('<-', 1)
+})
+
+test('<--', () => {
+  checkParametersCount('<--', 1)
+})
+
+test('<-|', () => {
+  checkParametersCount('<-|', 1, 1)
+})
+
+test('<|', () => {
+  checkParametersCount('<|', 2)
+})
+
+test('new', () => {
+  checkParametersCount('new', 1)
+})
+
+test('typeof', () => {
+  checkParametersCount('typeof', 1, 1)
+})
+
+test('instanceof', () => {
+  checkParametersCount('instanceof', 2, 2)
+})

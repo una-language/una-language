@@ -115,7 +115,8 @@ const createOperators = config => [
   { match: '.', translate: (translate, operator, operands) => `${translate(operands[0])}[${translate(operands[1])}]` },
   {
     match: '?.',
-    translate: (translate, operator, operands) => `${translate(operands[0])}?.[${translate(operands[1])}]`
+    translate: (translate, operator, operands) => `${translate(operands[0])}?.[${translate(operands[1])}]`,
+    validate: validateParametersCount(2, 3)
   },
   {
     match: value =>
@@ -130,12 +131,14 @@ const createOperators = config => [
   {
     match: '->',
     transform: transformFunction,
-    translate: (translate, operator, operands) => translateFunction(translate, operands)
+    translate: (translate, operator, operands) => translateFunction(translate, operands),
+    validate: validateParametersCount(2)
   },
   {
     match: '-->',
     transform: transformFunction,
-    translate: (translate, operator, operands) => `async ${translateFunction(translate, operands)}`
+    translate: (translate, operator, operands) => `async ${translateFunction(translate, operands)}`,
+    validate: validateParametersCount(2)
   },
   {
     match: '|->',
@@ -146,7 +149,8 @@ const createOperators = config => [
 
       const isAsync = operands[0][0] === '<--' || operands[1][0] === '-->'
       return `${isAsync ? 'await (async ' : '('}() => { ${tryCatch} })()`
-    }
+    },
+    validate: validateParametersCount(2, 3)
   },
   {
     match: '=->',
@@ -168,22 +172,26 @@ const createOperators = config => [
   },
   {
     match: '|>',
-    transform: (transform, operator, operands) => transform(transformPipeline(operands, false))
+    transform: (transform, operator, operands) => transform(transformPipeline(operands, false)),
+    validate: validateParametersCount(2)
   },
   {
     match: '<-',
-    translate: (translate, operator, operands) => `(${translateFunction(translate, [[], ...operands])})()`
+    translate: (translate, operator, operands) => `(${translateFunction(translate, [[], ...operands])})()`,
+    validate: validateParametersCount(1)
   },
   {
     match: '<--',
     translate: (translate, operator, operands) =>
       operands.length > 1
         ? `await (async ${translateFunction(translate, [[], ...operands])})()`
-        : `await ${translate(operands[0])}`
+        : `await ${translate(operands[0])}`,
+    validate: validateParametersCount(1)
   },
   {
     match: '<-|',
-    translate: (translate, operator, operands) => `(() => { throw new Error(${translate(operands[0])}) })()`
+    translate: (translate, operator, operands) => `(() => { throw new Error(${translate(operands[0])}) })()`,
+    validate: validateParametersCount(1, 1)
   },
   {
     match: '<-=',
@@ -215,7 +223,8 @@ const createOperators = config => [
   },
   {
     match: '<|',
-    transform: (transform, operator, operands) => transform(transformPipeline(operands, true))
+    transform: (transform, operator, operands) => transform(transformPipeline(operands, true)),
+    validate: validateParametersCount(2)
   },
 
   {
@@ -245,15 +254,18 @@ const createOperators = config => [
   {
     match: 'new',
     translate: (translate, operator, operands) =>
-      `(new ${translate(operands[0])}(${operands.slice(1).map(translate).join(', ')}))`
+      `(new ${translate(operands[0])}(${operands.slice(1).map(translate).join(', ')}))`,
+    validate: validateParametersCount(1)
   },
   {
     match: 'typeof',
-    translate: (translate, operator, operands) => `typeof ${translate(operands[0])}`
+    translate: (translate, operator, operands) => `typeof ${translate(operands[0])}`,
+    validate: validateParametersCount(1, 1)
   },
   {
     match: 'instanceof',
-    translate: (translate, operator, operands) => `${translate(operands[0])} instanceof ${translate(operands[1])}`
+    translate: (translate, operator, operands) => `${translate(operands[0])} instanceof ${translate(operands[1])}`,
+    validate: validateParametersCount(2, 2)
   },
   ...config.customOperators
 ]
