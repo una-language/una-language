@@ -9,7 +9,7 @@
 The functional programming language.
 
 [Website](https://una-language.com/) <br/>
-[Documentation](DOCS.md) <br/>
+[Documentation](https://una-language.com/docs) <br/>
 
 ## Examples
 
