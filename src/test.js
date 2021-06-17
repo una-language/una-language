@@ -34,3 +34,14 @@ regexp.test 'table football'
     'true'
   )
 })
+
+test('..', () => {
+  testUna(
+    `
+= func -> ((.. x 1))
+  (+ x 1)
+func ()
+`,
+    '2'
+  )
+})

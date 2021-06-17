@@ -251,6 +251,10 @@ test('?.', () => {
   testTranslate(['?.b', 'a', 'c'], 'a?.b(c)')
   testTranslate(['?.b', 'a'], 'a?.b')
 })
+test('..', () => {
+  testTranslate(['->', [['..', 'x', '1']], ['+', 'x', '1']], '(x = 1) => ((x + 1))')
+  testTranslate([':', ['..', 'a', '1']], '{a = 1}')
+})
 test('...', () => {
   testTranslate(['...object'], '...object')
   testTranslate(['...', 'object'], '...object')

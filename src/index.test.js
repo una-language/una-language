@@ -162,6 +162,11 @@ test('?.', () => {
   testUna('?.b a c', 'a?.b(c)')
 })
 
+test('..', () => {
+  testUna('= (: (.. a 1)) (: (a 1))', 'const {a = 1} = {a: 1}')
+  testUna('= a (-> ((.. x 1)) (+ x 1))', 'const a = (x = 1) => ((x + 1))')
+})
+
 test('...', () => {
   testUna(
     `

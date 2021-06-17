@@ -10,6 +10,7 @@ module.exports = () => [
         if (child.length === 1) return translate(key)
 
         if (key === '.') return `[${translate(value[0])}]: ${translate(value.slice(1))}`
+        if (key === '..') return `${translate(value[0])} = ${translate(value.slice(1))}`
         if (key === '...') return translate(operands)
 
         return `${translate(key)}: ${translate(value)}`
