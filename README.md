@@ -10,6 +10,7 @@ The functional programming language.
 
 [Website](https://una-language.com/) <br/>
 [Documentation](https://una-language.com/docs) <br/>
+[Documentation backup](https://github.com/una-language/una-language/blob/master/DOCS.md) <br/>
 
 ## Examples
 
@@ -18,6 +19,7 @@ The functional programming language.
 [Express](https://github.com/una-language/example-express) <br/>
 [React](https://github.com/una-language/example-react) <br/>
 [React Native](https://github.com/una-language/example-react-native) <br/>
+[Fullstack TODO-app](https://github.com/una-language/example-fullstack) <br/>
 
 ## Showcase
 
@@ -34,4 +36,4 @@ This program prints the 10th number of Fibonacci sequence:
 console.log (fibonacci 10)
 ```
 
-Result is `55`
+It prints `55` to the console.
